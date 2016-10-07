@@ -32,7 +32,7 @@ public class ErrorVM implements Serializable {
     }
 
     public void add(String objectName, String field, String message) {
-        if (fieldErrors == null) {
+        if(fieldErrors == null) {
             fieldErrors = new ArrayList<>();
         }
         fieldErrors.add(new FieldErrorVM(objectName, field, message));

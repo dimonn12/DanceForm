@@ -1,9 +1,8 @@
 package by.danceform.app.service.dto;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 
@@ -32,7 +31,7 @@ public class DanceClassDTO implements Serializable {
 
 
     private Long danceClassId;
-    
+
 
     private String danceClassName;
 
@@ -43,6 +42,7 @@ public class DanceClassDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
@@ -50,6 +50,7 @@ public class DanceClassDTO implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
     public String getDescription() {
         return description;
     }
@@ -57,6 +58,7 @@ public class DanceClassDTO implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
     public String getSymbol() {
         return symbol;
     }
@@ -64,6 +66,7 @@ public class DanceClassDTO implements Serializable {
     public void setSymbol(String symbol) {
         this.symbol = symbol;
     }
+
     public Integer getWeight() {
         return weight;
     }
@@ -71,6 +74,7 @@ public class DanceClassDTO implements Serializable {
     public void setWeight(Integer weight) {
         this.weight = weight;
     }
+
     public Integer getTransferScore() {
         return transferScore;
     }
@@ -98,16 +102,18 @@ public class DanceClassDTO implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
+        if(this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if(o == null || getClass() != o.getClass()) {
             return false;
         }
 
-        DanceClassDTO danceClassDTO = (DanceClassDTO) o;
+        DanceClassDTO danceClassDTO = (DanceClassDTO)o;
 
-        if ( ! Objects.equals(id, danceClassDTO.id)) return false;
+        if(!Objects.equals(id, danceClassDTO.id)) {
+            return false;
+        }
 
         return true;
     }
@@ -120,12 +126,12 @@ public class DanceClassDTO implements Serializable {
     @Override
     public String toString() {
         return "DanceClassDTO{" +
-            "id=" + id +
-            ", name='" + name + "'" +
-            ", description='" + description + "'" +
-            ", symbol='" + symbol + "'" +
-            ", weight='" + weight + "'" +
-            ", transferScore='" + transferScore + "'" +
-            '}';
+               "id=" + id +
+               ", name='" + name + "'" +
+               ", description='" + description + "'" +
+               ", symbol='" + symbol + "'" +
+               ", weight='" + weight + "'" +
+               ", transferScore='" + transferScore + "'" +
+               '}';
     }
 }

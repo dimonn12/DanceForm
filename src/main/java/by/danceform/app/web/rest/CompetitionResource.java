@@ -1,10 +1,10 @@
 package by.danceform.app.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
 import by.danceform.app.service.CompetitionService;
+import by.danceform.app.service.dto.CompetitionDTO;
 import by.danceform.app.web.rest.util.HeaderUtil;
 import by.danceform.app.web.rest.util.PaginationUtil;
-import by.danceform.app.service.dto.CompetitionDTO;
+import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -13,16 +13,18 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * REST controller for managing Competition.
@@ -32,7 +34,7 @@ import java.util.stream.Collectors;
 public class CompetitionResource {
 
     private final Logger log = LoggerFactory.getLogger(CompetitionResource.class);
-        
+
     @Inject
     private CompetitionService competitionService;
 
@@ -44,13 +46,18 @@ public class CompetitionResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @RequestMapping(value = "/competitions",
-        method = RequestMethod.POST,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+                    method = RequestMethod.POST,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<CompetitionDTO> createCompetition(@Valid @RequestBody CompetitionDTO competitionDTO) throws URISyntaxException {
+    public ResponseEntity<CompetitionDTO> createCompetition(@Valid @RequestBody CompetitionDTO competitionDTO)
+        throws URISyntaxException {
         log.debug("REST request to save Competition : {}", competitionDTO);
-        if (competitionDTO.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("competition", "idexists", "A new competition cannot already have an ID")).body(null);
+        if(competitionDTO.getId() != null) {
+            return ResponseEntity.badRequest()
+                .headers(HeaderUtil.createFailureAlert("competition",
+                    "idexists",
+                    "A new competition cannot already have an ID"))
+                .body(null);
         }
         CompetitionDTO result = competitionService.save(competitionDTO);
         return ResponseEntity.created(new URI("/api/competitions/" + result.getId()))
@@ -68,12 +75,13 @@ public class CompetitionResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @RequestMapping(value = "/competitions",
-        method = RequestMethod.PUT,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+                    method = RequestMethod.PUT,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<CompetitionDTO> updateCompetition(@Valid @RequestBody CompetitionDTO competitionDTO) throws URISyntaxException {
+    public ResponseEntity<CompetitionDTO> updateCompetition(@Valid @RequestBody CompetitionDTO competitionDTO)
+        throws URISyntaxException {
         log.debug("REST request to update Competition : {}", competitionDTO);
-        if (competitionDTO.getId() == null) {
+        if(competitionDTO.getId() == null) {
             return createCompetition(competitionDTO);
         }
         CompetitionDTO result = competitionService.save(competitionDTO);
@@ -90,11 +98,10 @@ public class CompetitionResource {
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @RequestMapping(value = "/competitions",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+                    method = RequestMethod.GET,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<List<CompetitionDTO>> getAllCompetitions(Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<CompetitionDTO>> getAllCompetitions(Pageable pageable) throws URISyntaxException {
         log.debug("REST request to get a page of Competitions");
         Page<CompetitionDTO> page = competitionService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/competitions");
@@ -108,16 +115,14 @@ public class CompetitionResource {
      * @return the ResponseEntity with status 200 (OK) and with body the competitionDTO, or with status 404 (Not Found)
      */
     @RequestMapping(value = "/competitions/{id}",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+                    method = RequestMethod.GET,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<CompetitionDTO> getCompetition(@PathVariable Long id) {
         log.debug("REST request to get Competition : {}", id);
         CompetitionDTO competitionDTO = competitionService.findOne(id);
         return Optional.ofNullable(competitionDTO)
-            .map(result -> new ResponseEntity<>(
-                result,
-                HttpStatus.OK))
+            .map(result -> new ResponseEntity<>(result, HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
@@ -128,8 +133,8 @@ public class CompetitionResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @RequestMapping(value = "/competitions/{id}",
-        method = RequestMethod.DELETE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+                    method = RequestMethod.DELETE,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> deleteCompetition(@PathVariable Long id) {
         log.debug("REST request to delete Competition : {}", id);

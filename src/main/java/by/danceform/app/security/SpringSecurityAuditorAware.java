@@ -1,7 +1,6 @@
 package by.danceform.app.security;
 
 import by.danceform.app.config.Constants;
-
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 

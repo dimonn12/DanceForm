@@ -3,7 +3,8 @@ package by.danceform.app.config;
 import org.springframework.boot.SpringApplication;
 import org.springframework.core.env.Environment;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Utility class to load a Spring profile to be used as default
@@ -20,7 +21,7 @@ public final class DefaultProfileUtil {
      * @param app the spring application
      */
     public static void addDefaultProfile(SpringApplication app) {
-        Map<String, Object> defProperties =  new HashMap<>();
+        Map<String, Object> defProperties = new HashMap<>();
         /*
         * The default profile to use when no other profiles are defined
         * This cannot be set in the <code>application.yml</code> file.
@@ -35,7 +36,7 @@ public final class DefaultProfileUtil {
      */
     public static String[] getActiveProfiles(Environment env) {
         String[] profiles = env.getActiveProfiles();
-        if (profiles.length == 0) {
+        if(profiles.length == 0) {
             return env.getDefaultProfiles();
         }
         return profiles;

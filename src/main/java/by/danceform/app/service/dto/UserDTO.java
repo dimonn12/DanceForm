@@ -1,15 +1,16 @@
 package by.danceform.app.service.dto;
 
 import by.danceform.app.config.Constants;
-
 import by.danceform.app.domain.Authority;
 import by.danceform.app.domain.User;
-
 import org.hibernate.validator.constraints.Email;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 /**
  * A DTO representing a user, with his authorities.
  */
@@ -41,14 +42,22 @@ public class UserDTO {
     }
 
     public UserDTO(User user) {
-        this(user.getLogin(), user.getFirstName(), user.getLastName(),
-            user.getEmail(), user.getActivated(), user.getLangKey(),
-            user.getAuthorities().stream().map(Authority::getName)
-                .collect(Collectors.toSet()));
+        this(user.getLogin(),
+            user.getFirstName(),
+            user.getLastName(),
+            user.getEmail(),
+            user.getActivated(),
+            user.getLangKey(),
+            user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toSet()));
     }
 
-    public UserDTO(String login, String firstName, String lastName,
-        String email, boolean activated, String langKey, Set<String> authorities) {
+    public UserDTO(String login,
+                   String firstName,
+                   String lastName,
+                   String email,
+                   boolean activated,
+                   String langKey,
+                   Set<String> authorities) {
 
         this.login = login;
         this.firstName = firstName;
@@ -90,13 +99,13 @@ public class UserDTO {
     @Override
     public String toString() {
         return "UserDTO{" +
-            "login='" + login + '\'' +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", email='" + email + '\'' +
-            ", activated=" + activated +
-            ", langKey='" + langKey + '\'' +
-            ", authorities=" + authorities +
-            "}";
+               "login='" + login + '\'' +
+               ", firstName='" + firstName + '\'' +
+               ", lastName='" + lastName + '\'' +
+               ", email='" + email + '\'' +
+               ", activated=" + activated +
+               ", langKey='" + langKey + '\'' +
+               ", authorities=" + authorities +
+               "}";
     }
 }

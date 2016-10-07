@@ -16,13 +16,14 @@ import java.io.IOException;
 public class CsrfCookieGeneratorFilter extends OncePerRequestFilter {
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+        throws ServletException, IOException {
         // Spring put the CSRF token in session attribute "_csrf"
-        CsrfToken csrfToken = (CsrfToken) request.getAttribute("_csrf");
+        CsrfToken csrfToken = (CsrfToken)request.getAttribute("_csrf");
 
         // Send the cookie only if the token has changed
         String actualToken = request.getHeader("X-CSRF-TOKEN");
-        if (actualToken == null || !actualToken.equals(csrfToken.getToken())) {
+        if(actualToken == null || !actualToken.equals(csrfToken.getToken())) {
             // Session cookie that will be used by AngularJS
             String pCookieName = "CSRF-TOKEN";
             Cookie cookie = new Cookie(pCookieName, csrfToken.getToken());

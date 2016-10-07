@@ -1,10 +1,10 @@
 package by.danceform.app.domain;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -34,16 +34,16 @@ public class Authority implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
+        if(this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if(o == null || getClass() != o.getClass()) {
             return false;
         }
 
-        Authority authority = (Authority) o;
+        Authority authority = (Authority)o;
 
-        if (name != null ? !name.equals(authority.name) : authority.name != null) {
+        if(name != null ? !name.equals(authority.name) : authority.name != null) {
             return false;
         }
 
@@ -58,7 +58,7 @@ public class Authority implements Serializable {
     @Override
     public String toString() {
         return "Authority{" +
-            "name='" + name + '\'' +
-            "}";
+               "name='" + name + '\'' +
+               "}";
     }
 }

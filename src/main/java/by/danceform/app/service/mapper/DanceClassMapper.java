@@ -1,9 +1,10 @@
 package by.danceform.app.service.mapper;
 
-import by.danceform.app.domain.*;
+import by.danceform.app.domain.DanceClass;
 import by.danceform.app.service.dto.DanceClassDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ public interface DanceClassMapper {
     List<DanceClass> danceClassDTOsToDanceClasses(List<DanceClassDTO> danceClassDTOs);
 
     default DanceClass danceClassFromId(Long id) {
-        if (id == null) {
+        if(id == null) {
             return null;
         }
         DanceClass danceClass = new DanceClass();

@@ -1,8 +1,16 @@
 package by.danceform.app.domain;
 
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -132,13 +140,13 @@ public class DanceClass implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
+        if(this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if(o == null || getClass() != o.getClass()) {
             return false;
         }
-        DanceClass danceClass = (DanceClass) o;
+        DanceClass danceClass = (DanceClass)o;
         if(danceClass.id == null || id == null) {
             return false;
         }
@@ -153,12 +161,12 @@ public class DanceClass implements Serializable {
     @Override
     public String toString() {
         return "DanceClass{" +
-            "id=" + id +
-            ", name='" + name + "'" +
-            ", description='" + description + "'" +
-            ", symbol='" + symbol + "'" +
-            ", weight='" + weight + "'" +
-            ", transferScore='" + transferScore + "'" +
-            '}';
+               "id=" + id +
+               ", name='" + name + "'" +
+               ", description='" + description + "'" +
+               ", symbol='" + symbol + "'" +
+               ", weight='" + weight + "'" +
+               ", transferScore='" + transferScore + "'" +
+               '}';
     }
 }

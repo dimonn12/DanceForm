@@ -1,14 +1,14 @@
 package by.danceform.app.service.impl;
 
-import by.danceform.app.service.AgeCategoryService;
 import by.danceform.app.domain.AgeCategory;
 import by.danceform.app.repository.AgeCategoryRepository;
+import by.danceform.app.service.AgeCategoryService;
 import by.danceform.app.service.dto.AgeCategoryDTO;
 import by.danceform.app.service.mapper.AgeCategoryMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.LinkedList;
@@ -20,10 +20,10 @@ import java.util.stream.Collectors;
  */
 @Service
 @Transactional
-public class AgeCategoryServiceImpl implements AgeCategoryService{
+public class AgeCategoryServiceImpl implements AgeCategoryService {
 
     private final Logger log = LoggerFactory.getLogger(AgeCategoryServiceImpl.class);
-    
+
     @Inject
     private AgeCategoryRepository ageCategoryRepository;
 
@@ -45,14 +45,15 @@ public class AgeCategoryServiceImpl implements AgeCategoryService{
     }
 
     /**
-     *  Get all the ageCategories.
-     *  
-     *  @return the list of entities
+     * Get all the ageCategories.
+     *
+     * @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<AgeCategoryDTO> findAll() {
         log.debug("Request to get all AgeCategories");
-        List<AgeCategoryDTO> result = ageCategoryRepository.findAll().stream()
+        List<AgeCategoryDTO> result = ageCategoryRepository.findAll()
+            .stream()
             .map(ageCategoryMapper::ageCategoryToAgeCategoryDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -60,12 +61,12 @@ public class AgeCategoryServiceImpl implements AgeCategoryService{
     }
 
     /**
-     *  Get one ageCategory by id.
+     * Get one ageCategory by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public AgeCategoryDTO findOne(Long id) {
         log.debug("Request to get AgeCategory : {}", id);
         AgeCategory ageCategory = ageCategoryRepository.findOne(id);
@@ -74,9 +75,9 @@ public class AgeCategoryServiceImpl implements AgeCategoryService{
     }
 
     /**
-     *  Delete the  ageCategory by id.
+     * Delete the  ageCategory by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     public void delete(Long id) {
         log.debug("Request to delete AgeCategory : {}", id);

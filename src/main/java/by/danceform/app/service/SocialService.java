@@ -4,7 +4,6 @@ import by.danceform.app.domain.Authority;
 import by.danceform.app.domain.User;
 import by.danceform.app.repository.AuthorityRepository;
 import by.danceform.app.repository.UserRepository;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -24,6 +23,7 @@ import java.util.Set;
 
 @Service
 public class SocialService {
+
     private final Logger log = LoggerFactory.getLogger(SocialService.class);
 
     @Inject
@@ -43,15 +43,14 @@ public class SocialService {
 
     public void deleteUserSocialConnection(String login) {
         ConnectionRepository connectionRepository = usersConnectionRepository.createConnectionRepository(login);
-        connectionRepository.findAllConnections().keySet().stream()
-            .forEach(providerId -> {
-                connectionRepository.removeConnections(providerId);
-                log.debug("Delete user social connection providerId: {}", providerId);
-            });
+        connectionRepository.findAllConnections().keySet().stream().forEach(providerId -> {
+            connectionRepository.removeConnections(providerId);
+            log.debug("Delete user social connection providerId: {}", providerId);
+        });
     }
 
     public void createSocialUser(Connection<?> connection, String langKey) {
-        if (connection == null) {
+        if(connection == null) {
             log.error("Cannot create social user because connection is null");
             throw new IllegalArgumentException("Connection cannot be null");
         }
@@ -65,20 +64,20 @@ public class SocialService {
     private User createUserIfNotExist(UserProfile userProfile, String langKey, String providerId) {
         String email = userProfile.getEmail();
         String userName = userProfile.getUsername();
-        if (!StringUtils.isBlank(userName)) {
+        if(!StringUtils.isBlank(userName)) {
             userName = userName.toLowerCase(Locale.ENGLISH);
         }
-        if (StringUtils.isBlank(email) && StringUtils.isBlank(userName)) {
+        if(StringUtils.isBlank(email) && StringUtils.isBlank(userName)) {
             log.error("Cannot create social user because email and login are null");
             throw new IllegalArgumentException("Email and login cannot be null");
         }
-        if (StringUtils.isBlank(email) && userRepository.findOneByLogin(userName).isPresent()) {
+        if(StringUtils.isBlank(email) && userRepository.findOneByLogin(userName).isPresent()) {
             log.error("Cannot create social user because email is null and login already exist, login -> {}", userName);
             throw new IllegalArgumentException("Email cannot be null with an existing login");
         }
-        if (!StringUtils.isBlank(email)) {
+        if(!StringUtils.isBlank(email)) {
             Optional<User> user = userRepository.findOneByEmail(email);
-            if (user.isPresent()) {
+            if(user.isPresent()) {
                 log.info("User already exist associate the connection to this account");
                 return user.get();
             }
@@ -104,10 +103,10 @@ public class SocialService {
 
     /**
      * @return login if provider manage a login like Twitter or Github otherwise email address.
-     *         Because provider like Google or Facebook didn't provide login or login like "12099388847393"
+     * Because provider like Google or Facebook didn't provide login or login like "12099388847393"
      */
     private String getLoginDependingOnProviderId(UserProfile userProfile, String providerId) {
-        switch (providerId) {
+        switch(providerId) {
             case "twitter":
                 return userProfile.getUsername().toLowerCase();
             default:

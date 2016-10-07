@@ -11,12 +11,13 @@ import java.time.format.DateTimeFormatter;
 @Configuration
 public class JacksonConfiguration {
 
-    public static final DateTimeFormatter ISO_FIXED_FORMAT =
-        DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").withZone(ZoneId.of("Z"));
+    public static final DateTimeFormatter ISO_FIXED_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+        .withZone(ZoneId.of("Z"));
 
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer jacksonCustomizer() {
-        return jackson2ObjectMapperBuilder -> jackson2ObjectMapperBuilder.serializers(new ZonedDateTimeSerializer(ISO_FIXED_FORMAT));
+        return jackson2ObjectMapperBuilder -> jackson2ObjectMapperBuilder.serializers(new ZonedDateTimeSerializer(
+            ISO_FIXED_FORMAT));
     }
 
 }

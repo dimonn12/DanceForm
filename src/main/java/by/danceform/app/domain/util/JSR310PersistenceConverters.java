@@ -1,16 +1,21 @@
 package by.danceform.app.domain.util;
 
-import by.danceform.app.domain.util.JSR310DateConverters.*;
-
-import java.time.*;
-import java.util.Date;
+import by.danceform.app.domain.util.JSR310DateConverters.DateToLocalDateTimeConverter;
+import by.danceform.app.domain.util.JSR310DateConverters.DateToZonedDateTimeConverter;
+import by.danceform.app.domain.util.JSR310DateConverters.LocalDateTimeToDateConverter;
+import by.danceform.app.domain.util.JSR310DateConverters.ZonedDateTimeToDateConverter;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.util.Date;
 
 public final class JSR310PersistenceConverters {
 
-    private JSR310PersistenceConverters() {}
+    private JSR310PersistenceConverters() {
+    }
 
     @Converter(autoApply = true)
     public static class LocalDateConverter implements AttributeConverter<LocalDate, java.sql.Date> {

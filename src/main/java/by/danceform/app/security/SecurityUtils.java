@@ -26,12 +26,14 @@ public final class SecurityUtils {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
         String userName = null;
-        if (authentication != null) {
-            if (authentication.getPrincipal() instanceof UserDetails) {
-                UserDetails springSecurityUser = (UserDetails) authentication.getPrincipal();
+        if(authentication != null) {
+            if(authentication.getPrincipal() instanceof UserDetails) {
+                UserDetails springSecurityUser = (UserDetails)authentication.getPrincipal();
                 userName = springSecurityUser.getUsername();
-            } else if (authentication.getPrincipal() instanceof String) {
-                userName = (String) authentication.getPrincipal();
+            } else {
+                if(authentication.getPrincipal() instanceof String) {
+                    userName = (String)authentication.getPrincipal();
+                }
             }
         }
         return userName;
@@ -45,11 +47,11 @@ public final class SecurityUtils {
     public static boolean isAuthenticated() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
-        if (authentication != null) {
+        if(authentication != null) {
             Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-            if (authorities != null) {
-                for (GrantedAuthority authority : authorities) {
-                    if (authority.getAuthority().equals(AuthoritiesConstants.ANONYMOUS)) {
+            if(authorities != null) {
+                for(GrantedAuthority authority : authorities) {
+                    if(authority.getAuthority().equals(AuthoritiesConstants.ANONYMOUS)) {
                         return false;
                     }
                 }
@@ -61,7 +63,6 @@ public final class SecurityUtils {
 
     /**
      * If the current user has a specific authority (security role).
-     *
      * <p>The name of this method comes from the isUserInRole() method in the Servlet API</p>
      *
      * @param authority the authority to check
@@ -70,9 +71,9 @@ public final class SecurityUtils {
     public static boolean isCurrentUserInRole(String authority) {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
-        if (authentication != null) {
-            if (authentication.getPrincipal() instanceof UserDetails) {
-                UserDetails springSecurityUser = (UserDetails) authentication.getPrincipal();
+        if(authentication != null) {
+            if(authentication.getPrincipal() instanceof UserDetails) {
+                UserDetails springSecurityUser = (UserDetails)authentication.getPrincipal();
                 return springSecurityUser.getAuthorities().contains(new SimpleGrantedAuthority(authority));
             }
         }

@@ -19,7 +19,8 @@
             "name": "Name",
             "date": "Date",
             "isVisible": "Is Visible",
-            "organizer": "Organizer"
+            "organizer": "Organizer",
+            "location": "Location"
         }
     }
 }

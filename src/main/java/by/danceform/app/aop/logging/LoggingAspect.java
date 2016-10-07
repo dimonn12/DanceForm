@@ -1,7 +1,6 @@
 package by.danceform.app.aop.logging;
 
 import by.danceform.app.config.Constants;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -26,39 +25,51 @@ public class LoggingAspect {
     @Inject
     private Environment env;
 
-    @Pointcut("within(by.danceform.app.repository..*) || within(by.danceform.app.service..*) || within(by.danceform.app.web.rest..*)")
+    @Pointcut(
+        "within(by.danceform.app.repository..*) || within(by.danceform.app.service..*) || within(by.danceform.app.web.rest..*)")
     public void loggingPointcut() {
     }
 
     @AfterThrowing(pointcut = "loggingPointcut()", throwing = "e")
     public void logAfterThrowing(JoinPoint joinPoint, Throwable e) {
-        if (env.acceptsProfiles(Constants.SPRING_PROFILE_DEVELOPMENT)) {
-            log.error("Exception in {}.{}() with cause = \'{}\' and exception = \'{}\'", joinPoint.getSignature().getDeclaringTypeName(),
-                joinPoint.getSignature().getName(), e.getCause() != null? e.getCause() : "NULL", e.getMessage());
+        if(env.acceptsProfiles(Constants.SPRING_PROFILE_DEVELOPMENT)) {
+            log.error("Exception in {}.{}() with cause = \'{}\' and exception = \'{}\'",
+                joinPoint.getSignature().getDeclaringTypeName(),
+                joinPoint.getSignature().getName(),
+                e.getCause() != null ? e.getCause() : "NULL",
+                e.getMessage());
 
             e.printStackTrace();
         } else {
-            log.error("Exception in {}.{}() with cause = {}", joinPoint.getSignature().getDeclaringTypeName(),
-                joinPoint.getSignature().getName(), e.getCause() != null? e.getCause() : "NULL");
+            log.error("Exception in {}.{}() with cause = {}",
+                joinPoint.getSignature().getDeclaringTypeName(),
+                joinPoint.getSignature().getName(),
+                e.getCause() != null ? e.getCause() : "NULL");
         }
     }
 
     @Around("loggingPointcut()")
     public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
-        if (log.isDebugEnabled()) {
-            log.debug("Enter: {}.{}() with argument[s] = {}", joinPoint.getSignature().getDeclaringTypeName(),
-                joinPoint.getSignature().getName(), Arrays.toString(joinPoint.getArgs()));
+        if(log.isDebugEnabled()) {
+            log.debug("Enter: {}.{}() with argument[s] = {}",
+                joinPoint.getSignature().getDeclaringTypeName(),
+                joinPoint.getSignature().getName(),
+                Arrays.toString(joinPoint.getArgs()));
         }
         try {
             Object result = joinPoint.proceed();
-            if (log.isDebugEnabled()) {
-                log.debug("Exit: {}.{}() with result = {}", joinPoint.getSignature().getDeclaringTypeName(),
-                    joinPoint.getSignature().getName(), result);
+            if(log.isDebugEnabled()) {
+                log.debug("Exit: {}.{}() with result = {}",
+                    joinPoint.getSignature().getDeclaringTypeName(),
+                    joinPoint.getSignature().getName(),
+                    result);
             }
             return result;
-        } catch (IllegalArgumentException e) {
-            log.error("Illegal argument: {} in {}.{}()", Arrays.toString(joinPoint.getArgs()),
-                    joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
+        } catch(IllegalArgumentException e) {
+            log.error("Illegal argument: {} in {}.{}()",
+                Arrays.toString(joinPoint.getArgs()),
+                joinPoint.getSignature().getDeclaringTypeName(),
+                joinPoint.getSignature().getName());
 
             throw e;
         }

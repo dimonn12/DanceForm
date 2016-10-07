@@ -24,8 +24,8 @@ public class ProfileInfoResource {
     private JHipsterProperties jHipsterProperties;
 
     @RequestMapping(value = "/profile-info",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+                    method = RequestMethod.GET,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
     public ProfileInfoResponse getActiveProfiles() {
         return new ProfileInfoResponse(DefaultProfileUtil.getActiveProfiles(env), getRibbonEnv());
     }
@@ -34,7 +34,7 @@ public class ProfileInfoResource {
         String[] activeProfiles = DefaultProfileUtil.getActiveProfiles(env);
         String[] displayOnActiveProfiles = jHipsterProperties.getRibbon().getDisplayOnActiveProfiles();
 
-        if (displayOnActiveProfiles == null) {
+        if(displayOnActiveProfiles == null) {
             return null;
         }
 
@@ -42,7 +42,7 @@ public class ProfileInfoResource {
         List<String> springBootProfiles = Arrays.asList(activeProfiles);
         ribbonProfiles.retainAll(springBootProfiles);
 
-        if (ribbonProfiles.size() > 0) {
+        if(ribbonProfiles.size() > 0) {
             return ribbonProfiles.get(0);
         }
         return null;

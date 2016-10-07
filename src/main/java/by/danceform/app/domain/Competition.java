@@ -1,8 +1,14 @@
 package by.danceform.app.domain;
 
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -34,6 +40,11 @@ public class Competition implements Serializable {
 
     @Column(name = "organizer")
     private String organizer;
+
+    @NotNull
+    @Size(min = 1, max = 512)
+    @Column(name = "location", length = 512, nullable = false)
+    private String location;
 
     public Long getId() {
         return id;
@@ -95,15 +106,28 @@ public class Competition implements Serializable {
         this.organizer = organizer;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public Competition location(String location) {
+        this.location = location;
+        return this;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
+        if(this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if(o == null || getClass() != o.getClass()) {
             return false;
         }
-        Competition competition = (Competition) o;
+        Competition competition = (Competition)o;
         if(competition.id == null || id == null) {
             return false;
         }
@@ -118,11 +142,12 @@ public class Competition implements Serializable {
     @Override
     public String toString() {
         return "Competition{" +
-            "id=" + id +
-            ", name='" + name + "'" +
-            ", date='" + date + "'" +
-            ", isVisible='" + isVisible + "'" +
-            ", organizer='" + organizer + "'" +
-            '}';
+               "id=" + id +
+               ", name='" + name + "'" +
+               ", date='" + date + "'" +
+               ", isVisible='" + isVisible + "'" +
+               ", organizer='" + organizer + "'" +
+               ", location='" + location + "'" +
+               '}';
     }
 }

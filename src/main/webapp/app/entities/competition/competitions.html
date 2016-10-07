@@ -23,6 +23,7 @@
                     <th jh-sort-by="date"><span data-translate="danceFormApp.competition.date">Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="isVisible"><span data-translate="danceFormApp.competition.isVisible">Is Visible</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="organizer"><span data-translate="danceFormApp.competition.organizer">Organizer</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="location"><span data-translate="danceFormApp.competition.location">Location</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -33,6 +34,7 @@
                         <td>{{competition.date | date:'mediumDate'}}</td>
                     <td>{{competition.isVisible}}</td>
                     <td>{{competition.organizer}}</td>
+                    <td>{{competition.location}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

@@ -29,6 +29,7 @@ import static springfox.documentation.spi.schema.contexts.ModelContext.inputPara
 @Order(SwaggerPluginSupport.SWAGGER_PLUGIN_ORDER)
 @Profile(Constants.SPRING_PROFILE_SWAGGER)
 public class PageableParameterBuilderPlugin implements ParameterBuilderPlugin {
+
     private final TypeNameExtractor nameExtractor;
     private final TypeResolver resolver;
 
@@ -43,8 +44,7 @@ public class PageableParameterBuilderPlugin implements ParameterBuilderPlugin {
         return true;
     }
 
-    private Function<ResolvedType, ? extends ModelReference>
-    createModelRefFactory(ParameterContext context) {
+    private Function<ResolvedType, ? extends ModelReference> createModelRefFactory(ParameterContext context) {
         ModelContext modelContext = inputParam(context.methodParameter().getParameterType(),
             context.getDocumentationType(),
             context.getAlternateTypeProvider(),
@@ -57,27 +57,32 @@ public class PageableParameterBuilderPlugin implements ParameterBuilderPlugin {
     public void apply(ParameterContext context) {
         MethodParameter parameter = context.methodParameter();
         Class<?> type = parameter.getParameterType();
-        if (type != null && Pageable.class.isAssignableFrom(type)) {
-            Function<ResolvedType, ? extends ModelReference> factory =
-                createModelRefFactory(context);
+        if(type != null && Pageable.class.isAssignableFrom(type)) {
+            Function<ResolvedType, ? extends ModelReference> factory = createModelRefFactory(context);
 
             ModelReference intModel = factory.apply(resolver.resolve(Integer.TYPE));
             ModelReference stringModel = factory.apply(resolver.resolve(List.class, String.class));
 
-            List<Parameter> parameters = newArrayList(
-                context.parameterBuilder()
-                    .parameterType("query").name("page").modelRef(intModel)
+            List<Parameter> parameters = newArrayList(context.parameterBuilder()
+                    .parameterType("query")
+                    .name("page")
+                    .modelRef(intModel)
                     .description("Page number of the requested page")
                     .build(),
                 context.parameterBuilder()
-                    .parameterType("query").name("size").modelRef(intModel)
+                    .parameterType("query")
+                    .name("size")
+                    .modelRef(intModel)
                     .description("Size of a page")
                     .build(),
                 context.parameterBuilder()
-                    .parameterType("query").name("sort").modelRef(stringModel).allowMultiple(true)
-                    .description("Sorting criteria in the format: property(,asc|desc). "
-                        + "Default sort order is ascending. "
-                        + "Multiple sort criteria are supported.")
+                    .parameterType("query")
+                    .name("sort")
+                    .modelRef(stringModel)
+                    .allowMultiple(true)
+                    .description("Sorting criteria in the format: property(,asc|desc). " +
+                                 "Default sort order is ascending. " +
+                                 "Multiple sort criteria are supported.")
                     .build());
 
             context.getOperationContext().operationBuilder().parameters(parameters);

@@ -37,6 +37,10 @@
                 <constraints nullable="true" />
             </column>
             
+            <column name="location" type="varchar(512)">
+                <constraints nullable="false" />
+            </column>
+            
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
         

@@ -1,12 +1,16 @@
 package by.danceform.app.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.time.LocalDate;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * Persistent tokens are used by Spring Security to automatically log in users.
@@ -28,7 +32,7 @@ public class PersistentToken implements Serializable {
     @NotNull
     @Column(name = "token_value", nullable = false)
     private String tokenValue;
-    
+
     @Column(name = "token_date")
     private LocalDate tokenDate;
 
@@ -81,7 +85,7 @@ public class PersistentToken implements Serializable {
     }
 
     public void setUserAgent(String userAgent) {
-        if (userAgent.length() >= MAX_USER_AGENT_LEN) {
+        if(userAgent.length() >= MAX_USER_AGENT_LEN) {
             this.userAgent = userAgent.substring(0, MAX_USER_AGENT_LEN - 1);
         } else {
             this.userAgent = userAgent;
@@ -98,16 +102,16 @@ public class PersistentToken implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
+        if(this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if(o == null || getClass() != o.getClass()) {
             return false;
         }
 
-        PersistentToken that = (PersistentToken) o;
+        PersistentToken that = (PersistentToken)o;
 
-        if (!series.equals(that.series)) {
+        if(!series.equals(that.series)) {
             return false;
         }
 
@@ -122,11 +126,11 @@ public class PersistentToken implements Serializable {
     @Override
     public String toString() {
         return "PersistentToken{" +
-            "series='" + series + '\'' +
-            ", tokenValue='" + tokenValue + '\'' +
-            ", tokenDate=" + tokenDate +
-            ", ipAddress='" + ipAddress + '\'' +
-            ", userAgent='" + userAgent + '\'' +
-            "}";
+               "series='" + series + '\'' +
+               ", tokenValue='" + tokenValue + '\'' +
+               ", tokenDate=" + tokenDate +
+               ", ipAddress='" + ipAddress + '\'' +
+               ", userAgent='" + userAgent + '\'' +
+               "}";
     }
 }

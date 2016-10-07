@@ -1,13 +1,12 @@
 package by.danceform.app.web.rest.vm;
 
-import java.time.ZonedDateTime;
-
-import java.util.Set;
-
 import by.danceform.app.domain.User;
 import by.danceform.app.service.dto.UserDTO;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.ZonedDateTime;
+import java.util.Set;
 
 /**
  * View Model extending the UserDTO, which is meant to be used in the user management UI.
@@ -44,9 +43,19 @@ public class ManagedUserVM extends UserDTO {
         this.password = null;
     }
 
-    public ManagedUserVM(Long id, String login, String password, String firstName, String lastName,
-                         String email, boolean activated, String langKey, Set<String> authorities,
-                         String createdBy, ZonedDateTime createdDate, String lastModifiedBy, ZonedDateTime lastModifiedDate) {
+    public ManagedUserVM(Long id,
+                         String login,
+                         String password,
+                         String firstName,
+                         String lastName,
+                         String email,
+                         boolean activated,
+                         String langKey,
+                         Set<String> authorities,
+                         String createdBy,
+                         ZonedDateTime createdDate,
+                         String lastModifiedBy,
+                         ZonedDateTime lastModifiedDate) {
         super(login, firstName, lastName, email, activated, langKey, authorities);
         this.id = id;
         this.createdBy = createdBy;
@@ -104,11 +113,11 @@ public class ManagedUserVM extends UserDTO {
     @Override
     public String toString() {
         return "ManagedUserVM{" +
-            "id=" + id +
-            ", createdBy=" + createdBy +
-            ", createdDate=" + createdDate +
-            ", lastModifiedBy='" + lastModifiedBy + '\'' +
-            ", lastModifiedDate=" + lastModifiedDate +
-            "} " + super.toString();
+               "id=" + id +
+               ", createdBy=" + createdBy +
+               ", createdDate=" + createdDate +
+               ", lastModifiedBy='" + lastModifiedBy + '\'' +
+               ", lastModifiedDate=" + lastModifiedDate +
+               "} " + super.toString();
     }
 }

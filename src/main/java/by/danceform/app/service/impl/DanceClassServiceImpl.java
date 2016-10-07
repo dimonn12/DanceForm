@@ -1,14 +1,14 @@
 package by.danceform.app.service.impl;
 
-import by.danceform.app.service.DanceClassService;
 import by.danceform.app.domain.DanceClass;
 import by.danceform.app.repository.DanceClassRepository;
+import by.danceform.app.service.DanceClassService;
 import by.danceform.app.service.dto.DanceClassDTO;
 import by.danceform.app.service.mapper.DanceClassMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.LinkedList;
@@ -20,10 +20,10 @@ import java.util.stream.Collectors;
  */
 @Service
 @Transactional
-public class DanceClassServiceImpl implements DanceClassService{
+public class DanceClassServiceImpl implements DanceClassService {
 
     private final Logger log = LoggerFactory.getLogger(DanceClassServiceImpl.class);
-    
+
     @Inject
     private DanceClassRepository danceClassRepository;
 
@@ -45,14 +45,15 @@ public class DanceClassServiceImpl implements DanceClassService{
     }
 
     /**
-     *  Get all the danceClasses.
-     *  
-     *  @return the list of entities
+     * Get all the danceClasses.
+     *
+     * @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<DanceClassDTO> findAll() {
         log.debug("Request to get all DanceClasses");
-        List<DanceClassDTO> result = danceClassRepository.findAll().stream()
+        List<DanceClassDTO> result = danceClassRepository.findAll()
+            .stream()
             .map(danceClassMapper::danceClassToDanceClassDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -60,12 +61,12 @@ public class DanceClassServiceImpl implements DanceClassService{
     }
 
     /**
-     *  Get one danceClass by id.
+     * Get one danceClass by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public DanceClassDTO findOne(Long id) {
         log.debug("Request to get DanceClass : {}", id);
         DanceClass danceClass = danceClassRepository.findOne(id);
@@ -74,9 +75,9 @@ public class DanceClassServiceImpl implements DanceClassService{
     }
 
     /**
-     *  Delete the  danceClass by id.
+     * Delete the  danceClass by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     public void delete(Long id) {
         log.debug("Request to delete DanceClass : {}", id);

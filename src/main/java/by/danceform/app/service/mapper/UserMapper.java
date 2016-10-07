@@ -3,7 +3,8 @@ package by.danceform.app.service.mapper;
 import by.danceform.app.domain.Authority;
 import by.danceform.app.domain.User;
 import by.danceform.app.service.dto.UserDTO;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 import java.util.Set;
@@ -34,7 +35,7 @@ public interface UserMapper {
     List<User> userDTOsToUsers(List<UserDTO> userDTOs);
 
     default User userFromId(Long id) {
-        if (id == null) {
+        if(id == null) {
             return null;
         }
         User user = new User();
@@ -42,9 +43,8 @@ public interface UserMapper {
         return user;
     }
 
-    default Set<String> stringsFromAuthorities (Set<Authority> authorities) {
-        return authorities.stream().map(Authority::getName)
-            .collect(Collectors.toSet());
+    default Set<String> stringsFromAuthorities(Set<Authority> authorities) {
+        return authorities.stream().map(Authority::getName).collect(Collectors.toSet());
     }
 
     default Set<Authority> authoritiesFromStrings(Set<String> strings) {

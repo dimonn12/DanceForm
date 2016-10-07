@@ -1,8 +1,9 @@
 package by.danceform.app.service.dto;
 
-import java.time.LocalDate;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 
@@ -24,6 +25,10 @@ public class CompetitionDTO implements Serializable {
 
     private String organizer;
 
+    @NotNull
+    @Size(min = 1, max = 512)
+    private String location;
+
 
     public Long getId() {
         return id;
@@ -32,6 +37,7 @@ public class CompetitionDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
@@ -39,6 +45,7 @@ public class CompetitionDTO implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
     public LocalDate getDate() {
         return date;
     }
@@ -46,6 +53,7 @@ public class CompetitionDTO implements Serializable {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
     public Boolean getIsVisible() {
         return isVisible;
     }
@@ -53,6 +61,7 @@ public class CompetitionDTO implements Serializable {
     public void setIsVisible(Boolean isVisible) {
         this.isVisible = isVisible;
     }
+
     public String getOrganizer() {
         return organizer;
     }
@@ -61,18 +70,28 @@ public class CompetitionDTO implements Serializable {
         this.organizer = organizer;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
+        if(this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if(o == null || getClass() != o.getClass()) {
             return false;
         }
 
-        CompetitionDTO competitionDTO = (CompetitionDTO) o;
+        CompetitionDTO competitionDTO = (CompetitionDTO)o;
 
-        if ( ! Objects.equals(id, competitionDTO.id)) return false;
+        if(!Objects.equals(id, competitionDTO.id)) {
+            return false;
+        }
 
         return true;
     }
@@ -85,11 +104,12 @@ public class CompetitionDTO implements Serializable {
     @Override
     public String toString() {
         return "CompetitionDTO{" +
-            "id=" + id +
-            ", name='" + name + "'" +
-            ", date='" + date + "'" +
-            ", isVisible='" + isVisible + "'" +
-            ", organizer='" + organizer + "'" +
-            '}';
+               "id=" + id +
+               ", name='" + name + "'" +
+               ", date='" + date + "'" +
+               ", isVisible='" + isVisible + "'" +
+               ", organizer='" + organizer + "'" +
+               ", location='" + location + "'" +
+               '}';
     }
 }

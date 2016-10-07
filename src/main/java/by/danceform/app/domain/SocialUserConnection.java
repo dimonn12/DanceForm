@@ -2,7 +2,13 @@ package by.danceform.app.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
@@ -59,7 +65,9 @@ public class SocialUserConnection implements Serializable {
     @Column(name = "expire_time")
     private Long expireTime;
 
-    public SocialUserConnection() {}
+    public SocialUserConnection() {
+    }
+
     public SocialUserConnection(String userId,
                                 String providerId,
                                 String providerUserId,
@@ -182,16 +190,16 @@ public class SocialUserConnection implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
+        if(this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if(o == null || getClass() != o.getClass()) {
             return false;
         }
 
-        SocialUserConnection user = (SocialUserConnection) o;
+        SocialUserConnection user = (SocialUserConnection)o;
 
-        if (!id.equals(user.id)) {
+        if(!id.equals(user.id)) {
             return false;
         }
 
@@ -206,18 +214,18 @@ public class SocialUserConnection implements Serializable {
     @Override
     public String toString() {
         return "SocialUserConnection{" +
-            "id=" + id +
-            ", userId=" + userId +
-            ", providerId='" + providerId + '\'' +
-            ", providerUserId='" + providerUserId + '\'' +
-            ", rank=" + rank +
-            ", displayName='" + displayName + '\'' +
-            ", profileURL='" + profileURL + '\'' +
-            ", imageURL='" + imageURL + '\'' +
-            ", accessToken='" + accessToken + '\'' +
-            ", secret='" + secret + '\'' +
-            ", refreshToken='" + refreshToken + '\'' +
-            ", expireTime=" + expireTime +
-            '}';
+               "id=" + id +
+               ", userId=" + userId +
+               ", providerId='" + providerId + '\'' +
+               ", providerUserId='" + providerUserId + '\'' +
+               ", rank=" + rank +
+               ", displayName='" + displayName + '\'' +
+               ", profileURL='" + profileURL + '\'' +
+               ", imageURL='" + imageURL + '\'' +
+               ", accessToken='" + accessToken + '\'' +
+               ", secret='" + secret + '\'' +
+               ", refreshToken='" + refreshToken + '\'' +
+               ", expireTime=" + expireTime +
+               '}';
     }
 }

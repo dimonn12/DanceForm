@@ -1,9 +1,9 @@
 package by.danceform.app.service.mapper;
 
-import by.danceform.app.domain.*;
+import by.danceform.app.domain.AgeCategory;
 import by.danceform.app.service.dto.AgeCategoryDTO;
+import org.mapstruct.Mapper;
 
-import org.mapstruct.*;
 import java.util.List;
 
 /**

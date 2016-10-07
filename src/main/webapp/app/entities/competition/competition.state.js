@@ -128,6 +128,7 @@
                                 date: null,
                                 isVisible: null,
                                 organizer: null,
+                                location: null,
                                 id: null
                             };
                         }

@@ -2,7 +2,6 @@ package by.danceform.app.service;
 
 import by.danceform.app.service.dto.AgeCategoryDTO;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -19,24 +18,24 @@ public interface AgeCategoryService {
     AgeCategoryDTO save(AgeCategoryDTO ageCategoryDTO);
 
     /**
-     *  Get all the ageCategories.
-     *  
-     *  @return the list of entities
+     * Get all the ageCategories.
+     *
+     * @return the list of entities
      */
     List<AgeCategoryDTO> findAll();
 
     /**
-     *  Get the "id" ageCategory.
+     * Get the "id" ageCategory.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     AgeCategoryDTO findOne(Long id);
 
     /**
-     *  Delete the "id" ageCategory.
+     * Delete the "id" ageCategory.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     void delete(Long id);
 }

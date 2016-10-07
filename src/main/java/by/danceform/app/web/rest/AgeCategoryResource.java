@@ -1,25 +1,26 @@
 package by.danceform.app.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
 import by.danceform.app.service.AgeCategoryService;
-import by.danceform.app.web.rest.util.HeaderUtil;
 import by.danceform.app.service.dto.AgeCategoryDTO;
+import by.danceform.app.web.rest.util.HeaderUtil;
+import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * REST controller for managing AgeCategory.
@@ -29,7 +30,7 @@ import java.util.stream.Collectors;
 public class AgeCategoryResource {
 
     private final Logger log = LoggerFactory.getLogger(AgeCategoryResource.class);
-        
+
     @Inject
     private AgeCategoryService ageCategoryService;
 
@@ -41,13 +42,18 @@ public class AgeCategoryResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @RequestMapping(value = "/age-categories",
-        method = RequestMethod.POST,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+                    method = RequestMethod.POST,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<AgeCategoryDTO> createAgeCategory(@Valid @RequestBody AgeCategoryDTO ageCategoryDTO) throws URISyntaxException {
+    public ResponseEntity<AgeCategoryDTO> createAgeCategory(@Valid @RequestBody AgeCategoryDTO ageCategoryDTO)
+        throws URISyntaxException {
         log.debug("REST request to save AgeCategory : {}", ageCategoryDTO);
-        if (ageCategoryDTO.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("ageCategory", "idexists", "A new ageCategory cannot already have an ID")).body(null);
+        if(ageCategoryDTO.getId() != null) {
+            return ResponseEntity.badRequest()
+                .headers(HeaderUtil.createFailureAlert("ageCategory",
+                    "idexists",
+                    "A new ageCategory cannot already have an ID"))
+                .body(null);
         }
         AgeCategoryDTO result = ageCategoryService.save(ageCategoryDTO);
         return ResponseEntity.created(new URI("/api/age-categories/" + result.getId()))
@@ -65,12 +71,13 @@ public class AgeCategoryResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @RequestMapping(value = "/age-categories",
-        method = RequestMethod.PUT,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+                    method = RequestMethod.PUT,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<AgeCategoryDTO> updateAgeCategory(@Valid @RequestBody AgeCategoryDTO ageCategoryDTO) throws URISyntaxException {
+    public ResponseEntity<AgeCategoryDTO> updateAgeCategory(@Valid @RequestBody AgeCategoryDTO ageCategoryDTO)
+        throws URISyntaxException {
         log.debug("REST request to update AgeCategory : {}", ageCategoryDTO);
-        if (ageCategoryDTO.getId() == null) {
+        if(ageCategoryDTO.getId() == null) {
             return createAgeCategory(ageCategoryDTO);
         }
         AgeCategoryDTO result = ageCategoryService.save(ageCategoryDTO);
@@ -85,8 +92,8 @@ public class AgeCategoryResource {
      * @return the ResponseEntity with status 200 (OK) and the list of ageCategories in body
      */
     @RequestMapping(value = "/age-categories",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+                    method = RequestMethod.GET,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<AgeCategoryDTO> getAllAgeCategories() {
         log.debug("REST request to get all AgeCategories");
@@ -100,16 +107,14 @@ public class AgeCategoryResource {
      * @return the ResponseEntity with status 200 (OK) and with body the ageCategoryDTO, or with status 404 (Not Found)
      */
     @RequestMapping(value = "/age-categories/{id}",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+                    method = RequestMethod.GET,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<AgeCategoryDTO> getAgeCategory(@PathVariable Long id) {
         log.debug("REST request to get AgeCategory : {}", id);
         AgeCategoryDTO ageCategoryDTO = ageCategoryService.findOne(id);
         return Optional.ofNullable(ageCategoryDTO)
-            .map(result -> new ResponseEntity<>(
-                result,
-                HttpStatus.OK))
+            .map(result -> new ResponseEntity<>(result, HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
@@ -120,8 +125,8 @@ public class AgeCategoryResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @RequestMapping(value = "/age-categories/{id}",
-        method = RequestMethod.DELETE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+                    method = RequestMethod.DELETE,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> deleteAgeCategory(@PathVariable Long id) {
         log.debug("REST request to delete AgeCategory : {}", id);

@@ -1,22 +1,19 @@
 package by.danceform.app.web.rest;
 
 import by.danceform.app.DanceFormApp;
-
 import by.danceform.app.domain.DanceClass;
 import by.danceform.app.repository.DanceClassRepository;
 import by.danceform.app.service.DanceClassService;
 import by.danceform.app.service.dto.DanceClassDTO;
 import by.danceform.app.service.mapper.DanceClassMapper;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.hamcrest.Matchers.hasItem;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
@@ -29,8 +26,14 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Test class for the DanceClassResource REST controller.
@@ -83,22 +86,21 @@ public class DanceClassResourceIntTest {
         ReflectionTestUtils.setField(danceClassResource, "danceClassService", danceClassService);
         this.restDanceClassMockMvc = MockMvcBuilders.standaloneSetup(danceClassResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setMessageConverters(jacksonMessageConverter).build();
+            .setMessageConverters(jacksonMessageConverter)
+            .build();
     }
 
     /**
      * Create an entity for this test.
-     *
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
     public static DanceClass createEntity(EntityManager em) {
-        DanceClass danceClass = new DanceClass()
-                .name(DEFAULT_NAME)
-                .description(DEFAULT_DESCRIPTION)
-                .symbol(DEFAULT_SYMBOL)
-                .weight(DEFAULT_WEIGHT)
-                .transferScore(DEFAULT_TRANSFER_SCORE);
+        DanceClass danceClass = new DanceClass().name(DEFAULT_NAME)
+            .description(DEFAULT_DESCRIPTION)
+            .symbol(DEFAULT_SYMBOL)
+            .weight(DEFAULT_WEIGHT)
+            .transferScore(DEFAULT_TRANSFER_SCORE);
         return danceClass;
     }
 
@@ -115,10 +117,8 @@ public class DanceClassResourceIntTest {
         // Create the DanceClass
         DanceClassDTO danceClassDTO = danceClassMapper.danceClassToDanceClassDTO(danceClass);
 
-        restDanceClassMockMvc.perform(post("/api/dance-classes")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(danceClassDTO)))
-                .andExpect(status().isCreated());
+        restDanceClassMockMvc.perform(post("/api/dance-classes").contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(danceClassDTO))).andExpect(status().isCreated());
 
         // Validate the DanceClass in the database
         List<DanceClass> danceClasses = danceClassRepository.findAll();
@@ -141,10 +141,8 @@ public class DanceClassResourceIntTest {
         // Create the DanceClass, which fails.
         DanceClassDTO danceClassDTO = danceClassMapper.danceClassToDanceClassDTO(danceClass);
 
-        restDanceClassMockMvc.perform(post("/api/dance-classes")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(danceClassDTO)))
-                .andExpect(status().isBadRequest());
+        restDanceClassMockMvc.perform(post("/api/dance-classes").contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(danceClassDTO))).andExpect(status().isBadRequest());
 
         List<DanceClass> danceClasses = danceClassRepository.findAll();
         assertThat(danceClasses).hasSize(databaseSizeBeforeTest);
@@ -160,10 +158,8 @@ public class DanceClassResourceIntTest {
         // Create the DanceClass, which fails.
         DanceClassDTO danceClassDTO = danceClassMapper.danceClassToDanceClassDTO(danceClass);
 
-        restDanceClassMockMvc.perform(post("/api/dance-classes")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(danceClassDTO)))
-                .andExpect(status().isBadRequest());
+        restDanceClassMockMvc.perform(post("/api/dance-classes").contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(danceClassDTO))).andExpect(status().isBadRequest());
 
         List<DanceClass> danceClasses = danceClassRepository.findAll();
         assertThat(danceClasses).hasSize(databaseSizeBeforeTest);
@@ -179,10 +175,8 @@ public class DanceClassResourceIntTest {
         // Create the DanceClass, which fails.
         DanceClassDTO danceClassDTO = danceClassMapper.danceClassToDanceClassDTO(danceClass);
 
-        restDanceClassMockMvc.perform(post("/api/dance-classes")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(danceClassDTO)))
-                .andExpect(status().isBadRequest());
+        restDanceClassMockMvc.perform(post("/api/dance-classes").contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(danceClassDTO))).andExpect(status().isBadRequest());
 
         List<DanceClass> danceClasses = danceClassRepository.findAll();
         assertThat(danceClasses).hasSize(databaseSizeBeforeTest);
@@ -196,14 +190,14 @@ public class DanceClassResourceIntTest {
 
         // Get all the danceClasses
         restDanceClassMockMvc.perform(get("/api/dance-classes?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(danceClass.getId().intValue())))
-                .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-                .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
-                .andExpect(jsonPath("$.[*].symbol").value(hasItem(DEFAULT_SYMBOL.toString())))
-                .andExpect(jsonPath("$.[*].weight").value(hasItem(DEFAULT_WEIGHT)))
-                .andExpect(jsonPath("$.[*].transferScore").value(hasItem(DEFAULT_TRANSFER_SCORE)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(danceClass.getId().intValue())))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].symbol").value(hasItem(DEFAULT_SYMBOL.toString())))
+            .andExpect(jsonPath("$.[*].weight").value(hasItem(DEFAULT_WEIGHT)))
+            .andExpect(jsonPath("$.[*].transferScore").value(hasItem(DEFAULT_TRANSFER_SCORE)));
     }
 
     @Test
@@ -228,8 +222,7 @@ public class DanceClassResourceIntTest {
     @Transactional
     public void getNonExistingDanceClass() throws Exception {
         // Get the danceClass
-        restDanceClassMockMvc.perform(get("/api/dance-classes/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+        restDanceClassMockMvc.perform(get("/api/dance-classes/{id}", Long.MAX_VALUE)).andExpect(status().isNotFound());
     }
 
     @Test
@@ -241,18 +234,15 @@ public class DanceClassResourceIntTest {
 
         // Update the danceClass
         DanceClass updatedDanceClass = danceClassRepository.findOne(danceClass.getId());
-        updatedDanceClass
-                .name(UPDATED_NAME)
-                .description(UPDATED_DESCRIPTION)
-                .symbol(UPDATED_SYMBOL)
-                .weight(UPDATED_WEIGHT)
-                .transferScore(UPDATED_TRANSFER_SCORE);
+        updatedDanceClass.name(UPDATED_NAME)
+            .description(UPDATED_DESCRIPTION)
+            .symbol(UPDATED_SYMBOL)
+            .weight(UPDATED_WEIGHT)
+            .transferScore(UPDATED_TRANSFER_SCORE);
         DanceClassDTO danceClassDTO = danceClassMapper.danceClassToDanceClassDTO(updatedDanceClass);
 
-        restDanceClassMockMvc.perform(put("/api/dance-classes")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(danceClassDTO)))
-                .andExpect(status().isOk());
+        restDanceClassMockMvc.perform(put("/api/dance-classes").contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(danceClassDTO))).andExpect(status().isOk());
 
         // Validate the DanceClass in the database
         List<DanceClass> danceClasses = danceClassRepository.findAll();
@@ -273,9 +263,8 @@ public class DanceClassResourceIntTest {
         int databaseSizeBeforeDelete = danceClassRepository.findAll().size();
 
         // Get the danceClass
-        restDanceClassMockMvc.perform(delete("/api/dance-classes/{id}", danceClass.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+        restDanceClassMockMvc.perform(delete("/api/dance-classes/{id}",
+            danceClass.getId()).accept(TestUtil.APPLICATION_JSON_UTF8)).andExpect(status().isOk());
 
         // Validate the database is empty
         List<DanceClass> danceClasses = danceClassRepository.findAll();

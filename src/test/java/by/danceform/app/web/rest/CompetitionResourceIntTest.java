@@ -1,22 +1,19 @@
 package by.danceform.app.web.rest;
 
 import by.danceform.app.DanceFormApp;
-
 import by.danceform.app.domain.Competition;
 import by.danceform.app.repository.CompetitionRepository;
 import by.danceform.app.service.CompetitionService;
 import by.danceform.app.service.dto.CompetitionDTO;
 import by.danceform.app.service.mapper.CompetitionMapper;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.hamcrest.Matchers.hasItem;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
@@ -31,8 +28,14 @@ import java.time.ZoneId;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Test class for the CompetitionResource REST controller.
@@ -53,6 +56,8 @@ public class CompetitionResourceIntTest {
     private static final Boolean UPDATED_IS_VISIBLE = true;
     private static final String DEFAULT_ORGANIZER = "AAAAA";
     private static final String UPDATED_ORGANIZER = "BBBBB";
+    private static final String DEFAULT_LOCATION = "A";
+    private static final String UPDATED_LOCATION = "B";
 
     @Inject
     private CompetitionRepository competitionRepository;
@@ -83,21 +88,21 @@ public class CompetitionResourceIntTest {
         ReflectionTestUtils.setField(competitionResource, "competitionService", competitionService);
         this.restCompetitionMockMvc = MockMvcBuilders.standaloneSetup(competitionResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setMessageConverters(jacksonMessageConverter).build();
+            .setMessageConverters(jacksonMessageConverter)
+            .build();
     }
 
     /**
      * Create an entity for this test.
-     *
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
     public static Competition createEntity(EntityManager em) {
-        Competition competition = new Competition()
-                .name(DEFAULT_NAME)
-                .date(DEFAULT_DATE)
-                .isVisible(DEFAULT_IS_VISIBLE)
-                .organizer(DEFAULT_ORGANIZER);
+        Competition competition = new Competition().name(DEFAULT_NAME)
+            .date(DEFAULT_DATE)
+            .isVisible(DEFAULT_IS_VISIBLE)
+            .organizer(DEFAULT_ORGANIZER)
+            .location(DEFAULT_LOCATION);
         return competition;
     }
 
@@ -114,10 +119,8 @@ public class CompetitionResourceIntTest {
         // Create the Competition
         CompetitionDTO competitionDTO = competitionMapper.competitionToCompetitionDTO(competition);
 
-        restCompetitionMockMvc.perform(post("/api/competitions")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(competitionDTO)))
-                .andExpect(status().isCreated());
+        restCompetitionMockMvc.perform(post("/api/competitions").contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(competitionDTO))).andExpect(status().isCreated());
 
         // Validate the Competition in the database
         List<Competition> competitions = competitionRepository.findAll();
@@ -127,6 +130,7 @@ public class CompetitionResourceIntTest {
         assertThat(testCompetition.getDate()).isEqualTo(DEFAULT_DATE);
         assertThat(testCompetition.isIsVisible()).isEqualTo(DEFAULT_IS_VISIBLE);
         assertThat(testCompetition.getOrganizer()).isEqualTo(DEFAULT_ORGANIZER);
+        assertThat(testCompetition.getLocation()).isEqualTo(DEFAULT_LOCATION);
     }
 
     @Test
@@ -139,10 +143,8 @@ public class CompetitionResourceIntTest {
         // Create the Competition, which fails.
         CompetitionDTO competitionDTO = competitionMapper.competitionToCompetitionDTO(competition);
 
-        restCompetitionMockMvc.perform(post("/api/competitions")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(competitionDTO)))
-                .andExpect(status().isBadRequest());
+        restCompetitionMockMvc.perform(post("/api/competitions").contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(competitionDTO))).andExpect(status().isBadRequest());
 
         List<Competition> competitions = competitionRepository.findAll();
         assertThat(competitions).hasSize(databaseSizeBeforeTest);
@@ -158,10 +160,25 @@ public class CompetitionResourceIntTest {
         // Create the Competition, which fails.
         CompetitionDTO competitionDTO = competitionMapper.competitionToCompetitionDTO(competition);
 
-        restCompetitionMockMvc.perform(post("/api/competitions")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(competitionDTO)))
-                .andExpect(status().isBadRequest());
+        restCompetitionMockMvc.perform(post("/api/competitions").contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(competitionDTO))).andExpect(status().isBadRequest());
+
+        List<Competition> competitions = competitionRepository.findAll();
+        assertThat(competitions).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkLocationIsRequired() throws Exception {
+        int databaseSizeBeforeTest = competitionRepository.findAll().size();
+        // set the field null
+        competition.setLocation(null);
+
+        // Create the Competition, which fails.
+        CompetitionDTO competitionDTO = competitionMapper.competitionToCompetitionDTO(competition);
+
+        restCompetitionMockMvc.perform(post("/api/competitions").contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(competitionDTO))).andExpect(status().isBadRequest());
 
         List<Competition> competitions = competitionRepository.findAll();
         assertThat(competitions).hasSize(databaseSizeBeforeTest);
@@ -175,13 +192,14 @@ public class CompetitionResourceIntTest {
 
         // Get all the competitions
         restCompetitionMockMvc.perform(get("/api/competitions?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(competition.getId().intValue())))
-                .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-                .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
-                .andExpect(jsonPath("$.[*].isVisible").value(hasItem(DEFAULT_IS_VISIBLE.booleanValue())))
-                .andExpect(jsonPath("$.[*].organizer").value(hasItem(DEFAULT_ORGANIZER.toString())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(competition.getId().intValue())))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
+            .andExpect(jsonPath("$.[*].isVisible").value(hasItem(DEFAULT_IS_VISIBLE.booleanValue())))
+            .andExpect(jsonPath("$.[*].organizer").value(hasItem(DEFAULT_ORGANIZER.toString())))
+            .andExpect(jsonPath("$.[*].location").value(hasItem(DEFAULT_LOCATION.toString())));
     }
 
     @Test
@@ -198,15 +216,15 @@ public class CompetitionResourceIntTest {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
             .andExpect(jsonPath("$.isVisible").value(DEFAULT_IS_VISIBLE.booleanValue()))
-            .andExpect(jsonPath("$.organizer").value(DEFAULT_ORGANIZER.toString()));
+            .andExpect(jsonPath("$.organizer").value(DEFAULT_ORGANIZER.toString()))
+            .andExpect(jsonPath("$.location").value(DEFAULT_LOCATION.toString()));
     }
 
     @Test
     @Transactional
     public void getNonExistingCompetition() throws Exception {
         // Get the competition
-        restCompetitionMockMvc.perform(get("/api/competitions/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+        restCompetitionMockMvc.perform(get("/api/competitions/{id}", Long.MAX_VALUE)).andExpect(status().isNotFound());
     }
 
     @Test
@@ -218,17 +236,15 @@ public class CompetitionResourceIntTest {
 
         // Update the competition
         Competition updatedCompetition = competitionRepository.findOne(competition.getId());
-        updatedCompetition
-                .name(UPDATED_NAME)
-                .date(UPDATED_DATE)
-                .isVisible(UPDATED_IS_VISIBLE)
-                .organizer(UPDATED_ORGANIZER);
+        updatedCompetition.name(UPDATED_NAME)
+            .date(UPDATED_DATE)
+            .isVisible(UPDATED_IS_VISIBLE)
+            .organizer(UPDATED_ORGANIZER)
+            .location(UPDATED_LOCATION);
         CompetitionDTO competitionDTO = competitionMapper.competitionToCompetitionDTO(updatedCompetition);
 
-        restCompetitionMockMvc.perform(put("/api/competitions")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(competitionDTO)))
-                .andExpect(status().isOk());
+        restCompetitionMockMvc.perform(put("/api/competitions").contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(competitionDTO))).andExpect(status().isOk());
 
         // Validate the Competition in the database
         List<Competition> competitions = competitionRepository.findAll();
@@ -238,6 +254,7 @@ public class CompetitionResourceIntTest {
         assertThat(testCompetition.getDate()).isEqualTo(UPDATED_DATE);
         assertThat(testCompetition.isIsVisible()).isEqualTo(UPDATED_IS_VISIBLE);
         assertThat(testCompetition.getOrganizer()).isEqualTo(UPDATED_ORGANIZER);
+        assertThat(testCompetition.getLocation()).isEqualTo(UPDATED_LOCATION);
     }
 
     @Test
@@ -248,9 +265,8 @@ public class CompetitionResourceIntTest {
         int databaseSizeBeforeDelete = competitionRepository.findAll().size();
 
         // Get the competition
-        restCompetitionMockMvc.perform(delete("/api/competitions/{id}", competition.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+        restCompetitionMockMvc.perform(delete("/api/competitions/{id}",
+            competition.getId()).accept(TestUtil.APPLICATION_JSON_UTF8)).andExpect(status().isOk());
 
         // Validate the database is empty
         List<Competition> competitions = competitionRepository.findAll();

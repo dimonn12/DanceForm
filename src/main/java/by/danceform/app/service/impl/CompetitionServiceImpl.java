@@ -1,31 +1,28 @@
 package by.danceform.app.service.impl;
 
-import by.danceform.app.service.CompetitionService;
 import by.danceform.app.domain.Competition;
 import by.danceform.app.repository.CompetitionRepository;
+import by.danceform.app.service.CompetitionService;
 import by.danceform.app.service.dto.CompetitionDTO;
 import by.danceform.app.service.mapper.CompetitionMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing Competition.
  */
 @Service
 @Transactional
-public class CompetitionServiceImpl implements CompetitionService{
+public class CompetitionServiceImpl implements CompetitionService {
 
     private final Logger log = LoggerFactory.getLogger(CompetitionServiceImpl.class);
-    
+
     @Inject
     private CompetitionRepository competitionRepository;
 
@@ -47,12 +44,12 @@ public class CompetitionServiceImpl implements CompetitionService{
     }
 
     /**
-     *  Get all the competitions.
-     *  
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * Get all the competitions.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<CompetitionDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Competitions");
         Page<Competition> result = competitionRepository.findAll(pageable);
@@ -60,12 +57,12 @@ public class CompetitionServiceImpl implements CompetitionService{
     }
 
     /**
-     *  Get one competition by id.
+     * Get one competition by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public CompetitionDTO findOne(Long id) {
         log.debug("Request to get Competition : {}", id);
         Competition competition = competitionRepository.findOne(id);
@@ -74,9 +71,9 @@ public class CompetitionServiceImpl implements CompetitionService{
     }
 
     /**
-     *  Delete the  competition by id.
+     * Delete the  competition by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     public void delete(Long id) {
         log.debug("Request to delete Competition : {}", id);

@@ -17,7 +17,7 @@ public class LoggingConfiguration {
 
     private final Logger log = LoggerFactory.getLogger(LoggingConfiguration.class);
 
-    private LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
+    private LoggerContext context = (LoggerContext)LoggerFactory.getILoggerFactory();
 
     @Value("${spring.application.name}")
     private String appName;
@@ -30,7 +30,7 @@ public class LoggingConfiguration {
 
     @PostConstruct
     private void init() {
-        if (jHipsterProperties.getLogging().getLogstash().isEnabled()) {
+        if(jHipsterProperties.getLogging().getLogstash().isEnabled()) {
             addLogstashAppender();
         }
     }

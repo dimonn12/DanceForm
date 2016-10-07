@@ -1,6 +1,8 @@
 package by.danceform.app.service.dto;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -32,6 +34,7 @@ public class AgeCategoryDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
@@ -39,6 +42,7 @@ public class AgeCategoryDTO implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
     public Integer getMinAge() {
         return minAge;
     }
@@ -46,6 +50,7 @@ public class AgeCategoryDTO implements Serializable {
     public void setMinAge(Integer minAge) {
         this.minAge = minAge;
     }
+
     public Integer getMaxAge() {
         return maxAge;
     }
@@ -56,16 +61,18 @@ public class AgeCategoryDTO implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
+        if(this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if(o == null || getClass() != o.getClass()) {
             return false;
         }
 
-        AgeCategoryDTO ageCategoryDTO = (AgeCategoryDTO) o;
+        AgeCategoryDTO ageCategoryDTO = (AgeCategoryDTO)o;
 
-        if ( ! Objects.equals(id, ageCategoryDTO.id)) return false;
+        if(!Objects.equals(id, ageCategoryDTO.id)) {
+            return false;
+        }
 
         return true;
     }
@@ -78,10 +85,10 @@ public class AgeCategoryDTO implements Serializable {
     @Override
     public String toString() {
         return "AgeCategoryDTO{" +
-            "id=" + id +
-            ", name='" + name + "'" +
-            ", minAge='" + minAge + "'" +
-            ", maxAge='" + maxAge + "'" +
-            '}';
+               "id=" + id +
+               ", name='" + name + "'" +
+               ", minAge='" + minAge + "'" +
+               ", maxAge='" + maxAge + "'" +
+               '}';
     }
 }
