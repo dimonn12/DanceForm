@@ -1,0 +1,35 @@
+<div>
+
+    <h1 data-translate="danceFormApp.competition-timeline.title">График Турниров</h1>
+
+    <div class="table-responsive">
+        <table class="jh-table table table-bordered table-timeline">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th>
+                        <span data-translate="danceFormApp.competition-timeline.date">Дата</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.competition-timeline.name">Название</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.competition-timeline.location">Место</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.competition-timeline.organizer">Организатор</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="competition in vm.futureCompetitions track by competition.id">
+                    <td>{{competition.date}}</td>
+                    <td>{{competition.name | date:'mediumDate'}}</td>
+                    <td>{{competition.location}}</td>
+                    <td>{{competition.organizer}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>

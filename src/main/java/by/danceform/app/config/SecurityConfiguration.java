@@ -118,6 +118,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .permitAll()
             .antMatchers("/api/profile-info")
             .permitAll()
+            .antMatchers("/api/competition-timeline/**")
+            .permitAll()
             .antMatchers("/api/**")
             .authenticated()
             .antMatchers("/management/**")

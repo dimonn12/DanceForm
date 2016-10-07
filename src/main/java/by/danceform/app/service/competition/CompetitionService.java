@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing Competition.
@@ -77,5 +79,19 @@ public class CompetitionService {
     public void delete(Long id) {
         log.debug("Request to delete Competition : {}", id);
         competitionRepository.delete(id);
+    }
+
+    /**
+     * Get all the competitions.
+     *
+     * @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<CompetitionDTO> findVisible() {
+        log.debug("Request to get all Competitions");
+        List<Competition> result = competitionRepository.findVisible();
+        return result.stream()
+            .map(competition -> competitionConverter.convertToDto(competition))
+            .collect(Collectors.toList());
     }
 }
