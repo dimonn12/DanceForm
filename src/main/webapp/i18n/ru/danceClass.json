@@ -1,0 +1,27 @@
+{
+    "danceFormApp": {
+        "danceClass" : {
+            "home": {
+                "title": "Dance Classes",
+                "createLabel": "Создать новый Dance Class",
+                "createOrEditLabel": "Создать или отредактировать Dance Class",
+                "search": "Найти Dance Class"
+            },
+            "created": "Новый Dance Class создан с идентификатором {{ param }}",
+            "updated": "Dance Class обновлен с идентификатором {{ param }}",
+            "deleted": "Dance Class удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Dance Class {{ id }}?"
+            },
+            "detail": {
+                "title": "Dance Class"
+            },
+            "name": "Name",
+            "description": "Description",
+            "symbol": "Symbol",
+            "weight": "Weight",
+            "transferScore": "Transfer Score",
+            "danceClass": "Dance Class"
+        }
+    }
+}

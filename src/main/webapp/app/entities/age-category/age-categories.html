@@ -1,0 +1,60 @@
+<div>
+    <h2 data-translate="danceFormApp.ageCategory.home.title">Age Categories</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="age-category.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="danceFormApp.ageCategory.home.createLabel">
+                        Create new Age Category
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="danceFormApp.ageCategory.name">Name</span></th>
+                    <th><span data-translate="danceFormApp.ageCategory.minAge">Min Age</span></th>
+                    <th><span data-translate="danceFormApp.ageCategory.maxAge">Max Age</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="ageCategory in vm.ageCategories track by ageCategory.id">
+                    <td><a ui-sref="age-category-detail({id:ageCategory.id})">{{ageCategory.id}}</a></td>
+                    <td>{{ageCategory.name}}</td>
+                    <td>{{ageCategory.minAge}}</td>
+                    <td>{{ageCategory.maxAge}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="age-category-detail({id:ageCategory.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="age-category.edit({id:ageCategory.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="age-category.delete({id:ageCategory.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

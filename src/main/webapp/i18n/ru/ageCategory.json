@@ -1,0 +1,24 @@
+{
+    "danceFormApp": {
+        "ageCategory" : {
+            "home": {
+                "title": "Age Categories",
+                "createLabel": "Создать новый Age Category",
+                "createOrEditLabel": "Создать или отредактировать Age Category",
+                "search": "Найти Age Category"
+            },
+            "created": "Новый Age Category создан с идентификатором {{ param }}",
+            "updated": "Age Category обновлен с идентификатором {{ param }}",
+            "deleted": "Age Category удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Age Category {{ id }}?"
+            },
+            "detail": {
+                "title": "Age Category"
+            },
+            "name": "Name",
+            "minAge": "Min Age",
+            "maxAge": "Max Age"
+        }
+    }
+}

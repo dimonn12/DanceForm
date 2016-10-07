@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span data-translate="danceFormApp.danceClass.detail.title">Dance Class</span> {{vm.danceClass.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="danceFormApp.danceClass.name">Name</span></dt>
+        <dd>
+            <span>{{vm.danceClass.name}}</span>
+        </dd>
+        <dt><span data-translate="danceFormApp.danceClass.description">Description</span></dt>
+        <dd>
+            <span>{{vm.danceClass.description}}</span>
+        </dd>
+        <dt><span data-translate="danceFormApp.danceClass.symbol">Symbol</span></dt>
+        <dd>
+            <span>{{vm.danceClass.symbol}}</span>
+        </dd>
+        <dt><span data-translate="danceFormApp.danceClass.weight">Weight</span></dt>
+        <dd>
+            <span>{{vm.danceClass.weight}}</span>
+        </dd>
+        <dt><span data-translate="danceFormApp.danceClass.transferScore">Transfer Score</span></dt>
+        <dd>
+            <span>{{vm.danceClass.transferScore}}</span>
+        </dd>
+        <dt><span data-translate="danceFormApp.danceClass.danceClass">Dance Class</span></dt>
+        <dd>
+            <a ui-sref="dance-class-detail({id:vm.danceClass.danceClassId})">{{vm.danceClass.danceClassName}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="dance-class-detail.edit({id:vm.danceClass.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
