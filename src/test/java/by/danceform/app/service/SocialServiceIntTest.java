@@ -1,10 +1,11 @@
 package by.danceform.app.service;
 
 import by.danceform.app.DanceFormApp;
-import by.danceform.app.domain.Authority;
-import by.danceform.app.domain.User;
-import by.danceform.app.repository.AuthorityRepository;
-import by.danceform.app.repository.UserRepository;
+import by.danceform.app.domain.security.Authority;
+import by.danceform.app.domain.user.User;
+import by.danceform.app.repository.security.AuthorityRepository;
+import by.danceform.app.repository.user.UserRepository;
+import by.danceform.app.service.security.SocialService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

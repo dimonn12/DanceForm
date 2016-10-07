@@ -1,7 +1,7 @@
 package by.danceform.app.web.rest.vm;
 
-import by.danceform.app.domain.User;
-import by.danceform.app.service.dto.UserDTO;
+import by.danceform.app.domain.user.User;
+import by.danceform.app.dto.user.UserDTO;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -15,8 +15,6 @@ public class ManagedUserVM extends UserDTO {
 
     public static final int PASSWORD_MIN_LENGTH = 4;
     public static final int PASSWORD_MAX_LENGTH = 100;
-
-    private Long id;
 
     private String createdBy;
 
@@ -56,23 +54,13 @@ public class ManagedUserVM extends UserDTO {
                          ZonedDateTime createdDate,
                          String lastModifiedBy,
                          ZonedDateTime lastModifiedDate) {
-        super(login, firstName, lastName, email, activated, langKey, authorities);
-        this.id = id;
+        super(id, login, firstName, lastName, email, activated, langKey, authorities);
         this.createdBy = createdBy;
         this.createdDate = createdDate;
         this.lastModifiedBy = lastModifiedBy;
         this.lastModifiedDate = lastModifiedDate;
         this.password = password;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 
     public String getCreatedBy() {
         return createdBy;

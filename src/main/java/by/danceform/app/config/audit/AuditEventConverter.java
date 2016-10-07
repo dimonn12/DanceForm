@@ -1,6 +1,6 @@
 package by.danceform.app.config.audit;
 
-import by.danceform.app.domain.PersistentAuditEvent;
+import by.danceform.app.domain.audit.PersistentAuditEvent;
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;

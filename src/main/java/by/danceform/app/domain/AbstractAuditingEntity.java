@@ -21,7 +21,7 @@ import java.time.ZonedDateTime;
 @MappedSuperclass
 @Audited
 @EntityListeners(AuditingEntityListener.class)
-public abstract class AbstractAuditingEntity implements Serializable {
+public abstract class AbstractAuditingEntity<I extends Serializable> extends AbstractEntity<I> {
 
     private static final long serialVersionUID = 1L;
 

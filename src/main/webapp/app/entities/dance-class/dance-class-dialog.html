@@ -89,8 +89,8 @@
         </div>
 
         <div class="form-group">
-            <label data-translate="danceFormApp.danceClass.danceClass" for="field_danceClass">Dance Class</label>
-            <select class="form-control" id="field_danceClass" name="danceClass" ng-model="vm.danceClass.danceClassId" ng-options="danceClass.id as danceClass.name for danceClass in vm.danceclasses | orderBy:'id'">
+            <label data-translate="danceFormApp.danceClass.nextDanceClass" for="field_danceClass">Dance Class</label>
+            <select class="form-control" id="field_danceClass" name="danceClass" ng-model="vm.danceClass.nextDanceClass.id" ng-options="danceClass.id as danceClass.name for danceClass in vm.danceclasses | orderBy:'weight'">
                 <option value=""></option>
             </select>
         </div>

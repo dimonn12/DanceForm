@@ -1,11 +1,12 @@
 package by.danceform.app.web.rest;
 
 import by.danceform.app.DanceFormApp;
-import by.danceform.app.domain.DanceClass;
-import by.danceform.app.repository.DanceClassRepository;
-import by.danceform.app.service.DanceClassService;
-import by.danceform.app.service.dto.DanceClassDTO;
+import by.danceform.app.domain.config.DanceClass;
+import by.danceform.app.dto.config.DanceClassDTO;
+import by.danceform.app.repository.config.DanceClassRepository;
+import by.danceform.app.service.config.DanceClassService;
 import by.danceform.app.service.mapper.DanceClassMapper;
+import by.danceform.app.web.rest.config.DanceClassResource;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -96,11 +97,12 @@ public class DanceClassResourceIntTest {
      * if they test an entity which requires the current entity.
      */
     public static DanceClass createEntity(EntityManager em) {
-        DanceClass danceClass = new DanceClass().name(DEFAULT_NAME)
-            .description(DEFAULT_DESCRIPTION)
-            .symbol(DEFAULT_SYMBOL)
-            .weight(DEFAULT_WEIGHT)
-            .transferScore(DEFAULT_TRANSFER_SCORE);
+        DanceClass danceClass = new DanceClass();
+        danceClass.setName(DEFAULT_NAME);
+        danceClass.setDescription(DEFAULT_DESCRIPTION);
+        danceClass.setSymbol(DEFAULT_SYMBOL);
+        danceClass.setWeight(DEFAULT_WEIGHT);
+        danceClass.setTransferScore(DEFAULT_TRANSFER_SCORE);
         return danceClass;
     }
 
@@ -234,11 +236,11 @@ public class DanceClassResourceIntTest {
 
         // Update the danceClass
         DanceClass updatedDanceClass = danceClassRepository.findOne(danceClass.getId());
-        updatedDanceClass.name(UPDATED_NAME)
-            .description(UPDATED_DESCRIPTION)
-            .symbol(UPDATED_SYMBOL)
-            .weight(UPDATED_WEIGHT)
-            .transferScore(UPDATED_TRANSFER_SCORE);
+        updatedDanceClass.setName(UPDATED_NAME);
+        updatedDanceClass.setDescription(UPDATED_DESCRIPTION);
+        updatedDanceClass.setSymbol(UPDATED_SYMBOL);
+        updatedDanceClass.setWeight(UPDATED_WEIGHT);
+        updatedDanceClass.setTransferScore(UPDATED_TRANSFER_SCORE);
         DanceClassDTO danceClassDTO = danceClassMapper.danceClassToDanceClassDTO(updatedDanceClass);
 
         restDanceClassMockMvc.perform(put("/api/dance-classes").contentType(TestUtil.APPLICATION_JSON_UTF8)

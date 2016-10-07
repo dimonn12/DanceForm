@@ -1,11 +1,12 @@
 package by.danceform.app.web.rest;
 
 import by.danceform.app.DanceFormApp;
-import by.danceform.app.domain.Competition;
-import by.danceform.app.repository.CompetitionRepository;
-import by.danceform.app.service.CompetitionService;
-import by.danceform.app.service.dto.CompetitionDTO;
+import by.danceform.app.domain.competition.Competition;
+import by.danceform.app.dto.competition.CompetitionDTO;
+import by.danceform.app.repository.competition.CompetitionRepository;
+import by.danceform.app.service.competition.CompetitionService;
 import by.danceform.app.service.mapper.CompetitionMapper;
+import by.danceform.app.web.rest.competition.CompetitionResource;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -98,11 +99,12 @@ public class CompetitionResourceIntTest {
      * if they test an entity which requires the current entity.
      */
     public static Competition createEntity(EntityManager em) {
-        Competition competition = new Competition().name(DEFAULT_NAME)
-            .date(DEFAULT_DATE)
-            .isVisible(DEFAULT_IS_VISIBLE)
-            .organizer(DEFAULT_ORGANIZER)
-            .location(DEFAULT_LOCATION);
+        Competition competition = new Competition();
+        competition.setName(DEFAULT_NAME);
+        competition.setDate(DEFAULT_DATE);
+        competition.setVisible(DEFAULT_IS_VISIBLE);
+        competition.setOrganizer(DEFAULT_ORGANIZER);
+        competition.setLocation(DEFAULT_LOCATION);
         return competition;
     }
 
@@ -128,7 +130,7 @@ public class CompetitionResourceIntTest {
         Competition testCompetition = competitions.get(competitions.size() - 1);
         assertThat(testCompetition.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testCompetition.getDate()).isEqualTo(DEFAULT_DATE);
-        assertThat(testCompetition.isIsVisible()).isEqualTo(DEFAULT_IS_VISIBLE);
+        assertThat(testCompetition.isVisible()).isEqualTo(DEFAULT_IS_VISIBLE);
         assertThat(testCompetition.getOrganizer()).isEqualTo(DEFAULT_ORGANIZER);
         assertThat(testCompetition.getLocation()).isEqualTo(DEFAULT_LOCATION);
     }
@@ -236,11 +238,11 @@ public class CompetitionResourceIntTest {
 
         // Update the competition
         Competition updatedCompetition = competitionRepository.findOne(competition.getId());
-        updatedCompetition.name(UPDATED_NAME)
-            .date(UPDATED_DATE)
-            .isVisible(UPDATED_IS_VISIBLE)
-            .organizer(UPDATED_ORGANIZER)
-            .location(UPDATED_LOCATION);
+        updatedCompetition.setName(UPDATED_NAME);
+        updatedCompetition.setDate(UPDATED_DATE);
+        updatedCompetition.setVisible(UPDATED_IS_VISIBLE);
+        updatedCompetition.setOrganizer(UPDATED_ORGANIZER);
+        updatedCompetition.setLocation(UPDATED_LOCATION);
         CompetitionDTO competitionDTO = competitionMapper.competitionToCompetitionDTO(updatedCompetition);
 
         restCompetitionMockMvc.perform(put("/api/competitions").contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -252,7 +254,7 @@ public class CompetitionResourceIntTest {
         Competition testCompetition = competitions.get(competitions.size() - 1);
         assertThat(testCompetition.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testCompetition.getDate()).isEqualTo(UPDATED_DATE);
-        assertThat(testCompetition.isIsVisible()).isEqualTo(UPDATED_IS_VISIBLE);
+        assertThat(testCompetition.isVisible()).isEqualTo(UPDATED_IS_VISIBLE);
         assertThat(testCompetition.getOrganizer()).isEqualTo(UPDATED_ORGANIZER);
         assertThat(testCompetition.getLocation()).isEqualTo(UPDATED_LOCATION);
     }

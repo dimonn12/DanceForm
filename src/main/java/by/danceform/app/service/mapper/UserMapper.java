@@ -1,8 +1,8 @@
 package by.danceform.app.service.mapper;
 
-import by.danceform.app.domain.Authority;
-import by.danceform.app.domain.User;
-import by.danceform.app.service.dto.UserDTO;
+import by.danceform.app.domain.security.Authority;
+import by.danceform.app.domain.user.User;
+import by.danceform.app.dto.user.UserDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

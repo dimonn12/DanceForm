@@ -1,10 +1,11 @@
 package by.danceform.app.service;
 
 import by.danceform.app.DanceFormApp;
-import by.danceform.app.domain.PersistentToken;
-import by.danceform.app.domain.User;
-import by.danceform.app.repository.PersistentTokenRepository;
-import by.danceform.app.repository.UserRepository;
+import by.danceform.app.domain.security.PersistentToken;
+import by.danceform.app.domain.user.User;
+import by.danceform.app.repository.security.PersistentTokenRepository;
+import by.danceform.app.repository.user.UserRepository;
+import by.danceform.app.service.user.UserService;
 import by.danceform.app.service.util.RandomUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,7 +1,7 @@
 package by.danceform.app.service;
 
 import by.danceform.app.config.JHipsterProperties;
-import by.danceform.app.domain.User;
+import by.danceform.app.domain.user.User;
 import org.apache.commons.lang3.CharEncoding;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

@@ -1,9 +1,9 @@
 package by.danceform.app.security;
 
 import by.danceform.app.config.JHipsterProperties;
-import by.danceform.app.domain.PersistentToken;
-import by.danceform.app.repository.PersistentTokenRepository;
-import by.danceform.app.repository.UserRepository;
+import by.danceform.app.domain.security.PersistentToken;
+import by.danceform.app.repository.security.PersistentTokenRepository;
+import by.danceform.app.repository.user.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;

@@ -1,14 +1,15 @@
 package by.danceform.app.web.rest;
 
 import by.danceform.app.DanceFormApp;
-import by.danceform.app.domain.Authority;
-import by.danceform.app.domain.User;
-import by.danceform.app.repository.AuthorityRepository;
-import by.danceform.app.repository.UserRepository;
+import by.danceform.app.domain.security.Authority;
+import by.danceform.app.domain.user.User;
+import by.danceform.app.dto.user.UserDTO;
+import by.danceform.app.repository.security.AuthorityRepository;
+import by.danceform.app.repository.user.UserRepository;
 import by.danceform.app.security.AuthoritiesConstants;
 import by.danceform.app.service.MailService;
-import by.danceform.app.service.UserService;
-import by.danceform.app.service.dto.UserDTO;
+import by.danceform.app.service.user.UserService;
+import by.danceform.app.web.rest.user.AccountResource;
 import by.danceform.app.web.rest.vm.ManagedUserVM;
 import org.junit.Before;
 import org.junit.Test;
@@ -350,7 +351,7 @@ public class AccountResourceIntTest {
     @Test
     @Transactional
     public void testSaveInvalidLogin() throws Exception {
-        UserDTO invalidUser = new UserDTO("funky-log!n",          // login <-- invalid
+        UserDTO invalidUser = new UserDTO(99L, "funky-log!n",          // login <-- invalid
             "Funky",                // firstName
             "One",                  // lastName
             "funky@example.com",    // e-mail

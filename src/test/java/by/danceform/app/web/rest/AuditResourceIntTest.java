@@ -2,9 +2,10 @@ package by.danceform.app.web.rest;
 
 import by.danceform.app.DanceFormApp;
 import by.danceform.app.config.audit.AuditEventConverter;
-import by.danceform.app.domain.PersistentAuditEvent;
-import by.danceform.app.repository.PersistenceAuditEventRepository;
-import by.danceform.app.service.AuditEventService;
+import by.danceform.app.domain.audit.PersistentAuditEvent;
+import by.danceform.app.repository.audit.PersistenceAuditEventRepository;
+import by.danceform.app.service.audit.AuditEventService;
+import by.danceform.app.web.rest.audit.AuditResource;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

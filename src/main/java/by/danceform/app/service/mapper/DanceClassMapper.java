@@ -1,7 +1,7 @@
 package by.danceform.app.service.mapper;
 
-import by.danceform.app.domain.DanceClass;
-import by.danceform.app.service.dto.DanceClassDTO;
+import by.danceform.app.domain.config.DanceClass;
+import by.danceform.app.dto.config.DanceClassDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

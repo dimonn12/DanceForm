@@ -1,11 +1,12 @@
 package by.danceform.app.web.rest;
 
 import by.danceform.app.DanceFormApp;
-import by.danceform.app.domain.AgeCategory;
-import by.danceform.app.repository.AgeCategoryRepository;
-import by.danceform.app.service.AgeCategoryService;
-import by.danceform.app.service.dto.AgeCategoryDTO;
+import by.danceform.app.domain.config.AgeCategory;
+import by.danceform.app.repository.config.AgeCategoryRepository;
+import by.danceform.app.dto.config.AgeCategoryDTO;
+import by.danceform.app.service.config.AgeCategoryService;
 import by.danceform.app.service.mapper.AgeCategoryMapper;
+import by.danceform.app.web.rest.config.AgeCategoryResource;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -92,7 +93,10 @@ public class AgeCategoryResourceIntTest {
      * if they test an entity which requires the current entity.
      */
     public static AgeCategory createEntity(EntityManager em) {
-        AgeCategory ageCategory = new AgeCategory().name(DEFAULT_NAME).minAge(DEFAULT_MIN_AGE).maxAge(DEFAULT_MAX_AGE);
+        AgeCategory ageCategory = new AgeCategory();
+        ageCategory.setName(DEFAULT_NAME);
+        ageCategory.setMinAge(DEFAULT_MIN_AGE);
+        ageCategory.setMaxAge(DEFAULT_MAX_AGE);
         return ageCategory;
     }
 
@@ -221,7 +225,9 @@ public class AgeCategoryResourceIntTest {
 
         // Update the ageCategory
         AgeCategory updatedAgeCategory = ageCategoryRepository.findOne(ageCategory.getId());
-        updatedAgeCategory.name(UPDATED_NAME).minAge(UPDATED_MIN_AGE).maxAge(UPDATED_MAX_AGE);
+        updatedAgeCategory.setName(UPDATED_NAME);
+        updatedAgeCategory.setMinAge(UPDATED_MIN_AGE);
+        updatedAgeCategory.setMaxAge(UPDATED_MAX_AGE);
         AgeCategoryDTO ageCategoryDTO = ageCategoryMapper.ageCategoryToAgeCategoryDTO(updatedAgeCategory);
 
         restAgeCategoryMockMvc.perform(put("/api/age-categories").contentType(TestUtil.APPLICATION_JSON_UTF8)

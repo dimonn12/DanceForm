@@ -2,26 +2,26 @@
     "danceFormApp": {
         "danceClass" : {
             "home": {
-                "title": "Dance Classes",
-                "createLabel": "Создать новый Dance Class",
-                "createOrEditLabel": "Создать или отредактировать Dance Class",
-                "search": "Найти Dance Class"
+                "title": "Танцевальные Классы",
+                "createLabel": "Создать новый Танцевальный Класс",
+                "createOrEditLabel": "Создать или отредактировать Танцевальный Класс",
+                "search": "Найти Танцевальный Класс"
             },
-            "created": "Новый Dance Class создан с идентификатором {{ param }}",
-            "updated": "Dance Class обновлен с идентификатором {{ param }}",
-            "deleted": "Dance Class удален с идентификатором {{ param }}",
+            "created": "Новый Танцевальный Класс создан с идентификатором {{ param }}",
+            "updated": "Танцевальный Класс обновлен с идентификатором {{ param }}",
+            "deleted": "Танцевальный Класс удален с идентификатором {{ param }}",
             "delete": {
-                "question": "Вы уверены что хотите удалить Dance Class {{ id }}?"
+                "question": "Вы уверены что хотите удалить Танцевальный Класс '{{ id }}'?"
             },
             "detail": {
-                "title": "Dance Class"
+                "title": "Танцевальный Класс"
             },
-            "name": "Name",
-            "description": "Description",
-            "symbol": "Symbol",
-            "weight": "Weight",
-            "transferScore": "Transfer Score",
-            "danceClass": "Dance Class"
+            "name": "Название",
+            "description": "Писание",
+            "symbol": "Символ",
+            "weight": "Вес",
+            "transferScore": "Количество очков для перевода",
+            "nextDanceClass": "Следующий класс"
         }
     }
 }

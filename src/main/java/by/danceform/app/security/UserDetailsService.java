@@ -1,7 +1,7 @@
 package by.danceform.app.security;
 
-import by.danceform.app.domain.User;
-import by.danceform.app.repository.UserRepository;
+import by.danceform.app.domain.user.User;
+import by.danceform.app.repository.user.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;

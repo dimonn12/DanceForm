@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
-    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <!--
         Added the constraints for entity DanceClass.
     -->
     <changeSet id="20161007135824-2" author="jhipster">
-        
-        <addForeignKeyConstraint baseColumnNames="dance_class_id"
+
+        <addForeignKeyConstraint baseColumnNames="next_dance_class_id"
                                  baseTableName="dance_class"
-                                 constraintName="fk_dance_class_dance_class_id"
+                                 constraintName="fk_dance_class_next_dance_class_id"
                                  referencedColumnNames="id"
                                  referencedTableName="dance_class"/>
 

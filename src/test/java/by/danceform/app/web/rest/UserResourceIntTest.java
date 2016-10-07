@@ -1,9 +1,10 @@
 package by.danceform.app.web.rest;
 
 import by.danceform.app.DanceFormApp;
-import by.danceform.app.domain.User;
-import by.danceform.app.repository.UserRepository;
-import by.danceform.app.service.UserService;
+import by.danceform.app.domain.user.User;
+import by.danceform.app.repository.user.UserRepository;
+import by.danceform.app.service.user.UserService;
+import by.danceform.app.web.rest.user.UserResource;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;

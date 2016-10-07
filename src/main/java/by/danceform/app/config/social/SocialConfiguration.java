@@ -1,7 +1,7 @@
 package by.danceform.app.config.social;
 
-import by.danceform.app.repository.CustomSocialUsersConnectionRepository;
-import by.danceform.app.repository.SocialUserConnectionRepository;
+import by.danceform.app.repository.security.CustomSocialUsersConnectionRepository;
+import by.danceform.app.repository.security.SocialUserConnectionRepository;
 import by.danceform.app.security.social.CustomSignInAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
