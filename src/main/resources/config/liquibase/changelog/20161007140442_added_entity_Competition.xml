@@ -29,8 +29,8 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="is_visible" type="bit">
-                <constraints nullable="true"/>
+            <column name="is_visible" type="bit" defaultValue="0">
+                <constraints nullable="false"/>
             </column>
 
             <column name="organizer" type="varchar(255)">

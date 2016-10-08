@@ -84,25 +84,4 @@ public class CompetitionService {
         competitionRepository.delete(id);
     }
 
-    /**
-     * Get all the competitions.
-     *
-     * @return the list of entities
-     */
-    @Transactional(readOnly = true)
-    public List<CompetitionDTO> findVisible() {
-        log.debug("Request to get all Competitions");
-        List<Competition> result = competitionRepository.findVisible();
-        List<CompetitionDTO> competitions = result.stream()
-            .map(competition -> competitionConverter.convertToDto(competition))
-            .collect(Collectors.toList());
-        Collections.sort(competitions, new Comparator<CompetitionDTO>() {
-
-            @Override
-            public int compare(CompetitionDTO c1, CompetitionDTO c2) {
-                return ObjectUtils.compare(c1.getDate(), c2.getDate());
-            }
-        });
-        return competitions;
-    }
 }

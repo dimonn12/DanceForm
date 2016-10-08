@@ -5,4 +5,4 @@ SET @@global.innodb_file_per_table=true;
 drop schema if exists `DanceForm`;
 
 create database if not exists DanceForm;
-ALTER SCHEMA `DanceForm`  DEFAULT CHARACTER SET latin1;
+ALTER SCHEMA `DanceForm`  DEFAULT CHARACTER SET utf8;

@@ -8,7 +8,14 @@
     <include file="classpath:config/liquibase/changelog/20161007135824_added_entity_DanceClass.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20161007140213_added_entity_AgeCategory.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20161007140442_added_entity_Competition.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161008163535_added_entity_SystemSetting.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20161007135824_added_entity_constraints_DanceClass.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+
+    <!-- insert values into tables-->
+    <include file="classpath:config/liquibase/changelog/insert_entities_SystemSetting.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/insert_entities_DanceClass.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/insert_entities_AgeCategory.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/insert_entities_Competition.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

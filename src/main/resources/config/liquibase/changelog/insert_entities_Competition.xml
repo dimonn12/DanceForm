@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle"/>
+
+
+    <changeSet id="20161008-10" author="dmitry_shanko">
+        <insert tableName="competition">
+            <column name="id" value="1"/>
+            <column name="name" value="Огни Столицы"/>
+            <column name="date" value="2016-12-17"/>
+            <column name="is_visible" valueBoolean="true"/>
+            <column name="organizer" value="Танго"/>
+            <column name="location" value="где-то в Минске"/>
+        </insert>
+        <insert tableName="competition">
+            <column name="id" value="2"/>
+            <column name="name" value="NOT VISIBLE"/>
+            <column name="date" value="2016-12-12"/>
+            <column name="is_visible" valueBoolean="false"/>
+            <column name="organizer" value="test"/>
+            <column name="location" value="test"/>
+        </insert>
+        <insert tableName="competition">
+            <column name="id" value="3"/>
+            <column name="name" value="Прошедший"/>
+            <column name="date" value="2016-10-01"/>
+            <column name="is_visible" valueBoolean="true"/>
+            <column name="organizer" value="Прошел"/>
+            <column name="location" value="Локейшен"/>
+        </insert>
+        <insert tableName="competition">
+            <column name="id" value="4"/>
+            <column name="name" value="Гомель"/>
+            <column name="date" value="2016-11-15"/>
+            <column name="is_visible" valueBoolean="true"/>
+            <column name="organizer" value="Гомельчанки"/>
+            <column name="location" value="Гомель"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

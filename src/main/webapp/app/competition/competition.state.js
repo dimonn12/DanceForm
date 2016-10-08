@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -8,9 +8,57 @@
     stateConfig.$inject = ['$stateProvider'];
 
     function stateConfig($stateProvider) {
-        $stateProvider.state('timeline', {
-            abstract: true,
-            parent: 'app'
+        $stateProvider.state('competition-timeline', {
+            parent: 'app',
+            url: '/timeline',
+            data: {
+                authorities: [],
+                pageTitle: 'global.menu.timeline'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/competition/timeline/timeline.html',
+                    controller: 'TimelineController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('competition-timeline');
+                    return $translate.refresh();
+                }]
+            }
+        }).state('competition-timeline-show', {
+            parent: 'competition-timeline',
+            url: '/{id}',
+            data: {
+                authorities: [],
+                pageTitle: 'global.menu.timeline'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/competition/show/details.html',
+                    controller: 'CompetitionShowDetailController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('competition-timeline');
+                    return $translate.refresh();
+                }],
+                entity: ['$stateParams', 'CompetitionTimeline', function ($stateParams, CompetitionTimeline) {
+                    return CompetitionTimeline.get({id: $stateParams.id}).$promise;
+                }],
+                previousState: ["$state", function ($state) {
+                    var currentStateData = {
+                        name: $state.current.name || 'competition-timeline',
+                        params: $state.params,
+                        url: $state.href($state.current.name, $state.params)
+                    };
+                    return currentStateData;
+                }]
+            }
         });
     }
 })();

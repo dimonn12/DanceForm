@@ -32,6 +32,10 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
 
     private boolean isRegistrationOpen;
 
+    private boolean isRegistrationClosed;
+
+    private boolean isDetailsAvailable;
+
     public CompetitionDTO() {
     }
 
@@ -78,7 +82,7 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
     public void setLocation(String location) {
         this.location = location;
     }
-    
+
     public boolean isRegistrationOpen() {
         return isRegistrationOpen;
     }
@@ -93,6 +97,22 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
 
     public void setResultsAvailable(boolean resultsAvailable) {
         isResultsAvailable = resultsAvailable;
+    }
+
+    public boolean isRegistrationClosed() {
+        return isRegistrationClosed;
+    }
+
+    public void setRegistrationClosed(boolean registrationClosed) {
+        isRegistrationClosed = registrationClosed;
+    }
+
+    public boolean isDetailsAvailable() {
+        return isDetailsAvailable;
+    }
+
+    public void setDetailsAvailable(boolean detailsAvailable) {
+        isDetailsAvailable = detailsAvailable;
     }
 
     @Override

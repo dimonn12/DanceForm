@@ -37,7 +37,7 @@ public class Competition extends AbstractEntity<Long> {
     private LocalDate date;
 
     @Column(name = "is_visible")
-    private Boolean visible;
+    private boolean visible;
 
     @Column(name = "organizer")
     private String organizer;
@@ -71,11 +71,11 @@ public class Competition extends AbstractEntity<Long> {
         this.date = date;
     }
 
-    public Boolean isVisible() {
+    public boolean isVisible() {
         return visible;
     }
 
-    public void setVisible(Boolean visible) {
+    public void setVisible(boolean visible) {
         this.visible = visible;
     }
 

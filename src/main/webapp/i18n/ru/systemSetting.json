@@ -1,0 +1,23 @@
+{
+    "danceFormApp": {
+        "systemSetting" : {
+            "home": {
+                "title": "System Settings",
+                "createLabel": "Создать новый System Setting",
+                "createOrEditLabel": "Создать или отредактировать System Setting",
+                "search": "Найти System Setting"
+            },
+            "created": "Новый System Setting создан с идентификатором {{ param }}",
+            "updated": "System Setting обновлен с идентификатором {{ param }}",
+            "deleted": "System Setting удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить System Setting {{ id }}?"
+            },
+            "detail": {
+                "title": "System Setting"
+            },
+            "name": "Name",
+            "value": "Value"
+        }
+    }
+}

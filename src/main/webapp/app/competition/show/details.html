@@ -1,0 +1,25 @@
+<div>
+
+    <h2><span data-translate="danceFormApp.competition-timeline.show.title">Competition</span> "{{vm.currentCompentition.name}}"</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="danceFormApp.competition-timeline.name">Name</span></dt>
+        <dd>
+            <span>{{vm.currentCompentition.name}}</span>
+        </dd>
+        <dt><span data-translate="danceFormApp.competition-timeline.date">Date</span></dt>
+        <dd>
+            <span>{{vm.currentCompentition.date | date:'d MMMM yyyy'}}</span>
+        </dd>
+        <dt><span data-translate="danceFormApp.competition-timeline.organizer">Organizer</span></dt>
+        <dd>
+            <span>{{vm.currentCompentition.organizer}}</span>
+        </dd>
+        <dt><span data-translate="danceFormApp.competition-timeline.location">Location</span></dt>
+        <dd>
+            <span>{{vm.currentCompentition.location}}</span>
+        </dd>
+    </dl>
+
+</div>
