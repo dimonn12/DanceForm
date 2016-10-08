@@ -1,11 +1,11 @@
 package by.danceform.app.web.rest;
 
 import by.danceform.app.DanceFormApp;
+import by.danceform.app.converter.config.DanceClassConverter;
 import by.danceform.app.domain.config.DanceClass;
 import by.danceform.app.dto.config.DanceClassDTO;
 import by.danceform.app.repository.config.DanceClassRepository;
 import by.danceform.app.service.config.DanceClassService;
-import by.danceform.app.service.mapper.DanceClassMapper;
 import by.danceform.app.web.rest.config.DanceClassResource;
 import org.junit.Before;
 import org.junit.Test;
@@ -62,7 +62,7 @@ public class DanceClassResourceIntTest {
     private DanceClassRepository danceClassRepository;
 
     @Inject
-    private DanceClassMapper danceClassMapper;
+    private DanceClassConverter danceClassConverter;
 
     @Inject
     private DanceClassService danceClassService;
@@ -117,7 +117,7 @@ public class DanceClassResourceIntTest {
         int databaseSizeBeforeCreate = danceClassRepository.findAll().size();
 
         // Create the DanceClass
-        DanceClassDTO danceClassDTO = danceClassMapper.danceClassToDanceClassDTO(danceClass);
+        DanceClassDTO danceClassDTO = danceClassConverter.convertToDto(danceClass);
 
         restDanceClassMockMvc.perform(post("/api/dance-classes").contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(danceClassDTO))).andExpect(status().isCreated());
@@ -141,7 +141,7 @@ public class DanceClassResourceIntTest {
         danceClass.setName(null);
 
         // Create the DanceClass, which fails.
-        DanceClassDTO danceClassDTO = danceClassMapper.danceClassToDanceClassDTO(danceClass);
+        DanceClassDTO danceClassDTO = danceClassConverter.convertToDto(danceClass);
 
         restDanceClassMockMvc.perform(post("/api/dance-classes").contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(danceClassDTO))).andExpect(status().isBadRequest());
@@ -158,7 +158,7 @@ public class DanceClassResourceIntTest {
         danceClass.setSymbol(null);
 
         // Create the DanceClass, which fails.
-        DanceClassDTO danceClassDTO = danceClassMapper.danceClassToDanceClassDTO(danceClass);
+        DanceClassDTO danceClassDTO = danceClassConverter.convertToDto(danceClass);
 
         restDanceClassMockMvc.perform(post("/api/dance-classes").contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(danceClassDTO))).andExpect(status().isBadRequest());
@@ -175,7 +175,7 @@ public class DanceClassResourceIntTest {
         danceClass.setWeight(null);
 
         // Create the DanceClass, which fails.
-        DanceClassDTO danceClassDTO = danceClassMapper.danceClassToDanceClassDTO(danceClass);
+        DanceClassDTO danceClassDTO = danceClassConverter.convertToDto(danceClass);
 
         restDanceClassMockMvc.perform(post("/api/dance-classes").contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(danceClassDTO))).andExpect(status().isBadRequest());
@@ -241,7 +241,7 @@ public class DanceClassResourceIntTest {
         updatedDanceClass.setSymbol(UPDATED_SYMBOL);
         updatedDanceClass.setWeight(UPDATED_WEIGHT);
         updatedDanceClass.setTransferScore(UPDATED_TRANSFER_SCORE);
-        DanceClassDTO danceClassDTO = danceClassMapper.danceClassToDanceClassDTO(updatedDanceClass);
+        DanceClassDTO danceClassDTO = danceClassConverter.convertToDto(updatedDanceClass);
 
         restDanceClassMockMvc.perform(put("/api/dance-classes").contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(danceClassDTO))).andExpect(status().isOk());

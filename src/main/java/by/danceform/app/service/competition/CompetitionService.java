@@ -4,6 +4,7 @@ import by.danceform.app.converter.competition.CompetitionConverter;
 import by.danceform.app.domain.competition.Competition;
 import by.danceform.app.dto.competition.CompetitionDTO;
 import by.danceform.app.repository.competition.CompetitionRepository;
+import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -90,8 +93,16 @@ public class CompetitionService {
     public List<CompetitionDTO> findVisible() {
         log.debug("Request to get all Competitions");
         List<Competition> result = competitionRepository.findVisible();
-        return result.stream()
+        List<CompetitionDTO> competitions = result.stream()
             .map(competition -> competitionConverter.convertToDto(competition))
             .collect(Collectors.toList());
+        Collections.sort(competitions, new Comparator<CompetitionDTO>() {
+
+            @Override
+            public int compare(CompetitionDTO c1, CompetitionDTO c2) {
+                return ObjectUtils.compare(c1.getDate(), c2.getDate());
+            }
+        });
+        return competitions;
     }
 }

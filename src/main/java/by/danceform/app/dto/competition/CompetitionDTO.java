@@ -20,13 +20,17 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
     @NotNull
     private LocalDate date;
 
-    private Boolean visible;
+    private boolean visible;
 
     private String organizer;
 
     @NotNull
     @Size(min = 1, max = 512)
     private String location;
+
+    private boolean isResultsAvailable;
+
+    private boolean isRegistrationOpen;
 
     public CompetitionDTO() {
     }
@@ -51,11 +55,11 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
         this.date = date;
     }
 
-    public Boolean isVisible() {
+    public boolean isVisible() {
         return visible;
     }
 
-    public void setVisible(Boolean visible) {
+    public void setVisible(boolean visible) {
         this.visible = visible;
     }
 
@@ -73,6 +77,22 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+    
+    public boolean isRegistrationOpen() {
+        return isRegistrationOpen;
+    }
+
+    public void setRegistrationOpen(boolean registrationOpen) {
+        isRegistrationOpen = registrationOpen;
+    }
+
+    public boolean isResultsAvailable() {
+        return isResultsAvailable;
+    }
+
+    public void setResultsAvailable(boolean resultsAvailable) {
+        isResultsAvailable = resultsAvailable;
     }
 
     @Override

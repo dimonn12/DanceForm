@@ -1,11 +1,14 @@
 {
   "danceFormApp": {
     "competition-timeline": {
-      "title": "График турниров",
+      "title": "Предстоящие турниры",
       "name": "Название",
       "date": "Дата проведения",
       "location": "Место проведения",
-      "organizer": "Организатор"
+      "organizer": "Организатор",
+      "past" :{
+        "title": "Прошедшие турниры"
+      }
     }
   }
 }

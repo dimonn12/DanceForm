@@ -2,25 +2,25 @@
     "danceFormApp": {
         "competition" : {
             "home": {
-                "title": "Competitions",
-                "createLabel": "Создать новый Competition",
-                "createOrEditLabel": "Создать или отредактировать Competition",
-                "search": "Найти Competition"
+                "title": "Турниры",
+                "createLabel": "Создать новый Турнир",
+                "createOrEditLabel": "Создать или отредактировать Турнир",
+                "search": "Найти Турнир"
             },
-            "created": "Новый Competition создан с идентификатором {{ param }}",
-            "updated": "Competition обновлен с идентификатором {{ param }}",
-            "deleted": "Competition удален с идентификатором {{ param }}",
+            "created": "Новый Турнир создан с идентификатором {{ param }}",
+            "updated": "Турнир обновлен с идентификатором {{ param }}",
+            "deleted": "Турнир удален с идентификатором {{ param }}",
             "delete": {
-                "question": "Вы уверены что хотите удалить Competition {{ id }}?"
+                "question": "Вы уверены что хотите удалить Турнир {{ id }}?"
             },
             "detail": {
-                "title": "Competition"
+                "title": "Турнир"
             },
-            "name": "Name",
-            "date": "Date",
-            "isVisible": "Is Visible",
-            "organizer": "Organizer",
-            "location": "Location"
+            "name": "Название",
+            "date": "Дата",
+            "visible": "Отображать на главной",
+            "organizer": "Организатор",
+            "location": "Место проведения"
         }
     }
 }

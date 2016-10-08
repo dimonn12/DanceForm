@@ -1,11 +1,11 @@
 package by.danceform.app.web.rest;
 
 import by.danceform.app.DanceFormApp;
+import by.danceform.app.converter.competition.CompetitionConverter;
 import by.danceform.app.domain.competition.Competition;
 import by.danceform.app.dto.competition.CompetitionDTO;
 import by.danceform.app.repository.competition.CompetitionRepository;
 import by.danceform.app.service.competition.CompetitionService;
-import by.danceform.app.service.mapper.CompetitionMapper;
 import by.danceform.app.web.rest.competition.CompetitionResource;
 import org.junit.Before;
 import org.junit.Test;
@@ -64,7 +64,7 @@ public class CompetitionResourceIntTest {
     private CompetitionRepository competitionRepository;
 
     @Inject
-    private CompetitionMapper competitionMapper;
+    private CompetitionConverter competitionConverter;
 
     @Inject
     private CompetitionService competitionService;
@@ -119,7 +119,7 @@ public class CompetitionResourceIntTest {
         int databaseSizeBeforeCreate = competitionRepository.findAll().size();
 
         // Create the Competition
-        CompetitionDTO competitionDTO = competitionMapper.competitionToCompetitionDTO(competition);
+        CompetitionDTO competitionDTO = competitionConverter.convertToDto(competition);
 
         restCompetitionMockMvc.perform(post("/api/competitions").contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(competitionDTO))).andExpect(status().isCreated());
@@ -143,7 +143,7 @@ public class CompetitionResourceIntTest {
         competition.setName(null);
 
         // Create the Competition, which fails.
-        CompetitionDTO competitionDTO = competitionMapper.competitionToCompetitionDTO(competition);
+        CompetitionDTO competitionDTO = competitionConverter.convertToDto(competition);
 
         restCompetitionMockMvc.perform(post("/api/competitions").contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(competitionDTO))).andExpect(status().isBadRequest());
@@ -160,7 +160,7 @@ public class CompetitionResourceIntTest {
         competition.setDate(null);
 
         // Create the Competition, which fails.
-        CompetitionDTO competitionDTO = competitionMapper.competitionToCompetitionDTO(competition);
+        CompetitionDTO competitionDTO = competitionConverter.convertToDto(competition);
 
         restCompetitionMockMvc.perform(post("/api/competitions").contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(competitionDTO))).andExpect(status().isBadRequest());
@@ -177,7 +177,7 @@ public class CompetitionResourceIntTest {
         competition.setLocation(null);
 
         // Create the Competition, which fails.
-        CompetitionDTO competitionDTO = competitionMapper.competitionToCompetitionDTO(competition);
+        CompetitionDTO competitionDTO = competitionConverter.convertToDto(competition);
 
         restCompetitionMockMvc.perform(post("/api/competitions").contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(competitionDTO))).andExpect(status().isBadRequest());
@@ -199,7 +199,7 @@ public class CompetitionResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(competition.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
-            .andExpect(jsonPath("$.[*].isVisible").value(hasItem(DEFAULT_IS_VISIBLE.booleanValue())))
+            .andExpect(jsonPath("$.[*].visible").value(hasItem(DEFAULT_IS_VISIBLE.booleanValue())))
             .andExpect(jsonPath("$.[*].organizer").value(hasItem(DEFAULT_ORGANIZER.toString())))
             .andExpect(jsonPath("$.[*].location").value(hasItem(DEFAULT_LOCATION.toString())));
     }
@@ -217,7 +217,7 @@ public class CompetitionResourceIntTest {
             .andExpect(jsonPath("$.id").value(competition.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
-            .andExpect(jsonPath("$.isVisible").value(DEFAULT_IS_VISIBLE.booleanValue()))
+            .andExpect(jsonPath("$.visible").value(DEFAULT_IS_VISIBLE.booleanValue()))
             .andExpect(jsonPath("$.organizer").value(DEFAULT_ORGANIZER.toString()))
             .andExpect(jsonPath("$.location").value(DEFAULT_LOCATION.toString()));
     }
@@ -243,7 +243,7 @@ public class CompetitionResourceIntTest {
         updatedCompetition.setVisible(UPDATED_IS_VISIBLE);
         updatedCompetition.setOrganizer(UPDATED_ORGANIZER);
         updatedCompetition.setLocation(UPDATED_LOCATION);
-        CompetitionDTO competitionDTO = competitionMapper.competitionToCompetitionDTO(updatedCompetition);
+        CompetitionDTO competitionDTO = competitionConverter.convertToDto(updatedCompetition);
 
         restCompetitionMockMvc.perform(put("/api/competitions").contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(competitionDTO))).andExpect(status().isOk());

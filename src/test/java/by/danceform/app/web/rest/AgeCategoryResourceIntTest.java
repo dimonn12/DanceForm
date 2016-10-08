@@ -1,11 +1,11 @@
 package by.danceform.app.web.rest;
 
 import by.danceform.app.DanceFormApp;
+import by.danceform.app.converter.config.AgeCategoryConverter;
 import by.danceform.app.domain.config.AgeCategory;
 import by.danceform.app.repository.config.AgeCategoryRepository;
 import by.danceform.app.dto.config.AgeCategoryDTO;
 import by.danceform.app.service.config.AgeCategoryService;
-import by.danceform.app.service.mapper.AgeCategoryMapper;
 import by.danceform.app.web.rest.config.AgeCategoryResource;
 import org.junit.Before;
 import org.junit.Test;
@@ -58,7 +58,7 @@ public class AgeCategoryResourceIntTest {
     private AgeCategoryRepository ageCategoryRepository;
 
     @Inject
-    private AgeCategoryMapper ageCategoryMapper;
+    private AgeCategoryConverter ageCategoryConverter;
 
     @Inject
     private AgeCategoryService ageCategoryService;
@@ -111,7 +111,7 @@ public class AgeCategoryResourceIntTest {
         int databaseSizeBeforeCreate = ageCategoryRepository.findAll().size();
 
         // Create the AgeCategory
-        AgeCategoryDTO ageCategoryDTO = ageCategoryMapper.ageCategoryToAgeCategoryDTO(ageCategory);
+        AgeCategoryDTO ageCategoryDTO = ageCategoryConverter.convertToDto(ageCategory);
 
         restAgeCategoryMockMvc.perform(post("/api/age-categories").contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(ageCategoryDTO))).andExpect(status().isCreated());
@@ -133,7 +133,7 @@ public class AgeCategoryResourceIntTest {
         ageCategory.setName(null);
 
         // Create the AgeCategory, which fails.
-        AgeCategoryDTO ageCategoryDTO = ageCategoryMapper.ageCategoryToAgeCategoryDTO(ageCategory);
+        AgeCategoryDTO ageCategoryDTO = ageCategoryConverter.convertToDto(ageCategory);
 
         restAgeCategoryMockMvc.perform(post("/api/age-categories").contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(ageCategoryDTO))).andExpect(status().isBadRequest());
@@ -150,7 +150,7 @@ public class AgeCategoryResourceIntTest {
         ageCategory.setMinAge(null);
 
         // Create the AgeCategory, which fails.
-        AgeCategoryDTO ageCategoryDTO = ageCategoryMapper.ageCategoryToAgeCategoryDTO(ageCategory);
+        AgeCategoryDTO ageCategoryDTO = ageCategoryConverter.convertToDto(ageCategory);
 
         restAgeCategoryMockMvc.perform(post("/api/age-categories").contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(ageCategoryDTO))).andExpect(status().isBadRequest());
@@ -167,7 +167,7 @@ public class AgeCategoryResourceIntTest {
         ageCategory.setMaxAge(null);
 
         // Create the AgeCategory, which fails.
-        AgeCategoryDTO ageCategoryDTO = ageCategoryMapper.ageCategoryToAgeCategoryDTO(ageCategory);
+        AgeCategoryDTO ageCategoryDTO = ageCategoryConverter.convertToDto(ageCategory);
 
         restAgeCategoryMockMvc.perform(post("/api/age-categories").contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(ageCategoryDTO))).andExpect(status().isBadRequest());
@@ -228,7 +228,7 @@ public class AgeCategoryResourceIntTest {
         updatedAgeCategory.setName(UPDATED_NAME);
         updatedAgeCategory.setMinAge(UPDATED_MIN_AGE);
         updatedAgeCategory.setMaxAge(UPDATED_MAX_AGE);
-        AgeCategoryDTO ageCategoryDTO = ageCategoryMapper.ageCategoryToAgeCategoryDTO(updatedAgeCategory);
+        AgeCategoryDTO ageCategoryDTO = ageCategoryConverter.convertToDto(updatedAgeCategory);
 
         restAgeCategoryMockMvc.perform(put("/api/age-categories").contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(ageCategoryDTO))).andExpect(status().isOk());
