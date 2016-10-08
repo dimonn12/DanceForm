@@ -10,15 +10,15 @@
     function stateConfig($stateProvider) {
         $stateProvider
         .state('competition', {
-            parent: 'entity',
+            parent: 'competitions',
             url: '/competition?page&sort&search',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_ADMIN'],
                 pageTitle: 'danceFormApp.competition.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/competition/competitions.html',
+                    templateUrl: 'app/competitions/competition/competitions.html',
                     controller: 'CompetitionController',
                     controllerAs: 'vm'
                 }
@@ -52,15 +52,15 @@
             }
         })
         .state('competition-detail', {
-            parent: 'entity',
+            parent: 'competitions',
             url: '/competition/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_ADMIN'],
                 pageTitle: 'danceFormApp.competition.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/competition/competition-detail.html',
+                    templateUrl: 'app/competitions/competition/competition-detail.html',
                     controller: 'CompetitionDetailController',
                     controllerAs: 'vm'
                 }
@@ -87,11 +87,11 @@
             parent: 'competition-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/competition/competition-dialog.html',
+                    templateUrl: 'app/competitions/competition/competition-dialog.html',
                     controller: 'CompetitionDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -112,11 +112,11 @@
             parent: 'competition',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/competition/competition-dialog.html',
+                    templateUrl: 'app/competitions/competition/competition-dialog.html',
                     controller: 'CompetitionDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -144,11 +144,11 @@
             parent: 'competition',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/competition/competition-dialog.html',
+                    templateUrl: 'app/competitions/competition/competition-dialog.html',
                     controller: 'CompetitionDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -169,11 +169,11 @@
             parent: 'competition',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/competition/competition-delete-dialog.html',
+                    templateUrl: 'app/competitions/competition/competition-delete-dialog.html',
                     controller: 'CompetitionDeleteController',
                     controllerAs: 'vm',
                     size: 'md',

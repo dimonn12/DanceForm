@@ -9,53 +9,53 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('age-category', {
-            parent: 'entity',
-            url: '/age-category',
+        .state('dance-class', {
+            parent: 'config',
+            url: '/dance-class',
             data: {
-                authorities: ['ROLE_USER'],
-                pageTitle: 'danceFormApp.ageCategory.home.title'
+                authorities: ['ROLE_ADMIN'],
+                pageTitle: 'danceFormApp.danceClass.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/age-category/age-categories.html',
-                    controller: 'AgeCategoryController',
+                    templateUrl: 'app/config/dance-class/dance-classes.html',
+                    controller: 'DanceClassController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('ageCategory');
+                    $translatePartialLoader.addPart('danceClass');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
             }
         })
-        .state('age-category-detail', {
-            parent: 'entity',
-            url: '/age-category/{id}',
+        .state('dance-class-detail', {
+            parent: 'config',
+            url: '/dance-class/{id}',
             data: {
-                authorities: ['ROLE_USER'],
-                pageTitle: 'danceFormApp.ageCategory.detail.title'
+                authorities: ['ROLE_ADMIN'],
+                pageTitle: 'danceFormApp.danceClass.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/age-category/age-category-detail.html',
-                    controller: 'AgeCategoryDetailController',
+                    templateUrl: 'app/config/dance-class/dance-class-detail.html',
+                    controller: 'DanceClassDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('ageCategory');
+                    $translatePartialLoader.addPart('danceClass');
                     return $translate.refresh();
                 }],
-                entity: ['$stateParams', 'AgeCategory', function($stateParams, AgeCategory) {
-                    return AgeCategory.get({id : $stateParams.id}).$promise;
+                entity: ['$stateParams', 'DanceClass', function($stateParams, DanceClass) {
+                    return DanceClass.get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'age-category',
+                        name: $state.current.name || 'dance-class',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
@@ -63,22 +63,22 @@
                 }]
             }
         })
-        .state('age-category-detail.edit', {
-            parent: 'age-category-detail',
+        .state('dance-class-detail.edit', {
+            parent: 'dance-class-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/age-category/age-category-dialog.html',
-                    controller: 'AgeCategoryDialogController',
+                    templateUrl: 'app/config/dance-class/dance-class-dialog.html',
+                    controller: 'DanceClassDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['AgeCategory', function(AgeCategory) {
-                            return AgeCategory.get({id : $stateParams.id}).$promise;
+                        entity: ['DanceClass', function(DanceClass) {
+                            return DanceClass.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -88,16 +88,16 @@
                 });
             }]
         })
-        .state('age-category.new', {
-            parent: 'age-category',
+        .state('dance-class.new', {
+            parent: 'dance-class',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/age-category/age-category-dialog.html',
-                    controller: 'AgeCategoryDialogController',
+                    templateUrl: 'app/config/dance-class/dance-class-dialog.html',
+                    controller: 'DanceClassDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
@@ -105,63 +105,65 @@
                         entity: function () {
                             return {
                                 name: null,
-                                minAge: null,
-                                maxAge: null,
+                                description: null,
+                                symbol: null,
+                                weight: null,
+                                transferScore: null,
                                 id: null
                             };
                         }
                     }
                 }).result.then(function() {
-                    $state.go('age-category', null, { reload: 'age-category' });
+                    $state.go('dance-class', null, { reload: 'dance-class' });
                 }, function() {
-                    $state.go('age-category');
+                    $state.go('dance-class');
                 });
             }]
         })
-        .state('age-category.edit', {
-            parent: 'age-category',
+        .state('dance-class.edit', {
+            parent: 'dance-class',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/age-category/age-category-dialog.html',
-                    controller: 'AgeCategoryDialogController',
+                    templateUrl: 'app/config/dance-class/dance-class-dialog.html',
+                    controller: 'DanceClassDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['AgeCategory', function(AgeCategory) {
-                            return AgeCategory.get({id : $stateParams.id}).$promise;
+                        entity: ['DanceClass', function(DanceClass) {
+                            return DanceClass.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('age-category', null, { reload: 'age-category' });
+                    $state.go('dance-class', null, { reload: 'dance-class' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('age-category.delete', {
-            parent: 'age-category',
+        .state('dance-class.delete', {
+            parent: 'dance-class',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/age-category/age-category-delete-dialog.html',
-                    controller: 'AgeCategoryDeleteController',
+                    templateUrl: 'app/config/dance-class/dance-class-delete-dialog.html',
+                    controller: 'DanceClassDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['AgeCategory', function(AgeCategory) {
-                            return AgeCategory.get({id : $stateParams.id}).$promise;
+                        entity: ['DanceClass', function(DanceClass) {
+                            return DanceClass.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('age-category', null, { reload: 'age-category' });
+                    $state.go('dance-class', null, { reload: 'dance-class' });
                 }, function() {
                     $state.go('^');
                 });

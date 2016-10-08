@@ -10,15 +10,15 @@
     function stateConfig($stateProvider) {
         $stateProvider
         .state('system-setting', {
-            parent: 'entity',
+            parent: 'system',
             url: '/system-setting?page&sort&search',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_ADMIN'],
                 pageTitle: 'danceFormApp.systemSetting.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/system-setting/system-settings.html',
+                    templateUrl: 'app/system/system-setting/system-settings.html',
                     controller: 'SystemSettingController',
                     controllerAs: 'vm'
                 }
@@ -52,15 +52,15 @@
             }
         })
         .state('system-setting-detail', {
-            parent: 'entity',
+            parent: 'system',
             url: '/system-setting/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_ADMIN'],
                 pageTitle: 'danceFormApp.systemSetting.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/system-setting/system-setting-detail.html',
+                    templateUrl: 'app/system/system-setting/system-setting-detail.html',
                     controller: 'SystemSettingDetailController',
                     controllerAs: 'vm'
                 }
@@ -87,11 +87,11 @@
             parent: 'system-setting-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/system-setting/system-setting-dialog.html',
+                    templateUrl: 'app/system/system-setting/system-setting-dialog.html',
                     controller: 'SystemSettingDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -112,11 +112,11 @@
             parent: 'system-setting',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/system-setting/system-setting-dialog.html',
+                    templateUrl: 'app/system/system-setting/system-setting-dialog.html',
                     controller: 'SystemSettingDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -141,11 +141,11 @@
             parent: 'system-setting',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/system-setting/system-setting-dialog.html',
+                    templateUrl: 'app/system/system-setting/system-setting-dialog.html',
                     controller: 'SystemSettingDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -166,11 +166,11 @@
             parent: 'system-setting',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/system-setting/system-setting-delete-dialog.html',
+                    templateUrl: 'app/system/system-setting/system-setting-delete-dialog.html',
                     controller: 'SystemSettingDeleteController',
                     controllerAs: 'vm',
                     size: 'md',

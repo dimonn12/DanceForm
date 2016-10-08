@@ -82,7 +82,7 @@
             <column name="id" value="9"/>
             <column name="name" value="S"/>
             <column name="description" value="S класс"/>
-            <column name="symbol" value="9"/>
+            <column name="symbol" value="S"/>
             <column name="weight" value="8"/>
         </insert>
         <insert tableName="dance_class">

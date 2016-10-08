@@ -17,7 +17,7 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/competition/timeline/timeline.html',
+                    templateUrl: 'app/competition-timeline/timeline/timeline.html',
                     controller: 'TimelineController',
                     controllerAs: 'vm'
                 }
@@ -37,7 +37,7 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/competition/show/details.html',
+                    templateUrl: 'app/competition-timeline/show/details.html',
                     controller: 'CompetitionShowDetailController',
                     controllerAs: 'vm'
                 }
