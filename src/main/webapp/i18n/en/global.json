@@ -12,6 +12,7 @@
                 "competition": "Competition",
                 "systemSetting": "System Setting",
                 "competitionCategory": "Competition Category",
+                "registeredCouple": "Registered Couple",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

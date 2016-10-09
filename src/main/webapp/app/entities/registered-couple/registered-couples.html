@@ -1,0 +1,88 @@
+<div>
+    <h2 data-translate="danceFormApp.registeredCouple.home.title">Registered Couples</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="registered-couple.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="danceFormApp.registeredCouple.home.createLabel">
+                        Create new Registered Couple
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="danceFormApp.registeredCouple.partner1Name">Partner 1 Name</span></th>
+                    <th><span data-translate="danceFormApp.registeredCouple.partner1Surname">Partner 1 Surname</span></th>
+                    <th><span data-translate="danceFormApp.registeredCouple.partner2Name">Partner 2 Name</span></th>
+                    <th><span data-translate="danceFormApp.registeredCouple.partner2Surname">Partner 2 Surname</span></th>
+                    <th><span data-translate="danceFormApp.registeredCouple.partner1DateOfBirth">Partner 1 Date Of Birth</span></th>
+                    <th><span data-translate="danceFormApp.registeredCouple.partner2DateOfBirth">Partner 2 Date Of Birth</span></th>
+                    <th><span data-translate="danceFormApp.registeredCouple.partner1Organization">Partner 1 Organization</span></th>
+                    <th><span data-translate="danceFormApp.registeredCouple.partner1Location">Partner 1 Location</span></th>
+                    <th><span data-translate="danceFormApp.registeredCouple.trainer1">Trainer 1</span></th>
+                    <th><span data-translate="danceFormApp.registeredCouple.partner1DanceClassST">Partner 1 Dance Class ST</span></th>
+                    <th><span data-translate="danceFormApp.registeredCouple.partner1DanceClassLA">Partner 1 Dance Class LA</span></th>
+                    <th><span data-translate="danceFormApp.registeredCouple.partner2DanceClassST">Partner 2 Dance Class ST</span></th>
+                    <th><span data-translate="danceFormApp.registeredCouple.partner2DanceClassLA">Partner 2 Dance Class LA</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="registeredCouple in vm.registeredCouples track by registeredCouple.id">
+                    <td><a ui-sref="registered-couple-detail({id:registeredCouple.id})">{{registeredCouple.id}}</a></td>
+                    <td>{{registeredCouple.partner1Name}}</td>
+                    <td>{{registeredCouple.partner1Surname}}</td>
+                    <td>{{registeredCouple.partner2Name}}</td>
+                    <td>{{registeredCouple.partner2Surname}}</td>
+                        <td>{{registeredCouple.partner1DateOfBirth | date:'mediumDate'}}</td>
+                        <td>{{registeredCouple.partner2DateOfBirth | date:'mediumDate'}}</td>
+                    <td>{{registeredCouple.partner1Organization}}</td>
+                    <td>{{registeredCouple.partner1Location}}</td>
+                    <td>{{registeredCouple.trainer1}}</td>
+                    <td>
+                        <a ui-sref="dance-class-detail({id:registeredCouple.partner1DanceClassSTId})">{{registeredCouple.partner1DanceClassSTId}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="dance-class-detail({id:registeredCouple.partner1DanceClassLAId})">{{registeredCouple.partner1DanceClassLAId}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="dance-class-detail({id:registeredCouple.partner2DanceClassSTId})">{{registeredCouple.partner2DanceClassSTId}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="dance-class-detail({id:registeredCouple.partner2DanceClassLAId})">{{registeredCouple.partner2DanceClassLAId}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="registered-couple-detail({id:registeredCouple.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="registered-couple.edit({id:registeredCouple.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="registered-couple.delete({id:registeredCouple.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

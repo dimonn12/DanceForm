@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity RegisteredCouple.
+    -->
+    <changeSet id="20161009193745-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="partner_1_dance_class_st_id"
+                                 baseTableName="registered_couple"
+                                 constraintName="fk_registered_couple_partner_1_dance_class_st_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dance_class"/>
+
+        <addForeignKeyConstraint baseColumnNames="partner_1_dance_class_la_id"
+                                 baseTableName="registered_couple"
+                                 constraintName="fk_registered_couple_partner_1_dance_class_la_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dance_class"/>
+
+        <addForeignKeyConstraint baseColumnNames="partner_2_dance_class_st_id"
+                                 baseTableName="registered_couple"
+                                 constraintName="fk_registered_couple_partner_2_dance_class_st_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dance_class"/>
+
+        <addForeignKeyConstraint baseColumnNames="partner_2_dance_class_la_id"
+                                 baseTableName="registered_couple"
+                                 constraintName="fk_registered_couple_partner_2_dance_class_la_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dance_class"/>
+
+        <addForeignKeyConstraint baseColumnNames="competition_category_id"
+                                 baseTableName="registered_couple"
+                                 constraintName="fk_registered_couple_competition_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="competition_category"/>
+
+    </changeSet>
+</databaseChangeLog>
