@@ -1,0 +1,29 @@
+{
+    "danceFormApp": {
+        "competitionCategory" : {
+            "home": {
+                "title": "Competition Categories",
+                "createLabel": "Create a new Competition Category",
+                "createOrEditLabel": "Create or edit a Competition Category",
+                "search": "Search for Competition Category"
+            },
+            "created": "A new Competition Category is created with identifier {{ param }}",
+            "updated": "A Competition Category is updated with identifier {{ param }}",
+            "deleted": "A Competition Category is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Competition Category {{ id }}?"
+            },
+            "detail": {
+                "title": "Competition Category"
+            },
+            "name": "Name",
+            "description": "Description",
+            "active": "Active",
+            "checkMinAge": "Check Min Age",
+            "checkMaxAge": "Check Max Age",
+            "competition": "Competition",
+            "danceClass": "Dance Class",
+            "ageCategory": "Age Category"
+        }
+    }
+}

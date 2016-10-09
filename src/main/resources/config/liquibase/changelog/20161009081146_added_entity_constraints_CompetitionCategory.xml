@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity CompetitionCategory.
+    -->
+    <changeSet id="20161009081146-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="competition_id"
+                                 baseTableName="competition_category"
+                                 constraintName="fk_competition_category_competition_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="competition"/>
+        
+        <addForeignKeyConstraint baseColumnNames="competition_categories_id"
+                                 baseTableName="competition_category_dance_class"
+                                 constraintName="fk_competition_category_dance_class_competition_categories_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="competition_category"/>
+        <addForeignKeyConstraint baseColumnNames="dance_classes_id"
+                                 baseTableName="competition_category_dance_class"
+                                 constraintName="fk_competition_category_dance_class_dance_classes_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dance_class"/>
+        
+        <addForeignKeyConstraint baseColumnNames="competition_categories_id"
+                                 baseTableName="competition_category_age_category"
+                                 constraintName="fk_competition_category_age_category_competition_categories_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="competition_category"/>
+        <addForeignKeyConstraint baseColumnNames="age_categories_id"
+                                 baseTableName="competition_category_age_category"
+                                 constraintName="fk_competition_category_age_category_age_categories_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="age_category"/>
+        
+    </changeSet>
+</databaseChangeLog>

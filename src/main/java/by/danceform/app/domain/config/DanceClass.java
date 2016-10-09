@@ -50,7 +50,7 @@ public class DanceClass extends AbstractEntity<Long> {
     private Integer transferScore;
 
     @OneToOne
-    @JoinColumn(unique = true)
+    @JoinColumn(unique = true, updatable = false, insertable = false)
     private DanceClass nextDanceClass;
 
     public Long getId() {

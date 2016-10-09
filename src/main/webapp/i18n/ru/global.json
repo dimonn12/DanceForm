@@ -8,6 +8,7 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Сущности",
+        "competitionCategory": "Competition Category",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -43,7 +44,8 @@
       },
       "competitions": {
         "main": "Настройки турниров",
-        "competition": "Турниры"
+        "competition": "Турниры",
+        "competitionCategory": "Турнирные категории"
       },
       "language": "Язык"
     },

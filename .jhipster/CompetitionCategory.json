@@ -1,0 +1,65 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "competition",
+            "otherEntityName": "competition",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "competitionCategory"
+        },
+        {
+            "relationshipName": "danceClass",
+            "otherEntityName": "danceClas",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "competitionCategory"
+        },
+        {
+            "relationshipName": "ageCategory",
+            "otherEntityName": "ageCategory",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "competitionCategory"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "1",
+            "fieldValidateRulesMaxlength": "64"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "256"
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "checkMinAge",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "checkMaxAge",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20161009081146",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "competition_category",
+    "pagination": "no"
+}

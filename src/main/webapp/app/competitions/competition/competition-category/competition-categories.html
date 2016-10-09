@@ -1,0 +1,76 @@
+<div>
+    <h2 data-translate="danceFormApp.competitionCategory.home.title">Competition Categories</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="competition-category.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="danceFormApp.competitionCategory.home.createLabel">
+                        Create new Competition Category
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="danceFormApp.competitionCategory.name">Name</span></th>
+                    <th><span data-translate="danceFormApp.competitionCategory.description">Description</span></th>
+                    <th><span data-translate="danceFormApp.competitionCategory.active">Active</span></th>
+                    <th><span data-translate="danceFormApp.competitionCategory.checkMinAge">Check Min Age</span></th>
+                    <th><span data-translate="danceFormApp.competitionCategory.checkMaxAge">Check Max Age</span></th>
+                    <th><span data-translate="danceFormApp.competitionCategory.danceClass">Dance Class</span></th>
+                    <th><span data-translate="danceFormApp.competitionCategory.ageCategory">Age Category</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="competitionCategory in vm.competitionCategories track by competitionCategory.id">
+                    <td><a ui-sref="competition-category-detail({id:competitionCategory.id})">{{competitionCategory.id}}</a></td>
+                    <td>{{competitionCategory.name}}</td>
+                    <td>{{competitionCategory.description}}</td>
+                    <td>{{competitionCategory.active}}</td>
+                    <td>{{competitionCategory.checkMinAge}}</td>
+                    <td>{{competitionCategory.checkMaxAge}}</td>
+                    <td>
+                        <span ng-repeat="danceClass in competitionCategory.danceClasses">
+                            <a class="form-control-static" ui-sref="dance-clas-detail({id: danceClass.id})">{{danceClass.id}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-repeat="ageCategory in competitionCategory.ageCategories">
+                            <a class="form-control-static" ui-sref="age-category-detail({id: ageCategory.id})">{{ageCategory.id}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="competition-category-detail({competitionId:competitionCategory.competitionId, id:competitionCategory.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="competition-category.edit({competitionId:competitionCategory.competitionId,id:competitionCategory.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="competition-category.delete({competitionId:competitionCategory.competitionId,id:competitionCategory.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

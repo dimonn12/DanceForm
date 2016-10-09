@@ -348,7 +348,7 @@ entity detail page css
 
     .dl-horizontal.jh-entity-details > dd {
         border-bottom: 1px solid #eee;
-        padding-left: 180px;
+        padding-left: 230px;
         margin-left: 0;
     }
 }
@@ -424,4 +424,12 @@ Competition timeline styles
 
 .table-timeline > tbody > tr {
     background-color: #f9f9f9;
+}
+
+.competition-dl > dt {
+    width: 220px;
+}
+
+.competition-dl > dt > span {
+    white-space: normal;
 }
