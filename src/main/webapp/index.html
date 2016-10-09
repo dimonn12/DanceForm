@@ -6,7 +6,15 @@
     <title>DanceForm</title>
     <meta name="description" content="">
     <meta name="google" value="notranslate">
-    <meta name="viewport" content="width=device-width">
+    <meta id="vp" name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        if (screen.width < 790)
+        {
+            var mvp = document.getElementById('vp');
+            mvp.setAttribute('content','width=790');
+        }
+    </script>
+    <!--<meta name="viewport" content="width=device-width">-->
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css content/css/vendor.css -->
     <!-- bower:css -->
