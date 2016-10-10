@@ -1,9 +1,10 @@
 package by.danceform.app.converter.competition;
 
+import org.springframework.stereotype.Component;
+
 import by.danceform.app.converter.AbstractConverter;
 import by.danceform.app.domain.competition.Competition;
 import by.danceform.app.dto.competition.CompetitionDTO;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by dimonn12 on 07.10.2016.

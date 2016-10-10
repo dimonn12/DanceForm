@@ -1,6 +1,8 @@
 package by.danceform.app.domain.audit;
 
-import by.danceform.app.domain.AbstractEntity;
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -13,9 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+
+import by.danceform.app.domain.AbstractEntity;
 
 /**
  * Persist AuditEvent managed by the Spring Boot actuator
@@ -24,7 +25,9 @@ import java.util.Map;
  */
 @Entity
 @Table(name = "jhi_persistent_audit_event")
-public class PersistentAuditEvent  extends AbstractEntity<Long> {
+public class PersistentAuditEvent extends AbstractEntity<Long> {
+
+    private static final long serialVersionUID = 23700231029589234L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,10 +49,12 @@ public class PersistentAuditEvent  extends AbstractEntity<Long> {
     @CollectionTable(name = "jhi_persistent_audit_evt_data", joinColumns = @JoinColumn(name = "event_id"))
     private Map<String, String> data = new HashMap<>();
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }

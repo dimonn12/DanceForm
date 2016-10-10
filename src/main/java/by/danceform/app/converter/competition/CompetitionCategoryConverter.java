@@ -1,17 +1,17 @@
 package by.danceform.app.converter.competition;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Component;
+
 import by.danceform.app.converter.AbstractConverter;
 import by.danceform.app.converter.config.AgeCategoryConverter;
 import by.danceform.app.converter.config.DanceClassConverter;
 import by.danceform.app.domain.competition.CompetitionCategory;
 import by.danceform.app.dto.competition.CompetitionCategoryDTO;
-import by.danceform.app.dto.config.AgeCategoryDTO;
-import org.springframework.stereotype.Component;
-
-import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by dimonn12 on 09.10.2016.
@@ -33,8 +33,10 @@ public class CompetitionCategoryConverter extends AbstractConverter<CompetitionC
         dto.setCheckMaxAge(entity.isCheckMaxAge());
         dto.setCheckMinAge(entity.isCheckMinAge());
         dto.setCompetitionId(entity.getCompetitionId());
-        dto.setAgeCategories(new HashSet<>(ageCategoryConverter.convertToDtos(new ArrayList<>(entity.getAgeCategories()))));
-        dto.setDanceClasses(new HashSet<>(danceClassConverter.convertToDtos(new ArrayList<>(entity.getDanceClasses()))));
+        dto.setAgeCategories(
+                new HashSet<>(ageCategoryConverter.convertToDtos(new ArrayList<>(entity.getAgeCategories()))));
+        dto.setDanceClasses(
+                new HashSet<>(danceClassConverter.convertToDtos(new ArrayList<>(entity.getDanceClasses()))));
         return dto;
     }
 
@@ -46,8 +48,10 @@ public class CompetitionCategoryConverter extends AbstractConverter<CompetitionC
         entity.setCheckMinAge(dto.getCheckMinAge());
         entity.setCheckMaxAge(dto.getCheckMaxAge());
         entity.setCompetitionId(dto.getCompetitionId());
-        entity.setAgeCategories(new HashSet<>(ageCategoryConverter.convertToEntities(new ArrayList<>(dto.getAgeCategories()))));
-        entity.setDanceClasses(new HashSet<>(danceClassConverter.convertToEntities(new ArrayList<>(dto.getDanceClasses()))));
+        entity.setAgeCategories(
+                new HashSet<>(ageCategoryConverter.convertToEntities(new ArrayList<>(dto.getAgeCategories()))));
+        entity.setDanceClasses(
+                new HashSet<>(danceClassConverter.convertToEntities(new ArrayList<>(dto.getDanceClasses()))));
         return entity;
     }
 

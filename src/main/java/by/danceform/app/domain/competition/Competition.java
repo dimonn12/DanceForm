@@ -1,7 +1,6 @@
 package by.danceform.app.domain.competition;
 
-
-import by.danceform.app.domain.AbstractEntity;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
-import java.util.Objects;
+
+import by.danceform.app.domain.AbstractEntity;
 
 /**
  * A Competition.
@@ -21,7 +20,7 @@ import java.util.Objects;
 @Table(name = "competition")
 public class Competition extends AbstractEntity<Long> {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -146024457330746645L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,10 +46,12 @@ public class Competition extends AbstractEntity<Long> {
     @Column(name = "location", length = 512, nullable = false)
     private String location;
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
@@ -90,19 +91,14 @@ public class Competition extends AbstractEntity<Long> {
     public String getLocation() {
         return location;
     }
+
     public void setLocation(String location) {
         this.location = location;
     }
 
     @Override
     public String toString() {
-        return "Competition{" +
-               "id=" + id +
-               ", name='" + name + "'" +
-               ", date='" + date + "'" +
-               ", visible='" + visible + "'" +
-               ", organizer='" + organizer + "'" +
-               ", location='" + location + "'" +
-               '}';
+        return "Competition{" + "id=" + id + ", name='" + name + "'" + ", date='" + date + "'" + ", visible='" + visible
+                + "'" + ", organizer='" + organizer + "'" + ", location='" + location + "'" + '}';
     }
 }

@@ -1,13 +1,13 @@
 package by.danceform.app.converter.config;
 
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Component;
+
 import by.danceform.app.converter.AbstractConverter;
 import by.danceform.app.domain.config.DanceClass;
 import by.danceform.app.dto.config.DanceClassDTO;
 import by.danceform.app.repository.config.DanceClassRepository;
-import by.danceform.app.web.rest.config.DanceClassResource;
-import org.springframework.stereotype.Component;
-
-import javax.inject.Inject;
 
 /**
  * Created by dimonn12 on 07.10.2016.
@@ -25,7 +25,7 @@ public class DanceClassConverter extends AbstractConverter<DanceClass, DanceClas
         dto.setSymbol(entity.getSymbol());
         dto.setTransferScore(entity.getTransferScore());
         dto.setWeight(entity.getWeight());
-        if(null != entity.getNextDanceClass()) {
+        if (null != entity.getNextDanceClass()) {
             dto.setNextDanceClassId(entity.getNextDanceClass().getId());
         }
         return dto;

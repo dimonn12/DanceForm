@@ -1,8 +1,7 @@
 package by.danceform.app.domain.competition;
 
-import by.danceform.app.domain.AbstractEntity;
-import by.danceform.app.domain.config.AgeCategory;
-import by.danceform.app.domain.config.DanceClass;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +14,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
+
+import by.danceform.app.domain.AbstractEntity;
+import by.danceform.app.domain.config.AgeCategory;
+import by.danceform.app.domain.config.DanceClass;
 
 /**
  * A CompetitionCategory.
@@ -25,7 +26,7 @@ import java.util.Set;
 @Table(name = "competition_category")
 public class CompetitionCategory extends AbstractEntity<Long> {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 3728310148232456453L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -53,21 +54,19 @@ public class CompetitionCategory extends AbstractEntity<Long> {
     private Long competitionId;
 
     @ManyToMany
-    @JoinTable(name = "competition_category_dance_class",
-               joinColumns = @JoinColumn(name = "competition_categories_id", referencedColumnName = "ID"),
-               inverseJoinColumns = @JoinColumn(name = "dance_classes_id", referencedColumnName = "ID"))
+    @JoinTable(name = "competition_category_dance_class", joinColumns = @JoinColumn(name = "competition_categories_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "dance_classes_id", referencedColumnName = "ID"))
     private Set<DanceClass> danceClasses = new HashSet<>();
 
     @ManyToMany
-    @JoinTable(name = "competition_category_age_category",
-               joinColumns = @JoinColumn(name = "competition_categories_id", referencedColumnName = "ID"),
-               inverseJoinColumns = @JoinColumn(name = "age_categories_id", referencedColumnName = "ID"))
+    @JoinTable(name = "competition_category_age_category", joinColumns = @JoinColumn(name = "competition_categories_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "age_categories_id", referencedColumnName = "ID"))
     private Set<AgeCategory> ageCategories = new HashSet<>();
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
@@ -138,14 +137,8 @@ public class CompetitionCategory extends AbstractEntity<Long> {
 
     @Override
     public String toString() {
-        return "CompetitionCategory{" +
-               "id=" + id +
-               ", name='" + name + "'" +
-               ", description='" + description + "'" +
-               ", active='" + active + "'" +
-               ", checkMinAge='" + checkMinAge + "'" +
-               ", checkMaxAge='" + checkMaxAge + "'" +
-               ", competitionId='" + competitionId + "'" +
-               '}';
+        return "CompetitionCategory{" + "id=" + id + ", name='" + name + "'" + ", description='" + description + "'"
+                + ", active='" + active + "'" + ", checkMinAge='" + checkMinAge + "'" + ", checkMaxAge='" + checkMaxAge
+                + "'" + ", competitionId='" + competitionId + "'" + '}';
     }
 }

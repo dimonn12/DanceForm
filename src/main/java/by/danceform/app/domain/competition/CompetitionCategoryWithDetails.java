@@ -1,16 +1,17 @@
 package by.danceform.app.domain.competition;
 
-import by.danceform.app.domain.AbstractEntity;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.io.Serializable;
+
+import by.danceform.app.domain.AbstractEntity;
 
 /**
  * Created by Dmitry_Shanko on 10/10/2016.
  */
 @Entity
 public class CompetitionCategoryWithDetails extends AbstractEntity<Long> {
+
+    private static final long serialVersionUID = 1347401563146165129L;
 
     @Id
     private CompetitionCategory competitionCategory;
