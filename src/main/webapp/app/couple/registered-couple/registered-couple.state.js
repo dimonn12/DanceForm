@@ -10,7 +10,7 @@
     function stateConfig($stateProvider) {
         $stateProvider
         .state('registered-couple', {
-            parent: 'entity',
+            parent: 'couple',
             url: '/registered-couple',
             data: {
                 authorities: ['ROLE_USER'],
@@ -18,7 +18,7 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/registered-couple/registered-couples.html',
+                    templateUrl: 'app/couple/registered-couple/registered-couples.html',
                     controller: 'RegisteredCoupleController',
                     controllerAs: 'vm'
                 }
@@ -32,7 +32,7 @@
             }
         })
         .state('registered-couple-detail', {
-            parent: 'entity',
+            parent: 'couple',
             url: '/registered-couple/{id}',
             data: {
                 authorities: ['ROLE_USER'],
@@ -40,7 +40,7 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/registered-couple/registered-couple-detail.html',
+                    templateUrl: 'app/couple/registered-couple/registered-couple-detail.html',
                     controller: 'RegisteredCoupleDetailController',
                     controllerAs: 'vm'
                 }
@@ -71,7 +71,7 @@
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/registered-couple/registered-couple-dialog.html',
+                    templateUrl: 'app/couple/registered-couple/registered-couple-dialog.html',
                     controller: 'RegisteredCoupleDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -96,7 +96,7 @@
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/registered-couple/registered-couple-dialog.html',
+                    templateUrl: 'app/couple/registered-couple/registered-couple-dialog.html',
                     controller: 'RegisteredCoupleDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -132,7 +132,7 @@
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/registered-couple/registered-couple-dialog.html',
+                    templateUrl: 'app/couple/registered-couple/registered-couple-dialog.html',
                     controller: 'RegisteredCoupleDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -157,7 +157,7 @@
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/registered-couple/registered-couple-delete-dialog.html',
+                    templateUrl: 'app/couple/registered-couple/registered-couple-delete-dialog.html',
                     controller: 'RegisteredCoupleDeleteController',
                     controllerAs: 'vm',
                     size: 'md',

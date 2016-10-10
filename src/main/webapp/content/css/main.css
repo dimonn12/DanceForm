@@ -430,6 +430,6 @@ Competition timeline styles
     width: 220px;
 }
 
-.competition-dl > dt > span {
+dl > dt > span {
     white-space: normal;
 }

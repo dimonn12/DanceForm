@@ -2,6 +2,7 @@ package by.danceform.app.dto.config;
 
 import by.danceform.app.domain.config.DanceClass;
 import by.danceform.app.dto.AbstractDomainDTO;
+import by.danceform.app.dto.NamedReferenceDTO;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,7 +29,7 @@ public class DanceClassDTO extends AbstractDomainDTO<Long> {
 
     private Integer transferScore;
 
-    private Long nextDanceClassId;
+    private NamedReferenceDTO nextDanceClass;
 
     public DanceClassDTO() {
     }
@@ -77,12 +78,12 @@ public class DanceClassDTO extends AbstractDomainDTO<Long> {
         this.transferScore = transferScore;
     }
 
-    public Long getNextDanceClassId() {
-        return nextDanceClassId;
+    public NamedReferenceDTO getNextDanceClass() {
+        return nextDanceClass;
     }
 
-    public void setNextDanceClassId(Long nextDanceClassId) {
-        this.nextDanceClassId = nextDanceClassId;
+    public void setNextDanceClass(NamedReferenceDTO nextDanceClass) {
+        this.nextDanceClass = nextDanceClass;
     }
 
     @Override

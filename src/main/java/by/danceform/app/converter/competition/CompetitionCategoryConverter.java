@@ -1,17 +1,21 @@
 package by.danceform.app.converter.competition;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
-import javax.inject.Inject;
-
-import org.springframework.stereotype.Component;
-
 import by.danceform.app.converter.AbstractConverter;
+import by.danceform.app.converter.NamedEntityConverter;
 import by.danceform.app.converter.config.AgeCategoryConverter;
 import by.danceform.app.converter.config.DanceClassConverter;
 import by.danceform.app.domain.competition.CompetitionCategory;
+import by.danceform.app.domain.config.AgeCategory;
+import by.danceform.app.domain.config.DanceClass;
 import by.danceform.app.dto.competition.CompetitionCategoryDTO;
+import by.danceform.app.repository.config.AgeCategoryRepository;
+import by.danceform.app.repository.config.DanceClassRepository;
+import org.springframework.stereotype.Component;
+
+import javax.inject.Inject;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by dimonn12 on 09.10.2016.
@@ -20,10 +24,22 @@ import by.danceform.app.dto.competition.CompetitionCategoryDTO;
 public class CompetitionCategoryConverter extends AbstractConverter<CompetitionCategory, CompetitionCategoryDTO, Long> {
 
     @Inject
+    private DanceClassRepository danceClassRepository;
+
+    @Inject
+    private AgeCategoryRepository ageCategoryRepository;
+
+    @Inject
     private AgeCategoryConverter ageCategoryConverter;
 
     @Inject
     private DanceClassConverter danceClassConverter;
+
+    @Inject
+    private NamedEntityConverter<DanceClass> namedEntityDanceClassConverter;
+
+    @Inject
+    private NamedEntityConverter<AgeCategory> namedEntityAgeCategoryConverter;
 
     @Override
     protected CompetitionCategoryDTO convertEntityToDto(CompetitionCategory entity, CompetitionCategoryDTO dto) {
@@ -33,10 +49,8 @@ public class CompetitionCategoryConverter extends AbstractConverter<CompetitionC
         dto.setCheckMaxAge(entity.isCheckMaxAge());
         dto.setCheckMinAge(entity.isCheckMinAge());
         dto.setCompetitionId(entity.getCompetitionId());
-        dto.setAgeCategories(
-                new HashSet<>(ageCategoryConverter.convertToDtos(new ArrayList<>(entity.getAgeCategories()))));
-        dto.setDanceClasses(
-                new HashSet<>(danceClassConverter.convertToDtos(new ArrayList<>(entity.getDanceClasses()))));
+        dto.setAgeCategories(new HashSet<>(namedEntityAgeCategoryConverter.convertToDtos(entity.getAgeCategories())));
+        dto.setDanceClasses(new HashSet<>(namedEntityDanceClassConverter.convertToDtos(entity.getDanceClasses())));
         return dto;
     }
 
@@ -48,10 +62,26 @@ public class CompetitionCategoryConverter extends AbstractConverter<CompetitionC
         entity.setCheckMinAge(dto.getCheckMinAge());
         entity.setCheckMaxAge(dto.getCheckMaxAge());
         entity.setCompetitionId(dto.getCompetitionId());
-        entity.setAgeCategories(
-                new HashSet<>(ageCategoryConverter.convertToEntities(new ArrayList<>(dto.getAgeCategories()))));
-        entity.setDanceClasses(
-                new HashSet<>(danceClassConverter.convertToEntities(new ArrayList<>(dto.getDanceClasses()))));
+
+        if(null != dto.getAgeCategories()) {
+            Set<Long> ageCategoriesIds = dto.getAgeCategories()
+                .stream()
+                .map(ac -> ac.getId())
+                .collect(Collectors.toSet());
+            entity.setAgeCategories(new HashSet<>(ageCategoryRepository.findAll(ageCategoriesIds)));
+        } else {
+            entity.setAgeCategories(new HashSet<>());
+        }
+        if(null != dto.getDanceClasses()) {
+            Set<Long> danceClassesIds = dto.getDanceClasses()
+                .stream()
+                .map(dc -> dc.getId())
+                .collect(Collectors.toSet());
+            entity.setDanceClasses(new HashSet<>(danceClassRepository.findAll(danceClassesIds)));
+        } else {
+            entity.setDanceClasses(new HashSet<>());
+        }
+
         return entity;
     }
 

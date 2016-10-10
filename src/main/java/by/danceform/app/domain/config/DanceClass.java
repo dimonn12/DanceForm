@@ -2,6 +2,7 @@ package by.danceform.app.domain.config;
 
 
 import by.danceform.app.domain.AbstractEntity;
+import by.danceform.app.domain.INamedEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "dance_class")
-public class DanceClass extends AbstractEntity<Long> {
+public class DanceClass extends AbstractEntity<Long> implements INamedEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -50,7 +51,7 @@ public class DanceClass extends AbstractEntity<Long> {
     private Integer transferScore;
 
     @OneToOne
-    @JoinColumn(unique = true, updatable = false, insertable = false)
+    @JoinColumn(unique = true, updatable = true, insertable = true)
     private DanceClass nextDanceClass;
 
     public Long getId() {

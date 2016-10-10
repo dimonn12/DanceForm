@@ -98,7 +98,7 @@ public class AgeCategoryResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    @Secured(AuthoritiesConstants.ANONYMOUS)
+    @Secured({ AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS })
     public List<AgeCategoryDTO> getAllAgeCategories() {
         log.debug("REST request to get all AgeCategories");
         return ageCategoryService.findAll();
@@ -114,7 +114,7 @@ public class AgeCategoryResource {
                     method = RequestMethod.GET,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    @Secured(AuthoritiesConstants.ANONYMOUS)
+    @Secured({ AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS })
     public ResponseEntity<AgeCategoryDTO> getAgeCategory(@PathVariable Long id) {
         log.debug("REST request to get AgeCategory : {}", id);
         AgeCategoryDTO ageCategoryDTO = ageCategoryService.findOne(id);

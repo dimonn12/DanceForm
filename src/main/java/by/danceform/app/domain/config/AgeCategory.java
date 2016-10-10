@@ -2,6 +2,7 @@ package by.danceform.app.domain.config;
 
 
 import by.danceform.app.domain.AbstractEntity;
+import by.danceform.app.domain.INamedEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "age_category")
-public class AgeCategory extends AbstractEntity<Long> {
+public class AgeCategory extends AbstractEntity<Long> implements INamedEntity {
 
     private static final long serialVersionUID = 1L;
 

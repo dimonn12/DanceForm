@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -12,25 +12,19 @@
 
         vm.currentCompentition = entity;
         vm.previousState = previousState.name;
-        
-        vm.categories = [];
 
-        var unsubscribe = $rootScope.$on('danceFormApp:competitionUpdate', function(event, result) {
+        vm.categories = entity.competitionCategoryDTOs;
+
+        vm.totalRegisteredCount = 0;
+
+        for (var i = 0; i < vm.categories.length; i++) {
+            vm.totalRegisteredCount += vm.categories[i].registeredCouplesCount;
+        }
+
+        var unsubscribe = $rootScope.$on('danceFormApp:competitionUpdate', function (event, result) {
             vm.competition = result;
         });
         $scope.$on('$destroy', unsubscribe);
 
-        loadCategories();
-
-        function loadCategories() {
-            CompetitionCategory.query({competitionId: vm.currentCompentition.id}, onSuccess, onError);
-            function onSuccess(data, headers) {
-                vm.categories = data;
-            }
-
-            function onError(error) {
-                AlertService.error(error.data.message);
-            }
-        }
     }
 })();

@@ -2,6 +2,7 @@ package by.danceform.app.domain.system;
 
 
 import by.danceform.app.domain.AbstractEntity;
+import by.danceform.app.domain.INamedEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -13,7 +14,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "system_setting")
-public class SystemSetting extends AbstractEntity<Long> {
+public class SystemSetting extends AbstractEntity<Long> implements INamedEntity {
 
     private static final long serialVersionUID = 1L;
 

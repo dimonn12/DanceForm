@@ -98,7 +98,7 @@ public class DanceClassResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    @Secured(AuthoritiesConstants.ANONYMOUS)
+    @Secured({ AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS })
     public List<DanceClassDTO> getAllDanceClasses() {
         log.debug("REST request to get all DanceClasses");
         return danceClassService.findAll();
@@ -114,7 +114,7 @@ public class DanceClassResource {
                     method = RequestMethod.GET,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    @Secured(AuthoritiesConstants.ANONYMOUS)
+    @Secured({ AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS })
     public ResponseEntity<DanceClassDTO> getDanceClass(@PathVariable Long id) {
         log.debug("REST request to get DanceClass : {}", id);
         DanceClassDTO danceClassDTO = danceClassService.findOne(id);

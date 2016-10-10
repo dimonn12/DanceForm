@@ -1,6 +1,7 @@
 package by.danceform.app.dto.competition;
 
 import by.danceform.app.dto.AbstractDomainDTO;
+import by.danceform.app.dto.NamedReferenceDTO;
 import by.danceform.app.dto.config.AgeCategoryDTO;
 import by.danceform.app.dto.config.DanceClassDTO;
 
@@ -30,9 +31,9 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
 
     private Long competitionId;
 
-    private Set<DanceClassDTO> danceClasses = new HashSet<>();
+    private Set<NamedReferenceDTO> danceClasses = new HashSet<>();
 
-    private Set<AgeCategoryDTO> ageCategories = new HashSet<>();
+    private Set<NamedReferenceDTO> ageCategories = new HashSet<>();
 
     public CompetitionCategoryDTO() {
 
@@ -90,19 +91,19 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
         this.competitionId = competitionId;
     }
 
-    public Set<DanceClassDTO> getDanceClasses() {
+    public Set<NamedReferenceDTO> getDanceClasses() {
         return danceClasses;
     }
 
-    public void setDanceClasses(Set<DanceClassDTO> danceClas) {
+    public void setDanceClasses(Set<NamedReferenceDTO> danceClas) {
         this.danceClasses = danceClas;
     }
 
-    public Set<AgeCategoryDTO> getAgeCategories() {
+    public Set<NamedReferenceDTO> getAgeCategories() {
         return ageCategories;
     }
 
-    public void setAgeCategories(Set<AgeCategoryDTO> ageCategories) {
+    public void setAgeCategories(Set<NamedReferenceDTO> ageCategories) {
         this.ageCategories = ageCategories;
     }
 

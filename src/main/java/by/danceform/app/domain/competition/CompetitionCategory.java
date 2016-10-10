@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import by.danceform.app.domain.AbstractEntity;
+import by.danceform.app.domain.INamedEntity;
 import by.danceform.app.domain.config.AgeCategory;
 import by.danceform.app.domain.config.DanceClass;
 
@@ -24,7 +25,7 @@ import by.danceform.app.domain.config.DanceClass;
  */
 @Entity
 @Table(name = "competition_category")
-public class CompetitionCategory extends AbstractEntity<Long> {
+public class CompetitionCategory extends AbstractEntity<Long> implements INamedEntity {
 
     private static final long serialVersionUID = 3728310148232456453L;
 

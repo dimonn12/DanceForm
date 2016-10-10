@@ -1,0 +1,30 @@
+<div>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <div class="table-responsive">
+        <table class="jh-table table table-bordered table-timeline">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th>
+                        <span data-translate="danceFormApp.competition-timeline.categories.name">Дата</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.competition-timeline.categories.amount">Дата</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="couple in vm.couples track by couple.id">
+                    <td>{{couple.partner1Name}}</td>
+                    <td></td>
+
+                </tr>
+            </tbody>
+        </table>
+
+</div>

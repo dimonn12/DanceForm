@@ -66,11 +66,11 @@
 
         <div class="form-group">
             <label data-translate="danceFormApp.competitionCategory.danceClass" for="field_danceClass">Dance Class</label>
-            <select class="form-control" id="field_danceClass" multiple name="danceClass" ng-model="vm.competitionCategory.danceClasses" ng-options="danceClass as danceClass.id for danceClass in vm.danceclass track by danceClass.id"></select>
+            <select class="form-control" id="field_danceClass" multiple name="danceClass" ng-model="vm.competitionCategory.danceClasses" ng-options="danceClass as danceClass.name for danceClass in vm.danceclass track by danceClass.id"></select>
         </div>
         <div class="form-group">
             <label data-translate="danceFormApp.competitionCategory.ageCategory" for="field_ageCategory">Age Category</label>
-            <select class="form-control" id="field_ageCategory" multiple name="ageCategory" ng-model="vm.competitionCategory.ageCategories" ng-options="ageCategory as ageCategory.id for ageCategory in vm.agecategories track by ageCategory.id"></select>
+            <select class="form-control" id="field_ageCategory" multiple name="ageCategory" ng-model="vm.competitionCategory.ageCategories" ng-options="ageCategory as ageCategory.name for ageCategory in vm.agecategories track by ageCategory.id"></select>
         </div>
     </div>
     <div class="modal-footer">

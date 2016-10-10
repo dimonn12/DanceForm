@@ -12,13 +12,14 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import by.danceform.app.domain.AbstractEntity;
+import by.danceform.app.domain.INamedEntity;
 
 /**
  * A Competition.
  */
 @Entity
 @Table(name = "competition")
-public class Competition extends AbstractEntity<Long> {
+public class Competition extends AbstractEntity<Long> implements INamedEntity {
 
     private static final long serialVersionUID = -146024457330746645L;
 
