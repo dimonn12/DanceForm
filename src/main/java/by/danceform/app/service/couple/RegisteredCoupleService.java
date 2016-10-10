@@ -74,6 +74,23 @@ public class RegisteredCoupleService {
     }
 
     /**
+     * Get one registeredCouple by id.
+     *
+     * @param categoryId the id of the category
+     * @return the entity
+     */
+    @Transactional(readOnly = true)
+    public List<RegisteredCoupleDTO> findByCategoryId(Long categoryId) {
+        log.debug("Request to get RegisteredCouple : {}", categoryId);
+        List<RegisteredCoupleDTO> result = registeredCoupleRepository.findAllByCategoryId(categoryId)
+            .stream()
+            .map(registeredCoupleConverter::convertToDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+
+        return result;
+    }
+
+    /**
      * Delete the  registeredCouple by id.
      *
      * @param id the id of the entity

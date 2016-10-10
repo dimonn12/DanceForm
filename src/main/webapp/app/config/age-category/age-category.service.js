@@ -7,7 +7,7 @@
     AgeCategory.$inject = ['$resource'];
 
     function AgeCategory ($resource) {
-        var resourceUrl =  'api/age-categories/:id';
+        var resourceUrl =  'api/config/age-categories/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

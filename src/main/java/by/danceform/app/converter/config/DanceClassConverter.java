@@ -3,13 +3,20 @@ package by.danceform.app.converter.config;
 import by.danceform.app.converter.AbstractConverter;
 import by.danceform.app.domain.config.DanceClass;
 import by.danceform.app.dto.config.DanceClassDTO;
+import by.danceform.app.repository.config.DanceClassRepository;
+import by.danceform.app.web.rest.config.DanceClassResource;
 import org.springframework.stereotype.Component;
+
+import javax.inject.Inject;
 
 /**
  * Created by dimonn12 on 07.10.2016.
  */
 @Component("danceClassConverter")
 public class DanceClassConverter extends AbstractConverter<DanceClass, DanceClassDTO, Long> {
+
+    @Inject
+    private DanceClassRepository danceClassRepository;
 
     @Override
     protected DanceClassDTO convertEntityToDto(DanceClass entity, DanceClassDTO dto) {
@@ -19,7 +26,7 @@ public class DanceClassConverter extends AbstractConverter<DanceClass, DanceClas
         dto.setTransferScore(entity.getTransferScore());
         dto.setWeight(entity.getWeight());
         if(null != entity.getNextDanceClass()) {
-            dto.setNextDanceClass(convertToDto(entity.getNextDanceClass()));
+            dto.setNextDanceClassId(entity.getNextDanceClass().getId());
         }
         return dto;
     }
@@ -31,9 +38,7 @@ public class DanceClassConverter extends AbstractConverter<DanceClass, DanceClas
         entity.setWeight(dto.getWeight());
         entity.setTransferScore(dto.getTransferScore());
         entity.setSymbol(dto.getSymbol());
-        if(null != dto.getNextDanceClass()) {
-            entity.setNextDanceClass(convertToEntity(dto.getNextDanceClass()));
-        }
+        entity.setNextDanceClass(danceClassRepository.findOne(dto.getNextDanceClassId()));
         return entity;
     }
 

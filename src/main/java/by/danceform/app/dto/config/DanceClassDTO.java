@@ -28,7 +28,7 @@ public class DanceClassDTO extends AbstractDomainDTO<Long> {
 
     private Integer transferScore;
 
-    private DanceClassDTO nextDanceClass;
+    private Long nextDanceClassId;
 
     public DanceClassDTO() {
     }
@@ -77,12 +77,12 @@ public class DanceClassDTO extends AbstractDomainDTO<Long> {
         this.transferScore = transferScore;
     }
 
-    public DanceClassDTO getNextDanceClass() {
-        return nextDanceClass;
+    public Long getNextDanceClassId() {
+        return nextDanceClassId;
     }
 
-    public void setNextDanceClass(DanceClassDTO danceClassDTO) {
-        this.nextDanceClass = danceClassDTO;
+    public void setNextDanceClassId(Long nextDanceClassId) {
+        this.nextDanceClassId = nextDanceClassId;
     }
 
     @Override

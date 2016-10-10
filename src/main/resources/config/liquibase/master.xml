@@ -25,4 +25,5 @@
     <include file="classpath:config/liquibase/changelog/insert_entities_AgeCategory.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/insert_entities_Competition.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/insert_entities_CompetitionCategory.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/insert_entities_RegisteredCouple.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

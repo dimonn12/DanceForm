@@ -1,6 +1,7 @@
 package by.danceform.app.web.rest.couple;
 
 import by.danceform.app.dto.couple.RegisteredCoupleDTO;
+import by.danceform.app.security.AuthoritiesConstants;
 import by.danceform.app.service.couple.RegisteredCoupleService;
 import by.danceform.app.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
@@ -9,10 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
@@ -26,7 +29,8 @@ import java.util.Optional;
  * REST controller for managing RegisteredCouple.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/registered-couples")
+@Secured({ AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS })
 public class RegisteredCoupleResource {
 
     private final Logger log = LoggerFactory.getLogger(RegisteredCoupleResource.class);
@@ -41,9 +45,9 @@ public class RegisteredCoupleResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new registeredCoupleDTO, or with status 400 (Bad Request) if the registeredCouple has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @RequestMapping(value = "/registered-couples",
-                    method = RequestMethod.POST,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<RegisteredCoupleDTO> createRegisteredCouple(
         @Valid @RequestBody RegisteredCoupleDTO registeredCoupleDTO) throws URISyntaxException {
@@ -70,10 +74,11 @@ public class RegisteredCoupleResource {
      * or with status 500 (Internal Server Error) if the registeredCoupleDTO couldnt be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @RequestMapping(value = "/registered-couples",
-                    method = RequestMethod.PUT,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(
+        method = RequestMethod.PUT,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<RegisteredCoupleDTO> updateRegisteredCouple(
         @Valid @RequestBody RegisteredCoupleDTO registeredCoupleDTO) throws URISyntaxException {
         log.debug("REST request to update RegisteredCouple : {}", registeredCoupleDTO);
@@ -91,13 +96,28 @@ public class RegisteredCoupleResource {
      *
      * @return the ResponseEntity with status 200 (OK) and the list of registeredCouples in body
      */
-    @RequestMapping(value = "/registered-couples",
-                    method = RequestMethod.GET,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public List<RegisteredCoupleDTO> getAllRegisteredCouples() {
         log.debug("REST request to get all RegisteredCouples");
         return registeredCoupleService.findAll();
+    }
+
+    /**
+     * GET  /registered-couples : get all the registeredCouples.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of registeredCouples in body
+     */
+    @RequestMapping(
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE, params = { "categoryId" })
+    @Timed
+    public List<RegisteredCoupleDTO> getAllRegisteredCouplesByCategoryId(@RequestParam("categoryId") Long categoryId) {
+        log.debug("REST request to get all RegisteredCouples");
+        return registeredCoupleService.findByCategoryId(categoryId);
     }
 
     /**
@@ -106,7 +126,7 @@ public class RegisteredCoupleResource {
      * @param id the id of the registeredCoupleDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the registeredCoupleDTO, or with status 404 (Not Found)
      */
-    @RequestMapping(value = "/registered-couples/{id}",
+    @RequestMapping(value = "/{id}",
                     method = RequestMethod.GET,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
@@ -124,10 +144,11 @@ public class RegisteredCoupleResource {
      * @param id the id of the registeredCoupleDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @RequestMapping(value = "/registered-couples/{id}",
+    @RequestMapping(value = "/{id}",
                     method = RequestMethod.DELETE,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<Void> deleteRegisteredCouple(@PathVariable Long id) {
         log.debug("REST request to delete RegisteredCouple : {}", id);
         registeredCoupleService.delete(id);

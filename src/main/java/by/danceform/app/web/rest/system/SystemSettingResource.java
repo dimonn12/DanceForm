@@ -1,6 +1,7 @@
 package by.danceform.app.web.rest.system;
 
 import by.danceform.app.dto.system.SystemSettingDTO;
+import by.danceform.app.security.AuthoritiesConstants;
 import by.danceform.app.service.system.SystemSettingService;
 import by.danceform.app.web.rest.util.HeaderUtil;
 import by.danceform.app.web.rest.util.PaginationUtil;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +32,8 @@ import java.util.Optional;
  * REST controller for managing SystemSetting.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/system/system-settings")
+@Secured(AuthoritiesConstants.ADMIN)
 public class SystemSettingResource {
 
     private final Logger log = LoggerFactory.getLogger(SystemSettingResource.class);
@@ -45,9 +48,9 @@ public class SystemSettingResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new systemSettingDTO, or with status 400 (Bad Request) if the systemSetting has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @RequestMapping(value = "/system-settings",
-                    method = RequestMethod.POST,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<SystemSettingDTO> createSystemSetting(@Valid @RequestBody SystemSettingDTO systemSettingDTO)
         throws URISyntaxException {
@@ -74,9 +77,9 @@ public class SystemSettingResource {
      * or with status 500 (Internal Server Error) if the systemSettingDTO couldnt be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @RequestMapping(value = "/system-settings",
-                    method = RequestMethod.PUT,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(
+        method = RequestMethod.PUT,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<SystemSettingDTO> updateSystemSetting(@Valid @RequestBody SystemSettingDTO systemSettingDTO)
         throws URISyntaxException {
@@ -97,9 +100,9 @@ public class SystemSettingResource {
      * @return the ResponseEntity with status 200 (OK) and the list of systemSettings in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-    @RequestMapping(value = "/system-settings",
-                    method = RequestMethod.GET,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<List<SystemSettingDTO>> getAllSystemSettings(Pageable pageable) throws URISyntaxException {
         log.debug("REST request to get a page of SystemSettings");
@@ -114,7 +117,7 @@ public class SystemSettingResource {
      * @param id the id of the systemSettingDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the systemSettingDTO, or with status 404 (Not Found)
      */
-    @RequestMapping(value = "/system-settings/{id}",
+    @RequestMapping(value = "/{id}",
                     method = RequestMethod.GET,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
@@ -132,7 +135,7 @@ public class SystemSettingResource {
      * @param id the id of the systemSettingDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @RequestMapping(value = "/system-settings/{id}",
+    @RequestMapping(value = "/{id}",
                     method = RequestMethod.DELETE,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed

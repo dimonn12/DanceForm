@@ -1,6 +1,7 @@
 package by.danceform.app.web.rest.config;
 
 import by.danceform.app.dto.config.AgeCategoryDTO;
+import by.danceform.app.security.AuthoritiesConstants;
 import by.danceform.app.service.config.AgeCategoryService;
 import by.danceform.app.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +28,8 @@ import java.util.Optional;
  * REST controller for managing AgeCategory.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/config/age-categories")
+@Secured(AuthoritiesConstants.ADMIN)
 public class AgeCategoryResource {
 
     private final Logger log = LoggerFactory.getLogger(AgeCategoryResource.class);
@@ -41,9 +44,9 @@ public class AgeCategoryResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new ageCategoryDTO, or with status 400 (Bad Request) if the ageCategory has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @RequestMapping(value = "/age-categories",
-                    method = RequestMethod.POST,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<AgeCategoryDTO> createAgeCategory(@Valid @RequestBody AgeCategoryDTO ageCategoryDTO)
         throws URISyntaxException {
@@ -70,9 +73,9 @@ public class AgeCategoryResource {
      * or with status 500 (Internal Server Error) if the ageCategoryDTO couldnt be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @RequestMapping(value = "/age-categories",
-                    method = RequestMethod.PUT,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(
+        method = RequestMethod.PUT,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<AgeCategoryDTO> updateAgeCategory(@Valid @RequestBody AgeCategoryDTO ageCategoryDTO)
         throws URISyntaxException {
@@ -91,10 +94,11 @@ public class AgeCategoryResource {
      *
      * @return the ResponseEntity with status 200 (OK) and the list of ageCategories in body
      */
-    @RequestMapping(value = "/age-categories",
-                    method = RequestMethod.GET,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Secured(AuthoritiesConstants.ANONYMOUS)
     public List<AgeCategoryDTO> getAllAgeCategories() {
         log.debug("REST request to get all AgeCategories");
         return ageCategoryService.findAll();
@@ -106,10 +110,11 @@ public class AgeCategoryResource {
      * @param id the id of the ageCategoryDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the ageCategoryDTO, or with status 404 (Not Found)
      */
-    @RequestMapping(value = "/age-categories/{id}",
+    @RequestMapping(value = "/{id}",
                     method = RequestMethod.GET,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Secured(AuthoritiesConstants.ANONYMOUS)
     public ResponseEntity<AgeCategoryDTO> getAgeCategory(@PathVariable Long id) {
         log.debug("REST request to get AgeCategory : {}", id);
         AgeCategoryDTO ageCategoryDTO = ageCategoryService.findOne(id);
@@ -124,7 +129,7 @@ public class AgeCategoryResource {
      * @param id the id of the ageCategoryDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @RequestMapping(value = "/age-categories/{id}",
+    @RequestMapping(value = "/{id}",
                     method = RequestMethod.DELETE,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed

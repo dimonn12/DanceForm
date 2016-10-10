@@ -1,6 +1,7 @@
 package by.danceform.app.web.rest.config;
 
 import by.danceform.app.dto.config.DanceClassDTO;
+import by.danceform.app.security.AuthoritiesConstants;
 import by.danceform.app.service.config.DanceClassService;
 import by.danceform.app.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +28,8 @@ import java.util.Optional;
  * REST controller for managing DanceClass.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/config/dance-classes")
+@Secured(AuthoritiesConstants.ADMIN)
 public class DanceClassResource {
 
     private final Logger log = LoggerFactory.getLogger(DanceClassResource.class);
@@ -41,9 +44,9 @@ public class DanceClassResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new danceClassDTO, or with status 400 (Bad Request) if the danceClass has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @RequestMapping(value = "/dance-classes",
-                    method = RequestMethod.POST,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<DanceClassDTO> createDanceClass(@Valid @RequestBody DanceClassDTO danceClassDTO)
         throws URISyntaxException {
@@ -70,9 +73,9 @@ public class DanceClassResource {
      * or with status 500 (Internal Server Error) if the danceClassDTO couldnt be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @RequestMapping(value = "/dance-classes",
-                    method = RequestMethod.PUT,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(
+        method = RequestMethod.PUT,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<DanceClassDTO> updateDanceClass(@Valid @RequestBody DanceClassDTO danceClassDTO)
         throws URISyntaxException {
@@ -91,10 +94,11 @@ public class DanceClassResource {
      *
      * @return the ResponseEntity with status 200 (OK) and the list of danceClasses in body
      */
-    @RequestMapping(value = "/dance-classes",
-                    method = RequestMethod.GET,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Secured(AuthoritiesConstants.ANONYMOUS)
     public List<DanceClassDTO> getAllDanceClasses() {
         log.debug("REST request to get all DanceClasses");
         return danceClassService.findAll();
@@ -106,10 +110,11 @@ public class DanceClassResource {
      * @param id the id of the danceClassDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the danceClassDTO, or with status 404 (Not Found)
      */
-    @RequestMapping(value = "/dance-classes/{id}",
+    @RequestMapping(value = "/{id}",
                     method = RequestMethod.GET,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Secured(AuthoritiesConstants.ANONYMOUS)
     public ResponseEntity<DanceClassDTO> getDanceClass(@PathVariable Long id) {
         log.debug("REST request to get DanceClass : {}", id);
         DanceClassDTO danceClassDTO = danceClassService.findOne(id);
@@ -124,7 +129,7 @@ public class DanceClassResource {
      * @param id the id of the danceClassDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @RequestMapping(value = "/dance-classes/{id}",
+    @RequestMapping(value = "/{id}",
                     method = RequestMethod.DELETE,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed

@@ -1,12 +1,19 @@
 package by.danceform.app.service.competition;
 
+import by.danceform.app.converter.competition.CompetitionCategoryConverter;
+import by.danceform.app.converter.competition.CompetitionCategoryWithDetailsConverter;
 import by.danceform.app.converter.competition.CompetitionConverter;
 import by.danceform.app.converter.competition.CompetitionWithDetailsConverter;
 import by.danceform.app.domain.competition.Competition;
+import by.danceform.app.domain.competition.CompetitionCategory;
+import by.danceform.app.domain.competition.CompetitionCategoryWithDetails;
 import by.danceform.app.domain.system.SystemSetting;
+import by.danceform.app.dto.competition.CompetitionCategoryWithDetailsDTO;
 import by.danceform.app.dto.competition.CompetitionDTO;
 import by.danceform.app.dto.competition.CompetitionWithDetailsDTO;
+import by.danceform.app.repository.competition.CompetitionCategoryRepository;
 import by.danceform.app.repository.competition.CompetitionRepository;
+import by.danceform.app.repository.couple.RegisteredCoupleRepository;
 import by.danceform.app.service.system.SystemSettingNames;
 import by.danceform.app.service.system.SystemSettingService;
 import org.apache.commons.lang3.ObjectUtils;
@@ -35,6 +42,12 @@ public class CompetitionTimelineService {
     private CompetitionRepository competitionRepository;
 
     @Inject
+    private CompetitionCategoryRepository competitionCategoryRepository;
+
+    @Inject
+    private RegisteredCoupleRepository registeredCoupleRepository;
+
+    @Inject
     private SystemSettingService systemSettingService;
 
     @Inject
@@ -42,6 +55,12 @@ public class CompetitionTimelineService {
 
     @Inject
     private CompetitionWithDetailsConverter competitionWithDetailsConverter;
+
+    @Inject
+    private CompetitionCategoryWithDetailsConverter competitionCategoryWithDetailsConverter;
+
+    @Inject
+    private CompetitionCategoryConverter competitionCategoryConverter;
 
     @Transactional(readOnly = true)
     public List<CompetitionDTO> findForTimeline() {
@@ -73,6 +92,10 @@ public class CompetitionTimelineService {
             }
         }
         CompetitionWithDetailsDTO dto = competitionWithDetailsConverter.convertToDto(comp);
+        List<CompetitionCategoryWithDetails> competitionCategoryWithDetailses = competitionCategoryRepository.findWithDetailsByCompetitionId(
+            id);
+        dto.setCompetitionCategoryDTOs(competitionCategoryWithDetailsConverter.convertToDtos(
+            competitionCategoryWithDetailses));
         return dto;
     }
 

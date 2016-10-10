@@ -7,7 +7,7 @@
     DanceClass.$inject = ['$resource'];
 
     function DanceClass ($resource) {
-        var resourceUrl =  'api/dance-classes/:id';
+        var resourceUrl =  'api/config/dance-classes/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

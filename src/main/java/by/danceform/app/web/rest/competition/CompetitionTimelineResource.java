@@ -1,6 +1,9 @@
 package by.danceform.app.web.rest.competition;
 
+import by.danceform.app.domain.competition.CompetitionCategoryWithDetails;
 import by.danceform.app.dto.competition.CompetitionDTO;
+import by.danceform.app.dto.competition.CompetitionWithDetailsDTO;
+import by.danceform.app.security.AuthoritiesConstants;
 import by.danceform.app.service.competition.CompetitionService;
 import by.danceform.app.service.competition.CompetitionTimelineService;
 import com.codahale.metrics.annotation.Timed;
@@ -9,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +28,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api/competition-timeline")
+@Secured({ AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS })
 public class CompetitionTimelineResource {
 
     private final Logger log = LoggerFactory.getLogger(CompetitionTimelineResource.class);
@@ -51,11 +56,12 @@ public class CompetitionTimelineResource {
                     method = RequestMethod.GET,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<CompetitionDTO> getCompetition(@PathVariable Long id) {
+    public ResponseEntity<CompetitionWithDetailsDTO> getCompetitionWithDetails(@PathVariable Long id) {
         log.debug("REST request to get competition with detai;s : {}", id);
-        CompetitionDTO competitionDTO = competitionService.findWithDetails(id);
+        CompetitionWithDetailsDTO competitionDTO = competitionService.findWithDetails(id);
         return Optional.ofNullable(competitionDTO)
             .map(result -> new ResponseEntity<>(result, HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
 }

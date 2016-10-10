@@ -7,7 +7,7 @@
     SystemSetting.$inject = ['$resource'];
 
     function SystemSetting ($resource) {
-        var resourceUrl =  'api/system-settings/:id';
+        var resourceUrl =  'api/system/system-settings/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

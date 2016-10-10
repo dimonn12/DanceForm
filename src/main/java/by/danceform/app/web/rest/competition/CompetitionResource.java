@@ -1,6 +1,7 @@
 package by.danceform.app.web.rest.competition;
 
 import by.danceform.app.dto.competition.CompetitionDTO;
+import by.danceform.app.security.AuthoritiesConstants;
 import by.danceform.app.service.competition.CompetitionService;
 import by.danceform.app.web.rest.util.HeaderUtil;
 import by.danceform.app.web.rest.util.PaginationUtil;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +32,8 @@ import java.util.Optional;
  * REST controller for managing Competition.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/competitions")
+@Secured(AuthoritiesConstants.ADMIN)
 public class CompetitionResource {
 
     private final Logger log = LoggerFactory.getLogger(CompetitionResource.class);
@@ -45,9 +48,9 @@ public class CompetitionResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new competitionDTO, or with status 400 (Bad Request) if the competition has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @RequestMapping(value = "/competitions",
-                    method = RequestMethod.POST,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<CompetitionDTO> createCompetition(@Valid @RequestBody CompetitionDTO competitionDTO)
         throws URISyntaxException {
@@ -74,9 +77,9 @@ public class CompetitionResource {
      * or with status 500 (Internal Server Error) if the competitionDTO couldnt be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @RequestMapping(value = "/competitions",
-                    method = RequestMethod.PUT,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(
+        method = RequestMethod.PUT,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<CompetitionDTO> updateCompetition(@Valid @RequestBody CompetitionDTO competitionDTO)
         throws URISyntaxException {
@@ -97,9 +100,9 @@ public class CompetitionResource {
      * @return the ResponseEntity with status 200 (OK) and the list of competitions in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-    @RequestMapping(value = "/competitions",
-                    method = RequestMethod.GET,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<List<CompetitionDTO>> getAllCompetitions(Pageable pageable) throws URISyntaxException {
         log.debug("REST request to get a page of Competitions");
@@ -114,7 +117,7 @@ public class CompetitionResource {
      * @param id the id of the competitionDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the competitionDTO, or with status 404 (Not Found)
      */
-    @RequestMapping(value = "/competitions/{id}",
+    @RequestMapping(value = "/{id}",
                     method = RequestMethod.GET,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
@@ -132,7 +135,7 @@ public class CompetitionResource {
      * @param id the id of the competitionDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @RequestMapping(value = "/competitions/{id}",
+    @RequestMapping(value = "/{id}",
                     method = RequestMethod.DELETE,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed

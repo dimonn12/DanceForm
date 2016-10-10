@@ -34,6 +34,14 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
 
     private Set<AgeCategoryDTO> ageCategories = new HashSet<>();
 
+    public CompetitionCategoryDTO() {
+
+    }
+
+    public CompetitionCategoryDTO(Long id) {
+        super(id);
+    }
+
     public String getName() {
         return name;
     }
