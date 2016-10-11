@@ -433,3 +433,15 @@ Competition timeline styles
 dl > dt > span {
     white-space: normal;
 }
+
+@media screen and (min-width: 768px) {
+    .registry-block {
+        width: 35%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .registry-block .form-group {
+        height: 84px;
+    }
+}

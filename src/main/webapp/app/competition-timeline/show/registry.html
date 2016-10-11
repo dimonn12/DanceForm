@@ -3,7 +3,9 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        &nbsp;
+        <span data-translate="entity.action.back"> Back</span>
     </button>
 
     <h2>
@@ -38,5 +40,108 @@
             <span>{{vm.currentCompetition.location}}</span>
         </dd>
     </dl>
+
+
+    <form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+        <div>
+            <jhi-alert-error></jhi-alert-error>
+            <div class="registry-block">
+                <div class="form-group">
+                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.partner1Surname" for="field_partner1surname">Name</label>
+                    <input type="text" class="form-control" name="partner1Surname" id="field_partner1surname"
+                           ng-model="vm.registerCouple.partner1Surname"
+                           required ng-minlength="1" ng-maxlength="128"/>
+                    <div ng-show="editForm.partner1Surname.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.partner1Surname.$error.required" data-translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.partner1Surname.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
+                            This field is required to be at least 1 characters.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.partner1Surname.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
+                            This field cannot be longer than 64 characters.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.partner1Name" for="field_partner1name">Name</label>
+                    <input type="text" class="form-control" name="partner1Name" id="field_partner1name"
+                           ng-model="vm.registerCouple.partner1Name"
+                           required ng-minlength="1" ng-maxlength="128"/>
+                    <div ng-show="editForm.partner1Name.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.partner1Name.$error.required" data-translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.partner1Name.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
+                            This field is required to be at least 1 characters.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.partner1Name.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
+                            This field cannot be longer than 64 characters.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="registry-block">
+                <div class="form-group">
+                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.partner2Surname" for="field_partner2surname">Name</label>
+                    <input type="text" class="form-control" name="partner2Surname" id="field_partner2surname"
+                           ng-model="vm.registerCouple.partner2Surname"
+                           required ng-minlength="1" ng-maxlength="128"/>
+                    <div ng-show="editForm.partner2Surname.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.partner2Surname.$error.required" data-translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.partner2Surname.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
+                            This field is required to be at least 1 characters.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.partner2Surname.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
+                            This field cannot be longer than 64 characters.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.partner2Name" for="field_partner2name">Name</label>
+                    <input type="text" class="form-control" name="partner2Name" id="field_partner2name"
+                           ng-model="vm.registerCouple.partner2Name"
+                           required ng-minlength="1" ng-maxlength="128"/>
+                    <div ng-show="editForm.partner2Name.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.partner2Name.$error.required" data-translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.partner2Name.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
+                            This field is required to be at least 1 characters.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.partner2Name.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
+                            This field cannot be longer than 64 characters.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+                <span class="glyphicon glyphicon-save"></span>
+                &nbsp;
+                <span data-translate="danceFormApp.competition-timeline.registry.register">Save</span>
+            </button>
+        </div>
+    </form>
+
 
 </div>
