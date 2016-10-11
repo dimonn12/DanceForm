@@ -101,6 +101,7 @@ public class CompetitionCategoryResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Secured({ AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS })
     public List<CompetitionCategoryDTO> getAllCompetitionCategories(@PathVariable Long competitionId) {
         log.debug("REST request to get all CompetitionCategories");
         return competitionCategoryService.findByCompetitionId(competitionId);

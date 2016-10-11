@@ -31,4 +31,9 @@ public interface CompetitionCategoryRepository extends JpaRepository<Competition
         " FROM CompetitionCategory category WHERE category.competitionId = :competitionId AND category.active = true")
     List<CompetitionCategoryWithDetails> findWithDetailsByCompetitionId(@Param("competitionId") Long competitionId);
 
+    @Query(
+        "SELECT NEW CompetitionCategoryWithDetails(category, (SELECT COUNT(couples.id) FROM RegisteredCouple couples WHERE couples.competitionCategory.id = category.id))" +
+        " FROM CompetitionCategory category WHERE category.id = :categoryId")
+    CompetitionCategoryWithDetails findWithDetailsByCategoryId(@Param("categoryId") Long categoryId);
+
 }

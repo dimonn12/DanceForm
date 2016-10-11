@@ -10,7 +10,7 @@
     function CompetitionShowDetailController($scope, $rootScope, $stateParams, previousState, entity, Competition, CompetitionCategory) {
         var vm = this;
 
-        vm.currentCompentition = entity;
+        vm.currentCompetition = entity;
         vm.previousState = previousState.name;
 
         vm.categories = entity.competitionCategoryDTOs;

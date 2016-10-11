@@ -5,32 +5,45 @@
         .module('danceFormApp')
         .controller('CategoryRegisterController', CategoryRegisterController);
 
-    CategoryRegisterController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Competition', 'CompetitionCategory'];
+    CategoryRegisterController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Competition', 'CompetitionCategory', 'DanceClass', 'AlertService'];
 
-    function CategoryRegisterController($scope, $rootScope, $stateParams, previousState, entity, Competition, CompetitionCategory) {
+    function CategoryRegisterController($scope, $rootScope, $stateParams, previousState, entity, Competition, CompetitionCategory, DanceClass, AlertService) {
         var vm = this;
 
-        vm.currentCompentition = entity;
+        vm.currentCompetition = entity;
         vm.previousState = previousState.name;
 
-        vm.categories = [];
+        vm.availableCategories = [];
 
-        var unsubscribe = $rootScope.$on('danceFormApp:competitionUpdate', function(event, result) {
-            vm.competition = result;
-        });
-        $scope.$on('$destroy', unsubscribe);
+        vm.danceClasses = [];
 
         load();
+        loadClasses();
 
         function load() {
-            CompetitionCategory.get({competitionId: vm.currentCompentition.id, id: $stateParams.id}, onSuccess, onError);
+            CompetitionCategory.query({competitionId: vm.currentCompetition.id}, onSuccess, onError);
             function onSuccess(data, headers) {
-                vm.categories = data;
+                vm.availableCategories = data;
             }
 
             function onError(error) {
                 AlertService.error(error.data.message);
             }
+        }
+
+        function loadClasses() {
+            DanceClass.query({}, onSuccess, onError);
+                    function onSuccess(data, headers) {
+                        vm.danceClasses = data;
+                    }
+
+                    function onError(error) {
+                        AlertService.error(error.data.message);
+                    }
+        }
+
+        function update() {
+            console.log('update');
         }
     }
 })();

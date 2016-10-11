@@ -1,6 +1,7 @@
 package by.danceform.app.web.rest.competition;
 
 import by.danceform.app.domain.competition.CompetitionCategoryWithDetails;
+import by.danceform.app.dto.competition.CompetitionCategoryWithDetailsDTO;
 import by.danceform.app.dto.competition.CompetitionDTO;
 import by.danceform.app.dto.competition.CompetitionWithDetailsDTO;
 import by.danceform.app.security.AuthoritiesConstants;
@@ -58,7 +59,7 @@ public class CompetitionTimelineResource {
     @Timed
     public ResponseEntity<CompetitionWithDetailsDTO> getCompetitionWithDetails(@PathVariable Long id) {
         log.debug("REST request to get competition with detai;s : {}", id);
-        CompetitionWithDetailsDTO competitionDTO = competitionService.findWithDetails(id);
+        CompetitionWithDetailsDTO competitionDTO = competitionService.findCompetitionWithDetails(id);
         return Optional.ofNullable(competitionDTO)
             .map(result -> new ResponseEntity<>(result, HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));

@@ -1,4 +1,42 @@
 <div>
 
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <h2>
+        <span data-translate="danceFormApp.competition-timeline.show.title">Competition</span>
+        "{{vm.currentCompetition.name}}"
+    </h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details competition-dl">
+        <dt>
+            <span data-translate="danceFormApp.competition-timeline.name">Name</span>
+        </dt>
+        <dd>
+            <span>{{vm.currentCompetition.name}}</span>
+        </dd>
+        <dt>
+            <span data-translate="danceFormApp.competition-timeline.date">Date</span>
+        </dt>
+        <dd>
+            <span>{{vm.currentCompetition.date | date:'d MMMM yyyy'}}</span>
+        </dd>
+        <dt>
+            <span data-translate="danceFormApp.competition-timeline.organizer">Organizer</span>
+        </dt>
+        <dd>
+            <span>{{vm.currentCompetition.organizer}}</span>
+        </dd>
+        <dt>
+            <span data-translate="danceFormApp.competition-timeline.location">Location</span>
+        </dt>
+        <dd>
+            <span>{{vm.currentCompetition.location}}</span>
+        </dd>
+    </dl>
 
 </div>

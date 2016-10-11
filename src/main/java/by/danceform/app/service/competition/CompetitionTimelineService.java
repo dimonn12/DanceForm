@@ -84,7 +84,7 @@ public class CompetitionTimelineService {
     }
 
     @Transactional(readOnly = true)
-    public CompetitionWithDetailsDTO findWithDetails(Long id) {
+    public CompetitionWithDetailsDTO findCompetitionWithDetails(Long id) {
         Competition comp = competitionRepository.findOne(id);
         if(null != comp) {
             if(!comp.isVisible()) {
@@ -97,6 +97,12 @@ public class CompetitionTimelineService {
         dto.setCompetitionCategoryDTOs(competitionCategoryWithDetailsConverter.convertToDtos(
             competitionCategoryWithDetailses));
         return dto;
+    }
+
+    @Transactional(readOnly = true)
+    public CompetitionCategoryWithDetailsDTO findCategoryWithDetails(Long id) {
+        return competitionCategoryWithDetailsConverter.convertToDto(competitionCategoryRepository.findWithDetailsByCategoryId(
+            id));
     }
 
 }

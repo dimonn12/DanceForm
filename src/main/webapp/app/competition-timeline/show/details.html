@@ -8,7 +8,7 @@
 
     <h2>
         <span data-translate="danceFormApp.competition-timeline.show.title">Competition</span>
-        "{{vm.currentCompentition.name}}"
+        "{{vm.currentCompetition.name}}"
     </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
@@ -17,25 +17,25 @@
             <span data-translate="danceFormApp.competition-timeline.name">Name</span>
         </dt>
         <dd>
-            <span>{{vm.currentCompentition.name}}</span>
+            <span>{{vm.currentCompetition.name}}</span>
         </dd>
         <dt>
             <span data-translate="danceFormApp.competition-timeline.date">Date</span>
         </dt>
         <dd>
-            <span>{{vm.currentCompentition.date | date:'d MMMM yyyy'}}</span>
+            <span>{{vm.currentCompetition.date | date:'d MMMM yyyy'}}</span>
         </dd>
         <dt>
             <span data-translate="danceFormApp.competition-timeline.organizer">Organizer</span>
         </dt>
         <dd>
-            <span>{{vm.currentCompentition.organizer}}</span>
+            <span>{{vm.currentCompetition.organizer}}</span>
         </dd>
         <dt>
             <span data-translate="danceFormApp.competition-timeline.location">Location</span>
         </dt>
         <dd>
-            <span>{{vm.currentCompentition.location}}</span>
+            <span>{{vm.currentCompetition.location}}</span>
         </dd>
         <dt>
             <span data-translate="danceFormApp.competition-timeline.amount">Location</span>
@@ -47,7 +47,7 @@
 
 
     <button type="submit"
-            ui-sref="competition-timeline-category-register({competitionId:vm.currentCompentition.id})"
+            ui-sref="competition-timeline-category-register({competitionId:vm.currentCompetition.id})"
             class="btn btn-success btn-sm">
         <span class="glyphicon glyphicon-plus"></span>
         <span class="hidden-xs hidden-sm" data-translate="danceFormApp.competition-timeline.categories.register"></span>
@@ -80,7 +80,7 @@
                     </td>
                     <td>
                         <button type="submit"
-                                ui-sref="competition-timeline-category-details({competitionId:vm.currentCompentition.id, categoryId:category.id})"
+                                ui-sref="competition-timeline-category-details({competitionId:vm.currentCompetition.id, categoryId:category.id})"
                                 class="btn btn-info btn-sm">
                             <span class="glyphicon glyphicon-eye-open"></span>
                             <span class="hidden-xs hidden-sm" data-translate="danceFormApp.competition-timeline.categories.details"></span>

@@ -61,7 +61,7 @@
             }
         }).state('competition-timeline-category-register', {
             parent: 'competition-timeline-show',
-            url: '/category/{categoryId}/registry',
+            url: '/registry',
             data: {
                 authorities: [],
                 pageTitle: 'global.menu.timeline'
@@ -100,7 +100,7 @@
             views: {
                 'content@': {
                     templateUrl: 'app/competition-timeline/show/registeredCouples.html',
-                    controller: 'CategoryRegisterController',
+                    controller: 'CategoryCouplesController',
                     controllerAs: 'vm'
                 }
             },

@@ -3,24 +3,24 @@
 
     angular
         .module('danceFormApp')
-        .controller('CategoryRegisterController', CategoryRegisterController);
+        .controller('CategoryCouplesController', CategoryCouplesController);
 
-    CategoryRegisterController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Competition', 'CompetitionCategory', 'RegisteredCouple'];
+    CategoryCouplesController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Competition', 'CompetitionTimelineCategory', 'RegisteredCouple', 'AlertService'];
 
-    function CategoryRegisterController($scope, $rootScope, $stateParams, previousState, entity, Competition, CompetitionCategory, RegisteredCouple) {
+    function CategoryCouplesController($scope, $rootScope, $stateParams, previousState, entity, Competition, CompetitionTimelineCategory, RegisteredCouple, AlertService) {
         var vm = this;
 
-        vm.currentCompentition = entity;
+        vm.currentCompetition = entity;
         vm.previousState = previousState.name;
 
         vm.category = null;
-        
+
         vm.couples = [];
 
         load();
-        
+
         function load() {
-            CompetitionCategory.get({competitionId: vm.currentCompentition.id, id: $stateParams.categoryId}, onSuccess, onError);
+            CompetitionTimelineCategory.get({competitionId: vm.currentCompetition.id, id: $stateParams.categoryId}, onSuccess, onError);
             function onSuccess(data, headers) {
                 vm.category = data;
                 loadCouples();
@@ -41,6 +41,6 @@
                 AlertService.error(error.data.message);
             }
         }
-        
+
     }
 })();
