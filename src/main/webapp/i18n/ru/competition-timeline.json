@@ -37,7 +37,14 @@
         "partner2Name": "Имя партнерши",
         "partner2Surname": "Фамилия партнерши",
         "partner1DateOfBirth": "Дата рождения партнера",
-        "partner2DateOfBirth": "Дата рождения партнерши"
+        "partner2DateOfBirth": "Дата рождения партнерши",
+        "partner1Classes": "Классы партнера",
+        "partner2Classes": "Классы партнерши",
+        "st": "Стандарт",
+        "la": "Латина",
+        "organization": "Организация",
+        "location": "Город",
+        "trainer1": "Тренер 1"
       }
     }
   }

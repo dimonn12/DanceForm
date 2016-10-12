@@ -45,101 +45,221 @@
     <form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
 
         <div>
-            <jhi-alert-error></jhi-alert-error>
             <div class="registry-block">
                 <div class="form-group">
                     <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.partner1Surname" for="field_partner1surname">Name</label>
+                    (
+                    <span class="asterisk">*</span>
+                    )
                     <input type="text" class="form-control" name="partner1Surname" id="field_partner1surname"
                            ng-model="vm.registerCouple.partner1Surname"
                            required ng-minlength="1" ng-maxlength="128"/>
-                    <div ng-show="editForm.partner1Surname.$invalid">
-                        <p class="help-block"
-                           ng-show="editForm.partner1Surname.$error.required" data-translate="entity.validation.required">
-                            This field is required.
-                        </p>
-                        <p class="help-block"
-                           ng-show="editForm.partner1Surname.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
-                            This field is required to be at least 1 characters.
-                        </p>
-                        <p class="help-block"
-                           ng-show="editForm.partner1Surname.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
-                            This field cannot be longer than 64 characters.
-                        </p>
-                    </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.partner1Name" for="field_partner1name">Name</label>
+                    (
+                    <span class="asterisk">*</span>
+                    )
                     <input type="text" class="form-control" name="partner1Name" id="field_partner1name"
                            ng-model="vm.registerCouple.partner1Name"
                            required ng-minlength="1" ng-maxlength="128"/>
-                    <div ng-show="editForm.partner1Name.$invalid">
-                        <p class="help-block"
-                           ng-show="editForm.partner1Name.$error.required" data-translate="entity.validation.required">
-                            This field is required.
-                        </p>
-                        <p class="help-block"
-                           ng-show="editForm.partner1Name.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
-                            This field is required to be at least 1 characters.
-                        </p>
-                        <p class="help-block"
-                           ng-show="editForm.partner1Name.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
-                            This field cannot be longer than 64 characters.
-                        </p>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.partner1DateOfBirth" for="field_partner1DateOfBirth">Date</label>
+                    (
+                    <span class="asterisk">*</span>
+                    )
+                    <div class="input-group">
+                        <input id="field_partner1DateOfBirth" type="text" class="form-control" name="partner1DateOfBirth" uib-datepicker-popup="{{dateformat}}"
+                               ng-model="vm.registerCouple.partner1DateOfBirth" is-open="vm.datePickerOpenStatus.partner1DateOfBirth"
+                               required ng-change="vm.update()"/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="vm.openCalendar('partner1DateOfBirth')">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </span>
                     </div>
+                </div>
+
+                <div class="classes-group form-group">
+                    <table class="registry-classes">
+                        <thead>
+                            <tr>
+                                <th colspan="2">
+                                    <h4 class="registry-classes-label">
+                                        <span data-translate="danceFormApp.competition-timeline.registry.partner1Classes">Classes</span>
+                                    </h4>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.st" for="field_partner1DanceClassSTId">Date</label>
+                                    (
+                                    <span class="asterisk">*</span>
+                                    )
+                                </th>
+                                <th>
+                                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.la" for="field_partner1DanceClassLAId">Date</label>
+                                    (
+                                    <span class="asterisk">*</span>
+                                    )
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="registry-class">
+                                    <select class="form-control" id="field_partner1DanceClassSTId" name="partner1DanceClassSTId" ng-model="vm.registerCouple.partner1DanceClassSTId"
+                                            ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'" required
+                                            ng-change="vm.update();">
+                                        <option value=""></option>
+                                    </select>
+                                </td>
+
+                                <td class="registry-class">
+                                    <select class="form-control" id="field_partner1DanceClassLAId" name="partner1DanceClassLAId" ng-model="vm.registerCouple.partner1DanceClassLAId"
+                                            ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'" required
+                                            ng-change="vm.update();">
+                                        <option value=""></option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
                 </div>
             </div>
 
             <div class="registry-block">
                 <div class="form-group">
                     <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.partner2Surname" for="field_partner2surname">Name</label>
+                    (
+                    <span class="asterisk">*</span>
+                    )
                     <input type="text" class="form-control" name="partner2Surname" id="field_partner2surname"
                            ng-model="vm.registerCouple.partner2Surname"
                            required ng-minlength="1" ng-maxlength="128"/>
-                    <div ng-show="editForm.partner2Surname.$invalid">
-                        <p class="help-block"
-                           ng-show="editForm.partner2Surname.$error.required" data-translate="entity.validation.required">
-                            This field is required.
-                        </p>
-                        <p class="help-block"
-                           ng-show="editForm.partner2Surname.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
-                            This field is required to be at least 1 characters.
-                        </p>
-                        <p class="help-block"
-                           ng-show="editForm.partner2Surname.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
-                            This field cannot be longer than 64 characters.
-                        </p>
-                    </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.partner2Name" for="field_partner2name">Name</label>
+                    (
+                    <span class="asterisk">*</span>
+                    )
                     <input type="text" class="form-control" name="partner2Name" id="field_partner2name"
                            ng-model="vm.registerCouple.partner2Name"
                            required ng-minlength="1" ng-maxlength="128"/>
-                    <div ng-show="editForm.partner2Name.$invalid">
-                        <p class="help-block"
-                           ng-show="editForm.partner2Name.$error.required" data-translate="entity.validation.required">
-                            This field is required.
-                        </p>
-                        <p class="help-block"
-                           ng-show="editForm.partner2Name.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
-                            This field is required to be at least 1 characters.
-                        </p>
-                        <p class="help-block"
-                           ng-show="editForm.partner2Name.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
-                            This field cannot be longer than 64 characters.
-                        </p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.partner2DateOfBirth" for="field_partner2DateOfBirth">Date</label>
+                    (
+                    <span class="asterisk">*</span>
+                    )
+                    <div class="input-group">
+                        <input id="field_partner2DateOfBirth" type="text" class="form-control" name="partner2DateOfBirth" uib-datepicker-popup="{{dateformat}}"
+                               ng-model="vm.registerCouple.partner2DateOfBirth" is-open="vm.datePickerOpenStatus.partner2DateOfBirth"
+                               required ng-change="vm.update()"/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="vm.openCalendar('partner2DateOfBirth')">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </span>
                     </div>
+                </div>
+
+                <div class="classes-group form-group">
+                    <table class="registry-classes">
+                        <thead>
+                            <tr>
+                                <th colspan="2">
+                                    <h4 class="registry-classes-label">
+                                        <span data-translate="danceFormApp.competition-timeline.registry.partner2Classes">Classes</span>
+                                    </h4>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.st" for="field_partner2DanceClassSTId">Date</label>
+                                    (
+                                    <span class="asterisk">*</span>
+                                    )
+                                </th>
+                                <th>
+                                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.la" for="field_partner2DanceClassLAId">Date</label>
+                                    (
+                                    <span class="asterisk">*</span>
+                                    )
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="registry-class">
+                                    <select class="form-control" id="field_partner2DanceClassSTId" name="partner2DanceClassSTId" ng-model="vm.registerCouple.partner2DanceClassSTId"
+                                            ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'" required
+                                            ng-change="vm.update();">
+                                        <option value=""></option>
+                                    </select>
+                                </td>
+
+                                <td class="registry-class">
+                                    <select class="form-control" id="field_partner2DanceClassLAId" name="partner2DanceClassLAId" ng-model="vm.registerCouple.partner2DanceClassLAId"
+                                            ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'" required
+                                            ng-change="vm.update();">
+                                        <option value=""></option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
                 </div>
             </div>
 
-        </div>
-        <div>
-            <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-                <span class="glyphicon glyphicon-save"></span>
-                &nbsp;
-                <span data-translate="danceFormApp.competition-timeline.registry.register">Save</span>
-            </button>
+            <div class="registry-block">
+                <div class="form-group">
+                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.organization" for="field_organization">Name</label>
+                    (
+                    <span class="asterisk">*</span>
+                    )
+                    <input type="text" class="form-control" name="organization" id="field_organization"
+                           ng-model="vm.registerCouple.organization"
+                           required ng-minlength="1" ng-maxlength="128"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.location" for="field_location">Name</label>
+                    (
+                    <span class="asterisk">*</span>
+                    )
+                    <input type="text" class="form-control" name="location" id="field_location"
+                           ng-model="vm.registerCouple.location"
+                           required ng-minlength="1" ng-maxlength="128"/>
+                </div>
+            </div>
+
+            <div class="registry-block">
+                <div class="form-group">
+                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.trainer1" for="field_trainer1">Name</label>
+                    (
+                    <span class="asterisk">*</span>
+                    )
+                    <input type="text" class="form-control" name="organization" id="field_trainer1"
+                           ng-model="vm.registerCouple.trainer1"
+                           required ng-minlength="1" ng-maxlength="80"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-save"></span>
+                    &nbsp;
+                    <span data-translate="danceFormApp.competition-timeline.registry.register">Save</span>
+                </button>
+            </div>
         </div>
     </form>
 

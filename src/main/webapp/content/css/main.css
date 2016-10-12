@@ -434,14 +434,49 @@ dl > dt > span {
     white-space: normal;
 }
 
+.asterisk {
+    color: #FF0000;
+}
+
+.registry-classes-label {
+    text-align: center;
+}
+
 @media screen and (min-width: 768px) {
     .registry-block {
-        width: 35%;
+        width: 45%;
         display: inline-block;
         vertical-align: top;
+        padding-left: 15px;
+        margin-bottom: 30px;
+    }
+
+    .registry-block .classes-group  {
+        height: 66px !important;
     }
 
     .registry-block .form-group {
-        height: 84px;
+        height: 55px;
     }
+
 }
+
+.registry-classes {
+    width: 100%;
+}
+
+.registry-classes .registry-class {
+    width: 25%;
+    vertical-align: top;
+}
+
+.registry-classes .registry-class:nth-child(even) {
+    padding-left: 10px;
+}
+
+/*@media screen and (max-width: 900px) {
+    .registry-block .form-group {
+        padding-bottom: 30px;
+        height: 114px;
+    }
+}*/

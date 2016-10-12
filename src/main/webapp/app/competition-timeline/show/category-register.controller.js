@@ -18,8 +18,12 @@
         vm.danceClasses = [];
 
         vm.registerCouple = {};
-        
+
         vm.save = save;
+        vm.update = update;
+
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
 
         load();
         loadClasses();
@@ -47,21 +51,29 @@
         }
 
         function update() {
+            vm.registerCouple;
             console.log('update');
         }
 
         function save() {
+            vm.registerCouple.competitionCategoryId = 1;
             RegisteredCouple.save(vm.registerCouple, onSaveSuccess, onSaveError);
-            function onSaveSuccess (result) {
+            function onSaveSuccess(result) {
                 $scope.$emit('danceFormApp:registeredCoupleUpdate', result);
                 vm.isSaving = false;
             }
 
-            function onSaveError () {
+            function onSaveError() {
                 vm.isSaving = false;
                 AlertService.error(error.data.message);
             }
 
+        }
+
+        vm.datePickerOpenStatus.date = false;
+
+        function openCalendar(date) {
+            vm.datePickerOpenStatus[date] = true;
         }
     }
 })();
