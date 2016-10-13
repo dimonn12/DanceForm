@@ -44,7 +44,8 @@
         "la": "Латина",
         "organization": "Организация",
         "location": "Город",
-        "trainer1": "Тренер 1"
+        "trainer1": "Тренер 1",
+        "availableCategories": "Доступные категории"
       }
     }
   }

@@ -3,6 +3,7 @@ package by.danceform.app.service.competition;
 import by.danceform.app.converter.competition.CompetitionCategoryConverter;
 import by.danceform.app.domain.competition.CompetitionCategory;
 import by.danceform.app.dto.competition.CompetitionCategoryDTO;
+import by.danceform.app.dto.couple.RegisteredCoupleDTO;
 import by.danceform.app.repository.competition.CompetitionCategoryRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -87,6 +89,14 @@ public class CompetitionCategoryService {
         CompetitionCategory competitionCategory = competitionCategoryRepository.findOneWithEagerRelationships(id);
         CompetitionCategoryDTO competitionCategoryDTO = competitionCategoryConverter.convertToDto(competitionCategory);
         return competitionCategoryDTO;
+    }
+
+    @Transactional(readOnly = true)
+    public List<CompetitionCategoryDTO> findAvailableByCompetitionId(RegisteredCoupleDTO registeredCoupleDTO, Long competitionId) {
+        log.debug("Request to get CompetitionCategory : {}", competitionId);
+        List<CompetitionCategoryDTO> allCategories = findByCompetitionId(competitionId);
+        List<CompetitionCategoryDTO> availableCategories = new ArrayList<>();
+        return availableCategories;
     }
 
     /**

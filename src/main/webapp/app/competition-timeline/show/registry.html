@@ -253,8 +253,23 @@
                 </div>
             </div>
 
+            <div class="registry-block" ng-show="vm.availableCategories.length > 0">
+                <h4 class="registry-classes-label">
+                    <span data-translate="danceFormApp.competition-timeline.registry.availableCategories">Classes</span>
+                </h4>
+                <div class="form-group" ng-repeat="availableCategory in vm.availableCategories track by availableCategory.id">
+                    <span>{{availableCategory.name}}</span>
+                    <input type="checkbox"
+                           name="vm.registerCouple.competitionCategoryIds[]"
+                           value="{{availableCategory.id}}"
+                           ng-model="availableCategory.selected"/>
+                </div>
+
+            </div>
+
             <div>
-                <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+                <!--<button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">-->
+                    <button type="submit" class="btn btn-primary">
                     <span class="glyphicon glyphicon-save"></span>
                     &nbsp;
                     <span data-translate="danceFormApp.competition-timeline.registry.register">Save</span>

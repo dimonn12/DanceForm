@@ -3,6 +3,7 @@ package by.danceform.app.service.couple;
 import by.danceform.app.converter.couple.RegisteredCoupleConverter;
 import by.danceform.app.domain.couple.RegisteredCouple;
 import by.danceform.app.dto.couple.RegisteredCoupleDTO;
+import by.danceform.app.repository.competition.CompetitionCategoryRepository;
 import by.danceform.app.repository.couple.RegisteredCoupleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,9 @@ public class RegisteredCoupleService {
     @Inject
     private RegisteredCoupleConverter registeredCoupleConverter;
 
+    @Inject
+    private CompetitionCategoryRepository competitionCategoryRepository;
+
     /**
      * Save a registeredCouple.
      *
@@ -37,9 +41,15 @@ public class RegisteredCoupleService {
      */
     public RegisteredCoupleDTO save(RegisteredCoupleDTO registeredCoupleDTO) {
         log.debug("Request to save RegisteredCouple : {}", registeredCoupleDTO);
-        RegisteredCouple registeredCouple = registeredCoupleConverter.convertToEntity(registeredCoupleDTO);
-        registeredCouple = registeredCoupleRepository.save(registeredCouple);
-        RegisteredCoupleDTO result = registeredCoupleConverter.convertToDto(registeredCouple);
+        RegisteredCoupleDTO result = null;
+        if(null != registeredCoupleDTO.getCompetitionCategoryIds()) {
+            for(Long competitionCategoryId : registeredCoupleDTO.getCompetitionCategoryIds()) {
+                RegisteredCouple registeredCouple = registeredCoupleConverter.convertToEntity(registeredCoupleDTO);
+                registeredCouple.setCompetitionCategory(competitionCategoryRepository.findOne(competitionCategoryId));
+                registeredCouple = registeredCoupleRepository.save(registeredCouple);
+                result = registeredCoupleConverter.convertToDto(registeredCouple);
+            }
+        }
         return result;
     }
 

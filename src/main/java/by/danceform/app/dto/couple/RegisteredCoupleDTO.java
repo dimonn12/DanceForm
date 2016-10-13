@@ -5,6 +5,7 @@ import by.danceform.app.dto.AbstractDomainDTO;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.List;
 
 
 /**
@@ -54,7 +55,7 @@ public class RegisteredCoupleDTO extends AbstractDomainDTO<Long> {
 
     private Long partner2DanceClassLAId;
 
-    private Long competitionCategoryId;
+    private List<Long> competitionCategoryIds;
 
     public String getPartner1Name() {
         return partner1Name;
@@ -160,12 +161,12 @@ public class RegisteredCoupleDTO extends AbstractDomainDTO<Long> {
         this.partner2DanceClassLAId = danceClassId;
     }
 
-    public Long getCompetitionCategoryId() {
-        return competitionCategoryId;
+    public List<Long> getCompetitionCategoryIds() {
+        return competitionCategoryIds;
     }
 
-    public void setCompetitionCategoryId(Long competitionCategoryId) {
-        this.competitionCategoryId = competitionCategoryId;
+    public void setCompetitionCategoryIds(List<Long> competitionCategoryIds) {
+        this.competitionCategoryIds = competitionCategoryIds;
     }
 
 }

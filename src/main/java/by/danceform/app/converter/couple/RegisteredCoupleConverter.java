@@ -8,15 +8,13 @@ import by.danceform.app.repository.config.DanceClassRepository;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
+import java.util.Arrays;
 
 /**
  * Created by dimonn12 on 09.10.2016.
  */
 @Component("registeredCoupleConverter")
 public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCouple, RegisteredCoupleDTO, Long> {
-
-    @Inject
-    private CompetitionCategoryRepository competitionCategoryRepository;
 
     @Inject
     private DanceClassRepository danceClassRepository;
@@ -48,7 +46,7 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
             dto.setPartner2DanceClassLAId(entity.getPartner2DanceClassLA().getId());
         }
         if(null != entity.getCompetitionCategory()) {
-            dto.setCompetitionCategoryId(entity.getCompetitionCategory().getId());
+            dto.setCompetitionCategoryIds(Arrays.asList(entity.getCompetitionCategory().getId()));
         }
         return dto;
     }
@@ -72,7 +70,6 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
         entity.setPartner1DanceClassST(danceClassRepository.findOne(dto.getPartner1DanceClassSTId()));
         entity.setPartner2DanceClassST(danceClassRepository.findOne(dto.getPartner2DanceClassSTId()));
 
-        entity.setCompetitionCategory(competitionCategoryRepository.findOne(dto.getCompetitionCategoryId()));
         return entity;
     }
 
