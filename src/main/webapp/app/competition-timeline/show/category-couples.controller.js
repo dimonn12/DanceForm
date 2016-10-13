@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -20,7 +20,10 @@
         load();
 
         function load() {
-            CompetitionTimelineCategory.get({competitionId: vm.currentCompetition.id, id: $stateParams.categoryId}, onSuccess, onError);
+            CompetitionTimelineCategory.get({
+                competitionId: vm.currentCompetition.id,
+                id: $stateParams.categoryId
+            }, onSuccess, onError);
             function onSuccess(data, headers) {
                 vm.category = data;
                 loadCouples();

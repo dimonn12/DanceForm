@@ -18,22 +18,22 @@
 
         load();
 
-        function load(){
+        function load() {
             CompetitionTimeline.get({id: $stateParams.id}, onSuccess, onError);
-                        function onSuccess(data, headers) {
-                            vm.currentCompetition = data;
-                            vm.categories = vm.currentCompetition.competitionCategoryDTOs;
+            function onSuccess(data, headers) {
+                vm.currentCompetition = data;
+                vm.categories = vm.currentCompetition.competitionCategoryDTOs;
 
-                                    vm.totalRegisteredCount = 0;
+                vm.totalRegisteredCount = 0;
 
-                                    for (var i = 0; i < vm.categories.length; i++) {
-                                        vm.totalRegisteredCount += vm.categories[i].registeredCouplesCount;
-                                    }
-                        }
+                for (var i = 0; i < vm.categories.length; i++) {
+                    vm.totalRegisteredCount += vm.categories[i].registeredCouplesCount;
+                }
+            }
 
-                        function onError(error) {
-                            AlertService.error(error.data.message);
-                        }
+            function onError(error) {
+                AlertService.error(error.data.message);
+            }
         }
 
         var unsubscribe = $rootScope.$on('danceFormApp:competitionUpdate', function (event, result) {
