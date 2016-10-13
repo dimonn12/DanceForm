@@ -262,14 +262,14 @@
                     <input type="checkbox"
                            name="vm.registerCouple.competitionCategoryIds[]"
                            value="{{availableCategory.id}}"
-                           ng-model="availableCategory.selected"/>
+                           ng-model="availableCategory.selected"
+                           ng-change="vm.updateSelectedCategory();"/>
                 </div>
 
             </div>
 
             <div>
-                <!--<button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">-->
-                    <button type="submit" class="btn btn-primary">
+                <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving || !vm.isCategorySelected" class="btn btn-primary">
                     <span class="glyphicon glyphicon-save"></span>
                     &nbsp;
                     <span data-translate="danceFormApp.competition-timeline.registry.register">Save</span>

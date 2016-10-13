@@ -109,9 +109,6 @@
                     $translatePartialLoader.addPart('competition-timeline');
                     return $translate.refresh();
                 }],
-                entity: ['$stateParams', 'CompetitionTimeline', function ($stateParams, CompetitionTimeline) {
-                    return CompetitionTimeline.get({id: $stateParams.id}).$promise;
-                }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
                         name: $state.current.name || 'competition-timeline',

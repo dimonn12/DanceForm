@@ -25,12 +25,10 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
 
+        vm.isCategorySelected = false;
+        vm.updateSelectedCategory = updateSelectedCategory;
+
         loadClasses();
-
-        function load() {
-
-
-        }
 
         function loadClasses() {
             DanceClass.query({}, onSuccess, onError);
@@ -48,6 +46,8 @@
                 null != vm.registerCouple.partner1DanceClassSTId && null != vm.registerCouple.partner1DanceClassLAId &&
                 null != vm.registerCouple.partner2DanceClassSTId && null != vm.registerCouple.partner2DanceClassLAId) {
                 CompetitionCategory.query({competitionId: vm.currentCompetition.id}, onSuccess, onError);
+            } else {
+                vm.availableCategories = [];
             }
             function onSuccess(data, headers) {
                 vm.availableCategories = data;
@@ -55,6 +55,17 @@
 
             function onError(error) {
                 AlertService.error(error.data.message);
+            }
+        }
+
+        function updateSelectedCategory() {
+            vm.isCategorySelected = false;
+            for (var i = 0; i < vm.availableCategories.length; i++) {
+                var availableCategory = vm.availableCategories[i];
+                if (availableCategory.selected) {
+                    vm.isCategorySelected = true;
+                    break;
+                }
             }
         }
 
@@ -68,9 +79,9 @@
             }
             RegisteredCouple.save(vm.registerCouple, onSaveSuccess, onSaveError);
             function onSaveSuccess(result) {
-                $scope.$emit('danceFormApp:registeredCoupleUpdate', result);
+                $scope.$emit('danceFormApp:competitionUpdate', result);
                 vm.isSaving = false;
-                $state.go(previousState);
+                $state.go('competition-timeline-show', {id: vm.currentCompetition.id});
             }
 
             function onSaveError() {
@@ -78,6 +89,16 @@
                 AlertService.error(error.data.message);
             }
 
+        }
+
+        function isCategorySelected() {
+            for (var i = 0; i < vm.availableCategories.length; i++) {
+                var availableCategory = vm.availableCategories[i];
+                if (availableCategory.selected) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         vm.datePickerOpenStatus.date = false;
