@@ -72,9 +72,10 @@
                     <span class="asterisk">*</span>
                     )
                     <div class="input-group">
-                        <input id="field_partner1DateOfBirth" type="text" class="form-control" name="partner1DateOfBirth" uib-datepicker-popup="{{dateformat}}"
+                        <input id="field_partner1DateOfBirth" type="text" class="form-control" name="partner1DateOfBirth" uib-datepicker-popup="dd MMMM yyyy" datepicker-options="vm.dateOptions1"
                                ng-model="vm.registerCouple.partner1DateOfBirth" is-open="vm.datePickerOpenStatus.partner1DateOfBirth"
-                               required ng-change="vm.update()"/>
+                               required ng-change="vm.update()"
+                               current-text="{{'global.buttons.today' | translate}}" clear-text="{{'global.buttons.clear' | translate}}" close-text="{{'global.buttons.close' | translate}}"/>
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="vm.openCalendar('partner1DateOfBirth')">
                                 <i class="glyphicon glyphicon-calendar"></i>
@@ -158,9 +159,10 @@
                     <span class="asterisk">*</span>
                     )
                     <div class="input-group">
-                        <input id="field_partner2DateOfBirth" type="text" class="form-control" name="partner2DateOfBirth" uib-datepicker-popup="{{dateformat}}"
+                        <input id="field_partner2DateOfBirth" type="text" class="form-control" name="partner2DateOfBirth" uib-datepicker-popup="dd MMMM yyyy" datepicker-options="vm.dateOptions2"
                                ng-model="vm.registerCouple.partner2DateOfBirth" is-open="vm.datePickerOpenStatus.partner2DateOfBirth"
-                               required ng-change="vm.update()"/>
+                               required ng-change="vm.update()"
+                               current-text="{{'global.buttons.today' | translate}}" clear-text="{{'global.buttons.clear' | translate}}" close-text="{{'global.buttons.close' | translate}}"/>
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="vm.openCalendar('partner2DateOfBirth')">
                                 <i class="glyphicon glyphicon-calendar"></i>

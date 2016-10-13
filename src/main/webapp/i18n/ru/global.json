@@ -50,6 +50,11 @@
       },
       "language": "Язык"
     },
+      "buttons": {
+          "today":"Сегодня",
+          "clear":"Очистить",
+          "close":"Закрыть"
+      },
     "form": {
       "username": "Логин",
       "username.placeholder": "Ваш логин",

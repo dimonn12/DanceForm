@@ -28,6 +28,20 @@
         vm.isCategorySelected = false;
         vm.updateSelectedCategory = updateSelectedCategory;
 
+        vm.dateOptions1 = {
+            maxDate: new Date(),
+            minDate: new Date(1930, 1, 1),
+            datepickerMode: 'year',
+            showWeeks: false
+        };
+
+        vm.dateOptions2 = {
+                    maxDate: new Date(),
+                    minDate: new Date(1930, 1, 1),
+                    datepickerMode: 'year',
+                    showWeeks: false
+                };
+
         loadClasses();
 
         function loadClasses() {
@@ -105,6 +119,12 @@
 
         function openCalendar(date) {
             vm.datePickerOpenStatus[date] = true;
+            if (vm.registerCouple.partner1DateOfBirth == null) {
+                vm.dateOptions1.datepickerMode = 'year';
+            }
+            if (vm.registerCouple.partner2DateOfBirth == null) {
+                            vm.dateOptions2.datepickerMode = 'year';
+                        }
         }
     }
 })();
