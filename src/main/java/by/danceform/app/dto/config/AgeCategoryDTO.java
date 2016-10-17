@@ -1,12 +1,10 @@
 package by.danceform.app.dto.config;
 
-import by.danceform.app.domain.config.AgeCategory;
 import by.danceform.app.dto.AbstractDomainDTO;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Objects;
 
 
 /**
@@ -55,29 +53,6 @@ public class AgeCategoryDTO extends AbstractDomainDTO<Long> {
 
     public void setMaxAge(Integer maxAge) {
         this.maxAge = maxAge;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if(this == o) {
-            return true;
-        }
-        if(o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        AgeCategoryDTO ageCategoryDTO = (AgeCategoryDTO)o;
-
-        if(!Objects.equals(id, ageCategoryDTO.id)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
     }
 
     @Override

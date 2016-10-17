@@ -30,6 +30,7 @@
     <include file="classpath:config/liquibase/changelog/insert_entities_DanceCategory.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/insert_entities_Competition.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/insert_entities_CompetitionCategory.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/insert_entities_RegisteredCouple.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/insert_entities_Location.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/insert_entities_Organization.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/insert_entities_Trainer.xml" relativeToChangelogFile="false"/>

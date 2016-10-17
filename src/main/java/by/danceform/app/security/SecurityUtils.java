@@ -61,6 +61,10 @@ public final class SecurityUtils {
         return false;
     }
 
+    public static boolean isAdmin() {
+        return isCurrentUserInRole(AuthoritiesConstants.ADMIN);
+    }
+
     /**
      * If the current user has a specific authority (security role).
      * <p>The name of this method comes from the isUserInRole() method in the Servlet API</p>

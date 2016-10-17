@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,6 +19,7 @@ import javax.validation.constraints.Size;
 import by.danceform.app.domain.AbstractEntity;
 import by.danceform.app.domain.INamedEntity;
 import by.danceform.app.domain.config.AgeCategory;
+import by.danceform.app.domain.config.DanceCategory;
 import by.danceform.app.domain.config.DanceClass;
 
 /**
@@ -53,6 +55,11 @@ public class CompetitionCategory extends AbstractEntity<Long> implements INamedE
 
     @Column(name = "competition_id", nullable = false)
     private Long competitionId;
+
+    @ManyToOne
+    @NotNull
+    @JoinColumn(name = "dance_category_id")
+    private DanceCategory danceCategory;
 
     @ManyToMany
     @JoinTable(name = "competition_category_dance_class", joinColumns = @JoinColumn(name = "competition_categories_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "dance_classes_id", referencedColumnName = "ID"))
@@ -134,6 +141,14 @@ public class CompetitionCategory extends AbstractEntity<Long> implements INamedE
 
     public void setAgeCategories(Set<AgeCategory> ageCategories) {
         this.ageCategories = ageCategories;
+    }
+
+    public DanceCategory getDanceCategory() {
+        return danceCategory;
+    }
+
+    public void setDanceCategory(DanceCategory danceCategory) {
+        this.danceCategory = danceCategory;
     }
 
     @Override

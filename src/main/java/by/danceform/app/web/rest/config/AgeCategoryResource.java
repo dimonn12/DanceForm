@@ -59,7 +59,7 @@ public class AgeCategoryResource {
                 .body(null);
         }
         AgeCategoryDTO result = ageCategoryService.save(ageCategoryDTO);
-        return ResponseEntity.created(new URI("/api/age-categories/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/config/age-categories/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("ageCategory", result.getId().toString()))
             .body(result);
     }

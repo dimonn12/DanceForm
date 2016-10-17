@@ -31,6 +31,8 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
 
     private Long competitionId;
 
+    private NamedReferenceDTO danceCategory;
+
     private Set<NamedReferenceDTO> danceClasses = new HashSet<>();
 
     private Set<NamedReferenceDTO> ageCategories = new HashSet<>();
@@ -89,6 +91,14 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
 
     public void setCompetitionId(Long competitionId) {
         this.competitionId = competitionId;
+    }
+
+    public NamedReferenceDTO getDanceCategory() {
+        return danceCategory;
+    }
+
+    public void setDanceCategory(NamedReferenceDTO danceCategory) {
+        this.danceCategory = danceCategory;
     }
 
     public Set<NamedReferenceDTO> getDanceClasses() {

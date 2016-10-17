@@ -13,17 +13,20 @@
     <property name="floatType" value="float4" dbms="postgresql, h2"/>
     <property name="floatType" value="float" dbms="mysql, oracle"/>
 
-
-    <changeSet id="0161017-13" author="dmitry_shanko">
-        <insert tableName="location">
-            <column name="id" value="1"/>
-            <column name="name" value="Минск"/>
-        </insert>
-
-        <insert tableName="location">
-            <column name="id" value="2"/>
-            <column name="name" value="Гомель"/>
-        </insert>
+    <!--
+        Added the entity Location.
+    -->
+    <changeSet id="20161017081822-1" author="jhipster">
+        <createTable tableName="location">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(64)">
+                <constraints nullable="false" />
+            </column>
+            
+            <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
+        </createTable>
+        
     </changeSet>
-
 </databaseChangeLog>

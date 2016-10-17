@@ -1,6 +1,5 @@
 package by.danceform.app.dto.config;
 
-import by.danceform.app.domain.config.DanceClass;
 import by.danceform.app.dto.AbstractDomainDTO;
 import by.danceform.app.dto.NamedReferenceDTO;
 
