@@ -56,6 +56,8 @@
                     </th>
                     <th>
                         <span data-translate="danceFormApp.competition-timeline.couples.danceClass">Дата</span>
+                        <br>
+                        <span data-translate="{{vm.category.danceCategory.id === -1 ? ('danceFormApp.competition-timeline.registry.st' | translate) : ('danceFormApp.competition-timeline.registry.la' | translate)}}">Дата</span>
                     </th>
                     <th>
                         <span data-translate="danceFormApp.competition-timeline.couples.organization">Дата</span>
@@ -72,7 +74,7 @@
                         {{couple.partner2Surname}}
                         {{couple.partner2Name}}
                     </td>
-                    <td>{{couple.partner_1_dance_class_la_id}}</td>
+                    <td>{{vm.category.danceCategory.id === -1 ? couple.partner1DanceClassST.name : couple.partner1DanceClassLA.name}},<br>{{vm.category.danceCategory.id === -1 ? couple.partner2DanceClassST.name : couple.partner2DanceClassLA.name}}</td>
                     <td>{{couple.organization}}</td>
                     <td>{{couple.trainer1}}</td>
                 </tr>

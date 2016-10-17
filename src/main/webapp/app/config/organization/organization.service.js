@@ -7,7 +7,7 @@
     Organization.$inject = ['$resource'];
 
     function Organization ($resource) {
-        var resourceUrl =  'api/organizations/:id';
+        var resourceUrl =  'api/config/organizations/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

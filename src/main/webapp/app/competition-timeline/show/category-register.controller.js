@@ -5,17 +5,20 @@
         .module('danceFormApp')
         .controller('CategoryRegisterController', CategoryRegisterController);
 
-    CategoryRegisterController.$inject = ['$scope', '$rootScope', '$stateParams', '$state', 'previousState', 'entity', 'Competition', 'CompetitionCategory', 'DanceClass', 'RegisteredCouple', 'AlertService'];
+    CategoryRegisterController.$inject = ['$scope', '$rootScope', '$stateParams', '$state', 'previousState', 'entity', 'Competition', 'CompetitionCategory', 'DanceClass', 'RegisteredCouple', 'AlertService', 'Location', 'Organization', 'Trainer'];
 
-    function CategoryRegisterController($scope, $rootScope, $stateParams, $state, previousState, entity, Competition, CompetitionCategory, DanceClass, RegisteredCouple, AlertService) {
+    function CategoryRegisterController($scope, $rootScope, $stateParams, $state, previousState, entity, Competition, CompetitionCategory, DanceClass, RegisteredCouple, AlertService, Location, Organization, Trainer) {
         var vm = this;
 
         vm.currentCompetition = entity;
         vm.previousState = previousState.name;
 
         vm.availableCategories = [];
-
-        vm.danceClasses = [];
+        
+        vm.danceClasses = DanceClass.query();
+        vm.locations = Location.query();
+        vm.organizations = Organization.query();
+        vm.trainers = Trainer.query();
 
         vm.registerCouple = {};
 
@@ -36,30 +39,17 @@
         };
 
         vm.dateOptions2 = {
-                    maxDate: new Date(),
-                    minDate: new Date(1930, 1, 1),
-                    datepickerMode: 'year',
-                    showWeeks: false
-                };
-
-        loadClasses();
-
-        function loadClasses() {
-            DanceClass.query({}, onSuccess, onError);
-            function onSuccess(data, headers) {
-                vm.danceClasses = data;
-            }
-
-            function onError(error) {
-                AlertService.error(error.data.message);
-            }
-        }
+            maxDate: new Date(),
+            minDate: new Date(1930, 1, 1),
+            datepickerMode: 'year',
+            showWeeks: false
+        };
 
         function update() {
             if (null != vm.registerCouple.partner1DateOfBirth && null != vm.registerCouple.partner2DateOfBirth &&
-                null != vm.registerCouple.partner1DanceClassSTId && null != vm.registerCouple.partner1DanceClassLAId &&
-                null != vm.registerCouple.partner2DanceClassSTId && null != vm.registerCouple.partner2DanceClassLAId) {
-                CompetitionCategory.query({competitionId: vm.currentCompetition.id}, onSuccess, onError);
+                null != vm.registerCouple.partner1DanceClassST.id && null != vm.registerCouple.partner1DanceClassLA.id &&
+                null != vm.registerCouple.partner2DanceClassST.id && null != vm.registerCouple.partner2DanceClassLA.id) {
+                CompetitionCategory.available({competitionId: vm.currentCompetition.id}, vm.registerCouple, onSuccess, onError);
             } else {
                 vm.availableCategories = [];
             }
@@ -123,8 +113,8 @@
                 vm.dateOptions1.datepickerMode = 'year';
             }
             if (vm.registerCouple.partner2DateOfBirth == null) {
-                            vm.dateOptions2.datepickerMode = 'year';
-                        }
+                vm.dateOptions2.datepickerMode = 'year';
+            }
         }
     }
 })();

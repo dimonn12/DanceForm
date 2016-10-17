@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
     angular
         .module('danceFormApp')
@@ -6,11 +6,11 @@
 
     CompetitionCategory.$inject = ['$resource'];
 
-    function CompetitionCategory ($resource) {
-        var resourceUrl =  'api/competition/:competitionId/competition-categories/:id';
+    function CompetitionCategory($resource) {
+        var resourceUrl = 'api/competition/:competitionId/competition-categories/:id';
 
         return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', isArray: true},
+            'query': {method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -20,7 +20,12 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': {method: 'PUT'},
+            'available': {
+                method: 'POST',
+                isArray: true,
+                url: resourceUrl + '/available'
+            }
         });
     }
 })();

@@ -420,6 +420,7 @@ Competition timeline styles
 ========================================================================== */
 .table-timeline > thead > tr > th {
     text-align: center;
+    vertical-align: middle;
 }
 
 .table-timeline > tbody > tr {
@@ -442,7 +443,7 @@ dl > dt > span {
     text-align: center;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 620px) {
     .registry-block {
         width: 45%;
         display: inline-block;

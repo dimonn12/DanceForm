@@ -96,13 +96,13 @@
                             </tr>
                             <tr>
                                 <th>
-                                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.st" for="field_partner1DanceClassSTId">Date</label>
+                                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.st" for="field_partner1DanceClassST">Date</label>
                                     (
                                     <span class="asterisk">*</span>
                                     )
                                 </th>
                                 <th>
-                                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.la" for="field_partner1DanceClassLAId">Date</label>
+                                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.la" for="field_partner1DanceClassLA">Date</label>
                                     (
                                     <span class="asterisk">*</span>
                                     )
@@ -112,7 +112,7 @@
                         <tbody>
                             <tr>
                                 <td class="registry-class">
-                                    <select class="form-control" id="field_partner1DanceClassSTId" name="partner1DanceClassSTId" ng-model="vm.registerCouple.partner1DanceClassSTId"
+                                    <select class="form-control" id="field_partner1DanceClassST" name="partner1DanceClassST" ng-model="vm.registerCouple.partner1DanceClassST.id"
                                             ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'" required
                                             ng-change="vm.update();">
                                         <option value=""></option>
@@ -120,7 +120,7 @@
                                 </td>
 
                                 <td class="registry-class">
-                                    <select class="form-control" id="field_partner1DanceClassLAId" name="partner1DanceClassLAId" ng-model="vm.registerCouple.partner1DanceClassLAId"
+                                    <select class="form-control" id="field_partner1DanceClassLA" name="partner1DanceClassLA" ng-model="vm.registerCouple.partner1DanceClassLA.id"
                                             ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'" required
                                             ng-change="vm.update();">
                                         <option value=""></option>
@@ -183,13 +183,13 @@
                             </tr>
                             <tr>
                                 <th>
-                                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.st" for="field_partner2DanceClassSTId">Date</label>
+                                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.st" for="field_partner2DanceClassST">Date</label>
                                     (
                                     <span class="asterisk">*</span>
                                     )
                                 </th>
                                 <th>
-                                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.la" for="field_partner2DanceClassLAId">Date</label>
+                                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.la" for="field_partner2DanceClassLA">Date</label>
                                     (
                                     <span class="asterisk">*</span>
                                     )
@@ -199,7 +199,7 @@
                         <tbody>
                             <tr>
                                 <td class="registry-class">
-                                    <select class="form-control" id="field_partner2DanceClassSTId" name="partner2DanceClassSTId" ng-model="vm.registerCouple.partner2DanceClassSTId"
+                                    <select class="form-control" id="field_partner2DanceClassST" name="partner2DanceClassST" ng-model="vm.registerCouple.partner2DanceClassST.id"
                                             ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'" required
                                             ng-change="vm.update();">
                                         <option value=""></option>
@@ -207,7 +207,7 @@
                                 </td>
 
                                 <td class="registry-class">
-                                    <select class="form-control" id="field_partner2DanceClassLAId" name="partner2DanceClassLAId" ng-model="vm.registerCouple.partner2DanceClassLAId"
+                                    <select class="form-control" id="field_partner2DanceClassLA" name="partner2DanceClassLA" ng-model="vm.registerCouple.partner2DanceClassLA.id"
                                             ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'" required
                                             ng-change="vm.update();">
                                         <option value=""></option>
@@ -249,9 +249,17 @@
                     (
                     <span class="asterisk">*</span>
                     )
-                    <input type="text" class="form-control" name="organization" id="field_trainer1"
+
+                    <select class="form-control" id="field_trainer1" name="trainer" ng-model="vm.registerCouple.trainer1"
+                            ng-options="(trainer.surname + ' ' + trainer.name) as (trainer.surname + ' ' + trainer.name) for trainer in vm.trainers | orderBy:'surname + name'" required
+                            ng-change="vm.update();">
+                        <option value=""></option>
+                    </select>
+
+
+                    <!--<input type="text" class="form-control" name="organization" id="field_trainer1"
                            ng-model="vm.registerCouple.trainer1"
-                           required ng-minlength="1" ng-maxlength="80"/>
+                           required ng-minlength="1" ng-maxlength="80"/>-->
                 </div>
             </div>
 

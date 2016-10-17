@@ -10,15 +10,15 @@
     function stateConfig($stateProvider) {
         $stateProvider
         .state('dance-category', {
-            parent: 'entity',
-            url: '/dance-category',
+            parent: 'config',
+            url: '/config/dance-category',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_ADMIN'],
                 pageTitle: 'danceFormApp.danceCategory.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/dance-category/dance-categories.html',
+                    templateUrl: 'app/config/dance-category/dance-categories.html',
                     controller: 'DanceCategoryController',
                     controllerAs: 'vm'
                 }
@@ -32,15 +32,15 @@
             }
         })
         .state('dance-category-detail', {
-            parent: 'entity',
-            url: '/dance-category/{id}',
+            parent: 'config',
+            url: '/config/dance-category/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_ADMIN'],
                 pageTitle: 'danceFormApp.danceCategory.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/dance-category/dance-category-detail.html',
+                    templateUrl: 'app/config/dance-category/dance-category-detail.html',
                     controller: 'DanceCategoryDetailController',
                     controllerAs: 'vm'
                 }
@@ -67,11 +67,11 @@
             parent: 'dance-category-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/dance-category/dance-category-dialog.html',
+                    templateUrl: 'app/config/dance-category/dance-category-dialog.html',
                     controller: 'DanceCategoryDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -92,11 +92,11 @@
             parent: 'dance-category',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/dance-category/dance-category-dialog.html',
+                    templateUrl: 'app/config/dance-category/dance-category-dialog.html',
                     controller: 'DanceCategoryDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -120,11 +120,11 @@
             parent: 'dance-category',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/dance-category/dance-category-dialog.html',
+                    templateUrl: 'app/config/dance-category/dance-category-dialog.html',
                     controller: 'DanceCategoryDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -145,11 +145,11 @@
             parent: 'dance-category',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/dance-category/dance-category-delete-dialog.html',
+                    templateUrl: 'app/config/dance-category/dance-category-delete-dialog.html',
                     controller: 'DanceCategoryDeleteController',
                     controllerAs: 'vm',
                     size: 'md',

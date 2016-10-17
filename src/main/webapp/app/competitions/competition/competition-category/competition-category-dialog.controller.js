@@ -5,9 +5,9 @@
         .module('danceFormApp')
         .controller('CompetitionCategoryDialogController', CompetitionCategoryDialogController);
 
-    CompetitionCategoryDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'CompetitionCategory', 'Competition', 'DanceClass', 'AgeCategory'];
+    CompetitionCategoryDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'CompetitionCategory', 'Competition', 'DanceClass', 'AgeCategory', 'DanceCategory'];
 
-    function CompetitionCategoryDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, CompetitionCategory, Competition, DanceClass, AgeCategory) {
+    function CompetitionCategoryDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, CompetitionCategory, Competition, DanceClass, AgeCategory, DanceCategory) {
         var vm = this;
 
         vm.competitionCategory = entity;
@@ -16,6 +16,7 @@
         vm.competitions = Competition.query();
         vm.danceclass = DanceClass.query();
         vm.agecategories = AgeCategory.query();
+        vm.dancecategories = DanceCategory.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

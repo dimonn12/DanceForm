@@ -10,15 +10,15 @@
     function stateConfig($stateProvider) {
         $stateProvider
         .state('location', {
-            parent: 'entity',
-            url: '/location?page&sort&search',
+            parent: 'config',
+            url: '/config/location?page&sort&search',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_ADMIN'],
                 pageTitle: 'danceFormApp.location.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/location/locations.html',
+                    templateUrl: 'app/config/location/locations.html',
                     controller: 'LocationController',
                     controllerAs: 'vm'
                 }
@@ -52,15 +52,15 @@
             }
         })
         .state('location-detail', {
-            parent: 'entity',
-            url: '/location/{id}',
+            parent: 'config',
+            url: '/config/location/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_ADMIN'],
                 pageTitle: 'danceFormApp.location.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/location/location-detail.html',
+                    templateUrl: 'app/config/location/location-detail.html',
                     controller: 'LocationDetailController',
                     controllerAs: 'vm'
                 }
@@ -87,11 +87,11 @@
             parent: 'location-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/location/location-dialog.html',
+                    templateUrl: 'app/config/location/location-dialog.html',
                     controller: 'LocationDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -112,11 +112,11 @@
             parent: 'location',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/location/location-dialog.html',
+                    templateUrl: 'app/config/location/location-dialog.html',
                     controller: 'LocationDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -140,11 +140,11 @@
             parent: 'location',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/location/location-dialog.html',
+                    templateUrl: 'app/config/location/location-dialog.html',
                     controller: 'LocationDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -165,11 +165,11 @@
             parent: 'location',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/location/location-delete-dialog.html',
+                    templateUrl: 'app/config/location/location-delete-dialog.html',
                     controller: 'LocationDeleteController',
                     controllerAs: 'vm',
                     size: 'md',

@@ -9,17 +9,17 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('trainer', {
-            parent: 'entity',
-            url: '/trainer?page&sort&search',
+        .state('organization', {
+            parent: 'config',
+            url: '/config/organization?page&sort&search',
             data: {
-                authorities: ['ROLE_USER'],
-                pageTitle: 'danceFormApp.trainer.home.title'
+                authorities: ['ROLE_ADMIN'],
+                pageTitle: 'danceFormApp.organization.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/trainer/trainers.html',
-                    controller: 'TrainerController',
+                    templateUrl: 'app/config/organization/organizations.html',
+                    controller: 'OrganizationController',
                     controllerAs: 'vm'
                 }
             },
@@ -45,37 +45,37 @@
                     };
                 }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('trainer');
+                    $translatePartialLoader.addPart('organization');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
             }
         })
-        .state('trainer-detail', {
-            parent: 'entity',
-            url: '/trainer/{id}',
+        .state('organization-detail', {
+            parent: 'config',
+            url: '/config/organization/{id}',
             data: {
-                authorities: ['ROLE_USER'],
-                pageTitle: 'danceFormApp.trainer.detail.title'
+                authorities: ['ROLE_ADMIN'],
+                pageTitle: 'danceFormApp.organization.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/trainer/trainer-detail.html',
-                    controller: 'TrainerDetailController',
+                    templateUrl: 'app/config/organization/organization-detail.html',
+                    controller: 'OrganizationDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('trainer');
+                    $translatePartialLoader.addPart('organization');
                     return $translate.refresh();
                 }],
-                entity: ['$stateParams', 'Trainer', function($stateParams, Trainer) {
-                    return Trainer.get({id : $stateParams.id}).$promise;
+                entity: ['$stateParams', 'Organization', function($stateParams, Organization) {
+                    return Organization.get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'trainer',
+                        name: $state.current.name || 'organization',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
@@ -83,22 +83,22 @@
                 }]
             }
         })
-        .state('trainer-detail.edit', {
-            parent: 'trainer-detail',
+        .state('organization-detail.edit', {
+            parent: 'organization-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/trainer/trainer-dialog.html',
-                    controller: 'TrainerDialogController',
+                    templateUrl: 'app/config/organization/organization-dialog.html',
+                    controller: 'OrganizationDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Trainer', function(Trainer) {
-                            return Trainer.get({id : $stateParams.id}).$promise;
+                        entity: ['Organization', function(Organization) {
+                            return Organization.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -108,16 +108,16 @@
                 });
             }]
         })
-        .state('trainer.new', {
-            parent: 'trainer',
+        .state('organization.new', {
+            parent: 'organization',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/trainer/trainer-dialog.html',
-                    controller: 'TrainerDialogController',
+                    templateUrl: 'app/config/organization/organization-dialog.html',
+                    controller: 'OrganizationDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
@@ -125,63 +125,62 @@
                         entity: function () {
                             return {
                                 name: null,
-                                surname: null,
                                 visible: null,
                                 id: null
                             };
                         }
                     }
                 }).result.then(function() {
-                    $state.go('trainer', null, { reload: 'trainer' });
+                    $state.go('organization', null, { reload: 'organization' });
                 }, function() {
-                    $state.go('trainer');
+                    $state.go('organization');
                 });
             }]
         })
-        .state('trainer.edit', {
-            parent: 'trainer',
+        .state('organization.edit', {
+            parent: 'organization',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/trainer/trainer-dialog.html',
-                    controller: 'TrainerDialogController',
+                    templateUrl: 'app/config/organization/organization-dialog.html',
+                    controller: 'OrganizationDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Trainer', function(Trainer) {
-                            return Trainer.get({id : $stateParams.id}).$promise;
+                        entity: ['Organization', function(Organization) {
+                            return Organization.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('trainer', null, { reload: 'trainer' });
+                    $state.go('organization', null, { reload: 'organization' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('trainer.delete', {
-            parent: 'trainer',
+        .state('organization.delete', {
+            parent: 'organization',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/trainer/trainer-delete-dialog.html',
-                    controller: 'TrainerDeleteController',
+                    templateUrl: 'app/config/organization/organization-delete-dialog.html',
+                    controller: 'OrganizationDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Trainer', function(Trainer) {
-                            return Trainer.get({id : $stateParams.id}).$promise;
+                        entity: ['Organization', function(Organization) {
+                            return Organization.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('trainer', null, { reload: 'trainer' });
+                    $state.go('organization', null, { reload: 'organization' });
                 }, function() {
                     $state.go('^');
                 });

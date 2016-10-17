@@ -2,12 +2,12 @@
     'use strict';
     angular
         .module('danceFormApp')
-        .factory('Location', Location);
+        .factory('Trainer', Trainer);
 
-    Location.$inject = ['$resource'];
+    Trainer.$inject = ['$resource'];
 
-    function Location ($resource) {
-        var resourceUrl =  'api/locations/:id';
+    function Trainer ($resource) {
+        var resourceUrl =  'api/config/trainers/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

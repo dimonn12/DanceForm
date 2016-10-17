@@ -121,4 +121,5 @@ public class DanceClass extends AbstractEntity<Long> implements INamedEntity {
                ", transferScore='" + transferScore + "'" +
                '}';
     }
+
 }

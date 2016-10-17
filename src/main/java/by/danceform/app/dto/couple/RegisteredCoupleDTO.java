@@ -1,6 +1,7 @@
 package by.danceform.app.dto.couple;
 
 import by.danceform.app.dto.AbstractDomainDTO;
+import by.danceform.app.dto.NamedReferenceDTO;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -47,13 +48,13 @@ public class RegisteredCoupleDTO extends AbstractDomainDTO<Long> {
     @Size(min = 1, max = 80)
     private String trainer1;
 
-    private Long partner1DanceClassSTId;
+    private NamedReferenceDTO partner1DanceClassST;
 
-    private Long partner1DanceClassLAId;
+    private NamedReferenceDTO partner1DanceClassLA;
 
-    private Long partner2DanceClassSTId;
+    private NamedReferenceDTO partner2DanceClassST;
 
-    private Long partner2DanceClassLAId;
+    private NamedReferenceDTO partner2DanceClassLA;
 
     private List<Long> competitionCategoryIds;
 
@@ -129,36 +130,36 @@ public class RegisteredCoupleDTO extends AbstractDomainDTO<Long> {
         this.trainer1 = trainer1;
     }
 
-    public Long getPartner1DanceClassSTId() {
-        return partner1DanceClassSTId;
+    public NamedReferenceDTO getPartner1DanceClassST() {
+        return partner1DanceClassST;
     }
 
-    public void setPartner1DanceClassSTId(Long danceClassId) {
-        this.partner1DanceClassSTId = danceClassId;
+    public void setPartner1DanceClassST(NamedReferenceDTO danceClass) {
+        this.partner1DanceClassST = danceClass;
     }
 
-    public Long getPartner1DanceClassLAId() {
-        return partner1DanceClassLAId;
+    public NamedReferenceDTO getPartner1DanceClassLA() {
+        return partner1DanceClassLA;
     }
 
-    public void setPartner1DanceClassLAId(Long danceClassId) {
-        this.partner1DanceClassLAId = danceClassId;
+    public void setPartner1DanceClassLAId(NamedReferenceDTO danceClass) {
+        this.partner1DanceClassLA = danceClass;
     }
 
-    public Long getPartner2DanceClassSTId() {
-        return partner2DanceClassSTId;
+    public NamedReferenceDTO getPartner2DanceClassST() {
+        return partner2DanceClassST;
     }
 
-    public void setPartner2DanceClassSTId(Long danceClassId) {
-        this.partner2DanceClassSTId = danceClassId;
+    public void setPartner2DanceClassST(NamedReferenceDTO danceClass) {
+        this.partner2DanceClassST = danceClass;
     }
 
-    public Long getPartner2DanceClassLAId() {
-        return partner2DanceClassLAId;
+    public NamedReferenceDTO getPartner2DanceClassLA() {
+        return partner2DanceClassLA;
     }
 
-    public void setPartner2DanceClassLAId(Long danceClassId) {
-        this.partner2DanceClassLAId = danceClassId;
+    public void setPartner2DanceClassLA(NamedReferenceDTO danceClass) {
+        this.partner2DanceClassLA = danceClass;
     }
 
     public List<Long> getCompetitionCategoryIds() {

@@ -1,9 +1,10 @@
 package by.danceform.app.converter.couple;
 
 import by.danceform.app.converter.AbstractConverter;
+import by.danceform.app.converter.NamedEntityConverter;
+import by.danceform.app.domain.config.DanceClass;
 import by.danceform.app.domain.couple.RegisteredCouple;
 import by.danceform.app.dto.couple.RegisteredCoupleDTO;
-import by.danceform.app.repository.competition.CompetitionCategoryRepository;
 import by.danceform.app.repository.config.DanceClassRepository;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,9 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
 
     @Inject
     private DanceClassRepository danceClassRepository;
+
+    @Inject
+    private NamedEntityConverter<DanceClass> danceClassNamedEntityConverter;
 
     @Override
     protected RegisteredCoupleDTO convertEntityToDto(RegisteredCouple entity, RegisteredCoupleDTO dto) {
@@ -34,16 +38,16 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
         dto.setOrganization(entity.getOrganization());
 
         if(null != entity.getPartner1DanceClassST()) {
-            dto.setPartner1DanceClassSTId(entity.getPartner1DanceClassST().getId());
+            dto.setPartner1DanceClassST(danceClassNamedEntityConverter.convertToDto(entity.getPartner1DanceClassST()));
         }
         if(null != entity.getPartner2DanceClassST()) {
-            dto.setPartner2DanceClassSTId(entity.getPartner2DanceClassST().getId());
+            dto.setPartner2DanceClassST(danceClassNamedEntityConverter.convertToDto(entity.getPartner2DanceClassST()));
         }
         if(null != entity.getPartner1DanceClassLA()) {
-            dto.setPartner1DanceClassLAId(entity.getPartner1DanceClassLA().getId());
+            dto.setPartner1DanceClassLAId(danceClassNamedEntityConverter.convertToDto(entity.getPartner1DanceClassLA()));
         }
         if(null != entity.getPartner2DanceClassLA()) {
-            dto.setPartner2DanceClassLAId(entity.getPartner2DanceClassLA().getId());
+            dto.setPartner2DanceClassLA(danceClassNamedEntityConverter.convertToDto(entity.getPartner2DanceClassLA()));
         }
         if(null != entity.getCompetitionCategory()) {
             dto.setCompetitionCategoryIds(Arrays.asList(entity.getCompetitionCategory().getId()));
@@ -65,10 +69,18 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
         entity.setLocation(dto.getLocation());
         entity.setOrganization(dto.getOrganization());
 
-        entity.setPartner1DanceClassLA(danceClassRepository.findOne(dto.getPartner1DanceClassLAId()));
-        entity.setPartner2DanceClassLA(danceClassRepository.findOne(dto.getPartner2DanceClassLAId()));
-        entity.setPartner1DanceClassST(danceClassRepository.findOne(dto.getPartner1DanceClassSTId()));
-        entity.setPartner2DanceClassST(danceClassRepository.findOne(dto.getPartner2DanceClassSTId()));
+        if(null != dto.getPartner1DanceClassLA()) {
+            entity.setPartner1DanceClassLA(danceClassRepository.findOne(dto.getPartner1DanceClassLA().getId()));
+        }
+        if(null != dto.getPartner2DanceClassLA()) {
+            entity.setPartner2DanceClassLA(danceClassRepository.findOne(dto.getPartner2DanceClassLA().getId()));
+        }
+        if(null != dto.getPartner1DanceClassST()) {
+            entity.setPartner1DanceClassST(danceClassRepository.findOne(dto.getPartner1DanceClassST().getId()));
+        }
+        if(null != dto.getPartner2DanceClassST()) {
+            entity.setPartner2DanceClassST(danceClassRepository.findOne(dto.getPartner2DanceClassST().getId()));
+        }
 
         return entity;
     }

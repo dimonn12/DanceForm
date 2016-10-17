@@ -1,29 +1,29 @@
 {
-    "danceFormApp": {
-        "competitionCategory" : {
-            "home": {
-                "title": "Competition Categories",
-                "createLabel": "Создать новый Competition Category",
-                "createOrEditLabel": "Создать или отредактировать Competition Category",
-                "search": "Найти Competition Category"
-            },
-            "created": "Новый Competition Category создан с идентификатором {{ param }}",
-            "updated": "Competition Category обновлен с идентификатором {{ param }}",
-            "deleted": "Competition Category удален с идентификатором {{ param }}",
-            "delete": {
-                "question": "Вы уверены что хотите удалить Competition Category {{ id }}?"
-            },
-            "detail": {
-                "title": "Competition Category"
-            },
-            "name": "Name",
-            "description": "Description",
-            "active": "Active",
-            "checkMinAge": "Check Min Age",
-            "checkMaxAge": "Check Max Age",
-            "competition": "Competition",
-            "danceClass": "Dance Class",
-            "ageCategory": "Age Category"
-        }
+  "danceFormApp": {
+    "competitionCategory": {
+      "home": {
+        "title": "Турнирные Категории",
+        "createLabel": "Создать новую Турнирную Категорию",
+        "createOrEditLabel": "Создать или отредактировать Турнирную Категорию"
+      },
+      "created": "Новая Турнирная Категория создан с идентификатором {{ param }}",
+      "updated": "Турнирная Категория обновлена с идентификатором {{ param }}",
+      "deleted": "Турнирная Категория удалена с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Турнирную Категорию {{ id }}?"
+      },
+      "detail": {
+        "title": "Турнирная категория"
+      },
+      "name": "Название",
+      "description": "Описание",
+      "active": "Активна",
+      "checkMinAge": "Проверять мин. возраст",
+      "checkMaxAge": "Проверять макс. возраст",
+      "competition": "Турнир",
+      "danceClass": "Танцевальные классы",
+      "ageCategory": "Возрастные Категории",
+      "danceCategory": "Танцевальная категория"
     }
+  }
 }

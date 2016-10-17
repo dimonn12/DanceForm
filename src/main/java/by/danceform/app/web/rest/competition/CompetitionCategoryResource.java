@@ -1,18 +1,22 @@
 package by.danceform.app.web.rest.competition;
 
-import by.danceform.app.domain.competition.CompetitionCategory;
+import by.danceform.app.dto.competition.CompetitionCategoryDTO;
+import by.danceform.app.dto.couple.RegisteredCoupleDTO;
 import by.danceform.app.security.AuthoritiesConstants;
-import com.codahale.metrics.annotation.Timed;
 import by.danceform.app.service.competition.CompetitionCategoryService;
 import by.danceform.app.web.rest.util.HeaderUtil;
-import by.danceform.app.dto.competition.CompetitionCategoryDTO;
+import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -105,6 +109,23 @@ public class CompetitionCategoryResource {
     public List<CompetitionCategoryDTO> getAllCompetitionCategories(@PathVariable Long competitionId) {
         log.debug("REST request to get all CompetitionCategories");
         return competitionCategoryService.findByCompetitionId(competitionId);
+    }
+
+    /**
+     * GET  /competition-categories : get all the competitionCategories.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of competitionCategories in body
+     */
+    @RequestMapping(value = "/available",
+                    method = RequestMethod.POST,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Secured({ AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS })
+    public List<CompetitionCategoryDTO> getAllAvailableCompetitionCategories(@PathVariable Long competitionId,
+                                                                             @RequestBody
+                                                                                 RegisteredCoupleDTO registeredCoupleDTO) {
+        log.debug("REST request to get all CompetitionCategories");
+        return competitionCategoryService.findAvailableByCompetitionId(registeredCoupleDTO, competitionId);
     }
 
     /**
