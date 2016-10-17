@@ -13,6 +13,10 @@
                 "systemSetting": "System Setting",
                 "competitionCategory": "Competition Category",
                 "registeredCouple": "Registered Couple",
+                "danceCategory": "Dance Category",
+                "organization": "Organization",
+                "location": "Location",
+                "trainer": "Trainer",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

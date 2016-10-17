@@ -13,7 +13,13 @@
                                  constraintName="fk_competition_category_competition_id"
                                  referencedColumnNames="id"
                                  referencedTableName="competition"/>
-        
+
+        <addForeignKeyConstraint baseColumnNames="dance_category_id"
+                                 baseTableName="competition_category"
+                                 constraintName="fk_competition_category_dance_class_dance_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dance_category"/>
+
         <addForeignKeyConstraint baseColumnNames="competition_categories_id"
                                  baseTableName="competition_category_dance_class"
                                  constraintName="fk_competition_category_dance_class_competition_categories_id"
@@ -24,7 +30,7 @@
                                  constraintName="fk_competition_category_dance_class_dance_classes_id"
                                  referencedColumnNames="id"
                                  referencedTableName="dance_class"/>
-        
+
         <addForeignKeyConstraint baseColumnNames="competition_categories_id"
                                  baseTableName="competition_category_age_category"
                                  constraintName="fk_competition_category_age_category_competition_categories_id"
@@ -35,6 +41,6 @@
                                  constraintName="fk_competition_category_age_category_age_categories_id"
                                  referencedColumnNames="id"
                                  referencedTableName="age_category"/>
-        
+
     </changeSet>
 </databaseChangeLog>

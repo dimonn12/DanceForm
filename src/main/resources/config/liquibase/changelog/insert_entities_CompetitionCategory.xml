@@ -23,6 +23,7 @@
             <column name="check_min_age" valueBoolean="true"/>
             <column name="check_max_age" valueBoolean="false"/>
             <column name="competition_id" value="1"/>
+            <column name="dance_category_id" value="-1"/>
         </insert>
 
         <insert tableName="competition_category">
@@ -33,6 +34,7 @@
             <column name="check_min_age" valueBoolean="false"/>
             <column name="check_max_age" valueBoolean="false"/>
             <column name="competition_id" value="1"/>
+            <column name="dance_category_id" value="-2"/>
         </insert>
 
         <insert tableName="competition_category">
@@ -43,6 +45,7 @@
             <column name="check_min_age" valueBoolean="false"/>
             <column name="check_max_age" valueBoolean="false"/>
             <column name="competition_id" value="3"/>
+            <column name="dance_category_id" value="-1"/>
         </insert>
 
         <insert tableName="competition_category">
@@ -53,6 +56,7 @@
             <column name="check_min_age" valueBoolean="false"/>
             <column name="check_max_age" valueBoolean="false"/>
             <column name="competition_id" value="1"/>
+            <column name="dance_category_id" value="-1"/>
         </insert>
     </changeSet>
 

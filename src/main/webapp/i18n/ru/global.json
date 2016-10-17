@@ -10,6 +10,9 @@
         "main": "Сущности",
         "competitionCategory": "Competition Category",
         "registeredCouple": "Registered Couple",
+        "organization": "Организации",
+        "location": "Location",
+        "trainer": "Тренера",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
