@@ -56,7 +56,7 @@
     </button>
 
     <div class="table-responsive">
-        <table class="jh-table table table-bordered table-timeline">
+        <table class="jh-table table table-bordered table-timeline wrap-text nowrap-content">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th>
@@ -74,7 +74,7 @@
             <tbody>
                 <tr ng-repeat="category in vm.categories track by category.id">
                     <td>{{category.name}}</td>
-                    <td>{{category.registeredCouplesCount}}</td>
+                    <td class="align-center">{{category.registeredCouplesCount}}</td>
                     <td>
                         <span ng-repeat="danceClass in category.danceClasses">
                             {{danceClass.name}}{{$last ? '' : ', '}}

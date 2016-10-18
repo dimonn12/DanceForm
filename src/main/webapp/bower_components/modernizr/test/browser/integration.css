@@ -78,7 +78,7 @@ textarea {
   }
 }
 
-@media screen and (min-width:768px) {
+@media screen and (min-width:638px) {
   .output {
     -webkit-column-count:3;
     -moz-column-count:3;

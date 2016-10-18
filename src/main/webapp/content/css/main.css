@@ -341,7 +341,7 @@ entity detail page css
     margin-bottom: 15px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 638px) {
     .dl-horizontal.jh-entity-details > dt {
         margin-bottom: 15px;
     }
@@ -439,11 +439,11 @@ dl > dt > span {
     color: #FF0000;
 }
 
-.registry-classes-label {
+.registry-classes-label, .align-center {
     text-align: center;
 }
 
-@media screen and (min-width: 620px) {
+@media screen and (min-width: 638px) {
     .registry-block {
         width: 45%;
         display: inline-block;
@@ -452,7 +452,7 @@ dl > dt > span {
         margin-bottom: 30px;
     }
 
-    .registry-block .classes-group  {
+    .registry-block .classes-group {
         height: 66px !important;
     }
 
@@ -473,6 +473,14 @@ dl > dt > span {
 
 .registry-classes .registry-class:nth-child(even) {
     padding-left: 10px;
+}
+
+.wrap-text > thead > tr > th {
+    white-space: normal !important;
+}
+
+.nowrap-content > tbody > tr > td {
+    white-space: nowrap !important;
 }
 
 /*@media screen and (max-width: 900px) {
