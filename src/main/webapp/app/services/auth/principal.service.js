@@ -77,7 +77,11 @@
 
             function getAccountThen (account) {
                 _identity = account.data;
-                _authenticated = true;
+                if (_identity.activated) {
+                    _authenticated = true;
+                } else {
+                 _authenticated = false;
+                }
                 deferred.resolve(_identity);
             }
 
