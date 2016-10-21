@@ -1,0 +1,28 @@
+{
+    "danceFormApp": {
+        "uploadedDocument" : {
+            "home": {
+                "title": "Uploaded Documents",
+                "createLabel": "Создать новый Uploaded Document",
+                "createOrEditLabel": "Создать или отредактировать Uploaded Document",
+                "search": "Найти Uploaded Document"
+            },
+            "created": "Новый Uploaded Document создан с идентификатором {{ param }}",
+            "updated": "Uploaded Document обновлен с идентификатором {{ param }}",
+            "deleted": "Uploaded Document удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Uploaded Document {{ id }}?"
+            },
+            "detail": {
+                "title": "Uploaded Document"
+            },
+            "name": "Name",
+            "extension": "Extension",
+            "path": "Path",
+            "externalPath": "External Path",
+            "content": "Content",
+            "uploadedDate": "Uploaded Date",
+            "uploadedBy": "Uploaded By"
+        }
+    }
+}

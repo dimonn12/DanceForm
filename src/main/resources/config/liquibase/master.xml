@@ -17,6 +17,7 @@
     <include file="classpath:config/liquibase/changelog/20161017081732_added_entity_Organization.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20161017081822_added_entity_Location.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20161017081920_added_entity_Trainer.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161021120752_added_entity_UploadedDocument.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20161007135824_added_entity_constraints_DanceClass.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20161009081146_added_entity_constraints_CompetitionCategory.xml" relativeToChangelogFile="false"/>

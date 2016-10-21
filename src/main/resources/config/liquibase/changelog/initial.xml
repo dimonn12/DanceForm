@@ -12,8 +12,8 @@
 
     <changeSet id="initialSchema" author="dmitry_shanko">
         <sql dbms="mysql">
-               create database if not exists DanceForm;
-            ALTER SCHEMA `DanceForm`  DEFAULT CHARACTER SET utf8;
+               create database if not exists dance_form;
+            ALTER SCHEMA `dance_form`  DEFAULT CHARACTER SET utf8;
         </sql>
 
     </changeSet>
