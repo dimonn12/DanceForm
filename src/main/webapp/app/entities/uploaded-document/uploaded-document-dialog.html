@@ -101,22 +101,6 @@
             <input type="hidden" class="form-control" name="contentContentType" id="field_contentContentType"
                     ng-model="vm.uploadedDocument.contentContentType" />
         </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="danceFormApp.uploadedDocument.uploadedDate" for="field_uploadedDate">Uploaded Date</label>
-                <div class="input-group">
-                    <input id="field_uploadedDate" type="text" class="form-control" name="uploadedDate" datetime-picker="{{dateformat}}" ng-model="vm.uploadedDocument.uploadedDate" is-open="vm.datePickerOpenStatus.uploadedDate"
-                      />
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('uploadedDate')"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-                </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="danceFormApp.uploadedDocument.uploadedBy" for="field_uploadedBy">Uploaded By</label>
-            <input type="number" class="form-control" name="uploadedBy" id="field_uploadedBy"
-                    ng-model="vm.uploadedDocument.uploadedBy"
-                     />
-        </div>
 
     </div>
     <div class="modal-footer">

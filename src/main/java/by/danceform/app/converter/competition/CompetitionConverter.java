@@ -1,10 +1,9 @@
 package by.danceform.app.converter.competition;
 
-import org.springframework.stereotype.Component;
-
 import by.danceform.app.converter.AbstractConverter;
 import by.danceform.app.domain.competition.Competition;
 import by.danceform.app.dto.competition.CompetitionDTO;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by dimonn12 on 07.10.2016.
@@ -19,6 +18,8 @@ public class CompetitionConverter extends AbstractConverter<Competition, Competi
         dto.setLocation(entity.getLocation());
         dto.setOrganizer(entity.getOrganizer());
         dto.setVisible(entity.isVisible());
+        dto.setDetailsDocumentId(entity.getDetailsDocumentId());
+        dto.setBannerImageId(entity.getBannerImageId());
         return dto;
     }
 

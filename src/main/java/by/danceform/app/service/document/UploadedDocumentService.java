@@ -4,12 +4,14 @@ import by.danceform.app.converter.document.UploadedDocumentConverter;
 import by.danceform.app.domain.document.UploadedDocument;
 import by.danceform.app.dto.document.UploadedDocumentDTO;
 import by.danceform.app.repository.document.UploadedDocumentRepository;
+import by.danceform.app.security.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.time.ZonedDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,6 +40,8 @@ public class UploadedDocumentService {
     public UploadedDocumentDTO save(UploadedDocumentDTO uploadedDocumentDTO) {
         log.debug("Request to save UploadedDocument : {}", uploadedDocumentDTO);
         UploadedDocument uploadedDocument = uploadedDocumentConverter.convertToEntity(uploadedDocumentDTO);
+        uploadedDocument.setUploadedDate(ZonedDateTime.now());
+        uploadedDocument.setUploadedBy(SecurityUtils.getCurrentUserLogin());
         uploadedDocument = uploadedDocumentRepository.save(uploadedDocument);
         UploadedDocumentDTO result = uploadedDocumentConverter.convertToDto(uploadedDocument);
         return result;

@@ -50,8 +50,8 @@ public class UploadedDocument extends AbstractEntity<Long> {
     @Column(name = "uploaded_date")
     private ZonedDateTime uploadedDate;
 
-    @Column(name = "uploaded_by")
-    private Integer uploadedBy;
+    @Column(name = "uploaded_by", length = 64)
+    private String uploadedBy;
 
     public Long getId() {
         return id;
@@ -117,11 +117,11 @@ public class UploadedDocument extends AbstractEntity<Long> {
         this.uploadedDate = uploadedDate;
     }
 
-    public Integer getUploadedBy() {
+    public String getUploadedBy() {
         return uploadedBy;
     }
 
-    public void setUploadedBy(Integer uploadedBy) {
+    public void setUploadedBy(String uploadedBy) {
         this.uploadedBy = uploadedBy;
     }
 

@@ -5,11 +5,13 @@
         .module('danceFormApp')
         .controller('CompetitionCategoryController', CompetitionCategoryController);
 
-    CompetitionCategoryController.$inject = ['$scope', '$state', '$stateParams', 'CompetitionCategory'];
+    CompetitionCategoryController.$inject = ['$scope', '$state', '$stateParams', 'previousState', 'CompetitionCategory'];
 
-    function CompetitionCategoryController ($scope, $state, $stateParams, CompetitionCategory) {
+    function CompetitionCategoryController ($scope, $state, $stateParams, previousState, CompetitionCategory) {
         var vm = this;
-        
+
+        vm.previousState = previousState;
+
         vm.competitionCategories = [];
 
         loadAll();

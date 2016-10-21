@@ -1,6 +1,6 @@
 <div>
 
-    <h1 data-translate="danceFormApp.competition-timeline.title">График Турниров</h1>
+    <h1 data-translate="danceFormApp.competition-timeline.title">Предстоящие Турниры</h1>
 
     <div class="table-responsive">
         <table class="jh-table table table-bordered table-timeline">
@@ -18,23 +18,20 @@
                     <th>
                         <span data-translate="danceFormApp.competition-timeline.organizer">Организатор</span>
                     </th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="competition in vm.futureCompetitions track by competition.id">
                     <td>{{competition.date | date:'d MMMM yyyy'}}</td>
-                    <td>{{competition.name}}</td>
-                    <td>{{competition.location}}</td>
-                    <td>{{competition.organizer}}</td>
                     <td>
-                        <button type="submit"
+                        <button type="button"
                                 ui-sref="competition-timeline-show({id:competition.id})"
-                                class="btn btn-info btn-sm">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                            <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                                class="btn btn-link show-competition-link">
+                            <span>{{competition.name}}</span>
                         </button>
                     </td>
+                    <td>{{competition.location}}</td>
+                    <td>{{competition.organizer}}</td>
                 </tr>
             </tbody>
         </table>
@@ -69,5 +66,6 @@
                 </tbody>
             </table>
 
+        </div>
     </div>
 </div>

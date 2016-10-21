@@ -41,6 +41,14 @@
                 <constraints nullable="false"/>
             </column>
 
+            <column name="banner_image_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="details_document_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
 

@@ -1,26 +1,38 @@
-
 <div>
-    <h2><span data-translate="danceFormApp.competition.detail.title">Competition</span> {{vm.competition.id}}</h2>
+    <h2>
+        <span data-translate="danceFormApp.competition.detail.title">Competition</span>
+        {{vm.competition.id}}
+    </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="danceFormApp.competition.name">Name</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.competition.name">Name</span>
+        </dt>
         <dd>
             <span>{{vm.competition.name}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.competition.date">Date</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.competition.date">Date</span>
+        </dt>
         <dd>
             <span>{{vm.competition.date | date:'mediumDate'}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.competition.visible">Is Visible</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.competition.visible">Is Visible</span>
+        </dt>
         <dd>
             <span>{{vm.competition.visible}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.competition.organizer">Organizer</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.competition.organizer">Organizer</span>
+        </dt>
         <dd>
             <span>{{vm.competition.organizer}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.competition.location">Location</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.competition.location">Location</span>
+        </dt>
         <dd>
             <span>{{vm.competition.location}}</span>
         </dd>
@@ -29,11 +41,34 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        &nbsp;
+        <span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="submit"
+            ui-sref="competition-category({competitionId:vm.competition.id})"
+            class="btn btn-success">
+        <span class="glyphicon glyphicon-plus"></span>
+        <span data-translate="danceFormApp.competition.action.addCategory"></span>
+    </button>
+
+    <button type="submit"
+            ui-sref="competition-category({competitionId:vm.competition.id})"
+            class="btn btn-upload">
+        <span class="glyphicon glyphicon-upload"></span>
+        <span data-translate="danceFormApp.competition.action.uploadAvatar"></span>
+    </button>
+
+    <button type="submit"
+            ui-sref="competition-category({competitionId:vm.competition.id})"
+            class="btn btn-upload">
+        <span class="glyphicon glyphicon-upload"></span>
+        <span data-translate="danceFormApp.competition.action.uploadDetails"></span>
     </button>
 
     <button type="button" ui-sref="competition-detail.edit({id:vm.competition.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+        <span data-translate="entity.action.edit"> Edit</span>
     </button>
 </div>

@@ -1,18 +1,14 @@
 package by.danceform.app.dto.document;
 
-import by.danceform.app.dto.AbstractDomainDTO;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.ZonedDateTime;
-import javax.validation.constraints.*;
-import java.io.Serializable;
-import java.util.Objects;
-import javax.persistence.Lob;
 
 
 /**
  * A DTO for the UploadedDocument entity.
  */
-public class UploadedDocumentDTO extends AbstractDomainDTO<Long> {
+public class UploadedDocumentDTO extends DocumentDTO {
 
     @NotNull
     @Size(min = 1, max = 128)
@@ -28,16 +24,12 @@ public class UploadedDocumentDTO extends AbstractDomainDTO<Long> {
 
     private String externalPath;
 
-    @Lob
-    private byte[] content;
-
     private String contentContentType;
     private ZonedDateTime uploadedDate;
 
-    private Integer uploadedBy;
+    private String uploadedBy;
 
     public UploadedDocumentDTO() {
-
     }
 
     public UploadedDocumentDTO(Long id) {
@@ -84,14 +76,6 @@ public class UploadedDocumentDTO extends AbstractDomainDTO<Long> {
         this.externalPath = externalPath;
     }
 
-    public byte[] getContent() {
-        return content;
-    }
-
-    public void setContent(byte[] content) {
-        this.content = content;
-    }
-
     public String getContentContentType() {
         return contentContentType;
     }
@@ -108,11 +92,11 @@ public class UploadedDocumentDTO extends AbstractDomainDTO<Long> {
         this.uploadedDate = uploadedDate;
     }
 
-    public Integer getUploadedBy() {
+    public String getUploadedBy() {
         return uploadedBy;
     }
 
-    public void setUploadedBy(Integer uploadedBy) {
+    public void setUploadedBy(String uploadedBy) {
         this.uploadedBy = uploadedBy;
     }
 
@@ -124,7 +108,6 @@ public class UploadedDocumentDTO extends AbstractDomainDTO<Long> {
                ", extension='" + extension + "'" +
                ", path='" + path + "'" +
                ", externalPath='" + externalPath + "'" +
-               ", content='" + content + "'" +
                ", uploadedDate='" + uploadedDate + "'" +
                ", uploadedBy='" + uploadedBy + "'" +
                '}';

@@ -22,6 +22,8 @@
             <column name="is_visible" valueBoolean="true"/>
             <column name="organizer" value="Танго"/>
             <column name="location" value="где-то в Минске"/>
+            <column name="banner_image_id"/>
+            <column name="details_document_id"/>
         </insert>
         <insert tableName="competition">
             <column name="id" value="2"/>
@@ -30,6 +32,8 @@
             <column name="is_visible" valueBoolean="false"/>
             <column name="organizer" value="test"/>
             <column name="location" value="test"/>
+            <column name="banner_image_id"/>
+            <column name="details_document_id"/>
         </insert>
         <insert tableName="competition">
             <column name="id" value="3"/>
@@ -38,6 +42,8 @@
             <column name="is_visible" valueBoolean="true"/>
             <column name="organizer" value="Прошел"/>
             <column name="location" value="Локейшен"/>
+            <column name="banner_image_id"/>
+            <column name="details_document_id"/>
         </insert>
         <insert tableName="competition">
             <column name="id" value="4"/>
@@ -46,6 +52,8 @@
             <column name="is_visible" valueBoolean="true"/>
             <column name="organizer" value="Гомельчанки"/>
             <column name="location" value="Гомель"/>
+            <column name="banner_image_id"/>
+            <column name="details_document_id"/>
         </insert>
     </changeSet>
 

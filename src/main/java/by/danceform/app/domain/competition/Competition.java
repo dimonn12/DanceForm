@@ -1,6 +1,7 @@
 package by.danceform.app.domain.competition;
 
-import java.time.LocalDate;
+import by.danceform.app.domain.AbstractEntity;
+import by.danceform.app.domain.INamedEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,9 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import by.danceform.app.domain.AbstractEntity;
-import by.danceform.app.domain.INamedEntity;
+import java.time.LocalDate;
 
 /**
  * A Competition.
@@ -46,6 +45,12 @@ public class Competition extends AbstractEntity<Long> implements INamedEntity {
     @Size(min = 1, max = 512)
     @Column(name = "location", length = 512, nullable = false)
     private String location;
+
+    @Column(name = "banner_image_id")
+    private Long bannerImageId;
+
+    @Column(name = "details_document_id")
+    private Long detailsDocumentId;
 
     @Override
     public Long getId() {
@@ -97,9 +102,42 @@ public class Competition extends AbstractEntity<Long> implements INamedEntity {
         this.location = location;
     }
 
+    public Long getDetailsDocumentId() {
+        return detailsDocumentId;
+    }
+
+    public void setDetailsDocumentId(Long detailsDocumentId) {
+        this.detailsDocumentId = detailsDocumentId;
+    }
+
+    public Long getBannerImageId() {
+        return bannerImageId;
+    }
+
+    public void setBannerImageId(Long bannerImageId) {
+        this.bannerImageId = bannerImageId;
+    }
+
     @Override
     public String toString() {
-        return "Competition{" + "id=" + id + ", name='" + name + "'" + ", date='" + date + "'" + ", visible='" + visible
-                + "'" + ", organizer='" + organizer + "'" + ", location='" + location + "'" + '}';
+        return "Competition{" +
+               "id=" +
+               id +
+               ", name='" +
+               name +
+               "'" +
+               ", date='" +
+               date +
+               "'" +
+               ", visible='" +
+               visible +
+               "'" +
+               ", organizer='" +
+               organizer +
+               "'" +
+               ", location='" +
+               location +
+               "'" +
+               '}';
     }
 }

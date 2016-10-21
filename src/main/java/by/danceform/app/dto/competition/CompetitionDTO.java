@@ -36,6 +36,10 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
 
     private boolean isDetailsAvailable;
 
+    private Long bannerImageId;
+
+    private Long detailsDocumentId;
+
     public CompetitionDTO() {
     }
 
@@ -113,6 +117,22 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
 
     public void setDetailsAvailable(boolean detailsAvailable) {
         isDetailsAvailable = detailsAvailable;
+    }
+
+    public Long getDetailsDocumentId() {
+        return detailsDocumentId;
+    }
+
+    public void setDetailsDocumentId(Long detailsDocumentId) {
+        this.detailsDocumentId = detailsDocumentId;
+    }
+
+    public Long getBannerImageId() {
+        return bannerImageId;
+    }
+
+    public void setBannerImageId(Long bannerImageId) {
+        this.bannerImageId = bannerImageId;
     }
 
     @Override

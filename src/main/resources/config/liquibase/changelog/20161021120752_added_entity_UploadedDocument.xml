@@ -48,7 +48,7 @@
                 <constraints nullable="true" />
             </column>
             
-            <column name="uploaded_by" type="integer">
+            <column name="uploaded_by" type="varchar(64)">
                 <constraints nullable="true" />
             </column>
             
