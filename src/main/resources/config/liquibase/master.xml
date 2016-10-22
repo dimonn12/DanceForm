@@ -1,38 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
-    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <include file="classpath:config/liquibase/changelog/initial.xml" relativeToChangelogFile="false"/>
 
-    <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20161007135824_added_entity_DanceClass.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20161007140213_added_entity_AgeCategory.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20161007140442_added_entity_Competition.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20161008163535_added_entity_SystemSetting.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20161009081146_added_entity_CompetitionCategory.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20161009193745_added_entity_RegisteredCouple.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20161017081529_added_entity_DanceCategory.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20161017081732_added_entity_Organization.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20161017081822_added_entity_Location.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20161017081920_added_entity_Trainer.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20161021120752_added_entity_UploadedDocument.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161007135824_added_entity_DanceClass.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161007140213_added_entity_AgeCategory.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161007140442_added_entity_Competition.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161008163535_added_entity_SystemSetting.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161009081146_added_entity_CompetitionCategory.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161009193745_added_entity_RegisteredCouple.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161017081529_added_entity_DanceCategory.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161017081732_added_entity_Organization.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161017081822_added_entity_Location.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161017081920_added_entity_Trainer.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161021120752_added_entity_UploadedDocument.xml"
+             relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="classpath:config/liquibase/changelog/20161007135824_added_entity_constraints_DanceClass.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20161009081146_added_entity_constraints_CompetitionCategory.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20161009193745_added_entity_constraints_RegisteredCouple.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161007135824_added_entity_constraints_DanceClass.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161009081146_added_entity_constraints_CompetitionCategory.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161009193745_added_entity_constraints_RegisteredCouple.xml"
+             relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 
     <!-- insert values into tables-->
-    <include file="classpath:config/liquibase/changelog/insert_entities_SystemSetting.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/insert_entities_DanceClass.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/insert_entities_AgeCategory.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/insert_entities_DanceCategory.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/insert_entities_Competition.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/insert_entities_CompetitionCategory.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/insert_entities_RegisteredCouple.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/insert_entities_SystemSetting.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/insert_entities_DanceClass.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/insert_entities_AgeCategory.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/insert_entities_DanceCategory.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/insert_entities_Competition.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/insert_entities_CompetitionCategory.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/insert_entities_RegisteredCouple.xml"
+             relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/insert_entities_Location.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/insert_entities_Organization.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/insert_entities_Organization.xml"
+             relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/insert_entities_Trainer.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
