@@ -1,23 +1,23 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .controller('DanceClassController', DanceClassController);
+	angular
+		.module('danceFormApp')
+		.controller('DanceClassController', DanceClassController);
 
-    DanceClassController.$inject = ['$scope', '$state', 'DanceClass'];
+	DanceClassController.$inject = ['$scope', '$state', 'DanceClass'];
 
-    function DanceClassController ($scope, $state, DanceClass) {
-        var vm = this;
-        
-        vm.danceClasses = [];
+	function DanceClassController($scope, $state, DanceClass) {
+		var vm = this;
 
-        loadAll();
+		vm.danceClasses = [];
 
-        function loadAll() {
-            DanceClass.query(function(result) {
-                vm.danceClasses = result;
-            });
-        }
-    }
+		loadAll();
+
+		function loadAll() {
+			DanceClass.query(function(result) {
+				vm.danceClasses = result;
+			});
+		}
+	}
 })();

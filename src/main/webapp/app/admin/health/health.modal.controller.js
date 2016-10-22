@@ -1,21 +1,21 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular.module('danceFormApp')
-        .controller('HealthModalController', HealthModalController);
+	angular.module('danceFormApp')
+		.controller('HealthModalController', HealthModalController);
 
-    HealthModalController.$inject = ['$uibModalInstance', 'currentHealth', 'baseName', 'subSystemName'];
+	HealthModalController.$inject = ['$uibModalInstance', 'currentHealth', 'baseName', 'subSystemName'];
 
-    function HealthModalController ($uibModalInstance, currentHealth, baseName, subSystemName) {
-        var vm = this;
+	function HealthModalController($uibModalInstance, currentHealth, baseName, subSystemName) {
+		var vm = this;
 
-        vm.cancel = cancel;
-        vm.currentHealth = currentHealth;
-        vm.baseName = baseName;
-        vm.subSystemName = subSystemName;
+		vm.cancel = cancel;
+		vm.currentHealth = currentHealth;
+		vm.baseName = baseName;
+		vm.subSystemName = subSystemName;
 
-        function cancel() {
-            $uibModalInstance.dismiss('cancel');
-        }
-    }
+		function cancel() {
+			$uibModalInstance.dismiss('cancel');
+		}
+	}
 })();

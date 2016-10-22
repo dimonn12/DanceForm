@@ -1,9 +1,9 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .constant('paginationConstants', {
-            'itemsPerPage': 20
-        });
+	angular
+		.module('danceFormApp')
+		.constant('paginationConstants', {
+			'itemsPerPage': 20
+		});
 })();

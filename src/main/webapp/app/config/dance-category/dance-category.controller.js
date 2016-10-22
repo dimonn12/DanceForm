@@ -1,23 +1,23 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .controller('DanceCategoryController', DanceCategoryController);
+	angular
+		.module('danceFormApp')
+		.controller('DanceCategoryController', DanceCategoryController);
 
-    DanceCategoryController.$inject = ['$scope', '$state', 'DanceCategory'];
+	DanceCategoryController.$inject = ['$scope', '$state', 'DanceCategory'];
 
-    function DanceCategoryController ($scope, $state, DanceCategory) {
-        var vm = this;
-        
-        vm.danceCategories = [];
+	function DanceCategoryController($scope, $state, DanceCategory) {
+		var vm = this;
 
-        loadAll();
+		vm.danceCategories = [];
 
-        function loadAll() {
-            DanceCategory.query(function(result) {
-                vm.danceCategories = result;
-            });
-        }
-    }
+		loadAll();
+
+		function loadAll() {
+			DanceCategory.query(function(result) {
+				vm.danceCategories = result;
+			});
+		}
+	}
 })();

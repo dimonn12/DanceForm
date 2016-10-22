@@ -1,30 +1,44 @@
-
 <div>
-    <h2><span data-translate="danceFormApp.danceClass.detail.title">Dance Class</span> {{vm.danceClass.id}}</h2>
+    <h2>
+        <span data-translate="danceFormApp.danceClass.detail.title">Dance Class</span>
+        {{vm.danceClass.id}}
+    </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="danceFormApp.danceClass.name">Name</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.danceClass.name">Name</span>
+        </dt>
         <dd>
             <span>{{vm.danceClass.name}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.danceClass.description">Description</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.danceClass.description">Description</span>
+        </dt>
         <dd>
             <span>{{vm.danceClass.description}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.danceClass.symbol">Symbol</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.danceClass.symbol">Symbol</span>
+        </dt>
         <dd>
             <span>{{vm.danceClass.symbol}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.danceClass.weight">Weight</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.danceClass.weight">Weight</span>
+        </dt>
         <dd>
             <span>{{vm.danceClass.weight}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.danceClass.transferScore">Transfer Score</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.danceClass.transferScore">Transfer Score</span>
+        </dt>
         <dd>
             <span>{{vm.danceClass.transferScore}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.danceClass.nextDanceClass">Dance Class</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.danceClass.nextDanceClass">Dance Class</span>
+        </dt>
         <dd>
             <a ui-sref="dance-class-detail({id:vm.danceClass.nextDanceClass.id})">{{vm.danceClass.nextDanceClass.name}}</a>
         </dd>
@@ -33,7 +47,9 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        &nbsp;
+        <span data-translate="entity.action.back"> Back</span>
     </button>
 
     <button type="button" ui-sref="dance-class-detail.edit({id:vm.danceClass.id})" class="btn btn-primary">

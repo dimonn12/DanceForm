@@ -4,9 +4,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="uploaded-document.new" >
+                <button class="btn btn-primary" ui-sref="uploaded-document.new">
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="danceFormApp.uploadedDocument.home.createLabel">
+                    <span data-translate="danceFormApp.uploadedDocument.home.createLabel">
                         Create new Uploaded Document
                     </span>
                 </button>
@@ -18,26 +18,46 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th><span data-translate="global.field.id">ID</span></th>
-                    <th><span data-translate="danceFormApp.uploadedDocument.name">Name</span></th>
-                    <th><span data-translate="danceFormApp.uploadedDocument.extension">Extension</span></th>
-                    <th><span data-translate="danceFormApp.uploadedDocument.path">Path</span></th>
-                    <th><span data-translate="danceFormApp.uploadedDocument.externalPath">External Path</span></th>
-                    <th><span data-translate="danceFormApp.uploadedDocument.content">Content</span></th>
-                    <th><span data-translate="danceFormApp.uploadedDocument.uploadedDate">Uploaded Date</span></th>
-                    <th><span data-translate="danceFormApp.uploadedDocument.uploadedBy">Uploaded By</span></th>
+                    <th>
+                        <span data-translate="global.field.id">ID</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.uploadedDocument.name">Name</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.uploadedDocument.extension">Extension</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.uploadedDocument.path">Path</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.uploadedDocument.externalPath">External Path</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.uploadedDocument.content">Content</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.uploadedDocument.uploadedDate">Uploaded Date</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.uploadedDocument.uploadedBy">Uploaded By</span>
+                    </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="uploadedDocument in vm.uploadedDocuments track by uploadedDocument.id">
-                    <td><a ui-sref="uploaded-document-detail({id:uploadedDocument.id})">{{uploadedDocument.id}}</a></td>
+                    <td>
+                        <a ui-sref="uploaded-document-detail({id:uploadedDocument.id})">{{uploadedDocument.id}}</a>
+                    </td>
                     <td>{{uploadedDocument.name}}</td>
                     <td>{{uploadedDocument.extension}}</td>
                     <td>{{uploadedDocument.path}}</td>
                     <td>{{uploadedDocument.externalPath}}</td>
                     <td>
-                        <a ng-if="uploadedDocument.content" ng-click="vm.openFile(uploadedDocument.contentContentType, uploadedDocument.content)" data-translate="entity.action.open">open</a>
+                        <a ng-if="uploadedDocument.content" ng-click="vm.openFile(uploadedDocument.contentContentType, uploadedDocument.content)"
+                           data-translate="entity.action.open">open
+                        </a>
                         <span ng-if="uploadedDocument.content">{{uploadedDocument.contentContentType}}, {{vm.byteSize(uploadedDocument.content)}}</span>
                     </td>
                     <td>{{uploadedDocument.uploadedDate | date:'medium'}}</td>

@@ -1,24 +1,25 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .factory('Account', Account);
+	angular
+		.module('danceFormApp')
+		.factory('Account', Account);
 
-    Account.$inject = ['$resource'];
+	Account.$inject = ['$resource'];
 
-    function Account ($resource) {
-        var service = $resource('api/account', {}, {
-            'get': { method: 'GET', params: {}, isArray: false,
-                interceptor: {
-                    response: function(response) {
-                        // expose response
-                        return response;
-                    }
-                }
-            }
-        });
+	function Account($resource) {
+		var service = $resource('api/account', {}, {
+			'get': {
+				method: 'GET', params: {}, isArray: false,
+				interceptor: {
+					response: function(response) {
+						// expose response
+						return response;
+					}
+				}
+			}
+		});
 
-        return service;
-    }
+		return service;
+	}
 })();

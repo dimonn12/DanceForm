@@ -1,15 +1,15 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .factory('PasswordResetInit', PasswordResetInit);
+	angular
+		.module('danceFormApp')
+		.factory('PasswordResetInit', PasswordResetInit);
 
-    PasswordResetInit.$inject = ['$resource'];
+	PasswordResetInit.$inject = ['$resource'];
 
-    function PasswordResetInit($resource) {
-        var service = $resource('api/account/reset_password/init', {}, {});
+	function PasswordResetInit($resource) {
+		var service = $resource('api/account/reset_password/init', {}, {});
 
-        return service;
-    }
+		return service;
+	}
 })();

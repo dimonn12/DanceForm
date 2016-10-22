@@ -1,33 +1,33 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .config(stateConfig);
+	angular
+		.module('danceFormApp')
+		.config(stateConfig);
 
-    stateConfig.$inject = ['$stateProvider'];
+	stateConfig.$inject = ['$stateProvider'];
 
-    function stateConfig($stateProvider) {
-        $stateProvider.state('sessions', {
-            parent: 'account',
-            url: '/sessions',
-            data: {
-                authorities: ['ROLE_USER'],
-                pageTitle: 'global.menu.account.sessions'
-            },
-            views: {
-                'content@': {
-                    templateUrl: 'app/account/sessions/sessions.html',
-                    controller: 'SessionsController',
-                    controllerAs: 'vm'
-                }
-            },
-            resolve: {
-                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('sessions');
-                    return $translate.refresh();
-                }]
-            }
-        });
-    }
+	function stateConfig($stateProvider) {
+		$stateProvider.state('sessions', {
+			parent: 'account',
+			url: '/sessions',
+			data: {
+				authorities: ['ROLE_USER'],
+				pageTitle: 'global.menu.account.sessions'
+			},
+			views: {
+				'content@': {
+					templateUrl: 'app/account/sessions/sessions.html',
+					controller: 'SessionsController',
+					controllerAs: 'vm'
+				}
+			},
+			resolve: {
+				translatePartialLoader: ['$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
+					$translatePartialLoader.addPart('sessions');
+					return $translate.refresh();
+				}]
+			}
+		});
+	}
 })();

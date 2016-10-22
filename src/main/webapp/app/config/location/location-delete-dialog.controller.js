@@ -1,28 +1,28 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .controller('LocationDeleteController',LocationDeleteController);
+	angular
+		.module('danceFormApp')
+		.controller('LocationDeleteController', LocationDeleteController);
 
-    LocationDeleteController.$inject = ['$uibModalInstance', 'entity', 'Location'];
+	LocationDeleteController.$inject = ['$uibModalInstance', 'entity', 'Location'];
 
-    function LocationDeleteController($uibModalInstance, entity, Location) {
-        var vm = this;
+	function LocationDeleteController($uibModalInstance, entity, Location) {
+		var vm = this;
 
-        vm.location = entity;
-        vm.clear = clear;
-        vm.confirmDelete = confirmDelete;
-        
-        function clear () {
-            $uibModalInstance.dismiss('cancel');
-        }
+		vm.location = entity;
+		vm.clear = clear;
+		vm.confirmDelete = confirmDelete;
 
-        function confirmDelete (id) {
-            Location.delete({id: id},
-                function () {
-                    $uibModalInstance.close(true);
-                });
-        }
-    }
+		function clear() {
+			$uibModalInstance.dismiss('cancel');
+		}
+
+		function confirmDelete(id) {
+			Location.delete({id: id},
+				function() {
+					$uibModalInstance.close(true);
+				});
+		}
+	}
 })();

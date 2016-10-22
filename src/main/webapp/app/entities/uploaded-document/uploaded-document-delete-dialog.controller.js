@@ -1,28 +1,28 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .controller('UploadedDocumentDeleteController',UploadedDocumentDeleteController);
+	angular
+		.module('danceFormApp')
+		.controller('UploadedDocumentDeleteController', UploadedDocumentDeleteController);
 
-    UploadedDocumentDeleteController.$inject = ['$uibModalInstance', 'entity', 'UploadedDocument'];
+	UploadedDocumentDeleteController.$inject = ['$uibModalInstance', 'entity', 'UploadedDocument'];
 
-    function UploadedDocumentDeleteController($uibModalInstance, entity, UploadedDocument) {
-        var vm = this;
+	function UploadedDocumentDeleteController($uibModalInstance, entity, UploadedDocument) {
+		var vm = this;
 
-        vm.uploadedDocument = entity;
-        vm.clear = clear;
-        vm.confirmDelete = confirmDelete;
-        
-        function clear () {
-            $uibModalInstance.dismiss('cancel');
-        }
+		vm.uploadedDocument = entity;
+		vm.clear = clear;
+		vm.confirmDelete = confirmDelete;
 
-        function confirmDelete (id) {
-            UploadedDocument.delete({id: id},
-                function () {
-                    $uibModalInstance.close(true);
-                });
-        }
-    }
+		function clear() {
+			$uibModalInstance.dismiss('cancel');
+		}
+
+		function confirmDelete(id) {
+			UploadedDocument.delete({id: id},
+				function() {
+					$uibModalInstance.close(true);
+				});
+		}
+	}
 })();

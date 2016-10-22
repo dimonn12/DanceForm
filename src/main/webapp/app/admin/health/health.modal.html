@@ -1,8 +1,9 @@
 <div class="modal-header">
-    <button aria-label="Close" data-dismiss="modal" class="close" type="button" ng-click="vm.cancel()"><span aria-hidden="true">&times;</span>
+    <button aria-label="Close" data-dismiss="modal" class="close" type="button" ng-click="vm.cancel()">
+        <span aria-hidden="true">&times;</span>
     </button>
     <h4 class="modal-title" id="showHealthLabel">
-		{{'health.indicator.' + vm.baseName(vm.currentHealth.name) | translate}}
+        {{'health.indicator.' + vm.baseName(vm.currentHealth.name) | translate}}
         {{vm.subSystemName(vm.currentHealth.name)}}
     </h4>
 </div>
@@ -26,7 +27,7 @@
     </div>
     <div ng-show="vm.currentHealth.error">
         <h4 data-translate="health.details.error">Error</h4>
-            <pre>{{vm.currentHealth.error}}</pre>
+        <pre>{{vm.currentHealth.error}}</pre>
     </div>
 </div>
 <div class="modal-footer">

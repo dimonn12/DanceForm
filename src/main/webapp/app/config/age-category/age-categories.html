@@ -4,9 +4,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="age-category.new" >
+                <button class="btn btn-primary" ui-sref="age-category.new">
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="danceFormApp.ageCategory.home.createLabel">
+                    <span data-translate="danceFormApp.ageCategory.home.createLabel">
                         Create new Age Category
                     </span>
                 </button>
@@ -18,16 +18,26 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th><span data-translate="global.field.id">ID</span></th>
-                    <th><span data-translate="danceFormApp.ageCategory.name">Name</span></th>
-                    <th><span data-translate="danceFormApp.ageCategory.minAge">Min Age</span></th>
-                    <th><span data-translate="danceFormApp.ageCategory.maxAge">Max Age</span></th>
+                    <th>
+                        <span data-translate="global.field.id">ID</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.ageCategory.name">Name</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.ageCategory.minAge">Min Age</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.ageCategory.maxAge">Max Age</span>
+                    </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="ageCategory in vm.ageCategories track by ageCategory.id">
-                    <td><a ui-sref="age-category-detail({id:ageCategory.id})">{{ageCategory.id}}</a></td>
+                    <td>
+                        <a ui-sref="age-category-detail({id:ageCategory.id})">{{ageCategory.id}}</a>
+                    </td>
                     <td>{{ageCategory.name}}</td>
                     <td>{{ageCategory.minAge}}</td>
                     <td>{{ageCategory.maxAge}}</td>

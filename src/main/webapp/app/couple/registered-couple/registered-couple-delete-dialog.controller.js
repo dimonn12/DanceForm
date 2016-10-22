@@ -1,28 +1,28 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .controller('RegisteredCoupleDeleteController',RegisteredCoupleDeleteController);
+	angular
+		.module('danceFormApp')
+		.controller('RegisteredCoupleDeleteController', RegisteredCoupleDeleteController);
 
-    RegisteredCoupleDeleteController.$inject = ['$uibModalInstance', 'entity', 'RegisteredCouple'];
+	RegisteredCoupleDeleteController.$inject = ['$uibModalInstance', 'entity', 'RegisteredCouple'];
 
-    function RegisteredCoupleDeleteController($uibModalInstance, entity, RegisteredCouple) {
-        var vm = this;
+	function RegisteredCoupleDeleteController($uibModalInstance, entity, RegisteredCouple) {
+		var vm = this;
 
-        vm.registeredCouple = entity;
-        vm.clear = clear;
-        vm.confirmDelete = confirmDelete;
-        
-        function clear () {
-            $uibModalInstance.dismiss('cancel');
-        }
+		vm.registeredCouple = entity;
+		vm.clear = clear;
+		vm.confirmDelete = confirmDelete;
 
-        function confirmDelete (id) {
-            RegisteredCouple.delete({id: id},
-                function () {
-                    $uibModalInstance.close(true);
-                });
-        }
-    }
+		function clear() {
+			$uibModalInstance.dismiss('cancel');
+		}
+
+		function confirmDelete(id) {
+			RegisteredCouple.delete({id: id},
+				function() {
+					$uibModalInstance.close(true);
+				});
+		}
+	}
 })();

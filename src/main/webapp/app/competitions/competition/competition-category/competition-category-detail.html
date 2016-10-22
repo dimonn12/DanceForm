@@ -1,39 +1,57 @@
-
 <div>
-    <h2><span data-translate="danceFormApp.competitionCategory.detail.title">Competition Category</span> {{vm.competitionCategory.id}}</h2>
+    <h2>
+        <span data-translate="danceFormApp.competitionCategory.detail.title">Competition Category</span>
+        {{vm.competitionCategory.id}}
+    </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="danceFormApp.competitionCategory.name">Name</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.competitionCategory.name">Name</span>
+        </dt>
         <dd>
             <span>{{vm.competitionCategory.name}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.competitionCategory.description">Description</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.competitionCategory.description">Description</span>
+        </dt>
         <dd>
             <span>{{vm.competitionCategory.description}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.competitionCategory.active">Active</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.competitionCategory.active">Active</span>
+        </dt>
         <dd>
             <span>{{vm.competitionCategory.active}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.competitionCategory.checkMinAge">Check Min Age</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.competitionCategory.checkMinAge">Check Min Age</span>
+        </dt>
         <dd>
             <span>{{vm.competitionCategory.checkMinAge}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.competitionCategory.checkMaxAge">Check Max Age</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.competitionCategory.checkMaxAge">Check Max Age</span>
+        </dt>
         <dd>
             <span>{{vm.competitionCategory.checkMaxAge}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.competitionCategory.danceClass">Dance Class</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.competitionCategory.danceClass">Dance Class</span>
+        </dt>
         <dd>
             <span ng-repeat="danceClass in vm.competitionCategory.danceClasses">
-                <a ui-sref="dance-clas-detail({id: danceClass.id})">{{danceClass.id}}</a>{{$last ? '' : ', '}}
+                <a ui-sref="dance-clas-detail({id: danceClass.id})">{{danceClass.id}}</a>
+                {{$last ? '' : ', '}}
             </span>
         </dd>
-        <dt><span data-translate="danceFormApp.competitionCategory.ageCategory">Age Category</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.competitionCategory.ageCategory">Age Category</span>
+        </dt>
         <dd>
             <span ng-repeat="ageCategory in vm.competitionCategory.ageCategories">
-                <a ui-sref="age-category-detail({id: ageCategory.id})">{{ageCategory.id}}</a>{{$last ? '' : ', '}}
+                <a ui-sref="age-category-detail({id: ageCategory.id})">{{ageCategory.id}}</a>
+                {{$last ? '' : ', '}}
             </span>
         </dd>
     </dl>
@@ -41,7 +59,9 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        &nbsp;
+        <span data-translate="entity.action.back"> Back</span>
     </button>
 
     <button type="button" ui-sref="competition-category-detail.edit({id:vm.competitionCategory.id})" class="btn btn-primary">

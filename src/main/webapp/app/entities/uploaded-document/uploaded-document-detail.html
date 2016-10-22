@@ -1,37 +1,53 @@
-
 <div>
-    <h2><span data-translate="danceFormApp.uploadedDocument.detail.title">Uploaded Document</span> {{vm.uploadedDocument.id}}</h2>
+    <h2>
+        <span data-translate="danceFormApp.uploadedDocument.detail.title">Uploaded Document</span>
+        {{vm.uploadedDocument.id}}
+    </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="danceFormApp.uploadedDocument.name">Name</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.uploadedDocument.name">Name</span>
+        </dt>
         <dd>
             <span>{{vm.uploadedDocument.name}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.uploadedDocument.extension">Extension</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.uploadedDocument.extension">Extension</span>
+        </dt>
         <dd>
             <span>{{vm.uploadedDocument.extension}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.uploadedDocument.path">Path</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.uploadedDocument.path">Path</span>
+        </dt>
         <dd>
             <span>{{vm.uploadedDocument.path}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.uploadedDocument.externalPath">External Path</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.uploadedDocument.externalPath">External Path</span>
+        </dt>
         <dd>
             <span>{{vm.uploadedDocument.externalPath}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.uploadedDocument.content">Content</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.uploadedDocument.content">Content</span>
+        </dt>
         <dd>
             <div ng-if="vm.uploadedDocument.content">
                 <a ng-click="vm.openFile(vm.uploadedDocument.contentContentType, vm.uploadedDocument.content)" data-translate="entity.action.open">open</a>
                 {{vm.uploadedDocument.contentContentType}}, {{vm.byteSize(vm.uploadedDocument.content)}}
             </div>
         </dd>
-        <dt><span data-translate="danceFormApp.uploadedDocument.uploadedDate">Uploaded Date</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.uploadedDocument.uploadedDate">Uploaded Date</span>
+        </dt>
         <dd>
             <span>{{vm.uploadedDocument.uploadedDate | date:'medium'}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.uploadedDocument.uploadedBy">Uploaded By</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.uploadedDocument.uploadedBy">Uploaded By</span>
+        </dt>
         <dd>
             <span>{{vm.uploadedDocument.uploadedBy}}</span>
         </dd>
@@ -40,7 +56,9 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        &nbsp;
+        <span data-translate="entity.action.back"> Back</span>
     </button>
 
     <button type="button" ui-sref="uploaded-document-detail.edit({id:vm.uploadedDocument.id})" class="btn btn-primary">

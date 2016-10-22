@@ -1,32 +1,32 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .config(stateConfig);
+	angular
+		.module('danceFormApp')
+		.config(stateConfig);
 
-    stateConfig.$inject = ['$stateProvider'];
+	stateConfig.$inject = ['$stateProvider'];
 
-    function stateConfig($stateProvider) {
-        $stateProvider.state('home', {
-            parent: 'app',
-            url: '/',
-            data: {
-                authorities: []
-            },
-            views: {
-                'content@': {
-                    templateUrl: 'app/home/home.html',
-                    controller: 'HomeController',
-                    controllerAs: 'vm'
-                }
-            },
-            resolve: {
-                mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
-                    $translatePartialLoader.addPart('home');
-                    return $translate.refresh();
-                }]
-            }
-        });
-    }
+	function stateConfig($stateProvider) {
+		$stateProvider.state('home', {
+			parent: 'app',
+			url: '/',
+			data: {
+				authorities: []
+			},
+			views: {
+				'content@': {
+					templateUrl: 'app/home/home.html',
+					controller: 'HomeController',
+					controllerAs: 'vm'
+				}
+			},
+			resolve: {
+				mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
+					$translatePartialLoader.addPart('home');
+					return $translate.refresh();
+				}]
+			}
+		});
+	}
 })();

@@ -1,14 +1,14 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .config(localStorageConfig);
+	angular
+		.module('danceFormApp')
+		.config(localStorageConfig);
 
-    localStorageConfig.$inject = ['$localStorageProvider', '$sessionStorageProvider'];
+	localStorageConfig.$inject = ['$localStorageProvider', '$sessionStorageProvider'];
 
-    function localStorageConfig($localStorageProvider, $sessionStorageProvider) {
-        $localStorageProvider.setKeyPrefix('jhi-');
-        $sessionStorageProvider.setKeyPrefix('jhi-');
-    }
+	function localStorageConfig($localStorageProvider, $sessionStorageProvider) {
+		$localStorageProvider.setKeyPrefix('jhi-');
+		$sessionStorageProvider.setKeyPrefix('jhi-');
+	}
 })();

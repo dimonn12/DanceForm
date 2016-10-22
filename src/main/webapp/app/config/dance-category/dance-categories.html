@@ -4,9 +4,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="dance-category.new" >
+                <button class="btn btn-primary" ui-sref="dance-category.new">
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="danceFormApp.danceCategory.home.createLabel">
+                    <span data-translate="danceFormApp.danceCategory.home.createLabel">
                         Create new Dance Category
                     </span>
                 </button>
@@ -18,14 +18,20 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th><span data-translate="global.field.id">ID</span></th>
-                    <th><span data-translate="danceFormApp.danceCategory.name">Name</span></th>
+                    <th>
+                        <span data-translate="global.field.id">ID</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.danceCategory.name">Name</span>
+                    </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="danceCategory in vm.danceCategories track by danceCategory.id">
-                    <td><a ui-sref="dance-category-detail({id:danceCategory.id})">{{danceCategory.id}}</a></td>
+                    <td>
+                        <a ui-sref="dance-category-detail({id:danceCategory.id})">{{danceCategory.id}}</a>
+                    </td>
                     <td>{{danceCategory.name}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

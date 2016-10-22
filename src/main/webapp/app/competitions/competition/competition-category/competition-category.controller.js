@@ -1,25 +1,25 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .controller('CompetitionCategoryController', CompetitionCategoryController);
+	angular
+		.module('danceFormApp')
+		.controller('CompetitionCategoryController', CompetitionCategoryController);
 
-    CompetitionCategoryController.$inject = ['$scope', '$state', '$stateParams', 'previousState', 'CompetitionCategory'];
+	CompetitionCategoryController.$inject = ['$scope', '$state', '$stateParams', 'previousState', 'CompetitionCategory'];
 
-    function CompetitionCategoryController ($scope, $state, $stateParams, previousState, CompetitionCategory) {
-        var vm = this;
+	function CompetitionCategoryController($scope, $state, $stateParams, previousState, CompetitionCategory) {
+		var vm = this;
 
-        vm.previousState = previousState;
+		vm.previousState = previousState;
 
-        vm.competitionCategories = [];
+		vm.competitionCategories = [];
 
-        loadAll();
+		loadAll();
 
-        function loadAll() {
-            CompetitionCategory.query({competitionId : $stateParams.competitionId}, function(result) {
-                vm.competitionCategories = result;
-            });
-        }
-    }
+		function loadAll() {
+			CompetitionCategory.query({competitionId: $stateParams.competitionId}, function(result) {
+				vm.competitionCategories = result;
+			});
+		}
+	}
 })();

@@ -1,13 +1,13 @@
-(function () {
-    'use strict';
+(function() {
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .factory('Register', Register);
+	angular
+		.module('danceFormApp')
+		.factory('Register', Register);
 
-    Register.$inject = ['$resource'];
+	Register.$inject = ['$resource'];
 
-    function Register ($resource) {
-        return $resource('api/register', {}, {});
-    }
+	function Register($resource) {
+		return $resource('api/register', {}, {});
+	}
 })();

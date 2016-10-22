@@ -1,50 +1,50 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .controller('CompetitionCategoryDialogController', CompetitionCategoryDialogController);
+	angular
+		.module('danceFormApp')
+		.controller('CompetitionCategoryDialogController', CompetitionCategoryDialogController);
 
-    CompetitionCategoryDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'CompetitionCategory', 'Competition', 'DanceClass', 'AgeCategory', 'DanceCategory'];
+	CompetitionCategoryDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'CompetitionCategory', 'Competition', 'DanceClass', 'AgeCategory', 'DanceCategory'];
 
-    function CompetitionCategoryDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, CompetitionCategory, Competition, DanceClass, AgeCategory, DanceCategory) {
-        var vm = this;
+	function CompetitionCategoryDialogController($timeout, $scope, $stateParams, $uibModalInstance, entity, CompetitionCategory, Competition, DanceClass, AgeCategory, DanceCategory) {
+		var vm = this;
 
-        vm.competitionCategory = entity;
-        vm.clear = clear;
-        vm.save = save;
-        vm.competitions = Competition.query();
-        vm.danceclass = DanceClass.query();
-        vm.agecategories = AgeCategory.query();
-        vm.dancecategories = DanceCategory.query();
+		vm.competitionCategory = entity;
+		vm.clear = clear;
+		vm.save = save;
+		vm.competitions = Competition.query();
+		vm.danceclass = DanceClass.query();
+		vm.agecategories = AgeCategory.query();
+		vm.dancecategories = DanceCategory.query();
 
-        $timeout(function (){
-            angular.element('.form-group:eq(1)>input').focus();
-        });
+		$timeout(function() {
+			angular.element('.form-group:eq(1)>input').focus();
+		});
 
-        function clear () {
-            $uibModalInstance.dismiss('cancel');
-        }
+		function clear() {
+			$uibModalInstance.dismiss('cancel');
+		}
 
-        function save () {
-            vm.isSaving = true;
-            if (vm.competitionCategory.id !== null) {
-                CompetitionCategory.update({competitionId : $stateParams.competitionId}, vm.competitionCategory, onSaveSuccess, onSaveError);
-            } else {
-                CompetitionCategory.save({competitionId : $stateParams.competitionId}, vm.competitionCategory, onSaveSuccess, onSaveError);
-            }
-        }
+		function save() {
+			vm.isSaving = true;
+			if(vm.competitionCategory.id !== null) {
+				CompetitionCategory.update({competitionId: $stateParams.competitionId}, vm.competitionCategory, onSaveSuccess, onSaveError);
+			} else {
+				CompetitionCategory.save({competitionId: $stateParams.competitionId}, vm.competitionCategory, onSaveSuccess, onSaveError);
+			}
+		}
 
-        function onSaveSuccess (result) {
-            $scope.$emit('danceFormApp:competitionCategoryUpdate', result);
-            $uibModalInstance.close(result);
-            vm.isSaving = false;
-        }
+		function onSaveSuccess(result) {
+			$scope.$emit('danceFormApp:competitionCategoryUpdate', result);
+			$uibModalInstance.close(result);
+			vm.isSaving = false;
+		}
 
-        function onSaveError () {
-            vm.isSaving = false;
-        }
+		function onSaveError() {
+			vm.isSaving = false;
+		}
 
 
-    }
+	}
 })();

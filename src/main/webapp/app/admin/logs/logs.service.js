@@ -1,18 +1,18 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .factory('LogsService', LogsService);
+	angular
+		.module('danceFormApp')
+		.factory('LogsService', LogsService);
 
-    LogsService.$inject = ['$resource'];
+	LogsService.$inject = ['$resource'];
 
-    function LogsService ($resource) {
-        var service = $resource('management/jhipster/logs', {}, {
-            'findAll': { method: 'GET', isArray: true},
-            'changeLevel': { method: 'PUT'}
-        });
+	function LogsService($resource) {
+		var service = $resource('management/jhipster/logs', {}, {
+			'findAll': {method: 'GET', isArray: true},
+			'changeLevel': {method: 'PUT'}
+		});
 
-        return service;
-    }
+		return service;
+	}
 })();

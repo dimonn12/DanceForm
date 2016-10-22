@@ -1,4 +1,3 @@
-
 <form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
 
     <div class="modal-header">
@@ -11,24 +10,24 @@
         <div class="form-group" ng-show="vm.uploadedDocument.id">
             <label for="id" data-translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.uploadedDocument.id" readonly />
+                   ng-model="vm.uploadedDocument.id" readonly/>
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="danceFormApp.uploadedDocument.name" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
-                    ng-model="vm.uploadedDocument.name"
-                    required ng-minlength="1" ng-maxlength="128" />
+                   ng-model="vm.uploadedDocument.name"
+                   required ng-minlength="1" ng-maxlength="128"/>
             <div ng-show="editForm.name.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.name.$error.required" data-translate="entity.validation.required">
+                   ng-show="editForm.name.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.name.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
+                   ng-show="editForm.name.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
                     This field is required to be at least 1 characters.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.name.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
+                   ng-show="editForm.name.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
                     This field cannot be longer than 128 characters.
                 </p>
             </div>
@@ -36,19 +35,19 @@
         <div class="form-group">
             <label class="control-label" data-translate="danceFormApp.uploadedDocument.extension" for="field_extension">Extension</label>
             <input type="text" class="form-control" name="extension" id="field_extension"
-                    ng-model="vm.uploadedDocument.extension"
-                    required ng-minlength="1" ng-maxlength="8" />
+                   ng-model="vm.uploadedDocument.extension"
+                   required ng-minlength="1" ng-maxlength="8"/>
             <div ng-show="editForm.extension.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.extension.$error.required" data-translate="entity.validation.required">
+                   ng-show="editForm.extension.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.extension.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
+                   ng-show="editForm.extension.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
                     This field is required to be at least 1 characters.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.extension.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="8">
+                   ng-show="editForm.extension.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="8">
                     This field cannot be longer than 8 characters.
                 </p>
             </div>
@@ -56,19 +55,19 @@
         <div class="form-group">
             <label class="control-label" data-translate="danceFormApp.uploadedDocument.path" for="field_path">Path</label>
             <input type="text" class="form-control" name="path" id="field_path"
-                    ng-model="vm.uploadedDocument.path"
-                    required ng-minlength="1" ng-maxlength="512" />
+                   ng-model="vm.uploadedDocument.path"
+                   required ng-minlength="1" ng-maxlength="512"/>
             <div ng-show="editForm.path.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.path.$error.required" data-translate="entity.validation.required">
+                   ng-show="editForm.path.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.path.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
+                   ng-show="editForm.path.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
                     This field is required to be at least 1 characters.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.path.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="512">
+                   ng-show="editForm.path.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="512">
                     This field cannot be longer than 512 characters.
                 </p>
             </div>
@@ -76,14 +75,15 @@
         <div class="form-group">
             <label class="control-label" data-translate="danceFormApp.uploadedDocument.externalPath" for="field_externalPath">External Path</label>
             <input type="text" class="form-control" name="externalPath" id="field_externalPath"
-                    ng-model="vm.uploadedDocument.externalPath"
-                     />
+                   ng-model="vm.uploadedDocument.externalPath"
+            />
         </div>
         <div class="form-group" ngf-drop ngf-change="vm.setContent($file, vm.uploadedDocument)">
             <label class="control-label" data-translate="danceFormApp.uploadedDocument.content" for="field_content">Content</label>
             <div>
                 <div ng-if="vm.uploadedDocument.content" class="help-block clearfix">
-                    <a class="pull-left" ng-click="vm.openFile(vm.uploadedDocument.contentContentType, vm.uploadedDocument.content)" data-translate="entity.action.open">open</a><br>
+                    <a class="pull-left" ng-click="vm.openFile(vm.uploadedDocument.contentContentType, vm.uploadedDocument.content)" data-translate="entity.action.open">open</a>
+                    <br>
                     <span class="pull-left">{{vm.uploadedDocument.contentContentType}}, {{vm.byteSize(vm.uploadedDocument.content)}}</span>
                     <button ng-click="vm.uploadedDocument.content=null;vm.uploadedDocument.contentContentType=null;"
                             class="btn btn-default btn-xs pull-right">
@@ -96,19 +96,23 @@
                 </button>
             </div>
             <input type="hidden" class="form-control" name="content" id="field_content"
-                    ng-model="vm.uploadedDocument.content"
-                     />
+                   ng-model="vm.uploadedDocument.content"
+            />
             <input type="hidden" class="form-control" name="contentContentType" id="field_contentContentType"
-                    ng-model="vm.uploadedDocument.contentContentType" />
+                   ng-model="vm.uploadedDocument.contentContentType"/>
         </div>
 
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>
+            &nbsp;
+            <span data-translate="entity.action.cancel">Cancel</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+            <span class="glyphicon glyphicon-save"></span>
+            &nbsp;
+            <span data-translate="entity.action.save">Save</span>
         </button>
     </div>
 </form>

@@ -1,30 +1,30 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .factory('JhiMetricsService', JhiMetricsService);
+	angular
+		.module('danceFormApp')
+		.factory('JhiMetricsService', JhiMetricsService);
 
-    JhiMetricsService.$inject = ['$rootScope', '$http'];
+	JhiMetricsService.$inject = ['$rootScope', '$http'];
 
-    function JhiMetricsService ($rootScope, $http) {
-        var service = {
-            getMetrics: getMetrics,
-            threadDump: threadDump
-        };
+	function JhiMetricsService($rootScope, $http) {
+		var service = {
+			getMetrics: getMetrics,
+			threadDump: threadDump
+		};
 
-        return service;
+		return service;
 
-        function getMetrics () {
-            return $http.get('management/jhipster/metrics').then(function (response) {
-                return response.data;
-            });
-        }
+		function getMetrics() {
+			return $http.get('management/jhipster/metrics').then(function(response) {
+				return response.data;
+			});
+		}
 
-        function threadDump () {
-            return $http.get('management/dump').then(function (response) {
-                return response.data;
-            });
-        }
-    }
+		function threadDump() {
+			return $http.get('management/dump').then(function(response) {
+				return response.data;
+			});
+		}
+	}
 })();

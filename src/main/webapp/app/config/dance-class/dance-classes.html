@@ -4,9 +4,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="dance-class.new" >
+                <button class="btn btn-primary" ui-sref="dance-class.new">
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="danceFormApp.danceClass.home.createLabel">
+                    <span data-translate="danceFormApp.danceClass.home.createLabel">
                         Create new Dance Class
                     </span>
                 </button>
@@ -18,19 +18,35 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th><span data-translate="global.field.id">ID</span></th>
-                    <th><span data-translate="danceFormApp.danceClass.name">Name</span></th>
-                    <th><span data-translate="danceFormApp.danceClass.description">Description</span></th>
-                    <th><span data-translate="danceFormApp.danceClass.symbol">Symbol</span></th>
-                    <th><span data-translate="danceFormApp.danceClass.weight">Weight</span></th>
-                    <th><span data-translate="danceFormApp.danceClass.transferScore">Transfer Score</span></th>
-                    <th><span data-translate="danceFormApp.danceClass.nextDanceClass">Dance Class</span></th>
+                    <th>
+                        <span data-translate="global.field.id">ID</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.danceClass.name">Name</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.danceClass.description">Description</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.danceClass.symbol">Symbol</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.danceClass.weight">Weight</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.danceClass.transferScore">Transfer Score</span>
+                    </th>
+                    <th>
+                        <span data-translate="danceFormApp.danceClass.nextDanceClass">Dance Class</span>
+                    </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="danceClass in vm.danceClasses track by danceClass.id">
-                    <td><a ui-sref="dance-class-detail({id:danceClass.id})">{{danceClass.id}}</a></td>
+                    <td>
+                        <a ui-sref="dance-class-detail({id:danceClass.id})">{{danceClass.id}}</a>
+                    </td>
                     <td>{{danceClass.name}}</td>
                     <td>{{danceClass.description}}</td>
                     <td>{{danceClass.symbol}}</td>

@@ -1,15 +1,15 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .factory('Sessions', Sessions);
+	angular
+		.module('danceFormApp')
+		.factory('Sessions', Sessions);
 
-    Sessions.$inject = ['$resource'];
+	Sessions.$inject = ['$resource'];
 
-    function Sessions ($resource) {
-        return $resource('api/account/sessions/:series', {}, {
-            'getAll': { method: 'GET', isArray: true}
-        });
-    }
+	function Sessions($resource) {
+		return $resource('api/account/sessions/:series', {}, {
+			'getAll': {method: 'GET', isArray: true}
+		});
+	}
 })();

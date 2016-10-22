@@ -1,120 +1,120 @@
-(function () {
-    'use strict';
+(function() {
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .controller('CategoryRegisterController', CategoryRegisterController);
+	angular
+		.module('danceFormApp')
+		.controller('CategoryRegisterController', CategoryRegisterController);
 
-    CategoryRegisterController.$inject = ['$scope', '$rootScope', '$stateParams', '$state', 'previousState', 'entity', 'Competition', 'CompetitionCategory', 'DanceClass', 'RegisteredCouple', 'AlertService', 'Location', 'Organization', 'Trainer'];
+	CategoryRegisterController.$inject = ['$scope', '$rootScope', '$stateParams', '$state', 'previousState', 'entity', 'Competition', 'CompetitionCategory', 'DanceClass', 'RegisteredCouple', 'AlertService', 'Location', 'Organization', 'Trainer'];
 
-    function CategoryRegisterController($scope, $rootScope, $stateParams, $state, previousState, entity, Competition, CompetitionCategory, DanceClass, RegisteredCouple, AlertService, Location, Organization, Trainer) {
-        var vm = this;
+	function CategoryRegisterController($scope, $rootScope, $stateParams, $state, previousState, entity, Competition, CompetitionCategory, DanceClass, RegisteredCouple, AlertService, Location, Organization, Trainer) {
+		var vm = this;
 
-        vm.currentCompetition = entity;
-        vm.previousState = previousState.name;
+		vm.currentCompetition = entity;
+		vm.previousState = previousState.name;
 
-        vm.availableCategories = [];
-        
-        vm.danceClasses = DanceClass.query();
-        vm.locations = Location.query();
-        vm.organizations = Organization.query();
-        vm.trainers = Trainer.query();
+		vm.availableCategories = [];
 
-        vm.registerCouple = {};
+		vm.danceClasses = DanceClass.query();
+		vm.locations = Location.query();
+		vm.organizations = Organization.query();
+		vm.trainers = Trainer.query();
 
-        vm.save = save;
-        vm.update = update;
+		vm.registerCouple = {};
 
-        vm.datePickerOpenStatus = {};
-        vm.openCalendar = openCalendar;
+		vm.save = save;
+		vm.update = update;
 
-        vm.isCategorySelected = false;
-        vm.updateSelectedCategory = updateSelectedCategory;
+		vm.datePickerOpenStatus = {};
+		vm.openCalendar = openCalendar;
 
-        vm.dateOptions1 = {
-            maxDate: new Date(),
-            minDate: new Date(1930, 1, 1),
-            datepickerMode: 'year',
-            showWeeks: false
-        };
+		vm.isCategorySelected = false;
+		vm.updateSelectedCategory = updateSelectedCategory;
 
-        vm.dateOptions2 = {
-            maxDate: new Date(),
-            minDate: new Date(1930, 1, 1),
-            datepickerMode: 'year',
-            showWeeks: false
-        };
+		vm.dateOptions1 = {
+			maxDate: new Date(),
+			minDate: new Date(1930, 1, 1),
+			datepickerMode: 'year',
+			showWeeks: false
+		};
 
-        function update() {
-            if (null != vm.registerCouple.partner1DateOfBirth && null != vm.registerCouple.partner2DateOfBirth &&
-                null != vm.registerCouple.partner1DanceClassST.id && null != vm.registerCouple.partner1DanceClassLA.id &&
-                null != vm.registerCouple.partner2DanceClassST.id && null != vm.registerCouple.partner2DanceClassLA.id) {
-                CompetitionCategory.available({competitionId: vm.currentCompetition.id}, vm.registerCouple, onSuccess, onError);
-            } else {
-                vm.availableCategories = [];
-            }
-            function onSuccess(data, headers) {
-                vm.availableCategories = data;
-            }
+		vm.dateOptions2 = {
+			maxDate: new Date(),
+			minDate: new Date(1930, 1, 1),
+			datepickerMode: 'year',
+			showWeeks: false
+		};
 
-            function onError(error) {
-                AlertService.error(error.data.message);
-            }
-        }
+		function update() {
+			if(null != vm.registerCouple.partner1DateOfBirth && null != vm.registerCouple.partner2DateOfBirth &&
+			   null != vm.registerCouple.partner1DanceClassST.id && null != vm.registerCouple.partner1DanceClassLA.id &&
+			   null != vm.registerCouple.partner2DanceClassST.id && null != vm.registerCouple.partner2DanceClassLA.id) {
+				CompetitionCategory.available({competitionId: vm.currentCompetition.id}, vm.registerCouple, onSuccess, onError);
+			} else {
+				vm.availableCategories = [];
+			}
+			function onSuccess(data, headers) {
+				vm.availableCategories = data;
+			}
 
-        function updateSelectedCategory() {
-            vm.isCategorySelected = false;
-            for (var i = 0; i < vm.availableCategories.length; i++) {
-                var availableCategory = vm.availableCategories[i];
-                if (availableCategory.selected) {
-                    vm.isCategorySelected = true;
-                    break;
-                }
-            }
-        }
+			function onError(error) {
+				AlertService.error(error.data.message);
+			}
+		}
 
-        function save() {
-            vm.registerCouple.competitionCategoryIds = [];
-            for (var i = 0; i < vm.availableCategories.length; i++) {
-                var availableCategory = vm.availableCategories[i];
-                if (availableCategory.selected) {
-                    vm.registerCouple.competitionCategoryIds.push(availableCategory.id);
-                }
-            }
-            RegisteredCouple.save(vm.registerCouple, onSaveSuccess, onSaveError);
-            function onSaveSuccess(result) {
-                $scope.$emit('danceFormApp:competitionUpdate', result);
-                vm.isSaving = false;
-                $state.go('competition-timeline-show', {id: vm.currentCompetition.id});
-            }
+		function updateSelectedCategory() {
+			vm.isCategorySelected = false;
+			for(var i = 0; i < vm.availableCategories.length; i++) {
+				var availableCategory = vm.availableCategories[i];
+				if(availableCategory.selected) {
+					vm.isCategorySelected = true;
+					break;
+				}
+			}
+		}
 
-            function onSaveError() {
-                vm.isSaving = false;
-                AlertService.error(error.data.message);
-            }
+		function save() {
+			vm.registerCouple.competitionCategoryIds = [];
+			for(var i = 0; i < vm.availableCategories.length; i++) {
+				var availableCategory = vm.availableCategories[i];
+				if(availableCategory.selected) {
+					vm.registerCouple.competitionCategoryIds.push(availableCategory.id);
+				}
+			}
+			RegisteredCouple.save(vm.registerCouple, onSaveSuccess, onSaveError);
+			function onSaveSuccess(result) {
+				$scope.$emit('danceFormApp:competitionUpdate', result);
+				vm.isSaving = false;
+				$state.go('competition-timeline-show', {id: vm.currentCompetition.id});
+			}
 
-        }
+			function onSaveError() {
+				vm.isSaving = false;
+				AlertService.error(error.data.message);
+			}
 
-        function isCategorySelected() {
-            for (var i = 0; i < vm.availableCategories.length; i++) {
-                var availableCategory = vm.availableCategories[i];
-                if (availableCategory.selected) {
-                    return true;
-                }
-            }
-            return false;
-        }
+		}
 
-        vm.datePickerOpenStatus.date = false;
+		function isCategorySelected() {
+			for(var i = 0; i < vm.availableCategories.length; i++) {
+				var availableCategory = vm.availableCategories[i];
+				if(availableCategory.selected) {
+					return true;
+				}
+			}
+			return false;
+		}
 
-        function openCalendar(date) {
-            vm.datePickerOpenStatus[date] = true;
-            if (vm.registerCouple.partner1DateOfBirth == null) {
-                vm.dateOptions1.datepickerMode = 'year';
-            }
-            if (vm.registerCouple.partner2DateOfBirth == null) {
-                vm.dateOptions2.datepickerMode = 'year';
-            }
-        }
-    }
+		vm.datePickerOpenStatus.date = false;
+
+		function openCalendar(date) {
+			vm.datePickerOpenStatus[date] = true;
+			if(vm.registerCouple.partner1DateOfBirth == null) {
+				vm.dateOptions1.datepickerMode = 'year';
+			}
+			if(vm.registerCouple.partner2DateOfBirth == null) {
+				vm.dateOptions2.datepickerMode = 'year';
+			}
+		}
+	}
 })();

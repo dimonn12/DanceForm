@@ -1,46 +1,46 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .controller('OrganizationDialogController', OrganizationDialogController);
+	angular
+		.module('danceFormApp')
+		.controller('OrganizationDialogController', OrganizationDialogController);
 
-    OrganizationDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Organization'];
+	OrganizationDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Organization'];
 
-    function OrganizationDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Organization) {
-        var vm = this;
+	function OrganizationDialogController($timeout, $scope, $stateParams, $uibModalInstance, entity, Organization) {
+		var vm = this;
 
-        vm.organization = entity;
-        vm.clear = clear;
-        vm.save = save;
+		vm.organization = entity;
+		vm.clear = clear;
+		vm.save = save;
 
-        $timeout(function (){
-            angular.element('.form-group:eq(1)>input').focus();
-        });
+		$timeout(function() {
+			angular.element('.form-group:eq(1)>input').focus();
+		});
 
-        function clear () {
-            $uibModalInstance.dismiss('cancel');
-        }
+		function clear() {
+			$uibModalInstance.dismiss('cancel');
+		}
 
-        function save () {
-            vm.isSaving = true;
-            if (vm.organization.id !== null) {
-                Organization.update(vm.organization, onSaveSuccess, onSaveError);
-            } else {
-                Organization.save(vm.organization, onSaveSuccess, onSaveError);
-            }
-        }
+		function save() {
+			vm.isSaving = true;
+			if(vm.organization.id !== null) {
+				Organization.update(vm.organization, onSaveSuccess, onSaveError);
+			} else {
+				Organization.save(vm.organization, onSaveSuccess, onSaveError);
+			}
+		}
 
-        function onSaveSuccess (result) {
-            $scope.$emit('danceFormApp:organizationUpdate', result);
-            $uibModalInstance.close(result);
-            vm.isSaving = false;
-        }
+		function onSaveSuccess(result) {
+			$scope.$emit('danceFormApp:organizationUpdate', result);
+			$uibModalInstance.close(result);
+			vm.isSaving = false;
+		}
 
-        function onSaveError () {
-            vm.isSaving = false;
-        }
+		function onSaveError() {
+			vm.isSaving = false;
+		}
 
 
-    }
+	}
 })();

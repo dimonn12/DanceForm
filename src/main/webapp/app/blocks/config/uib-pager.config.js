@@ -1,15 +1,15 @@
-(function () {
-    'use strict';
+(function() {
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .config(pagerConfig);
+	angular
+		.module('danceFormApp')
+		.config(pagerConfig);
 
-    pagerConfig.$inject = ['uibPagerConfig', 'paginationConstants'];
+	pagerConfig.$inject = ['uibPagerConfig', 'paginationConstants'];
 
-    function pagerConfig(uibPagerConfig, paginationConstants) {
-        uibPagerConfig.itemsPerPage = paginationConstants.itemsPerPage;
-        uibPagerConfig.previousText = '«';
-        uibPagerConfig.nextText = '»';
-    }
+	function pagerConfig(uibPagerConfig, paginationConstants) {
+		uibPagerConfig.itemsPerPage = paginationConstants.itemsPerPage;
+		uibPagerConfig.previousText = '«';
+		uibPagerConfig.nextText = '»';
+	}
 })();

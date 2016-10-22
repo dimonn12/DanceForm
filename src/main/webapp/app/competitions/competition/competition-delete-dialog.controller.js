@@ -1,28 +1,28 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .controller('CompetitionDeleteController',CompetitionDeleteController);
+	angular
+		.module('danceFormApp')
+		.controller('CompetitionDeleteController', CompetitionDeleteController);
 
-    CompetitionDeleteController.$inject = ['$uibModalInstance', 'entity', 'Competition'];
+	CompetitionDeleteController.$inject = ['$uibModalInstance', 'entity', 'Competition'];
 
-    function CompetitionDeleteController($uibModalInstance, entity, Competition) {
-        var vm = this;
+	function CompetitionDeleteController($uibModalInstance, entity, Competition) {
+		var vm = this;
 
-        vm.competition = entity;
-        vm.clear = clear;
-        vm.confirmDelete = confirmDelete;
-        
-        function clear () {
-            $uibModalInstance.dismiss('cancel');
-        }
+		vm.competition = entity;
+		vm.clear = clear;
+		vm.confirmDelete = confirmDelete;
 
-        function confirmDelete (id) {
-            Competition.delete({id: id},
-                function () {
-                    $uibModalInstance.close(true);
-                });
-        }
-    }
+		function clear() {
+			$uibModalInstance.dismiss('cancel');
+		}
+
+		function confirmDelete(id) {
+			Competition.delete({id: id},
+				function() {
+					$uibModalInstance.close(true);
+				});
+		}
+	}
 })();

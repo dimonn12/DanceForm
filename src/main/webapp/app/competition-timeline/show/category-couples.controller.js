@@ -1,49 +1,49 @@
-(function () {
-    'use strict';
+(function() {
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .controller('CategoryCouplesController', CategoryCouplesController);
+	angular
+		.module('danceFormApp')
+		.controller('CategoryCouplesController', CategoryCouplesController);
 
-    CategoryCouplesController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Competition', 'CompetitionTimelineCategory', 'RegisteredCouple', 'AlertService'];
+	CategoryCouplesController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Competition', 'CompetitionTimelineCategory', 'RegisteredCouple', 'AlertService'];
 
-    function CategoryCouplesController($scope, $rootScope, $stateParams, previousState, entity, Competition, CompetitionTimelineCategory, RegisteredCouple, AlertService) {
-        var vm = this;
+	function CategoryCouplesController($scope, $rootScope, $stateParams, previousState, entity, Competition, CompetitionTimelineCategory, RegisteredCouple, AlertService) {
+		var vm = this;
 
-        vm.currentCompetition = entity;
-        vm.previousState = previousState.name;
+		vm.currentCompetition = entity;
+		vm.previousState = previousState.name;
 
-        vm.category = null;
+		vm.category = null;
 
-        vm.couples = [];
+		vm.couples = [];
 
-        load();
+		load();
 
-        function load() {
-            CompetitionTimelineCategory.get({
-                competitionId: vm.currentCompetition.id,
-                id: $stateParams.categoryId
-            }, onSuccess, onError);
-            function onSuccess(data, headers) {
-                vm.category = data;
-                loadCouples();
-            }
+		function load() {
+			CompetitionTimelineCategory.get({
+				competitionId: vm.currentCompetition.id,
+				id: $stateParams.categoryId
+			}, onSuccess, onError);
+			function onSuccess(data, headers) {
+				vm.category = data;
+				loadCouples();
+			}
 
-            function onError(error) {
-                AlertService.error(error.data.message);
-            }
-        }
+			function onError(error) {
+				AlertService.error(error.data.message);
+			}
+		}
 
-        function loadCouples() {
-            RegisteredCouple.query({categoryId: vm.category.id}, onSuccess, onError);
-            function onSuccess(data, headers) {
-                vm.couples = data;
-            }
+		function loadCouples() {
+			RegisteredCouple.query({categoryId: vm.category.id}, onSuccess, onError);
+			function onSuccess(data, headers) {
+				vm.couples = data;
+			}
 
-            function onError(error) {
-                AlertService.error(error.data.message);
-            }
-        }
+			function onError(error) {
+				AlertService.error(error.data.message);
+			}
+		}
 
-    }
+	}
 })();

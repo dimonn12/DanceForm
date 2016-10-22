@@ -1,36 +1,36 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .directive('jhSocial', jhSocial);
+	angular
+		.module('danceFormApp')
+		.directive('jhSocial', jhSocial);
 
-    jhSocial.$inject = ['$translatePartialLoader', '$translate', '$filter', 'SocialService'];
+	jhSocial.$inject = ['$translatePartialLoader', '$translate', '$filter', 'SocialService'];
 
-    function jhSocial($translatePartialLoader, $translate, $filter, SocialService) {
-        var directive = {
-            restrict: 'E',
-            scope: {
-                provider: '@ngProvider'
-            },
-            templateUrl: 'app/account/social/directive/social.html',
-            link: linkFunc
-        };
+	function jhSocial($translatePartialLoader, $translate, $filter, SocialService) {
+		var directive = {
+			restrict: 'E',
+			scope: {
+				provider: '@ngProvider'
+			},
+			templateUrl: 'app/account/social/directive/social.html',
+			link: linkFunc
+		};
 
-        return directive;
+		return directive;
 
-        /* private helper methods */
+		/* private helper methods */
 
-        function linkFunc(scope) {
-            
-            $translatePartialLoader.addPart('social');
-            $translate.refresh();
-            
-            scope.label = $filter('capitalize')(scope.provider);
-            scope.providerSetting = SocialService.getProviderSetting(scope.provider);
-            scope.providerURL = SocialService.getProviderURL(scope.provider);
-            scope.csrf = SocialService.getCSRF();
-        }
+		function linkFunc(scope) {
 
-    }
+			$translatePartialLoader.addPart('social');
+			$translate.refresh();
+
+			scope.label = $filter('capitalize')(scope.provider);
+			scope.providerSetting = SocialService.getProviderSetting(scope.provider);
+			scope.providerURL = SocialService.getProviderURL(scope.provider);
+			scope.csrf = SocialService.getCSRF();
+		}
+
+	}
 })();

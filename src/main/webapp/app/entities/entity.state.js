@@ -1,16 +1,16 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .config(stateConfig);
+	angular
+		.module('danceFormApp')
+		.config(stateConfig);
 
-    stateConfig.$inject = ['$stateProvider'];
+	stateConfig.$inject = ['$stateProvider'];
 
-    function stateConfig($stateProvider) {
-        $stateProvider.state('entity', {
-            abstract: true,
-            parent: 'app'
-        });
-    }
+	function stateConfig($stateProvider) {
+		$stateProvider.state('entity', {
+			abstract: true,
+			parent: 'app'
+		});
+	}
 })();

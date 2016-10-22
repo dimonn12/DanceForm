@@ -1,28 +1,28 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .controller('DanceClassDeleteController',DanceClassDeleteController);
+	angular
+		.module('danceFormApp')
+		.controller('DanceClassDeleteController', DanceClassDeleteController);
 
-    DanceClassDeleteController.$inject = ['$uibModalInstance', 'entity', 'DanceClass'];
+	DanceClassDeleteController.$inject = ['$uibModalInstance', 'entity', 'DanceClass'];
 
-    function DanceClassDeleteController($uibModalInstance, entity, DanceClass) {
-        var vm = this;
+	function DanceClassDeleteController($uibModalInstance, entity, DanceClass) {
+		var vm = this;
 
-        vm.danceClass = entity;
-        vm.clear = clear;
-        vm.confirmDelete = confirmDelete;
-        
-        function clear () {
-            $uibModalInstance.dismiss('cancel');
-        }
+		vm.danceClass = entity;
+		vm.clear = clear;
+		vm.confirmDelete = confirmDelete;
 
-        function confirmDelete (id) {
-            DanceClass.delete({id: id},
-                function () {
-                    $uibModalInstance.close(true);
-                });
-        }
-    }
+		function clear() {
+			$uibModalInstance.dismiss('cancel');
+		}
+
+		function confirmDelete(id) {
+			DanceClass.delete({id: id},
+				function() {
+					$uibModalInstance.close(true);
+				});
+		}
+	}
 })();

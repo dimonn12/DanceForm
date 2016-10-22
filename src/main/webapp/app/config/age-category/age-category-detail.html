@@ -1,18 +1,26 @@
-
 <div>
-    <h2><span data-translate="danceFormApp.ageCategory.detail.title">Age Category</span> {{vm.ageCategory.id}}</h2>
+    <h2>
+        <span data-translate="danceFormApp.ageCategory.detail.title">Age Category</span>
+        {{vm.ageCategory.id}}
+    </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="danceFormApp.ageCategory.name">Name</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.ageCategory.name">Name</span>
+        </dt>
         <dd>
             <span>{{vm.ageCategory.name}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.ageCategory.minAge">Min Age</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.ageCategory.minAge">Min Age</span>
+        </dt>
         <dd>
             <span>{{vm.ageCategory.minAge}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.ageCategory.maxAge">Max Age</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.ageCategory.maxAge">Max Age</span>
+        </dt>
         <dd>
             <span>{{vm.ageCategory.maxAge}}</span>
         </dd>
@@ -21,7 +29,9 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        &nbsp;
+        <span data-translate="entity.action.back"> Back</span>
     </button>
 
     <button type="button" ui-sref="age-category-detail.edit({id:vm.ageCategory.id})" class="btn btn-primary">

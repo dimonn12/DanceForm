@@ -1,36 +1,36 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .factory('ProfileService', ProfileService);
+	angular
+		.module('danceFormApp')
+		.factory('ProfileService', ProfileService);
 
-    ProfileService.$inject = ['$http'];
+	ProfileService.$inject = ['$http'];
 
-    function ProfileService($http) {
+	function ProfileService($http) {
 
-        var dataPromise;
+		var dataPromise;
 
-        var service = {
-            getProfileInfo : getProfileInfo
-        };
+		var service = {
+			getProfileInfo: getProfileInfo
+		};
 
-        return service;
+		return service;
 
-        function getProfileInfo() {
-            if (angular.isUndefined(dataPromise)) {
-                dataPromise = $http.get('api/profile-info').then(function(result) {
-                    if (result.data.activeProfiles) {
-                        var response = {};
-                        response.activeProfiles = result.data.activeProfiles;
-                        response.ribbonEnv = result.data.ribbonEnv;
-                        response.inProduction = result.data.activeProfiles.indexOf("prod") !== -1;
-                        response.swaggerEnabled = result.data.activeProfiles.indexOf("swagger") !== -1;
-                        return response;
-                    }
-                });
-            }
-            return dataPromise;
-        }
-    }
+		function getProfileInfo() {
+			if(angular.isUndefined(dataPromise)) {
+				dataPromise = $http.get('api/profile-info').then(function(result) {
+					if(result.data.activeProfiles) {
+						var response = {};
+						response.activeProfiles = result.data.activeProfiles;
+						response.ribbonEnv = result.data.ribbonEnv;
+						response.inProduction = result.data.activeProfiles.indexOf("prod") !== -1;
+						response.swaggerEnabled = result.data.activeProfiles.indexOf("swagger") !== -1;
+						return response;
+					}
+				});
+			}
+			return dataPromise;
+		}
+	}
 })();

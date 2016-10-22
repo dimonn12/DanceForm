@@ -1,58 +1,86 @@
-
 <div>
-    <h2><span data-translate="danceFormApp.registeredCouple.detail.title">Registered Couple</span> {{vm.registeredCouple.id}}</h2>
+    <h2>
+        <span data-translate="danceFormApp.registeredCouple.detail.title">Registered Couple</span>
+        {{vm.registeredCouple.id}}
+    </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="danceFormApp.registeredCouple.partner1Name">Partner 1 Name</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.registeredCouple.partner1Name">Partner 1 Name</span>
+        </dt>
         <dd>
             <span>{{vm.registeredCouple.partner1Name}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.registeredCouple.partner1Surname">Partner 1 Surname</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.registeredCouple.partner1Surname">Partner 1 Surname</span>
+        </dt>
         <dd>
             <span>{{vm.registeredCouple.partner1Surname}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.registeredCouple.partner2Name">Partner 2 Name</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.registeredCouple.partner2Name">Partner 2 Name</span>
+        </dt>
         <dd>
             <span>{{vm.registeredCouple.partner2Name}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.registeredCouple.partner2Surname">Partner 2 Surname</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.registeredCouple.partner2Surname">Partner 2 Surname</span>
+        </dt>
         <dd>
             <span>{{vm.registeredCouple.partner2Surname}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.registeredCouple.partner1DateOfBirth">Partner 1 Date Of Birth</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.registeredCouple.partner1DateOfBirth">Partner 1 Date Of Birth</span>
+        </dt>
         <dd>
             <span>{{vm.registeredCouple.partner1DateOfBirth | date:'mediumDate'}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.registeredCouple.partner2DateOfBirth">Partner 2 Date Of Birth</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.registeredCouple.partner2DateOfBirth">Partner 2 Date Of Birth</span>
+        </dt>
         <dd>
             <span>{{vm.registeredCouple.partner2DateOfBirth | date:'mediumDate'}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.registeredCouple.partner1Organization">Partner 1 Organization</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.registeredCouple.partner1Organization">Partner 1 Organization</span>
+        </dt>
         <dd>
             <span>{{vm.registeredCouple.partner1Organization}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.registeredCouple.partner1Location">Partner 1 Location</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.registeredCouple.partner1Location">Partner 1 Location</span>
+        </dt>
         <dd>
             <span>{{vm.registeredCouple.partner1Location}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.registeredCouple.trainer1">Trainer 1</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.registeredCouple.trainer1">Trainer 1</span>
+        </dt>
         <dd>
             <span>{{vm.registeredCouple.trainer1}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.registeredCouple.partner1DanceClassST">Partner 1 Dance Class ST</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.registeredCouple.partner1DanceClassST">Partner 1 Dance Class ST</span>
+        </dt>
         <dd>
             <a ui-sref="dance-class-detail({id:vm.registeredCouple.partner1DanceClassSTId})">{{vm.registeredCouple.partner1DanceClassSTId}}</a>
         </dd>
-        <dt><span data-translate="danceFormApp.registeredCouple.partner1DanceClassLA">Partner 1 Dance Class LA</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.registeredCouple.partner1DanceClassLA">Partner 1 Dance Class LA</span>
+        </dt>
         <dd>
             <a ui-sref="dance-class-detail({id:vm.registeredCouple.partner1DanceClassLAId})">{{vm.registeredCouple.partner1DanceClassLAId}}</a>
         </dd>
-        <dt><span data-translate="danceFormApp.registeredCouple.partner2DanceClassST">Partner 2 Dance Class ST</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.registeredCouple.partner2DanceClassST">Partner 2 Dance Class ST</span>
+        </dt>
         <dd>
             <a ui-sref="dance-class-detail({id:vm.registeredCouple.partner2DanceClassSTId})">{{vm.registeredCouple.partner2DanceClassSTId}}</a>
         </dd>
-        <dt><span data-translate="danceFormApp.registeredCouple.partner2DanceClassLA">Partner 2 Dance Class LA</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.registeredCouple.partner2DanceClassLA">Partner 2 Dance Class LA</span>
+        </dt>
         <dd>
             <a ui-sref="dance-class-detail({id:vm.registeredCouple.partner2DanceClassLAId})">{{vm.registeredCouple.partner2DanceClassLAId}}</a>
         </dd>
@@ -61,7 +89,9 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        &nbsp;
+        <span data-translate="entity.action.back"> Back</span>
     </button>
 
     <button type="button" ui-sref="registered-couple-detail.edit({id:vm.registeredCouple.id})" class="btn btn-primary">

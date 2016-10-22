@@ -4,9 +4,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="organization.new" >
+                <button class="btn btn-primary" ui-sref="organization.new">
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="danceFormApp.organization.home.createLabel">
+                    <span data-translate="danceFormApp.organization.home.createLabel">
                         Create new Organization
                     </span>
                 </button>
@@ -18,15 +18,26 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="name"><span data-translate="danceFormApp.organization.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="visible"><span data-translate="danceFormApp.organization.visible">Visible</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="id">
+                        <span data-translate="global.field.id">ID</span>
+                        <span class="glyphicon glyphicon-sort"></span>
+                    </th>
+                    <th jh-sort-by="name">
+                        <span data-translate="danceFormApp.organization.name">Name</span>
+                        <span class="glyphicon glyphicon-sort"></span>
+                    </th>
+                    <th jh-sort-by="visible">
+                        <span data-translate="danceFormApp.organization.visible">Visible</span>
+                        <span class="glyphicon glyphicon-sort"></span>
+                    </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="organization in vm.organizations track by organization.id">
-                    <td><a ui-sref="organization-detail({id:organization.id})">{{organization.id}}</a></td>
+                    <td>
+                        <a ui-sref="organization-detail({id:organization.id})">{{organization.id}}</a>
+                    </td>
                     <td>{{organization.name}}</td>
                     <td>{{organization.visible}}</td>
                     <td class="text-right">

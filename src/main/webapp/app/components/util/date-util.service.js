@@ -1,50 +1,50 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .factory('DateUtils', DateUtils);
+	angular
+		.module('danceFormApp')
+		.factory('DateUtils', DateUtils);
 
-    DateUtils.$inject = ['$filter'];
+	DateUtils.$inject = ['$filter'];
 
-    function DateUtils ($filter) {
+	function DateUtils($filter) {
 
-        var service = {
-            convertDateTimeFromServer : convertDateTimeFromServer,
-            convertLocalDateFromServer : convertLocalDateFromServer,
-            convertLocalDateToServer : convertLocalDateToServer,
-            dateformat : dateformat
-        };
+		var service = {
+			convertDateTimeFromServer: convertDateTimeFromServer,
+			convertLocalDateFromServer: convertLocalDateFromServer,
+			convertLocalDateToServer: convertLocalDateToServer,
+			dateformat: dateformat
+		};
 
-        return service;
+		return service;
 
-        function convertDateTimeFromServer (date) {
-            if (date) {
-                return new Date(date);
-            } else {
-                return null;
-            }
-        }
+		function convertDateTimeFromServer(date) {
+			if(date) {
+				return new Date(date);
+			} else {
+				return null;
+			}
+		}
 
-        function convertLocalDateFromServer (date) {
-            if (date) {
-                var dateString = date.split('-');
-                return new Date(dateString[0], dateString[1] - 1, dateString[2]);
-            }
-            return null;
-        }
+		function convertLocalDateFromServer(date) {
+			if(date) {
+				var dateString = date.split('-');
+				return new Date(dateString[0], dateString[1] - 1, dateString[2]);
+			}
+			return null;
+		}
 
-        function convertLocalDateToServer (date) {
-            if (date) {
-                return $filter('date')(date, 'yyyy-MM-dd');
-            } else {
-                return null;
-            }
-        }
+		function convertLocalDateToServer(date) {
+			if(date) {
+				return $filter('date')(date, 'yyyy-MM-dd');
+			} else {
+				return null;
+			}
+		}
 
-        function dateformat () {
-            return 'yyyy-MM-dd';
-        }
-    }
+		function dateformat() {
+			return 'yyyy-MM-dd';
+		}
+	}
 
 })();

@@ -1,4 +1,3 @@
-
 <form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
 
     <div class="modal-header">
@@ -11,24 +10,24 @@
         <div class="form-group" ng-show="vm.registeredCouple.id">
             <label for="id" data-translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.registeredCouple.id" readonly />
+                   ng-model="vm.registeredCouple.id" readonly/>
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="danceFormApp.registeredCouple.partner1Name" for="field_partner1Name">Partner 1 Name</label>
             <input type="text" class="form-control" name="partner1Name" id="field_partner1Name"
-                    ng-model="vm.registeredCouple.partner1Name"
-                    required ng-minlength="1" ng-maxlength="128" />
+                   ng-model="vm.registeredCouple.partner1Name"
+                   required ng-minlength="1" ng-maxlength="128"/>
             <div ng-show="editForm.partner1Name.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.partner1Name.$error.required" data-translate="entity.validation.required">
+                   ng-show="editForm.partner1Name.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.partner1Name.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
+                   ng-show="editForm.partner1Name.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
                     This field is required to be at least 1 characters.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.partner1Name.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
+                   ng-show="editForm.partner1Name.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
                     This field cannot be longer than 128 characters.
                 </p>
             </div>
@@ -36,19 +35,19 @@
         <div class="form-group">
             <label class="control-label" data-translate="danceFormApp.registeredCouple.partner1Surname" for="field_partner1Surname">Partner 1 Surname</label>
             <input type="text" class="form-control" name="partner1Surname" id="field_partner1Surname"
-                    ng-model="vm.registeredCouple.partner1Surname"
-                    required ng-minlength="1" ng-maxlength="128" />
+                   ng-model="vm.registeredCouple.partner1Surname"
+                   required ng-minlength="1" ng-maxlength="128"/>
             <div ng-show="editForm.partner1Surname.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.partner1Surname.$error.required" data-translate="entity.validation.required">
+                   ng-show="editForm.partner1Surname.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.partner1Surname.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
+                   ng-show="editForm.partner1Surname.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
                     This field is required to be at least 1 characters.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.partner1Surname.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
+                   ng-show="editForm.partner1Surname.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
                     This field cannot be longer than 128 characters.
                 </p>
             </div>
@@ -56,19 +55,19 @@
         <div class="form-group">
             <label class="control-label" data-translate="danceFormApp.registeredCouple.partner2Name" for="field_partner2Name">Partner 2 Name</label>
             <input type="text" class="form-control" name="partner2Name" id="field_partner2Name"
-                    ng-model="vm.registeredCouple.partner2Name"
-                    required ng-minlength="1" ng-maxlength="128" />
+                   ng-model="vm.registeredCouple.partner2Name"
+                   required ng-minlength="1" ng-maxlength="128"/>
             <div ng-show="editForm.partner2Name.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.partner2Name.$error.required" data-translate="entity.validation.required">
+                   ng-show="editForm.partner2Name.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.partner2Name.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
+                   ng-show="editForm.partner2Name.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
                     This field is required to be at least 1 characters.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.partner2Name.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
+                   ng-show="editForm.partner2Name.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
                     This field cannot be longer than 128 characters.
                 </p>
             </div>
@@ -76,51 +75,57 @@
         <div class="form-group">
             <label class="control-label" data-translate="danceFormApp.registeredCouple.partner2Surname" for="field_partner2Surname">Partner 2 Surname</label>
             <input type="text" class="form-control" name="partner2Surname" id="field_partner2Surname"
-                    ng-model="vm.registeredCouple.partner2Surname"
-                    required ng-minlength="1" ng-maxlength="128" />
+                   ng-model="vm.registeredCouple.partner2Surname"
+                   required ng-minlength="1" ng-maxlength="128"/>
             <div ng-show="editForm.partner2Surname.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.partner2Surname.$error.required" data-translate="entity.validation.required">
+                   ng-show="editForm.partner2Surname.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.partner2Surname.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
+                   ng-show="editForm.partner2Surname.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
                     This field is required to be at least 1 characters.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.partner2Surname.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
+                   ng-show="editForm.partner2Surname.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="128">
                     This field cannot be longer than 128 characters.
                 </p>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="danceFormApp.registeredCouple.partner1DateOfBirth" for="field_partner1DateOfBirth">Partner 1 Date Of Birth</label>
-                <div class="input-group">
-                    <input id="field_partner1DateOfBirth" type="text" class="form-control" name="partner1DateOfBirth" uib-datepicker-popup="{{dateformat}}" ng-model="vm.registeredCouple.partner1DateOfBirth" is-open="vm.datePickerOpenStatus.partner1DateOfBirth"
-                    required/>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('partner1DateOfBirth')"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-                </div>
+            <div class="input-group">
+                <input id="field_partner1DateOfBirth" type="text" class="form-control" name="partner1DateOfBirth" uib-datepicker-popup="{{dateformat}}"
+                       ng-model="vm.registeredCouple.partner1DateOfBirth" is-open="vm.datePickerOpenStatus.partner1DateOfBirth"
+                       required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('partner1DateOfBirth')">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </span>
+            </div>
             <div ng-show="editForm.partner1DateOfBirth.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.partner1DateOfBirth.$error.required" data-translate="entity.validation.required">
+                   ng-show="editForm.partner1DateOfBirth.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="danceFormApp.registeredCouple.partner2DateOfBirth" for="field_partner2DateOfBirth">Partner 2 Date Of Birth</label>
-                <div class="input-group">
-                    <input id="field_partner2DateOfBirth" type="text" class="form-control" name="partner2DateOfBirth" uib-datepicker-popup="{{dateformat}}" ng-model="vm.registeredCouple.partner2DateOfBirth" is-open="vm.datePickerOpenStatus.partner2DateOfBirth"
-                    required/>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('partner2DateOfBirth')"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-                </div>
+            <div class="input-group">
+                <input id="field_partner2DateOfBirth" type="text" class="form-control" name="partner2DateOfBirth" uib-datepicker-popup="{{dateformat}}"
+                       ng-model="vm.registeredCouple.partner2DateOfBirth" is-open="vm.datePickerOpenStatus.partner2DateOfBirth"
+                       required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('partner2DateOfBirth')">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </span>
+            </div>
             <div ng-show="editForm.partner2DateOfBirth.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.partner2DateOfBirth.$error.required" data-translate="entity.validation.required">
+                   ng-show="editForm.partner2DateOfBirth.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
             </div>
@@ -128,19 +133,19 @@
         <div class="form-group">
             <label class="control-label" data-translate="danceFormApp.registeredCouple.partner1Organization" for="field_partner1Organization">Partner 1 Organization</label>
             <input type="text" class="form-control" name="partner1Organization" id="field_partner1Organization"
-                    ng-model="vm.registeredCouple.partner1Organization"
-                    required ng-minlength="1" ng-maxlength="80" />
+                   ng-model="vm.registeredCouple.partner1Organization"
+                   required ng-minlength="1" ng-maxlength="80"/>
             <div ng-show="editForm.partner1Organization.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.partner1Organization.$error.required" data-translate="entity.validation.required">
+                   ng-show="editForm.partner1Organization.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.partner1Organization.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
+                   ng-show="editForm.partner1Organization.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
                     This field is required to be at least 1 characters.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.partner1Organization.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="80">
+                   ng-show="editForm.partner1Organization.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="80">
                     This field cannot be longer than 80 characters.
                 </p>
             </div>
@@ -148,19 +153,19 @@
         <div class="form-group">
             <label class="control-label" data-translate="danceFormApp.registeredCouple.partner1Location" for="field_partner1Location">Partner 1 Location</label>
             <input type="text" class="form-control" name="partner1Location" id="field_partner1Location"
-                    ng-model="vm.registeredCouple.partner1Location"
-                    required ng-minlength="1" ng-maxlength="80" />
+                   ng-model="vm.registeredCouple.partner1Location"
+                   required ng-minlength="1" ng-maxlength="80"/>
             <div ng-show="editForm.partner1Location.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.partner1Location.$error.required" data-translate="entity.validation.required">
+                   ng-show="editForm.partner1Location.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.partner1Location.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
+                   ng-show="editForm.partner1Location.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
                     This field is required to be at least 1 characters.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.partner1Location.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="80">
+                   ng-show="editForm.partner1Location.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="80">
                     This field cannot be longer than 80 characters.
                 </p>
             </div>
@@ -168,19 +173,19 @@
         <div class="form-group">
             <label class="control-label" data-translate="danceFormApp.registeredCouple.trainer1" for="field_trainer1">Trainer 1</label>
             <input type="text" class="form-control" name="trainer1" id="field_trainer1"
-                    ng-model="vm.registeredCouple.trainer1"
-                    required ng-minlength="1" ng-maxlength="80" />
+                   ng-model="vm.registeredCouple.trainer1"
+                   required ng-minlength="1" ng-maxlength="80"/>
             <div ng-show="editForm.trainer1.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.trainer1.$error.required" data-translate="entity.validation.required">
+                   ng-show="editForm.trainer1.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.trainer1.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
+                   ng-show="editForm.trainer1.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="1">
                     This field is required to be at least 1 characters.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.trainer1.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="80">
+                   ng-show="editForm.trainer1.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="80">
                     This field cannot be longer than 80 characters.
                 </p>
             </div>
@@ -188,59 +193,67 @@
 
         <div class="form-group">
             <label data-translate="danceFormApp.registeredCouple.partner1DanceClassST" for="field_partner1DanceClassST">Partner 1 Dance Class ST</label>
-            <select class="form-control" id="field_partner1DanceClassST" name="partner1DanceClassST" ng-model="vm.registeredCouple.partner1DanceClassSTId" ng-options="danceClass.id as danceClass.id for danceClass in vm.partner1danceclasssts | orderBy:'id'" required>
+            <select class="form-control" id="field_partner1DanceClassST" name="partner1DanceClassST" ng-model="vm.registeredCouple.partner1DanceClassSTId"
+                    ng-options="danceClass.id as danceClass.id for danceClass in vm.partner1danceclasssts | orderBy:'id'" required>
                 <option value=""></option>
             </select>
         </div>
         <div ng-show="editForm.partner1DanceClassST.$invalid">
             <p class="help-block"
-                ng-show="editForm.partner1DanceClassST.$error.required" data-translate="entity.validation.required">
+               ng-show="editForm.partner1DanceClassST.$error.required" data-translate="entity.validation.required">
                 This field is required.
             </p>
         </div>
         <div class="form-group">
             <label data-translate="danceFormApp.registeredCouple.partner1DanceClassLA" for="field_partner1DanceClassLA">Partner 1 Dance Class LA</label>
-            <select class="form-control" id="field_partner1DanceClassLA" name="partner1DanceClassLA" ng-model="vm.registeredCouple.partner1DanceClassLAId" ng-options="danceClass.id as danceClass.id for danceClass in vm.partner1danceclasslas | orderBy:'id'" required>
+            <select class="form-control" id="field_partner1DanceClassLA" name="partner1DanceClassLA" ng-model="vm.registeredCouple.partner1DanceClassLAId"
+                    ng-options="danceClass.id as danceClass.id for danceClass in vm.partner1danceclasslas | orderBy:'id'" required>
                 <option value=""></option>
             </select>
         </div>
         <div ng-show="editForm.partner1DanceClassLA.$invalid">
             <p class="help-block"
-                ng-show="editForm.partner1DanceClassLA.$error.required" data-translate="entity.validation.required">
+               ng-show="editForm.partner1DanceClassLA.$error.required" data-translate="entity.validation.required">
                 This field is required.
             </p>
         </div>
         <div class="form-group">
             <label data-translate="danceFormApp.registeredCouple.partner2DanceClassST" for="field_partner2DanceClassST">Partner 2 Dance Class ST</label>
-            <select class="form-control" id="field_partner2DanceClassST" name="partner2DanceClassST" ng-model="vm.registeredCouple.partner2DanceClassSTId" ng-options="danceClass.id as danceClass.id for danceClass in vm.partner2danceclasssts | orderBy:'id'" required>
+            <select class="form-control" id="field_partner2DanceClassST" name="partner2DanceClassST" ng-model="vm.registeredCouple.partner2DanceClassSTId"
+                    ng-options="danceClass.id as danceClass.id for danceClass in vm.partner2danceclasssts | orderBy:'id'" required>
                 <option value=""></option>
             </select>
         </div>
         <div ng-show="editForm.partner2DanceClassST.$invalid">
             <p class="help-block"
-                ng-show="editForm.partner2DanceClassST.$error.required" data-translate="entity.validation.required">
+               ng-show="editForm.partner2DanceClassST.$error.required" data-translate="entity.validation.required">
                 This field is required.
             </p>
         </div>
         <div class="form-group">
             <label data-translate="danceFormApp.registeredCouple.partner2DanceClassLA" for="field_partner2DanceClassLA">Partner 2 Dance Class LA</label>
-            <select class="form-control" id="field_partner2DanceClassLA" name="partner2DanceClassLA" ng-model="vm.registeredCouple.partner2DanceClassLAId" ng-options="danceClass.id as danceClass.id for danceClass in vm.danceclasses"             required>
+            <select class="form-control" id="field_partner2DanceClassLA" name="partner2DanceClassLA" ng-model="vm.registeredCouple.partner2DanceClassLAId"
+                    ng-options="danceClass.id as danceClass.id for danceClass in vm.danceclasses" required>
                 <option value=""></option>
             </select>
         </div>
         <div ng-show="editForm.partner2DanceClassLA.$invalid">
             <p class="help-block"
-                ng-show="editForm.partner2DanceClassLA.$error.required" data-translate="entity.validation.required">
+               ng-show="editForm.partner2DanceClassLA.$error.required" data-translate="entity.validation.required">
                 This field is required.
             </p>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>
+            &nbsp;
+            <span data-translate="entity.action.cancel">Cancel</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+            <span class="glyphicon glyphicon-save"></span>
+            &nbsp;
+            <span data-translate="entity.action.save">Save</span>
         </button>
     </div>
 </form>
