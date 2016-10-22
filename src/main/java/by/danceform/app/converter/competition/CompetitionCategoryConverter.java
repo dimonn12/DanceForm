@@ -3,7 +3,6 @@ package by.danceform.app.converter.competition;
 import by.danceform.app.converter.AbstractConverter;
 import by.danceform.app.converter.NamedEntityConverter;
 import by.danceform.app.converter.config.AgeCategoryConverter;
-import by.danceform.app.converter.config.DanceCategoryConverter;
 import by.danceform.app.converter.config.DanceClassConverter;
 import by.danceform.app.domain.competition.CompetitionCategory;
 import by.danceform.app.domain.config.AgeCategory;

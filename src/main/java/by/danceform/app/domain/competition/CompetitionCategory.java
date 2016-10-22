@@ -1,7 +1,10 @@
 package by.danceform.app.domain.competition;
 
-import java.util.HashSet;
-import java.util.Set;
+import by.danceform.app.domain.AbstractEntity;
+import by.danceform.app.domain.INamedEntity;
+import by.danceform.app.domain.config.AgeCategory;
+import by.danceform.app.domain.config.DanceCategory;
+import by.danceform.app.domain.config.DanceClass;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,12 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import by.danceform.app.domain.AbstractEntity;
-import by.danceform.app.domain.INamedEntity;
-import by.danceform.app.domain.config.AgeCategory;
-import by.danceform.app.domain.config.DanceCategory;
-import by.danceform.app.domain.config.DanceClass;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A CompetitionCategory.
@@ -62,11 +61,15 @@ public class CompetitionCategory extends AbstractEntity<Long> implements INamedE
     private DanceCategory danceCategory;
 
     @ManyToMany
-    @JoinTable(name = "competition_category_dance_class", joinColumns = @JoinColumn(name = "competition_categories_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "dance_classes_id", referencedColumnName = "ID"))
+    @JoinTable(name = "competition_category_dance_class",
+               joinColumns = @JoinColumn(name = "competition_categories_id", referencedColumnName = "ID"),
+               inverseJoinColumns = @JoinColumn(name = "dance_classes_id", referencedColumnName = "ID"))
     private Set<DanceClass> danceClasses = new HashSet<>();
 
     @ManyToMany
-    @JoinTable(name = "competition_category_age_category", joinColumns = @JoinColumn(name = "competition_categories_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "age_categories_id", referencedColumnName = "ID"))
+    @JoinTable(name = "competition_category_age_category",
+               joinColumns = @JoinColumn(name = "competition_categories_id", referencedColumnName = "ID"),
+               inverseJoinColumns = @JoinColumn(name = "age_categories_id", referencedColumnName = "ID"))
     private Set<AgeCategory> ageCategories = new HashSet<>();
 
     @Override
@@ -153,8 +156,27 @@ public class CompetitionCategory extends AbstractEntity<Long> implements INamedE
 
     @Override
     public String toString() {
-        return "CompetitionCategory{" + "id=" + id + ", name='" + name + "'" + ", description='" + description + "'"
-                + ", active='" + active + "'" + ", checkMinAge='" + checkMinAge + "'" + ", checkMaxAge='" + checkMaxAge
-                + "'" + ", competitionId='" + competitionId + "'" + '}';
+        return "CompetitionCategory{" +
+               "id=" +
+               id +
+               ", name='" +
+               name +
+               "'" +
+               ", description='" +
+               description +
+               "'" +
+               ", active='" +
+               active +
+               "'" +
+               ", checkMinAge='" +
+               checkMinAge +
+               "'" +
+               ", checkMaxAge='" +
+               checkMaxAge +
+               "'" +
+               ", competitionId='" +
+               competitionId +
+               "'" +
+               '}';
     }
 }

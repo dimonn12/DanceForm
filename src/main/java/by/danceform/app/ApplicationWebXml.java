@@ -1,9 +1,8 @@
 package by.danceform.app;
 
+import by.danceform.app.config.DefaultProfileUtil;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
-
-import by.danceform.app.config.DefaultProfileUtil;
 
 /**
  * This is a helper Java class that provides an alternative to creating a web.xml. This will be invoked only when the

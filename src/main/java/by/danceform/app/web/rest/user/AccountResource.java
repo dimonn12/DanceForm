@@ -2,12 +2,12 @@ package by.danceform.app.web.rest.user;
 
 import by.danceform.app.domain.security.PersistentToken;
 import by.danceform.app.domain.user.User;
+import by.danceform.app.dto.user.UserDTO;
 import by.danceform.app.repository.security.PersistentTokenRepository;
 import by.danceform.app.repository.user.UserRepository;
 import by.danceform.app.security.SecurityUtils;
 import by.danceform.app.service.MailService;
 import by.danceform.app.service.user.UserService;
-import by.danceform.app.dto.user.UserDTO;
 import by.danceform.app.web.rest.util.HeaderUtil;
 import by.danceform.app.web.rest.vm.KeyAndPasswordVM;
 import by.danceform.app.web.rest.vm.ManagedUserVM;

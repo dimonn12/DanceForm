@@ -2,17 +2,20 @@ package by.danceform.app.web.rest.config;
 
 import by.danceform.app.dto.config.DanceCategoryDTO;
 import by.danceform.app.security.AuthoritiesConstants;
-import com.codahale.metrics.annotation.Timed;
-import by.danceform.app.domain.config.DanceCategory;
 import by.danceform.app.service.config.DanceCategoryService;
 import by.danceform.app.web.rest.util.HeaderUtil;
+import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
 import javax.validation.Valid;

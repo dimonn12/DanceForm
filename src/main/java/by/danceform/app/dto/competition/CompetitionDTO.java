@@ -1,6 +1,5 @@
 package by.danceform.app.dto.competition;
 
-import by.danceform.app.domain.competition.Competition;
 import by.danceform.app.dto.AbstractDomainDTO;
 
 import javax.validation.constraints.NotNull;

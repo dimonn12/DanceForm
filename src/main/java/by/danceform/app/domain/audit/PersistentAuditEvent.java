@@ -1,8 +1,6 @@
 package by.danceform.app.domain.audit;
 
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import by.danceform.app.domain.AbstractEntity;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -15,8 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-import by.danceform.app.domain.AbstractEntity;
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Persist AuditEvent managed by the Spring Boot actuator

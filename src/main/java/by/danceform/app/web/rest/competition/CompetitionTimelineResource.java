@@ -1,11 +1,8 @@
 package by.danceform.app.web.rest.competition;
 
-import by.danceform.app.domain.competition.CompetitionCategoryWithDetails;
-import by.danceform.app.dto.competition.CompetitionCategoryWithDetailsDTO;
 import by.danceform.app.dto.competition.CompetitionDTO;
 import by.danceform.app.dto.competition.CompetitionWithDetailsDTO;
 import by.danceform.app.security.AuthoritiesConstants;
-import by.danceform.app.service.competition.CompetitionService;
 import by.danceform.app.service.competition.CompetitionTimelineService;
 import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;

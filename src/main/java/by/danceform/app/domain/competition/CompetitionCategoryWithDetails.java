@@ -1,9 +1,9 @@
 package by.danceform.app.domain.competition;
 
+import by.danceform.app.domain.AbstractEntity;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
-import by.danceform.app.domain.AbstractEntity;
 
 /**
  * Created by Dmitry_Shanko on 10/10/2016.

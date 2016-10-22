@@ -119,7 +119,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/profile-info")
             .permitAll()
             .antMatchers("/api/competition-timeline*//**")
-            .permitAll()*/
+         .permitAll()*/
             .antMatchers("/api/**")
             .permitAll()
             .antMatchers("/management/**")

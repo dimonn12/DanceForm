@@ -1,6 +1,5 @@
 package by.danceform.app.domain.config.enums;
 
-import by.danceform.app.domain.config.DanceCategory;
 import by.danceform.app.dto.NamedReferenceDTO;
 
 import java.util.Objects;

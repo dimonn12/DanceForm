@@ -2,11 +2,10 @@ package by.danceform.app.web.rest.config;
 
 import by.danceform.app.dto.config.LocationDTO;
 import by.danceform.app.security.AuthoritiesConstants;
-import com.codahale.metrics.annotation.Timed;
-import by.danceform.app.domain.config.Location;
 import by.danceform.app.service.config.LocationService;
 import by.danceform.app.web.rest.util.HeaderUtil;
 import by.danceform.app.web.rest.util.PaginationUtil;
+import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -16,7 +15,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -49,7 +52,8 @@ public class LocationResource {
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<LocationDTO> createLocation(@Valid @RequestBody LocationDTO location) throws URISyntaxException {
+    public ResponseEntity<LocationDTO> createLocation(@Valid @RequestBody LocationDTO location)
+        throws URISyntaxException {
         log.debug("REST request to save Location : {}", location);
         if(location.getId() != null) {
             return ResponseEntity.badRequest()
@@ -77,7 +81,8 @@ public class LocationResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<LocationDTO> updateLocation(@Valid @RequestBody LocationDTO location) throws URISyntaxException {
+    public ResponseEntity<LocationDTO> updateLocation(@Valid @RequestBody LocationDTO location)
+        throws URISyntaxException {
         log.debug("REST request to update Location : {}", location);
         if(location.getId() == null) {
             return createLocation(location);

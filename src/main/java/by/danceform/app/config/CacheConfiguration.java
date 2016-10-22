@@ -1,7 +1,5 @@
 package by.danceform.app.config;
 
-import javax.annotation.PreDestroy;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -10,6 +8,8 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.support.NoOpCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import javax.annotation.PreDestroy;
 
 @Configuration
 @EnableCaching

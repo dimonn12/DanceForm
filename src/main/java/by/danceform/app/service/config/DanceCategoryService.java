@@ -6,8 +6,8 @@ import by.danceform.app.dto.config.DanceCategoryDTO;
 import by.danceform.app.repository.config.DanceCategoryRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.LinkedList;

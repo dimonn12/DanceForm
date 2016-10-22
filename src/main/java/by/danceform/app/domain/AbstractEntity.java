@@ -1,13 +1,12 @@
 package by.danceform.app.domain;
 
-import java.io.Serializable;
-import java.time.LocalDate;
+import com.google.common.base.Objects;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.MappedSuperclass;
-
-import com.google.common.base.Objects;
+import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * Created by dimonn12 on 07.10.2016.
@@ -26,20 +25,20 @@ public abstract class AbstractEntity<I extends Serializable> implements IEntity<
     @SuppressWarnings("rawtypes")
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+        if(this == obj) {
             return true;
         }
-        if (obj == null) {
+        if(obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if(getClass() != obj.getClass()) {
             return false;
         }
-        if (this.getId() == null || ((AbstractEntity) obj).getId() == null) {
+        if(this.getId() == null || ((AbstractEntity)obj).getId() == null) {
             return false;
         }
 
-        return Objects.equal(this.getId(), ((AbstractEntity) obj).getId());
+        return Objects.equal(this.getId(), ((AbstractEntity)obj).getId());
     }
 
     @Override

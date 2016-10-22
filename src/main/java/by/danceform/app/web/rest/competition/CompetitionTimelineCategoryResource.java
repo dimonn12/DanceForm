@@ -1,8 +1,6 @@
 package by.danceform.app.web.rest.competition;
 
 import by.danceform.app.dto.competition.CompetitionCategoryWithDetailsDTO;
-import by.danceform.app.dto.competition.CompetitionDTO;
-import by.danceform.app.dto.competition.CompetitionWithDetailsDTO;
 import by.danceform.app.security.AuthoritiesConstants;
 import by.danceform.app.service.competition.CompetitionTimelineService;
 import com.codahale.metrics.annotation.Timed;
@@ -18,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
-import java.net.URISyntaxException;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 

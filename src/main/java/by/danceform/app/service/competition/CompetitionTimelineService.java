@@ -5,7 +5,6 @@ import by.danceform.app.converter.competition.CompetitionCategoryWithDetailsConv
 import by.danceform.app.converter.competition.CompetitionConverter;
 import by.danceform.app.converter.competition.CompetitionWithDetailsConverter;
 import by.danceform.app.domain.competition.Competition;
-import by.danceform.app.domain.competition.CompetitionCategory;
 import by.danceform.app.domain.competition.CompetitionCategoryWithDetails;
 import by.danceform.app.domain.system.SystemSetting;
 import by.danceform.app.dto.competition.CompetitionCategoryWithDetailsDTO;

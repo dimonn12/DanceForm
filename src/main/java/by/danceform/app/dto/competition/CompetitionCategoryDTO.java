@@ -2,8 +2,6 @@ package by.danceform.app.dto.competition;
 
 import by.danceform.app.dto.AbstractDomainDTO;
 import by.danceform.app.dto.NamedReferenceDTO;
-import by.danceform.app.dto.config.AgeCategoryDTO;
-import by.danceform.app.dto.config.DanceClassDTO;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

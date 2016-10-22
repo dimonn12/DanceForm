@@ -3,11 +3,16 @@ package by.danceform.app.domain.document;
 
 import by.danceform.app.domain.AbstractEntity;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.ZonedDateTime;
-import java.util.Objects;
 
 /**
  * A UploadedDocument.
