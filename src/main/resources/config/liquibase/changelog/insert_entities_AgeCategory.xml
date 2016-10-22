@@ -17,9 +17,58 @@
     <changeSet id="20161008-5" author="dmitry_shanko">
         <insert tableName="age_category">
             <column name="id" value="1"/>
+            <column name="name" value="Дети"/>
+            <column name="min_age" value="5"/>
+            <column name="max_age" value="7"/>
+        </insert>
+
+        <insert tableName="age_category">
+            <column name="id" value="2"/>
+            <column name="name" value="Дети 1"/>
+            <column name="min_age" value="8"/>
+            <column name="max_age" value="9"/>
+        </insert>
+
+        <insert tableName="age_category">
+            <column name="id" value="3"/>
+            <column name="name" value="Дети 2"/>
+            <column name="min_age" value="10"/>
+            <column name="max_age" value="11"/>
+        </insert>
+
+        <insert tableName="age_category">
+            <column name="id" value="4"/>
+            <column name="name" value="Юниоры 1"/>
+            <column name="min_age" value="12"/>
+            <column name="max_age" value="13"/>
+        </insert>
+
+        <insert tableName="age_category">
+            <column name="id" value="5"/>
+            <column name="name" value="Юниоры 2"/>
+            <column name="min_age" value="14"/>
+            <column name="max_age" value="15"/>
+        </insert>
+
+        <insert tableName="age_category">
+            <column name="id" value="6"/>
+            <column name="name" value="Молодежь"/>
+            <column name="min_age" value="16"/>
+            <column name="max_age" value="21"/>
+        </insert>
+
+        <insert tableName="age_category">
+            <column name="id" value="7"/>
             <column name="name" value="Взрослые"/>
-            <column name="min_age" value="18"/>
-            <column name="max_age" value="35"/>
+            <column name="min_age" value="22"/>
+            <column name="max_age" value="34"/>
+        </insert>
+
+        <insert tableName="age_category">
+            <column name="id" value="8"/>
+            <column name="name" value="Сеньоры"/>
+            <column name="min_age" value="35"/>
+            <column name="max_age" value="200"/>
         </insert>
     </changeSet>
 

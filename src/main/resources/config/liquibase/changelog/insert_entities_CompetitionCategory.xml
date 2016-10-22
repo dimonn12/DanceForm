@@ -73,7 +73,7 @@
 
     <changeSet id="20161009-12" author="dmitry_shanko">
         <insert tableName="competition_category_age_category">
-            <column name="age_categories_id" value="1"/>
+            <column name="age_categories_id" value="7"/>
             <column name="competition_categories_id" value="2"/>
         </insert>
     </changeSet>
