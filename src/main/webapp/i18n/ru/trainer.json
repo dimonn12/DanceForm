@@ -1,24 +1,23 @@
 {
-    "danceFormApp": {
-        "trainer" : {
-            "home": {
-                "title": "Trainers",
-                "createLabel": "Создать новый Trainer",
-                "createOrEditLabel": "Создать или отредактировать Trainer",
-                "search": "Найти Trainer"
-            },
-            "created": "Новый Trainer создан с идентификатором {{ param }}",
-            "updated": "Trainer обновлен с идентификатором {{ param }}",
-            "deleted": "Trainer удален с идентификатором {{ param }}",
-            "delete": {
-                "question": "Вы уверены что хотите удалить Trainer {{ id }}?"
-            },
-            "detail": {
-                "title": "Trainer"
-            },
-            "name": "Name",
-            "surname": "Surname",
-            "visible": "Visible"
-        }
+  "danceFormApp": {
+    "trainer": {
+      "home": {
+        "title": "Тренера",
+        "createLabel": "Добавить нового Тренера",
+        "createOrEditLabel": "Добавить или отредактировать Тренера"
+      },
+      "created": "Новый Тренер добавлен с идентификатором {{ param }}",
+      "updated": "Тренер обновлен с идентификатором {{ param }}",
+      "deleted": "Тренер удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Тренера {{ id }}?"
+      },
+      "detail": {
+        "title": "Тренер"
+      },
+      "name": "Имя",
+      "surname": "Фамилия",
+      "visible": "Доступен для выбора"
     }
+  }
 }

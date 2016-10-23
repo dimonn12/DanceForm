@@ -7,7 +7,7 @@ import javax.persistence.Lob;
 /**
  * Created by dimonn12 on 22.10.2016.
  */
-public class DocumentDTO extends AbstractDomainDTO<Long> {
+public class DocumentDTO extends UploadedDocumentDTO {
 
     @Lob
     private byte[] content;

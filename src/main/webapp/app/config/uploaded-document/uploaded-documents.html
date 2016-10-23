@@ -25,9 +25,6 @@
                         <span data-translate="danceFormApp.uploadedDocument.name">Name</span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.uploadedDocument.extension">Extension</span>
-                    </th>
-                    <th>
                         <span data-translate="danceFormApp.uploadedDocument.path">Path</span>
                     </th>
                     <th>
@@ -50,15 +47,17 @@
                     <td>
                         <a ui-sref="uploaded-document-detail({id:uploadedDocument.id})">{{uploadedDocument.id}}</a>
                     </td>
-                    <td>{{uploadedDocument.name}}</td>
-                    <td>{{uploadedDocument.extension}}</td>
+                    <td>{{uploadedDocument.fullName}}</td>
                     <td>{{uploadedDocument.path}}</td>
                     <td>{{uploadedDocument.externalPath}}</td>
                     <td>
-                        <a ng-if="uploadedDocument.content" ng-click="vm.openFile(uploadedDocument.contentContentType, uploadedDocument.content)"
+                        <a href="uploads/{{uploadedDocument.id}}" target="_new" data-translate="entity.action.open">
+                            open
+                        </a>
+                        <!--<a ng-if="uploadedDocument.content" ng-click="vm.openFile(uploadedDocument.contentContentType, uploadedDocument.content)"
                            data-translate="entity.action.open">open
                         </a>
-                        <span ng-if="uploadedDocument.content">{{uploadedDocument.contentContentType}}, {{vm.byteSize(uploadedDocument.content)}}</span>
+                        <span ng-if="uploadedDocument.content">{{uploadedDocument.contentContentType}}, {{vm.byteSize(uploadedDocument.content)}}</span>-->
                     </td>
                     <td>{{uploadedDocument.uploadedDate | date:'medium'}}</td>
                     <td>{{uploadedDocument.uploadedBy}}</td>

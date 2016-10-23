@@ -19,7 +19,7 @@
 		}
 
 		function confirmDelete(id) {
-			CompetitionCategory.delete({id: id},
+			CompetitionCategory.delete({competitionId: vm.competitionCategory.competitionId, id: id},
 				function() {
 					$uibModalInstance.close(true);
 				});

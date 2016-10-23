@@ -1,5 +1,7 @@
 package by.danceform.app.dto.competition;
 
+import by.danceform.app.dto.document.UploadedDocumentDTO;
+
 import java.util.List;
 
 
@@ -9,6 +11,10 @@ import java.util.List;
 public class CompetitionWithDetailsDTO extends CompetitionDTO {
 
     private List<CompetitionCategoryWithDetailsDTO> competitionCategoryDTOs;
+
+    private UploadedDocumentDTO uploadedDocumentDTO;
+
+    private Integer amountOfUniqueRegisteredPairs;
 
     public CompetitionWithDetailsDTO() {
     }
@@ -23,6 +29,22 @@ public class CompetitionWithDetailsDTO extends CompetitionDTO {
 
     public void setCompetitionCategoryDTOs(List<CompetitionCategoryWithDetailsDTO> competitionCategoryDTOs) {
         this.competitionCategoryDTOs = competitionCategoryDTOs;
+    }
+
+    public UploadedDocumentDTO getUploadedDocumentDTO() {
+        return uploadedDocumentDTO;
+    }
+
+    public void setUploadedDocumentDTO(UploadedDocumentDTO uploadedDocumentDTO) {
+        this.uploadedDocumentDTO = uploadedDocumentDTO;
+    }
+
+    public Integer getAmountOfUniqueRegisteredPairs() {
+        return amountOfUniqueRegisteredPairs;
+    }
+
+    public void setAmountOfUniqueRegisteredPairs(Integer amountOfUniqueRegisteredPairs) {
+        this.amountOfUniqueRegisteredPairs = amountOfUniqueRegisteredPairs;
     }
 
 }

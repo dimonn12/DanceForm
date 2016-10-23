@@ -43,7 +43,22 @@
             <span data-translate="danceFormApp.competition-timeline.amount">Location</span>
         </dt>
         <dd>
-            <span>{{vm.totalRegisteredCount}}</span>
+            <span>{{vm.totalRegisteredCount}}
+                <span ng-show="vm.currentCompetition.amountOfUniqueRegisteredPairs > 0">
+                    <span data-translate="danceFormApp.competition-timeline.uniqueAmount"></span>
+                    {{vm.currentCompetition.amountOfUniqueRegisteredPairs}})
+                </span>
+            </span>
+        </dd>
+        <dt ng-show="vm.currentCompetition.detailsDocumentId != null">
+            <span data-translate="danceFormApp.competition-timeline.detailsDocument">Location</span>
+        </dt>
+        <dd ng-show="vm.currentCompetition.detailsDocumentId != null">
+            <!--<a href="{{vm.currentCompetition.uploadedDocumentDTO.externalPath}}" target="_blank" data-translate="entity.action.open">-->
+            <!--<a ng-click="vm.loadDocumentDetails()" target="_new" data-translate="entity.action.open">-->
+            <a href="uploads/competition/{{vm.currentCompetition.id}}/details" target="_new" data-translate="entity.action.open">
+                open
+            </a>
         </dd>
     </dl>
 

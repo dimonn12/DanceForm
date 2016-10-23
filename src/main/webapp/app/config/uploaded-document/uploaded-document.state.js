@@ -10,15 +10,15 @@
 	function stateConfig($stateProvider) {
 		$stateProvider
 			.state('uploaded-document', {
-				parent: 'entity',
+				parent: 'config',
 				url: '/uploaded-document',
 				data: {
-					authorities: ['ROLE_USER'],
+					authorities: ['ROLE_ADMIN'],
 					pageTitle: 'danceFormApp.uploadedDocument.home.title'
 				},
 				views: {
 					'content@': {
-						templateUrl: 'app/entities/uploaded-document/uploaded-documents.html',
+						templateUrl: 'app/config/uploaded-document/uploaded-documents.html',
 						controller: 'UploadedDocumentController',
 						controllerAs: 'vm'
 					}
@@ -32,15 +32,15 @@
 				}
 			})
 			.state('uploaded-document-detail', {
-				parent: 'entity',
+				parent: 'config',
 				url: '/uploaded-document/{id}',
 				data: {
-					authorities: ['ROLE_USER'],
+					authorities: ['ROLE_ADMIN'],
 					pageTitle: 'danceFormApp.uploadedDocument.detail.title'
 				},
 				views: {
 					'content@': {
-						templateUrl: 'app/entities/uploaded-document/uploaded-document-detail.html',
+						templateUrl: 'app/config/uploaded-document/uploaded-document-detail.html',
 						controller: 'UploadedDocumentDetailController',
 						controllerAs: 'vm'
 					}
@@ -67,11 +67,11 @@
 				parent: 'uploaded-document-detail',
 				url: '/detail/edit',
 				data: {
-					authorities: ['ROLE_USER']
+					authorities: ['ROLE_ADMIN']
 				},
 				onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
 					$uibModal.open({
-						templateUrl: 'app/entities/uploaded-document/uploaded-document-dialog.html',
+						templateUrl: 'app/config/uploaded-document/uploaded-document-dialog.html',
 						controller: 'UploadedDocumentDialogController',
 						controllerAs: 'vm',
 						backdrop: 'static',
@@ -92,11 +92,11 @@
 				parent: 'uploaded-document',
 				url: '/new',
 				data: {
-					authorities: ['ROLE_USER']
+					authorities: ['ROLE_ADMIN']
 				},
 				onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
 					$uibModal.open({
-						templateUrl: 'app/entities/uploaded-document/uploaded-document-dialog.html',
+						templateUrl: 'app/config/uploaded-document/uploaded-document-dialog.html',
 						controller: 'UploadedDocumentDialogController',
 						controllerAs: 'vm',
 						backdrop: 'static',
@@ -127,11 +127,11 @@
 				parent: 'uploaded-document',
 				url: '/{id}/edit',
 				data: {
-					authorities: ['ROLE_USER']
+					authorities: ['ROLE_ADMIN']
 				},
 				onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
 					$uibModal.open({
-						templateUrl: 'app/entities/uploaded-document/uploaded-document-dialog.html',
+						templateUrl: 'app/config/uploaded-document/uploaded-document-dialog.html',
 						controller: 'UploadedDocumentDialogController',
 						controllerAs: 'vm',
 						backdrop: 'static',
@@ -152,11 +152,11 @@
 				parent: 'uploaded-document',
 				url: '/{id}/delete',
 				data: {
-					authorities: ['ROLE_USER']
+					authorities: ['ROLE_ADMIN']
 				},
 				onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
 					$uibModal.open({
-						templateUrl: 'app/entities/uploaded-document/uploaded-document-delete-dialog.html',
+						templateUrl: 'app/config/uploaded-document/uploaded-document-delete-dialog.html',
 						controller: 'UploadedDocumentDeleteController',
 						controllerAs: 'vm',
 						size: 'md',

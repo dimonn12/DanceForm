@@ -28,14 +28,9 @@ public class UploadedDocument extends AbstractEntity<Long> {
     private Long id;
 
     @NotNull
-    @Size(min = 1, max = 128)
-    @Column(name = "name", length = 128, nullable = false)
-    private String name;
-
-    @NotNull
-    @Size(min = 1, max = 8)
-    @Column(name = "extension", length = 8, nullable = false)
-    private String extension;
+    @Size(min = 1, max = 255)
+    @Column(name = "fullName", nullable = false)
+    private String fullName;
 
     @NotNull
     @Size(min = 1, max = 512)
@@ -66,20 +61,12 @@ public class UploadedDocument extends AbstractEntity<Long> {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getExtension() {
-        return extension;
-    }
-
-    public void setExtension(String extension) {
-        this.extension = extension;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getPath() {
@@ -134,8 +121,7 @@ public class UploadedDocument extends AbstractEntity<Long> {
     public String toString() {
         return "UploadedDocument{" +
                "id=" + id +
-               ", name='" + name + "'" +
-               ", extension='" + extension + "'" +
+               ", fullName='" + fullName + "'" +
                ", path='" + path + "'" +
                ", externalPath='" + externalPath + "'" +
                ", content='" + content + "'" +

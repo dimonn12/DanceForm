@@ -10,13 +10,7 @@
             <span data-translate="danceFormApp.uploadedDocument.name">Name</span>
         </dt>
         <dd>
-            <span>{{vm.uploadedDocument.name}}</span>
-        </dd>
-        <dt>
-            <span data-translate="danceFormApp.uploadedDocument.extension">Extension</span>
-        </dt>
-        <dd>
-            <span>{{vm.uploadedDocument.extension}}</span>
+            <span>{{vm.uploadedDocument.fullName}}</span>
         </dd>
         <dt>
             <span data-translate="danceFormApp.uploadedDocument.path">Path</span>
@@ -34,10 +28,13 @@
             <span data-translate="danceFormApp.uploadedDocument.content">Content</span>
         </dt>
         <dd>
-            <div ng-if="vm.uploadedDocument.content">
+            <a href="uploads/{{vm.uploadedDocument.id}}" target="_new" data-translate="entity.action.open">
+                open
+            </a>
+            <!--<div ng-if="vm.uploadedDocument.content">
                 <a ng-click="vm.openFile(vm.uploadedDocument.contentContentType, vm.uploadedDocument.content)" data-translate="entity.action.open">open</a>
                 {{vm.uploadedDocument.contentContentType}}, {{vm.byteSize(vm.uploadedDocument.content)}}
-            </div>
+            </div>-->
         </dd>
         <dt>
             <span data-translate="danceFormApp.uploadedDocument.uploadedDate">Uploaded Date</span>

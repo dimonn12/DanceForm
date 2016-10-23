@@ -6,6 +6,7 @@ import by.danceform.app.converter.competition.CompetitionConverter;
 import by.danceform.app.converter.competition.CompetitionWithDetailsConverter;
 import by.danceform.app.domain.competition.Competition;
 import by.danceform.app.domain.competition.CompetitionCategoryWithDetails;
+import by.danceform.app.domain.competition.CompetitionWithDetails;
 import by.danceform.app.domain.system.SystemSetting;
 import by.danceform.app.dto.competition.CompetitionCategoryWithDetailsDTO;
 import by.danceform.app.dto.competition.CompetitionDTO;
@@ -84,13 +85,15 @@ public class CompetitionTimelineService {
 
     @Transactional(readOnly = true)
     public CompetitionWithDetailsDTO findCompetitionWithDetails(Long id) {
-        Competition comp = competitionRepository.findOne(id);
+        CompetitionWithDetails compWithDetails = competitionRepository.findOneWithDetails(id);
+        Competition comp = compWithDetails.getCompetition();
         if(null != comp) {
             if(!comp.isVisible()) {
                 return null;
             }
         }
-        CompetitionWithDetailsDTO dto = competitionWithDetailsConverter.convertToDto(comp);
+        CompetitionWithDetailsDTO dto = competitionWithDetailsConverter.convertToDto(compWithDetails);
+        dto.setAmountOfUniqueRegisteredPairs(registeredCoupleRepository.groupUniqueByCompetitionId(dto.getId()).size());
         List<CompetitionCategoryWithDetails> competitionCategoryWithDetailses = competitionCategoryRepository.findWithDetailsByCompetitionId(
             id);
         dto.setCompetitionCategoryDTOs(competitionCategoryWithDetailsConverter.convertToDtos(

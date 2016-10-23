@@ -1,5 +1,7 @@
 package by.danceform.app.dto.document;
 
+import by.danceform.app.dto.AbstractDomainDTO;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.ZonedDateTime;
@@ -8,18 +10,11 @@ import java.time.ZonedDateTime;
 /**
  * A DTO for the UploadedDocument entity.
  */
-public class UploadedDocumentDTO extends DocumentDTO {
+public class UploadedDocumentDTO extends AbstractDomainDTO<Long> {
 
     @NotNull
-    @Size(min = 1, max = 128)
-    private String name;
+    private String fullName;
 
-    @NotNull
-    @Size(min = 1, max = 8)
-    private String extension;
-
-    @NotNull
-    @Size(min = 1, max = 512)
     private String path;
 
     private String externalPath;
@@ -44,20 +39,12 @@ public class UploadedDocumentDTO extends DocumentDTO {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getExtension() {
-        return extension;
-    }
-
-    public void setExtension(String extension) {
-        this.extension = extension;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getPath() {
@@ -104,8 +91,7 @@ public class UploadedDocumentDTO extends DocumentDTO {
     public String toString() {
         return "UploadedDocumentDTO{" +
                "id=" + id +
-               ", name='" + name + "'" +
-               ", extension='" + extension + "'" +
+               ", fullName='" + fullName + "'" +
                ", path='" + path + "'" +
                ", externalPath='" + externalPath + "'" +
                ", uploadedDate='" + uploadedDate + "'" +

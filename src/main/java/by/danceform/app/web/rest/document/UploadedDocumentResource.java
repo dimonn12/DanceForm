@@ -1,5 +1,6 @@
 package by.danceform.app.web.rest.document;
 
+import by.danceform.app.dto.document.AttachedDocumentDTO;
 import by.danceform.app.dto.document.UploadedDocumentDTO;
 import by.danceform.app.security.AuthoritiesConstants;
 import by.danceform.app.service.document.UploadedDocumentService;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -28,7 +30,7 @@ import java.util.Optional;
  * REST controller for managing UploadedDocument.
  */
 @RestController
-@RequestMapping("/api/uploaded-documents")
+@RequestMapping("/api/config/uploaded-documents")
 @Secured(AuthoritiesConstants.ADMIN)
 public class UploadedDocumentResource {
 
@@ -48,8 +50,8 @@ public class UploadedDocumentResource {
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<UploadedDocumentDTO> createUploadedDocument(
-        @Valid @RequestBody UploadedDocumentDTO uploadedDocumentDTO) throws URISyntaxException {
+    public ResponseEntity<UploadedDocumentDTO> createUploadedDocument(HttpServletRequest request,
+        @Valid @RequestBody AttachedDocumentDTO uploadedDocumentDTO) throws URISyntaxException {
         log.debug("REST request to save UploadedDocument : {}", uploadedDocumentDTO);
         if(uploadedDocumentDTO.getId() != null) {
             return ResponseEntity.badRequest()
@@ -58,8 +60,21 @@ public class UploadedDocumentResource {
                     "A new uploadedDocument cannot already have an ID"))
                 .body(null);
         }
-        UploadedDocumentDTO result = uploadedDocumentService.save(uploadedDocumentDTO);
-        return ResponseEntity.created(new URI("/api/uploaded-documents/" + result.getId()))
+        UploadedDocumentDTO result = uploadedDocumentService.save(request, uploadedDocumentDTO);
+        return ResponseEntity.created(new URI("/api/config/uploaded-documents/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert("uploadedDocument", result.getId().toString()))
+            .body(result);
+    }
+
+    @RequestMapping(value = "/competition",
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<UploadedDocumentDTO> uploadCompetitionDetailsDocument(HttpServletRequest request,
+        @Valid @RequestBody AttachedDocumentDTO attachedDocumentDTO) throws URISyntaxException {
+        log.debug("REST request to save UploadedDocument : {}", attachedDocumentDTO);
+        UploadedDocumentDTO result = uploadedDocumentService.uploadCompetitionDetailsDocument(request, attachedDocumentDTO);
+        return ResponseEntity.created(new URI("/api/config/uploaded-documents/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("uploadedDocument", result.getId().toString()))
             .body(result);
     }
@@ -77,13 +92,13 @@ public class UploadedDocumentResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<UploadedDocumentDTO> updateUploadedDocument(
-        @Valid @RequestBody UploadedDocumentDTO uploadedDocumentDTO) throws URISyntaxException {
+    public ResponseEntity<UploadedDocumentDTO> updateUploadedDocument(HttpServletRequest request,
+        @Valid @RequestBody AttachedDocumentDTO uploadedDocumentDTO) throws URISyntaxException {
         log.debug("REST request to update UploadedDocument : {}", uploadedDocumentDTO);
         if(uploadedDocumentDTO.getId() == null) {
-            return createUploadedDocument(uploadedDocumentDTO);
+            return createUploadedDocument(request, uploadedDocumentDTO);
         }
-        UploadedDocumentDTO result = uploadedDocumentService.save(uploadedDocumentDTO);
+        UploadedDocumentDTO result = uploadedDocumentService.save(request, uploadedDocumentDTO);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("uploadedDocument", uploadedDocumentDTO.getId().toString()))
             .body(result);

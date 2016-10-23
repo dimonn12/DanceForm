@@ -13,14 +13,12 @@ public class UploadedDocumentConverter extends AbstractConverter<UploadedDocumen
 
     @Override
     protected UploadedDocumentDTO convertEntityToDto(UploadedDocument entity, UploadedDocumentDTO dto) {
-        dto.setName(entity.getName());
+        dto.setFullName(entity.getFullName());
         dto.setContentContentType(entity.getContentContentType());
-        dto.setExtension(entity.getExtension());
         dto.setExternalPath(entity.getExternalPath());
         dto.setPath(entity.getPath());
         dto.setUploadedBy(entity.getUploadedBy());
         dto.setUploadedDate(entity.getUploadedDate());
-        dto.setContent(entity.getContent());
         return dto;
     }
 
@@ -29,9 +27,7 @@ public class UploadedDocumentConverter extends AbstractConverter<UploadedDocumen
         entity.setExternalPath(dto.getExternalPath());
         entity.setPath(dto.getPath());
         entity.setContentContentType(dto.getContentContentType());
-        entity.setName(dto.getName());
-        entity.setExtension(dto.getExtension());
-        entity.setContent(dto.getContent());
+        entity.setFullName(dto.getFullName());
         return entity;
     }
 

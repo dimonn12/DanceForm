@@ -188,7 +188,31 @@
 						$state.go('^');
 					});
 				}]
-			});
+			}).state('competition-upload-details', {
+			parent: 'competition-detail',
+			url: '/upload/document',
+			data: {
+				authorities: ['ROLE_ADMIN']
+			},
+			onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+				$uibModal.open({
+					templateUrl: 'app/competitions/competition/competition-upload-details-dialog.html',
+					controller: 'CompetitionUploadDetailsDialogController',
+					controllerAs: 'vm',
+					backdrop: 'static',
+					size: 'lg',
+					resolve: {
+						entity: ['Competition', function(Competition) {
+							return Competition.get({id: $stateParams.id}).$promise;
+						}]
+					}
+				}).result.then(function() {
+					$state.go('^', {}, {reload: false});
+				}, function() {
+					$state.go('^');
+				});
+			}]
+		});
 	}
 
 })();

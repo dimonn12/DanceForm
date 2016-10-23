@@ -10,10 +10,6 @@
         "main": "Сущности",
         "competitionCategory": "Competition Category",
         "registeredCouple": "Registered Couple",
-        "organization": "Организации",
-        "location": "Location",
-        "trainer": "Тренера",
-        "uploadedDocument": "Uploaded Document",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -45,7 +41,11 @@
       "config": {
         "main": "Конфигурация",
         "danceClass": "Танцевальные классы",
-        "ageCategory": "Возрастные категории"
+        "ageCategory": "Возрастные категории",
+        "organization": "Организации",
+        "location": "Location",
+        "trainer": "Тренера",
+        "uploadedDocument": "Загруженные Документы"
       },
       "competitions": {
         "main": "Настройки турниров",
@@ -54,11 +54,11 @@
       },
       "language": "Язык"
     },
-      "buttons": {
-          "today":"Сегодня",
-          "clear":"Очистить",
-          "close":"Закрыть"
-      },
+    "buttons": {
+      "today": "Сегодня",
+      "clear": "Очистить",
+      "close": "Закрыть"
+    },
     "form": {
       "username": "Логин",
       "username.placeholder": "Ваш логин",
@@ -112,7 +112,7 @@
       "cancel": "Отмена",
       "delete": "Удалить",
       "edit": "Изменить",
-      "open": "Open",
+      "open": "Открыть",
       "save": "Сохранить",
       "view": "Просмотр"
     },

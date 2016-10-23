@@ -7,7 +7,7 @@
 	UploadedDocument.$inject = ['$resource', 'DateUtils'];
 
 	function UploadedDocument($resource, DateUtils) {
-		var resourceUrl = 'api/uploaded-documents/:id';
+		var resourceUrl = 'api/config/uploaded-documents/:id';
 
 		return $resource(resourceUrl, {}, {
 			'query': {method: 'GET', isArray: true},
@@ -21,7 +21,11 @@
 					return data;
 				}
 			},
-			'update': {method: 'PUT'}
+			'update': {method: 'PUT'},
+			'uploadToComeptition': {
+				method: 'POST',
+				url: resourceUrl + '/competition'
+			}
 		});
 	}
 })();

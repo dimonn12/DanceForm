@@ -122,6 +122,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
          .permitAll()*/
             .antMatchers("/api/**")
             .permitAll()
+            .antMatchers("/uploads/**")
+            .permitAll()
             .antMatchers("/management/**")
             .hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/v2/api-docs/**")

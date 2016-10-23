@@ -12,6 +12,11 @@ import java.util.List;
  */
 public interface RegisteredCoupleRepository extends JpaRepository<RegisteredCouple, Long> {
 
+    @Query("SELECT COUNT(couples.id) FROM RegisteredCouple couples WHERE couples.competitionCategory.id IN " +
+           "(SELECT id FROM CompetitionCategory WHERE competitionId = :competitionId AND active IN (TRUE))" +
+           "GROUP BY couples.partner1Name, couples.partner1Surname, couples.partner2Name, couples.partner2Surname")
+    List<Integer> groupUniqueByCompetitionId(@Param("competitionId") Long competitionId);
+
     @Query("SELECT COUNT(*) FROM RegisteredCouple rc WHERE competitionCategory.id = :competitionCategoryId")
     int countByCompetitionCategory(@Param("competitionCategoryId") Long competitionCategoryId);
 

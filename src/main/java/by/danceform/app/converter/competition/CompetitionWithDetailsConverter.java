@@ -1,7 +1,8 @@
 package by.danceform.app.converter.competition;
 
 import by.danceform.app.converter.AbstractConverter;
-import by.danceform.app.domain.competition.Competition;
+import by.danceform.app.converter.document.UploadedDocumentConverter;
+import by.danceform.app.domain.competition.CompetitionWithDetails;
 import by.danceform.app.dto.competition.CompetitionWithDetailsDTO;
 import org.springframework.stereotype.Component;
 
@@ -11,20 +12,26 @@ import javax.inject.Inject;
  * Created by dimonn12 on 07.10.2016.
  */
 @Component("сompetitionWithDetailsConverter")
-public class CompetitionWithDetailsConverter extends AbstractConverter<Competition, CompetitionWithDetailsDTO, Long> {
+public class CompetitionWithDetailsConverter
+    extends AbstractConverter<CompetitionWithDetails, CompetitionWithDetailsDTO, Long> {
 
     @Inject
     private CompetitionConverter competitionConverter;
 
+    @Inject
+    private UploadedDocumentConverter uploadedDocumentConverter;
+
     @Override
-    protected CompetitionWithDetailsDTO convertEntityToDto(Competition entity, CompetitionWithDetailsDTO dto) {
-        dto = (CompetitionWithDetailsDTO)competitionConverter.convertEntityToDto(entity, dto);
+    protected CompetitionWithDetailsDTO convertEntityToDto(CompetitionWithDetails entity,
+                                                           CompetitionWithDetailsDTO dto) {
+        dto = (CompetitionWithDetailsDTO)competitionConverter.convertEntityToDto(entity.getCompetition(), dto);
+        dto.setUploadedDocumentDTO(uploadedDocumentConverter.convertToDto(entity.getUploadedDocument()));
         return dto;
     }
 
     @Override
-    public Competition convertDtoToEntity(CompetitionWithDetailsDTO dto, Competition entity) {
-        return competitionConverter.convertToEntity(dto);
+    public CompetitionWithDetails convertDtoToEntity(CompetitionWithDetailsDTO dto, CompetitionWithDetails entity) {
+        return new CompetitionWithDetails(competitionConverter.convertToEntity(dto), null);
     }
 
     @Override
@@ -33,7 +40,7 @@ public class CompetitionWithDetailsConverter extends AbstractConverter<Competiti
     }
 
     @Override
-    protected Competition getNewEntity() {
-        return new Competition();
+    protected CompetitionWithDetails getNewEntity() {
+        return new CompetitionWithDetails(null, null);
     }
 }
