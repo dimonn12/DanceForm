@@ -36,6 +36,16 @@
         <dd>
             <span>{{vm.competition.location}}</span>
         </dd>
+        <dt ng-show="vm.competition.detailsDocumentId != null">
+            <span data-translate="danceFormApp.competition.detailsDocument">Location</span>
+        </dt>
+        <dd ng-show="vm.competition.detailsDocumentId != null">
+            <!--<a href="{{vm.currentCompetition.uploadedDocumentDTO.externalPath}}" target="_blank" data-translate="entity.action.open">-->
+            <!--<a ng-click="vm.loadDocumentDetails()" target="_new" data-translate="entity.action.open">-->
+            <a href="uploads/{{vm.competition.detailsDocumentId}}" target="_new" data-translate="entity.action.open">
+                open
+            </a>
+        </dd>
     </dl>
 
     <button type="submit"

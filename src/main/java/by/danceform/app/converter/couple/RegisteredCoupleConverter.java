@@ -34,6 +34,7 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
         dto.setPartner2DateOfBirth(entity.getPartner2DateOfBirth());
 
         dto.setTrainer1(entity.getTrainer1());
+        dto.setTrainer2(entity.getTrainer2());
         dto.setLocation(entity.getLocation());
         dto.setOrganization(entity.getOrganization());
 
@@ -66,6 +67,7 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
         entity.setPartner2DateOfBirth(dto.getPartner2DateOfBirth());
 
         entity.setTrainer1(dto.getTrainer1());
+        entity.setTrainer2(dto.getTrainer2());
         entity.setLocation(dto.getLocation());
         entity.setOrganization(dto.getOrganization());
 

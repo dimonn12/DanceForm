@@ -47,6 +47,7 @@
         "organization": "Организация",
         "location": "Город",
         "trainer1": "Тренер 1",
+        "trainer2": "Тренер 2",
         "availableCategories": "Доступные категории"
       }
     }

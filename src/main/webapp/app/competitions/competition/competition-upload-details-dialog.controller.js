@@ -30,7 +30,7 @@
 		}
 
 		function onSaveSuccess(result) {
-			$scope.$emit('danceFormApp:uploadedDocumentUpdate', result);
+			$scope.$emit('danceFormApp:competitionUpdate', Competition.get({id: vm.competition.id}));
 			$uibModalInstance.close(true);
 		}
 

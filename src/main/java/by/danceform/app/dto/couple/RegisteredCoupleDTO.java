@@ -48,6 +48,9 @@ public class RegisteredCoupleDTO extends AbstractDomainDTO<Long> {
     @Size(min = 1, max = 80)
     private String trainer1;
 
+    @Size(min = 1, max = 80)
+    private String trainer2;
+
     private NamedReferenceDTO partner1DanceClassST;
 
     private NamedReferenceDTO partner1DanceClassLA;
@@ -128,6 +131,14 @@ public class RegisteredCoupleDTO extends AbstractDomainDTO<Long> {
 
     public void setTrainer1(String trainer1) {
         this.trainer1 = trainer1;
+    }
+
+    public String getTrainer2() {
+        return trainer2;
+    }
+
+    public void setTrainer2(String trainer2) {
+        this.trainer2 = trainer2;
     }
 
     public NamedReferenceDTO getPartner1DanceClassST() {

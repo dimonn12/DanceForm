@@ -73,6 +73,10 @@ public class RegisteredCouple extends AbstractEntity<Long> {
     @Column(name = "trainer_1", length = 80, nullable = false)
     private String trainer1;
 
+    @Size(min = 1, max = 80)
+    @Column(name = "trainer_2", length = 80, nullable = false)
+    private String trainer2;
+
     @ManyToOne
     @NotNull
     @JoinColumn(name = "partner_1_dance_class_st_id")
@@ -176,6 +180,14 @@ public class RegisteredCouple extends AbstractEntity<Long> {
 
     public void setTrainer1(String trainer1) {
         this.trainer1 = trainer1;
+    }
+
+    public String getTrainer2() {
+        return trainer2;
+    }
+
+    public void setTrainer2(String trainer2) {
+        this.trainer2 = trainer2;
     }
 
     public DanceClass getPartner1DanceClassST() {

@@ -522,6 +522,10 @@ dl > dt > span {
     -webkit-font-smoothing: antialiased;
 }
 
+.form-control .checkbox {
+    background-color: inherit !important;
+}
+
 
 /*@media screen and (max-width: 900px) {
     .registry-block .form-group {
