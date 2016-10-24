@@ -4,6 +4,7 @@ import by.danceform.app.converter.document.UploadedDocumentConverter;
 import by.danceform.app.domain.competition.Competition;
 import by.danceform.app.domain.document.UploadedDocument;
 import by.danceform.app.dto.document.AttachedDocumentDTO;
+import by.danceform.app.dto.document.DocumentDTO;
 import by.danceform.app.dto.document.UploadedDocumentDTO;
 import by.danceform.app.repository.competition.CompetitionRepository;
 import by.danceform.app.repository.document.UploadedDocumentRepository;
@@ -47,24 +48,35 @@ public class UploadedDocumentService {
      * @param uploadedDocumentDTO the entity to save
      * @return the persisted entity
      */
-    public UploadedDocumentDTO save(HttpServletRequest request, AttachedDocumentDTO uploadedDocumentDTO) {
-        log.debug("Request to save UploadedDocument : {}", uploadedDocumentDTO);
-        UploadedDocument uploadedDocument = uploadUtil.uploadFile(request, uploadedDocumentDTO);
-        uploadedDocument = uploadedDocumentRepository.save(uploadedDocument);
-        UploadedDocumentDTO result = uploadedDocumentConverter.convertToDto(uploadedDocument);
-        return result;
+    public UploadedDocumentDTO save(HttpServletRequest request, DocumentDTO uploadedDocumentDTO) {
+        return uploadedDocumentConverter.convertToDto(upload(request, uploadedDocumentDTO));
     }
 
     public UploadedDocumentDTO uploadCompetitionDetailsDocument(HttpServletRequest request,
                                                                 AttachedDocumentDTO attachedDocumentDTO) {
-        log.debug("Request to save UploadedDocument : {}", attachedDocumentDTO);
-        UploadedDocument uploadedDocument = uploadUtil.uploadFile(request, attachedDocumentDTO);
-        uploadedDocument = uploadedDocumentRepository.save(uploadedDocument);
+        UploadedDocument uploadedDocument = upload(request, attachedDocumentDTO);
         Competition comp = competitionRepository.findOne(attachedDocumentDTO.getEntityId());
         comp.setDetailsDocumentId(uploadedDocument.getId());
         competitionRepository.save(comp);
         UploadedDocumentDTO result = uploadedDocumentConverter.convertToDto(uploadedDocument);
         return result;
+    }
+
+    public UploadedDocumentDTO uploadCompetitionImage(HttpServletRequest request,
+                                                                AttachedDocumentDTO attachedDocumentDTO) {
+        UploadedDocument uploadedDocument = upload(request, attachedDocumentDTO);
+        Competition comp = competitionRepository.findOne(attachedDocumentDTO.getEntityId());
+        comp.setBannerImageId(uploadedDocument.getId());
+        competitionRepository.save(comp);
+        UploadedDocumentDTO result = uploadedDocumentConverter.convertToDto(uploadedDocument);
+        return result;
+    }
+
+    private UploadedDocument upload(HttpServletRequest request, DocumentDTO attachedDocumentDTO) {
+        log.debug("Request to save UploadedDocument : {}", attachedDocumentDTO);
+        UploadedDocument uploadedDocument = uploadUtil.uploadFile(request, attachedDocumentDTO);
+        uploadedDocument = uploadedDocumentRepository.save(uploadedDocument);
+        return uploadedDocument;
     }
 
     public UploadedDocument findById(Long id) {

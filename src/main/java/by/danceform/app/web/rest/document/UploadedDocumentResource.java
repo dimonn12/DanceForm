@@ -1,6 +1,7 @@
 package by.danceform.app.web.rest.document;
 
 import by.danceform.app.dto.document.AttachedDocumentDTO;
+import by.danceform.app.dto.document.DocumentDTO;
 import by.danceform.app.dto.document.UploadedDocumentDTO;
 import by.danceform.app.security.AuthoritiesConstants;
 import by.danceform.app.service.document.UploadedDocumentService;
@@ -51,7 +52,7 @@ public class UploadedDocumentResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<UploadedDocumentDTO> createUploadedDocument(HttpServletRequest request,
-        @Valid @RequestBody AttachedDocumentDTO uploadedDocumentDTO) throws URISyntaxException {
+        @Valid @RequestBody DocumentDTO uploadedDocumentDTO) throws URISyntaxException {
         log.debug("REST request to save UploadedDocument : {}", uploadedDocumentDTO);
         if(uploadedDocumentDTO.getId() != null) {
             return ResponseEntity.badRequest()
@@ -66,7 +67,7 @@ public class UploadedDocumentResource {
             .body(result);
     }
 
-    @RequestMapping(value = "/competition",
+    @RequestMapping(value = "/competition/details",
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
@@ -74,6 +75,19 @@ public class UploadedDocumentResource {
         @Valid @RequestBody AttachedDocumentDTO attachedDocumentDTO) throws URISyntaxException {
         log.debug("REST request to save UploadedDocument : {}", attachedDocumentDTO);
         UploadedDocumentDTO result = uploadedDocumentService.uploadCompetitionDetailsDocument(request, attachedDocumentDTO);
+        return ResponseEntity.created(new URI("/api/config/uploaded-documents/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert("uploadedDocument", result.getId().toString()))
+            .body(result);
+    }
+
+    @RequestMapping(value = "/competition/image",
+                    method = RequestMethod.POST,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<UploadedDocumentDTO> uploadCompetitionImage(HttpServletRequest request,
+                                                                                @Valid @RequestBody AttachedDocumentDTO attachedDocumentDTO) throws URISyntaxException {
+        log.debug("REST request to save UploadedDocument : {}", attachedDocumentDTO);
+        UploadedDocumentDTO result = uploadedDocumentService.uploadCompetitionImage(request, attachedDocumentDTO);
         return ResponseEntity.created(new URI("/api/config/uploaded-documents/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("uploadedDocument", result.getId().toString()))
             .body(result);
@@ -93,7 +107,7 @@ public class UploadedDocumentResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<UploadedDocumentDTO> updateUploadedDocument(HttpServletRequest request,
-        @Valid @RequestBody AttachedDocumentDTO uploadedDocumentDTO) throws URISyntaxException {
+        @Valid @RequestBody DocumentDTO uploadedDocumentDTO) throws URISyntaxException {
         log.debug("REST request to update UploadedDocument : {}", uploadedDocumentDTO);
         if(uploadedDocumentDTO.getId() == null) {
             return createUploadedDocument(request, uploadedDocumentDTO);

@@ -526,6 +526,25 @@ dl > dt > span {
     background-color: inherit !important;
 }
 
+.banner {
+    height: 340px;
+    margin-top: -20px;
+    padding: 5px 5px 20px;
+}
+
+
+@media screen and (min-width: 992px) {
+    .banner {
+        max-width: 240px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .banner {
+        max-width: 340px;
+    }
+}
+
 
 /*@media screen and (max-width: 900px) {
     .registry-block .form-group {

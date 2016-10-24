@@ -47,13 +47,7 @@ public class DownloadResource {
         log.debug("REST request to download file");
         UploadedDocument doc = uploadedDocumentService.findById(id);
         if(null != doc) {
-            byte[] documentBody = doc.getContent();
-            String[] contentTypes = StringUtils.split(doc.getContentContentType(), "/");
-            HttpHeaders header = new HttpHeaders();
-            header.setContentType(new MediaType(contentTypes[0], contentTypes[1]));
-            header.set("Content-Disposition", "inline; filename=" + doc.getFullName());
-            header.setContentLength(documentBody.length);
-            return new HttpEntity<>(documentBody, header);
+            return download(response, doc);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -68,15 +62,44 @@ public class DownloadResource {
         if(null != competition && competition.isVisible()) {
             UploadedDocument doc = uploadedDocumentService.findById(competition.getDetailsDocumentId());
             if(null != doc) {
-                byte[] documentBody = doc.getContent();
-                String[] contentTypes = StringUtils.split(doc.getContentContentType(), "/");
-                HttpHeaders header = new HttpHeaders();
-                header.setContentType(new MediaType(contentTypes[0], contentTypes[1]));
-                header.set("Content-Disposition", "inline; filename=" + doc.getFullName());
-                header.setContentLength(documentBody.length);
-                return new HttpEntity<>(documentBody, header);
+                return download(response, doc);
             }
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @RequestMapping(value = "/competition/{competitionId}/banner",
+                    method = RequestMethod.GET)
+    @Timed
+    public HttpEntity<byte[]> downloadCompetitionBanner(@PathVariable("competitionId") Long competitionId,
+                                                        HttpServletResponse response) {
+        log.debug("REST request to download file");
+        CompetitionDTO competition = competitionService.findOne(competitionId);
+        if(null != competition && competition.isVisible()) {
+            UploadedDocument doc = uploadedDocumentService.findById(competition.getBannerImageId());
+            if(null != doc) {
+                return download(response, doc);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    private HttpEntity<byte[]> download(HttpServletResponse response, UploadedDocument doc) {
+        return download(response,
+            doc.getFullName(),
+            StringUtils.split(doc.getContentContentType(), "/"),
+            doc.getContent());
+    }
+
+
+    private HttpEntity<byte[]> download(HttpServletResponse response,
+                                        String fileName,
+                                        String[] contentTypes,
+                                        byte[] content) {
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(new MediaType(contentTypes[0], contentTypes[1]));
+        header.set("Content-Disposition", "inline; filename=" + fileName);
+        header.setContentLength(content.length);
+        return new HttpEntity<>(content, header);
     }
 }

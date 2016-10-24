@@ -14,53 +14,64 @@
     </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="dl-horizontal jh-entity-details competition-dl">
-        <dt>
-            <span data-translate="danceFormApp.competition-timeline.name">Name</span>
-        </dt>
-        <dd>
-            <span>{{vm.currentCompetition.name}}</span>
-        </dd>
-        <dt>
-            <span data-translate="danceFormApp.competition-timeline.date">Date</span>
-        </dt>
-        <dd>
-            <span>{{vm.currentCompetition.date | date:'d MMMM yyyy'}}</span>
-        </dd>
-        <dt>
-            <span data-translate="danceFormApp.competition-timeline.organizer">Organizer</span>
-        </dt>
-        <dd>
-            <span>{{vm.currentCompetition.organizer}}</span>
-        </dd>
-        <dt>
-            <span data-translate="danceFormApp.competition-timeline.location">Location</span>
-        </dt>
-        <dd>
-            <span>{{vm.currentCompetition.location}}</span>
-        </dd>
-        <dt>
-            <span data-translate="danceFormApp.competition-timeline.amount">Location</span>
-        </dt>
-        <dd>
-            <span>{{vm.totalRegisteredCount}}
-                <span ng-show="vm.currentCompetition.amountOfUniqueRegisteredPairs > 0">
-                    <span data-translate="danceFormApp.competition-timeline.uniqueAmount"></span>
-                    {{vm.currentCompetition.amountOfUniqueRegisteredPairs}})
-                </span>
-            </span>
-        </dd>
-        <dt ng-show="vm.currentCompetition.detailsDocumentId != null">
-            <span data-translate="danceFormApp.competition-timeline.detailsDocument">Location</span>
-        </dt>
-        <dd ng-show="vm.currentCompetition.detailsDocumentId != null">
-            <!--<a href="{{vm.currentCompetition.uploadedDocumentDTO.externalPath}}" target="_blank" data-translate="entity.action.open">-->
-            <!--<a ng-click="vm.loadDocumentDetails()" target="_new" data-translate="entity.action.open">-->
-            <a href="uploads/competition/{{vm.currentCompetition.id}}/details" target="_new" data-translate="entity.action.open">
-                open
-            </a>
-        </dd>
-    </dl>
+    <table>
+        <tr>
+            <td>
+                <div ng-show="vm.currentCompetition.bannerImageId != null">
+                    <a href="uploads/competition/{{vm.currentCompetition.id}}/banner" target="_new">
+                        <img class="banner" data-ng-src="uploads/competition/{{vm.currentCompetition.id}}/banner"/>
+                    </a>
+                </div>
+            </td>
+            <td>
+                <dl class="dl-horizontal jh-entity-details competition-dl">
+                    <dt>
+                        <span data-translate="danceFormApp.competition-timeline.name">Name</span>
+                    </dt>
+                    <dd>
+                        <span>{{vm.currentCompetition.name}}</span>
+                    </dd>
+                    <dt>
+                        <span data-translate="danceFormApp.competition-timeline.date">Date</span>
+                    </dt>
+                    <dd>
+                        <span>{{vm.currentCompetition.date | date:'d MMMM yyyy'}}</span>
+                    </dd>
+                    <dt>
+                        <span data-translate="danceFormApp.competition-timeline.organizer">Organizer</span>
+                    </dt>
+                    <dd>
+                        <span>{{vm.currentCompetition.organizer}}</span>
+                    </dd>
+                    <dt>
+                        <span data-translate="danceFormApp.competition-timeline.location">Location</span>
+                    </dt>
+                    <dd>
+                        <span>{{vm.currentCompetition.location}}</span>
+                    </dd>
+                    <dt>
+                        <span data-translate="danceFormApp.competition-timeline.amount">Location</span>
+                    </dt>
+                    <dd>
+                        <span>{{vm.totalRegisteredCount}}
+                            <span ng-show="vm.currentCompetition.amountOfUniqueRegisteredPairs > 0">
+                                <span data-translate="danceFormApp.competition-timeline.uniqueAmount"></span>
+                                {{vm.currentCompetition.amountOfUniqueRegisteredPairs}})
+                            </span>
+                        </span>
+                    </dd>
+                    <dt ng-show="vm.currentCompetition.detailsDocumentId != null">
+                        <span data-translate="danceFormApp.competition-timeline.detailsDocument">Location</span>
+                    </dt>
+                    <dd ng-show="vm.currentCompetition.detailsDocumentId != null">
+                        <a href="uploads/competition/{{vm.currentCompetition.id}}/details" target="_new" data-translate="entity.action.open">
+                            open
+                        </a>
+                    </dd>
+                </dl>
+            </td>
+        </tr>
+    </table>
 
 
     <button type="submit"
@@ -78,30 +89,31 @@
                         <span data-translate="danceFormApp.competition-timeline.categories.name">Дата</span>
                     </th>
                     <th>
+                        <span data-translate="danceFormApp.competition-timeline.categories.description">Дата</span>
+                    </th>
+                    <th>
                         <span data-translate="danceFormApp.competition-timeline.categories.amount">Дата</span>
                     </th>
                     <th>
                         <span data-translate="danceFormApp.competition-timeline.categories.danceClass">Dance Class</span>
                     </th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="category in vm.categories track by category.id">
-                    <td>{{category.name}}</td>
-                    <td class="align-center">{{category.registeredCouplesCount}}</td>
+                    <td>
+                        <button type="button"
+                                ui-sref="competition-timeline-category-details({competitionId:vm.currentCompetition.id, categoryId:category.id})"
+                                class="btn btn-link show-competition-link">
+                            <span>{{category.name}}</span>
+                        </button>
+                    </td>
+                    <td>{{category.description}}</td>
+                    <td>{{category.registeredCouplesCount}}</td>
                     <td>
                         <span ng-repeat="danceClass in category.danceClasses">
                             {{danceClass.name}}{{$last ? '' : ', '}}
                         </span>
-                    </td>
-                    <td>
-                        <button type="submit"
-                                ui-sref="competition-timeline-category-details({competitionId:vm.currentCompetition.id, categoryId:category.id})"
-                                class="btn btn-info btn-sm">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                            <span class="hidden-xs hidden-sm" data-translate="danceFormApp.competition-timeline.categories.details"></span>
-                        </button>
                     </td>
                 </tr>
             </tbody>
@@ -109,3 +121,4 @@
 
 
     </div>
+</div>

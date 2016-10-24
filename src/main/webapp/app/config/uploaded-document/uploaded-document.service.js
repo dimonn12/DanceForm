@@ -24,7 +24,11 @@
 			'update': {method: 'PUT'},
 			'uploadToComeptition': {
 				method: 'POST',
-				url: resourceUrl + '/competition'
+				url: resourceUrl + '/competition/details'
+			},
+			'uploadImageToComeptition': {
+				method: 'POST',
+				url: resourceUrl + '/competition/image'
 			}
 		});
 	}

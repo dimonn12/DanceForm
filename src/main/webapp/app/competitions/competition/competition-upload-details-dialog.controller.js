@@ -41,7 +41,6 @@
 		vm.setContent = function($file, uploadedDocument) {
 			if($file) {
 				uploadedDocument.fullName = $file.name;
-				uploadedDocument.contentContentType = $file.type;
 				DataUtils.toBase64($file, function(base64Data) {
 					$scope.$apply(function() {
 						uploadedDocument.content = base64Data;

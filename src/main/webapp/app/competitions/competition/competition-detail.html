@@ -5,49 +5,61 @@
     </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="dl-horizontal jh-entity-details">
-        <dt>
-            <span data-translate="danceFormApp.competition.name">Name</span>
-        </dt>
-        <dd>
-            <span>{{vm.competition.name}}</span>
-        </dd>
-        <dt>
-            <span data-translate="danceFormApp.competition.date">Date</span>
-        </dt>
-        <dd>
-            <span>{{vm.competition.date | date:'mediumDate'}}</span>
-        </dd>
-        <dt>
-            <span data-translate="danceFormApp.competition.visible">Is Visible</span>
-        </dt>
-        <dd>
-            <span>{{vm.competition.visible}}</span>
-        </dd>
-        <dt>
-            <span data-translate="danceFormApp.competition.organizer">Organizer</span>
-        </dt>
-        <dd>
-            <span>{{vm.competition.organizer}}</span>
-        </dd>
-        <dt>
-            <span data-translate="danceFormApp.competition.location">Location</span>
-        </dt>
-        <dd>
-            <span>{{vm.competition.location}}</span>
-        </dd>
-        <dt ng-show="vm.competition.detailsDocumentId != null">
-            <span data-translate="danceFormApp.competition.detailsDocument">Location</span>
-        </dt>
-        <dd ng-show="vm.competition.detailsDocumentId != null">
-            <!--<a href="{{vm.currentCompetition.uploadedDocumentDTO.externalPath}}" target="_blank" data-translate="entity.action.open">-->
-            <!--<a ng-click="vm.loadDocumentDetails()" target="_new" data-translate="entity.action.open">-->
-            <a href="uploads/{{vm.competition.detailsDocumentId}}" target="_new" data-translate="entity.action.open">
-                open
-            </a>
-        </dd>
-    </dl>
-
+    <table>
+        <tr>
+            <td>
+                <div ng-show="vm.competition.bannerImageId != null">
+                    <a href="uploads/{{vm.competition.bannerImageId}}" target="_new">
+                        <img class="banner" data-ng-src="uploads/{{vm.competition.bannerImageId}}"/>
+                    </a>
+                </div>
+            </td>
+            <td>
+                <dl class="dl-horizontal jh-entity-details">
+                    <dt>
+                        <span data-translate="danceFormApp.competition.name">Name</span>
+                    </dt>
+                    <dd>
+                        <span>{{vm.competition.name}}</span>
+                    </dd>
+                    <dt>
+                        <span data-translate="danceFormApp.competition.date">Date</span>
+                    </dt>
+                    <dd>
+                        <span>{{vm.competition.date | date:'mediumDate'}}</span>
+                    </dd>
+                    <dt>
+                        <span data-translate="danceFormApp.competition.visible">Is Visible</span>
+                    </dt>
+                    <dd>
+                        <span>{{vm.competition.visible}}</span>
+                    </dd>
+                    <dt>
+                        <span data-translate="danceFormApp.competition.organizer">Organizer</span>
+                    </dt>
+                    <dd>
+                        <span>{{vm.competition.organizer}}</span>
+                    </dd>
+                    <dt>
+                        <span data-translate="danceFormApp.competition.location">Location</span>
+                    </dt>
+                    <dd>
+                        <span>{{vm.competition.location}}</span>
+                    </dd>
+                    <dt ng-show="vm.competition.detailsDocumentId != null">
+                        <span data-translate="danceFormApp.competition.detailsDocument">Location</span>
+                    </dt>
+                    <dd ng-show="vm.competition.detailsDocumentId != null">
+                        <!--<a href="{{vm.currentCompetition.uploadedDocumentDTO.externalPath}}" target="_blank" data-translate="entity.action.open">-->
+                        <!--<a ng-click="vm.loadDocumentDetails()" target="_new" data-translate="entity.action.open">-->
+                        <a href="uploads/{{vm.competition.detailsDocumentId}}" target="_new" data-translate="entity.action.open">
+                            open
+                        </a>
+                    </dd>
+                </dl>
+            </td>
+        </tr>
+    </table>
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
@@ -67,7 +79,7 @@
             ui-sref="competition-upload-image({competitionId:vm.competition.id})"
             class="btn btn-upload">
         <span class="glyphicon glyphicon-upload"></span>
-        <span data-translate="danceFormApp.competition.action.uploadAvatar"></span>
+        <span data-translate="danceFormApp.competition.action.uploadBanner"></span>
     </button>
 
     <button type="submit"
