@@ -13,6 +13,7 @@ import java.time.ZonedDateTime;
 public class UploadedDocumentDTO extends AbstractDomainDTO<Long> {
 
     @NotNull
+    @Size(min = 1, max = 255)
     private String fullName;
 
     private String path;

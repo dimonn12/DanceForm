@@ -128,7 +128,6 @@ public class UploadedDocumentResource {
                     method = RequestMethod.GET,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    @Secured({ AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS })
     public ResponseEntity<UploadedDocumentDTO> getUploadedDocument(@PathVariable Long id) {
         log.debug("REST request to get UploadedDocument : {}", id);
         UploadedDocumentDTO uploadedDocumentDTO = uploadedDocumentService.findOne(id);

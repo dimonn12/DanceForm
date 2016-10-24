@@ -1,0 +1,47 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "fullName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "1",
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldName": "path",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "externalPath",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "uploadedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "uploadedDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "contentType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "content",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "changelogDate": "20161024091006",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "uploaded_image",
+    "pagination": "pager"
+}

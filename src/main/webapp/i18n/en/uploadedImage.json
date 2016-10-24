@@ -1,0 +1,28 @@
+{
+    "danceFormApp": {
+        "uploadedImage" : {
+            "home": {
+                "title": "Uploaded Images",
+                "createLabel": "Create a new Uploaded Image",
+                "createOrEditLabel": "Create or edit a Uploaded Image",
+                "search": "Search for Uploaded Image"
+            },
+            "created": "A new Uploaded Image is created with identifier {{ param }}",
+            "updated": "A Uploaded Image is updated with identifier {{ param }}",
+            "deleted": "A Uploaded Image is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Uploaded Image {{ id }}?"
+            },
+            "detail": {
+                "title": "Uploaded Image"
+            },
+            "fullName": "Full Name",
+            "path": "Path",
+            "externalPath": "External Path",
+            "uploadedBy": "Uploaded By",
+            "uploadedDate": "Uploaded Date",
+            "contentType": "Content Type",
+            "content": "Content"
+        }
+    }
+}

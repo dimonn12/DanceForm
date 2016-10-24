@@ -11,8 +11,6 @@ public class AttachedDocumentDTO extends DocumentDTO {
     @NotNull
     private Long entityId;
 
-    private String contentContentType;
-
     public AttachedDocumentDTO() {
     }
 
@@ -28,11 +26,4 @@ public class AttachedDocumentDTO extends DocumentDTO {
         this.entityId = entityId;
     }
 
-    public String getContentContentType() {
-        return contentContentType;
-    }
-
-    public void setContentContentType(String contentContentType) {
-        this.contentContentType = contentContentType;
-    }
 }

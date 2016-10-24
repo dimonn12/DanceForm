@@ -18,6 +18,7 @@
                 "location": "Location",
                 "trainer": "Trainer",
                 "uploadedDocument": "Uploaded Document",
+                "uploadedImage": "Uploaded Image",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
