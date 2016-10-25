@@ -543,6 +543,19 @@ dl > dt > span {
     padding: 5px 5px 20px;
 }
 
+.footer {
+    display: inline-block;
+    height: 1px;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.footer > table {
+    text-align: center;
+    width: 1px;
+}
+
 @media screen and (min-width: 992px) {
     .banner {
         max-width: 240px;
