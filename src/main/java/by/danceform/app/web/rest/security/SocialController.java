@@ -29,7 +29,7 @@ public class SocialController {
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public RedirectView signUp(WebRequest webRequest,
-                               @CookieValue(name = "NG_TRANSLATE_LANG_KEY", required = false, defaultValue = "\"en\"")
+                               @CookieValue(name = "NG_TRANSLATE_LANG_KEY", required = false, defaultValue = "\"ru\"")
                                    String langKey) {
         try {
             Connection<?> connection = providerSignInUtils.getConnectionFromSession(webRequest);
