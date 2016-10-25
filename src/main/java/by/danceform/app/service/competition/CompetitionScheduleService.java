@@ -34,9 +34,9 @@ import java.util.stream.Collectors;
  */
 @Service
 @Transactional
-public class CompetitionTimelineService {
+public class CompetitionScheduleService {
 
-    private final Logger log = LoggerFactory.getLogger(CompetitionTimelineService.class);
+    private final Logger log = LoggerFactory.getLogger(CompetitionScheduleService.class);
 
     @Inject
     private CompetitionRepository competitionRepository;
@@ -63,7 +63,7 @@ public class CompetitionTimelineService {
     private CompetitionCategoryConverter competitionCategoryConverter;
 
     @Transactional(readOnly = true)
-    public List<CompetitionDTO> findForTimeline() {
+    public List<CompetitionDTO> findForSchedule() {
         log.debug("Request to get all Competitions");
         List<Competition> result = competitionRepository.findVisible();
         List<CompetitionDTO> competitions = result.stream()

@@ -3,11 +3,11 @@
 
 	angular
 		.module('danceFormApp')
-		.controller('TimelineController', TimelineController);
+		.controller('ScheduleController', ScheduleController);
 
-	TimelineController.$inject = ['$scope', 'Principal', 'CompetitionTimeline', 'LoginService', 'AlertService', '$state'];
+	ScheduleController.$inject = ['$scope', 'Principal', 'CompetitionSchedule', 'LoginService', 'AlertService', '$state'];
 
-	function TimelineController($scope, Principal, CompetitionTimeline, LoginService, AlertService, $state) {
+	function ScheduleController($scope, Principal, CompetitionSchedule, LoginService, AlertService, $state) {
 		var vm = this;
 
 		vm.account = null;
@@ -29,7 +29,7 @@
 		loadCompetitions();
 
 		function loadCompetitions() {
-			CompetitionTimeline.query({}, onSuccess, onError);
+			CompetitionSchedule.query({}, onSuccess, onError);
 			function onSuccess(data, headers) {
 				vm.queryCount = vm.totalItems;
 				vm.futureCompetitions = [];

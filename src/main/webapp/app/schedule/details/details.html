@@ -9,7 +9,7 @@
     </button>
 
     <h2>
-        <span data-translate="danceFormApp.competition-timeline.show.title">Competition</span>
+        <span data-translate="danceFormApp.schedule.details.title">Competition</span>
         "{{vm.currentCompetition.name}}"
     </h2>
     <hr>
@@ -26,42 +26,42 @@
             <td>
                 <dl class="dl-horizontal jh-entity-details competition-dl">
                     <dt>
-                        <span data-translate="danceFormApp.competition-timeline.name">Name</span>
+                        <span data-translate="danceFormApp.schedule.name">Name</span>
                     </dt>
                     <dd>
                         <span>{{vm.currentCompetition.name}}</span>
                     </dd>
                     <dt>
-                        <span data-translate="danceFormApp.competition-timeline.date">Date</span>
+                        <span data-translate="danceFormApp.schedule.date">Date</span>
                     </dt>
                     <dd>
                         <span>{{vm.currentCompetition.date | date:'d MMMM yyyy'}}</span>
                     </dd>
                     <dt>
-                        <span data-translate="danceFormApp.competition-timeline.organizer">Organizer</span>
+                        <span data-translate="danceFormApp.schedule.organizer">Organizer</span>
                     </dt>
                     <dd>
                         <span>{{vm.currentCompetition.organizer}}</span>
                     </dd>
                     <dt>
-                        <span data-translate="danceFormApp.competition-timeline.location">Location</span>
+                        <span data-translate="danceFormApp.schedule.location">Location</span>
                     </dt>
                     <dd>
                         <span>{{vm.currentCompetition.location}}</span>
                     </dd>
                     <dt>
-                        <span data-translate="danceFormApp.competition-timeline.amount">Location</span>
+                        <span data-translate="danceFormApp.schedule.amount">Location</span>
                     </dt>
                     <dd>
                         <span>{{vm.totalRegisteredCount}}
                             <span ng-show="vm.currentCompetition.amountOfUniqueRegisteredPairs > 0">
-                                <span data-translate="danceFormApp.competition-timeline.uniqueAmount"></span>
+                                <span data-translate="danceFormApp.schedule.uniqueAmount"></span>
                                 {{vm.currentCompetition.amountOfUniqueRegisteredPairs}})
                             </span>
                         </span>
                     </dd>
                     <dt ng-show="vm.currentCompetition.detailsDocumentId != null">
-                        <span data-translate="danceFormApp.competition-timeline.detailsDocument">Location</span>
+                        <span data-translate="danceFormApp.schedule.detailsDocument">Location</span>
                     </dt>
                     <dd ng-show="vm.currentCompetition.detailsDocumentId != null">
                         <a href="uploads/competition/{{vm.currentCompetition.id}}/details" target="_new" data-translate="entity.action.open">
@@ -73,29 +73,30 @@
         </tr>
     </table>
 
-
-    <button type="submit"
-            ui-sref="competition-timeline-category-register({competitionId:vm.currentCompetition.id})"
-            class="btn btn-success btn-sm">
-        <span class="glyphicon glyphicon-plus"></span>
-        <span data-translate="danceFormApp.competition-timeline.categories.register"></span>
-    </button>
+    <div class="registry-button">
+        <button type="submit"
+                ui-sref="schedule-category-register({competitionId:vm.currentCompetition.id})"
+                class="btn btn-success">
+            <span class="glyphicon glyphicon-plus"></span>
+            <span data-translate="danceFormApp.schedule.categories.register"></span>
+        </button>
+    </div>
 
     <div class="table-responsive">
-        <table class="jh-table table table-bordered table-timeline wrap-text nowrap-content">
+        <table class="jh-table table table-bordered table-schedule wrap-text nowrap-content">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th>
-                        <span data-translate="danceFormApp.competition-timeline.categories.name">Дата</span>
+                        <span data-translate="danceFormApp.schedule.categories.name">Дата</span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.competition-timeline.categories.description">Дата</span>
+                        <span data-translate="danceFormApp.schedule.categories.description">Дата</span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.competition-timeline.categories.amount">Дата</span>
+                        <span data-translate="danceFormApp.schedule.categories.amount">Дата</span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.competition-timeline.categories.danceClass">Dance Class</span>
+                        <span data-translate="danceFormApp.schedule.categories.danceClass">Dance Class</span>
                     </th>
                 </tr>
             </thead>
@@ -103,7 +104,7 @@
                 <tr ng-repeat="category in vm.categories track by category.id">
                     <td>
                         <button type="button"
-                                ui-sref="competition-timeline-category-details({competitionId:vm.currentCompetition.id, categoryId:category.id})"
+                                ui-sref="schedule-category-details({competitionId:vm.currentCompetition.id, categoryId:category.id})"
                                 class="btn btn-link show-competition-link">
                             <span>{{category.name}}</span>
                         </button>
@@ -118,7 +119,6 @@
                 </tr>
             </tbody>
         </table>
-
 
     </div>
 </div>

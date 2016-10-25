@@ -416,14 +416,14 @@ Social Buttons
 /* jhipster-needle-css-add-main JHipster will add new css style */
 
 /* ==========================================================================
-Competition timeline styles
+Competition schedule styles
 ========================================================================== */
-.table-timeline > thead > tr > th {
+.table-schedule > thead > tr > th {
     text-align: center;
     vertical-align: middle;
 }
 
-.table-timeline > tbody > tr {
+.table-schedule > tbody > tr {
     background-color: #f9f9f9;
 }
 
@@ -522,6 +522,17 @@ dl > dt > span {
     -webkit-font-smoothing: antialiased;
 }
 
+.registry-button {
+    padding: 15px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.registry-button > button {
+    width: 340px;
+}
+
 .form-control .checkbox {
     background-color: inherit !important;
 }
@@ -531,7 +542,6 @@ dl > dt > span {
     margin-top: -20px;
     padding: 5px 5px 20px;
 }
-
 
 @media screen and (min-width: 992px) {
     .banner {
@@ -544,7 +554,6 @@ dl > dt > span {
         max-width: 340px;
     }
 }
-
 
 /*@media screen and (max-width: 900px) {
     .registry-block .form-group {

@@ -2,7 +2,7 @@ package by.danceform.app.web.rest.competition;
 
 import by.danceform.app.dto.competition.CompetitionCategoryWithDetailsDTO;
 import by.danceform.app.security.AuthoritiesConstants;
-import by.danceform.app.service.competition.CompetitionTimelineService;
+import by.danceform.app.service.competition.CompetitionScheduleService;
 import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,14 +23,14 @@ import java.util.Optional;
  * Created by dimonn12 on 08.10.2016.
  */
 @RestController
-@RequestMapping("/api/competition-timeline/competitions/{competitionId}/category")
+@RequestMapping("/api/schedule/competitions/{competitionId}/category")
 @Secured({ AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS })
-public class CompetitionTimelineCategoryResource {
+public class CompetitionScheduleCategoryResource {
 
-    private final Logger log = LoggerFactory.getLogger(CompetitionTimelineCategoryResource.class);
+    private final Logger log = LoggerFactory.getLogger(CompetitionScheduleCategoryResource.class);
 
     @Inject
-    private CompetitionTimelineService competitionService;
+    private CompetitionScheduleService scheduleService;
 
     @RequestMapping(value = "/{categoryId}",
                     method = RequestMethod.GET,
@@ -39,7 +39,7 @@ public class CompetitionTimelineCategoryResource {
     public ResponseEntity<CompetitionCategoryWithDetailsDTO> getCompetitionCategoryWithDetails(
         @PathVariable Long competitionId, @PathVariable Long categoryId) {
         log.debug("REST request to get competition with detai;s : {}", categoryId);
-        CompetitionCategoryWithDetailsDTO competitionCategoryWithDetailsDTO = competitionService.findCategoryWithDetails(
+        CompetitionCategoryWithDetailsDTO competitionCategoryWithDetailsDTO = scheduleService.findCategoryWithDetails(
             categoryId);
         return Optional.ofNullable(competitionCategoryWithDetailsDTO).map(result -> {
             if(!Objects.equals(result.getCompetitionId(), competitionId)) {

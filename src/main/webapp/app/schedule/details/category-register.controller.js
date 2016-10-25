@@ -5,9 +5,9 @@
 		.module('danceFormApp')
 		.controller('CategoryRegisterController', CategoryRegisterController);
 
-	CategoryRegisterController.$inject = ['$scope', '$rootScope', '$stateParams', '$state', 'previousState', 'entity', 'Competition', 'CompetitionCategory', 'DanceClass', 'RegisteredCouple', 'AlertService', 'Location', 'Organization', 'Trainer'];
+	CategoryRegisterController.$inject = ['$scope', '$rootScope', '$stateParams', '$state', 'previousState', 'entity', 'CompetitionCategory', 'DanceClass', 'RegisteredCouple', 'AlertService', 'Location', 'Organization', 'Trainer'];
 
-	function CategoryRegisterController($scope, $rootScope, $stateParams, $state, previousState, entity, Competition, CompetitionCategory, DanceClass, RegisteredCouple, AlertService, Location, Organization, Trainer) {
+	function CategoryRegisterController($scope, $rootScope, $stateParams, $state, previousState, entity, CompetitionCategory, DanceClass, RegisteredCouple, AlertService, Location, Organization, Trainer) {
 		var vm = this;
 
 		vm.currentCompetition = entity;
@@ -85,7 +85,7 @@
 			function onSaveSuccess(result) {
 				$scope.$emit('danceFormApp:competitionUpdate', result);
 				vm.isSaving = false;
-				$state.go('competition-timeline-show', {id: vm.currentCompetition.id});
+				$state.go('schedule-details', {id: vm.currentCompetition.id});
 			}
 
 			function onSaveError() {

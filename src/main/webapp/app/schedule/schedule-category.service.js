@@ -2,12 +2,12 @@
 	'use strict';
 	angular
 		.module('danceFormApp')
-		.factory('CompetitionTimelineCategory', CompetitionTimelineCategory);
+		.factory('CompetitionScheduleCategory', CompetitionScheduleCategory);
 
-	CompetitionTimelineCategory.$inject = ['$resource', 'DateUtils'];
+	CompetitionScheduleCategory.$inject = ['$resource', 'DateUtils'];
 
-	function CompetitionTimelineCategory($resource, DateUtils) {
-		var resourceUrl = '/api/competition-timeline/competitions/:competitionId/category/:id';
+	function CompetitionScheduleCategory($resource, DateUtils) {
+		var resourceUrl = '/api/schedule/competitions/:competitionId/category/:id';
 
 		return $resource(resourceUrl, {}, {
 			'query': {method: 'GET', isArray: true},

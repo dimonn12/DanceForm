@@ -9,32 +9,32 @@
     </button>
 
     <h2>
-        <span data-translate="danceFormApp.competition-timeline.show.title">Competition</span>
+        <span data-translate="danceFormApp.schedule.details.title">Competition</span>
         "{{vm.currentCompetition.name}}"
     </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details competition-dl">
         <dt>
-            <span data-translate="danceFormApp.competition-timeline.name">Name</span>
+            <span data-translate="danceFormApp.schedule.name">Name</span>
         </dt>
         <dd>
             <span>{{vm.currentCompetition.name}}</span>
         </dd>
         <dt>
-            <span data-translate="danceFormApp.competition-timeline.date">Date</span>
+            <span data-translate="danceFormApp.schedule.date">Date</span>
         </dt>
         <dd>
             <span>{{vm.currentCompetition.date | date:'d MMMM yyyy'}}</span>
         </dd>
         <dt>
-            <span data-translate="danceFormApp.competition-timeline.organizer">Organizer</span>
+            <span data-translate="danceFormApp.schedule.organizer">Organizer</span>
         </dt>
         <dd>
             <span>{{vm.currentCompetition.organizer}}</span>
         </dd>
         <dt>
-            <span data-translate="danceFormApp.competition-timeline.location">Location</span>
+            <span data-translate="danceFormApp.schedule.location">Location</span>
         </dt>
         <dd>
             <span>{{vm.currentCompetition.location}}</span>
@@ -47,7 +47,7 @@
         <div>
             <div class="registry-block">
                 <div class="form-group">
-                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.partner1Surname" for="field_partner1surname">Name</label>
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.partner1Surname" for="field_partner1surname">Name</label>
                     (
                     <span class="asterisk">*</span>
                     )
@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.partner1Name" for="field_partner1name">Name</label>
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.partner1Name" for="field_partner1name">Name</label>
                     (
                     <span class="asterisk">*</span>
                     )
@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.partner1DateOfBirth" for="field_partner1DateOfBirth">Date</label>
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.partner1DateOfBirth" for="field_partner1DateOfBirth">Date</label>
                     (
                     <span class="asterisk">*</span>
                     )
@@ -92,19 +92,19 @@
                             <tr>
                                 <th colspan="2">
                                     <h4 class="registry-classes-label">
-                                        <span data-translate="danceFormApp.competition-timeline.registry.partner1Classes">Classes</span>
+                                        <span data-translate="danceFormApp.schedule.registry.partner1Classes">Classes</span>
                                     </h4>
                                 </th>
                             </tr>
                             <tr>
                                 <th>
-                                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.st" for="field_partner1DanceClassST">Date</label>
+                                    <label class="control-label" data-translate="danceFormApp.schedule.registry.st" for="field_partner1DanceClassST">Date</label>
                                     (
                                     <span class="asterisk">*</span>
                                     )
                                 </th>
                                 <th>
-                                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.la" for="field_partner1DanceClassLA">Date</label>
+                                    <label class="control-label" data-translate="danceFormApp.schedule.registry.la" for="field_partner1DanceClassLA">Date</label>
                                     (
                                     <span class="asterisk">*</span>
                                     )
@@ -138,7 +138,7 @@
 
             <div class="registry-block">
                 <div class="form-group">
-                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.partner2Surname" for="field_partner2surname">Name</label>
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.partner2Surname" for="field_partner2surname">Name</label>
                     (
                     <span class="asterisk">*</span>
                     )
@@ -147,7 +147,7 @@
                            required ng-minlength="1" ng-maxlength="128"/>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.partner2Name" for="field_partner2name">Name</label>
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.partner2Name" for="field_partner2name">Name</label>
                     (
                     <span class="asterisk">*</span>
                     )
@@ -156,7 +156,7 @@
                            required ng-minlength="1" ng-maxlength="128"/>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.partner2DateOfBirth" for="field_partner2DateOfBirth">Date</label>
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.partner2DateOfBirth" for="field_partner2DateOfBirth">Date</label>
                     (
                     <span class="asterisk">*</span>
                     )
@@ -181,19 +181,19 @@
                             <tr>
                                 <th colspan="2">
                                     <h4 class="registry-classes-label">
-                                        <span data-translate="danceFormApp.competition-timeline.registry.partner2Classes">Classes</span>
+                                        <span data-translate="danceFormApp.schedule.registry.partner2Classes">Classes</span>
                                     </h4>
                                 </th>
                             </tr>
                             <tr>
                                 <th>
-                                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.st" for="field_partner2DanceClassST">Date</label>
+                                    <label class="control-label" data-translate="danceFormApp.schedule.registry.st" for="field_partner2DanceClassST">Date</label>
                                     (
                                     <span class="asterisk">*</span>
                                     )
                                 </th>
                                 <th>
-                                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.la" for="field_partner2DanceClassLA">Date</label>
+                                    <label class="control-label" data-translate="danceFormApp.schedule.registry.la" for="field_partner2DanceClassLA">Date</label>
                                     (
                                     <span class="asterisk">*</span>
                                     )
@@ -227,7 +227,7 @@
 
             <div class="registry-block">
                 <div class="form-group">
-                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.organization" for="field_organization">Name</label>
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.organization" for="field_organization">Name</label>
                     (
                     <span class="asterisk">*</span>
                     )
@@ -237,7 +237,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.location" for="field_location">Name</label>
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.location" for="field_location">Name</label>
                     (
                     <span class="asterisk">*</span>
                     )
@@ -249,7 +249,7 @@
 
             <div class="registry-block">
                 <div class="form-group">
-                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.trainer1" for="field_trainer1">Name</label>
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.trainer1" for="field_trainer1">Name</label>
                     (
                     <span class="asterisk">*</span>
                     )
@@ -267,7 +267,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" data-translate="danceFormApp.competition-timeline.registry.trainer2" for="field_trainer2">Name</label>
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.trainer2" for="field_trainer2">Name</label>
 
                     <select class="form-control" id="field_trainer2" name="trainer" ng-model="vm.registerCouple.trainer2"
                             ng-options="(trainer.surname + ' ' + trainer.name) as (trainer.surname + ' ' + trainer.name) for trainer in vm.trainers | orderBy:'surname + name'">
@@ -283,15 +283,17 @@
 
             <div class="registry-block" ng-show="vm.availableCategories.length > 0">
                 <h4 class="registry-classes-label">
-                    <span data-translate="danceFormApp.competition-timeline.registry.availableCategories">Classes</span>
+                    <span data-translate="danceFormApp.schedule.registry.availableCategories">Classes</span>
                 </h4>
                 <div class="form-group" ng-repeat="availableCategory in vm.availableCategories track by availableCategory.id">
-                    <div class="form-control checkbox"><input type="checkbox"
-                                                     name="vm.registerCouple.competitionCategoryIds[]"
-                                                     value="{{availableCategory.id}}"
-                                                     ng-model="availableCategory.selected"
-                                                     ng-change="vm.updateSelectedCategory();"/>
-                        <span>{{availableCategory.name}}</span></div>
+                    <div>
+                        <input type="checkbox"
+                               name="vm.registerCouple.competitionCategoryIds[]"
+                               value="{{availableCategory.id}}"
+                               ng-model="availableCategory.selected"
+                               ng-change="vm.updateSelectedCategory();"/>
+                        <span>{{availableCategory.name}}</span>
+                    </div>
                 </div>
 
             </div>
@@ -300,7 +302,7 @@
                 <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving || !vm.isCategorySelected" class="btn btn-primary">
                     <span class="glyphicon glyphicon-save"></span>
                     &nbsp;
-                    <span data-translate="danceFormApp.competition-timeline.registry.register">Save</span>
+                    <span data-translate="danceFormApp.schedule.registry.register">Save</span>
                 </button>
             </div>
         </div>

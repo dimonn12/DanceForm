@@ -5,9 +5,9 @@
 		.module('danceFormApp')
 		.controller('CategoryCouplesController', CategoryCouplesController);
 
-	CategoryCouplesController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Competition', 'CompetitionTimelineCategory', 'RegisteredCouple', 'AlertService'];
+	CategoryCouplesController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity','CompetitionScheduleCategory', 'RegisteredCouple', 'AlertService'];
 
-	function CategoryCouplesController($scope, $rootScope, $stateParams, previousState, entity, Competition, CompetitionTimelineCategory, RegisteredCouple, AlertService) {
+	function CategoryCouplesController($scope, $rootScope, $stateParams, previousState, entity, CompetitionScheduleCategory, RegisteredCouple, AlertService) {
 		var vm = this;
 
 		vm.currentCompetition = entity;
@@ -20,7 +20,7 @@
 		load();
 
 		function load() {
-			CompetitionTimelineCategory.get({
+			CompetitionScheduleCategory.get({
 				competitionId: vm.currentCompetition.id,
 				id: $stateParams.categoryId
 			}, onSuccess, onError);

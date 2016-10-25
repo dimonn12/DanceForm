@@ -3,7 +3,7 @@ package by.danceform.app.web.rest.competition;
 import by.danceform.app.dto.competition.CompetitionDTO;
 import by.danceform.app.dto.competition.CompetitionWithDetailsDTO;
 import by.danceform.app.security.AuthoritiesConstants;
-import by.danceform.app.service.competition.CompetitionTimelineService;
+import by.danceform.app.service.competition.CompetitionScheduleService;
 import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,17 +25,17 @@ import java.util.Optional;
  * Created by dimonn12 on 08.10.2016.
  */
 @RestController
-@RequestMapping("/api/competition-timeline")
+@RequestMapping("/api/schedule")
 @Secured({ AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS })
-public class CompetitionTimelineResource {
+public class CompetitionScheduleResource {
 
-    private final Logger log = LoggerFactory.getLogger(CompetitionTimelineResource.class);
+    private final Logger log = LoggerFactory.getLogger(CompetitionScheduleResource.class);
 
     @Inject
-    private CompetitionTimelineService competitionService;
+    private CompetitionScheduleService scheduleService;
 
     /**
-     * GET  /competition-timeline/competitions : get all visible competitions.
+     * GET  /schedule/competitions : get all visible competitions.
      *
      * @return the ResponseEntity with status 200 (OK) and the list of competitions in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
@@ -45,8 +45,8 @@ public class CompetitionTimelineResource {
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<List<CompetitionDTO>> getAllCompetitions() throws URISyntaxException {
-        log.debug("REST request to get a competitions for timeline");
-        List<CompetitionDTO> competitions = competitionService.findForTimeline();
+        log.debug("REST request to get a competitions for schedule");
+        List<CompetitionDTO> competitions = scheduleService.findForSchedule();
         return new ResponseEntity<>(competitions, HttpStatus.OK);
     }
 
@@ -56,7 +56,7 @@ public class CompetitionTimelineResource {
     @Timed
     public ResponseEntity<CompetitionWithDetailsDTO> getCompetitionWithDetails(@PathVariable Long id) {
         log.debug("REST request to get competition with detai;s : {}", id);
-        CompetitionWithDetailsDTO competitionDTO = competitionService.findCompetitionWithDetails(id);
+        CompetitionWithDetailsDTO competitionDTO = scheduleService.findCompetitionWithDetails(id);
         return Optional.ofNullable(competitionDTO)
             .map(result -> new ResponseEntity<>(result, HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));

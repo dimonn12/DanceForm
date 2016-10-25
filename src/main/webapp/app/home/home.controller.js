@@ -30,5 +30,7 @@
 		function register() {
 			$state.go('register');
 		}
+
+		$state.go('schedule');
 	}
 })();

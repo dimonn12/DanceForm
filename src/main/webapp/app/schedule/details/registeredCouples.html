@@ -9,38 +9,38 @@
     </button>
 
     <h2>
-        <span data-translate="danceFormApp.competition-timeline.show.title">Competition</span>
+        <span data-translate="danceFormApp.schedule.details.title">Competition</span>
         "{{vm.currentCompetition.name}}"
     </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details competition-dl">
         <dt>
-            <span data-translate="danceFormApp.competition-timeline.name">Name</span>
+            <span data-translate="danceFormApp.schedule.name">Name</span>
         </dt>
         <dd>
             <span>{{vm.currentCompetition.name}}</span>
         </dd>
         <dt>
-            <span data-translate="danceFormApp.competition-timeline.date">Date</span>
+            <span data-translate="danceFormApp.schedule.date">Date</span>
         </dt>
         <dd>
             <span>{{vm.currentCompetition.date | date:'d MMMM yyyy'}}</span>
         </dd>
         <dt>
-            <span data-translate="danceFormApp.competition-timeline.organizer">Organizer</span>
+            <span data-translate="danceFormApp.schedule.organizer">Organizer</span>
         </dt>
         <dd>
             <span>{{vm.currentCompetition.organizer}}</span>
         </dd>
         <dt>
-            <span data-translate="danceFormApp.competition-timeline.location">Location</span>
+            <span data-translate="danceFormApp.schedule.location">Location</span>
         </dt>
         <dd>
             <span>{{vm.currentCompetition.location}}</span>
         </dd>
         <dt>
-            <span data-translate="danceFormApp.competition-timeline.category.amount">Location</span>
+            <span data-translate="danceFormApp.schedule.category.amount">Location</span>
         </dt>
         <dd>
             <span>{{vm.category.registeredCouplesCount}}</span>
@@ -48,24 +48,24 @@
     </dl>
 
     <div class="table-responsive">
-        <table class="jh-table table table-bordered table-timeline">
+        <table class="jh-table table table-bordered table-schedule">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th>
-                        <span data-translate="danceFormApp.competition-timeline.couples.names">Дата</span>
+                        <span data-translate="danceFormApp.schedule.couples.names">Дата</span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.competition-timeline.couples.danceClass">Дата</span>
+                        <span data-translate="danceFormApp.schedule.couples.danceClass">Дата</span>
                         <br>
-                        <span data-translate="{{vm.category.danceCategory.id === -1 ? ('danceFormApp.competition-timeline.registry.st' | translate) : ('danceFormApp.competition-timeline.registry.la' | translate)}}">
+                        <span data-translate="{{vm.category.danceCategory.id === -1 ? ('danceFormApp.schedule.registry.st' | translate) : ('danceFormApp.schedule.registry.la' | translate)}}">
                             Дата
                         </span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.competition-timeline.couples.organization">Дата</span>
+                        <span data-translate="danceFormApp.schedule.couples.organization">Дата</span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.competition-timeline.couples.trainer">Дата</span>
+                        <span data-translate="danceFormApp.schedule.couples.trainer">Дата</span>
                     </th>
                 </tr>
             </thead>

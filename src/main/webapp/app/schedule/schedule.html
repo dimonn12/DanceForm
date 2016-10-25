@@ -1,22 +1,22 @@
 <div>
 
-    <h1 data-translate="danceFormApp.competition-timeline.title">Предстоящие Турниры</h1>
+    <h1 data-translate="danceFormApp.schedule.title">Предстоящие Турниры</h1>
 
     <div class="table-responsive">
-        <table class="jh-table table table-bordered table-timeline">
+        <table class="jh-table table table-bordered table-schedule">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th>
-                        <span data-translate="danceFormApp.competition-timeline.date">Дата</span>
+                        <span data-translate="danceFormApp.schedule.date">Дата</span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.competition-timeline.name">Название</span>
+                        <span data-translate="danceFormApp.schedule.name">Название</span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.competition-timeline.location">Место</span>
+                        <span data-translate="danceFormApp.schedule.location">Место</span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.competition-timeline.organizer">Организатор</span>
+                        <span data-translate="danceFormApp.schedule.organizer">Организатор</span>
                     </th>
                 </tr>
             </thead>
@@ -25,7 +25,7 @@
                     <td>{{competition.date | date:'d MMMM yyyy'}}</td>
                     <td>
                         <button type="button"
-                                ui-sref="competition-timeline-show({id:competition.id})"
+                                ui-sref="schedule-details({id:competition.id})"
                                 class="btn btn-link show-competition-link">
                             <span>{{competition.name}}</span>
                         </button>
@@ -36,23 +36,23 @@
             </tbody>
         </table>
 
-        <h2 data-translate="danceFormApp.competition-timeline.past.title">Прошедшие турниры </h2>
+        <h2 data-translate="danceFormApp.schedule.past.title">Прошедшие турниры </h2>
 
         <div class="table-responsive">
             <table class="jh-table table table-bordered table-timeline">
                 <thead>
                     <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                         <th>
-                            <span data-translate="danceFormApp.competition-timeline.date">Дата</span>
+                            <span data-translate="danceFormApp.schedule.date">Дата</span>
                         </th>
                         <th>
-                            <span data-translate="danceFormApp.competition-timeline.name">Название</span>
+                            <span data-translate="danceFormApp.schedule.name">Название</span>
                         </th>
                         <th>
-                            <span data-translate="danceFormApp.competition-timeline.location">Место</span>
+                            <span data-translate="danceFormApp.schedule.location">Место</span>
                         </th>
                         <th>
-                            <span data-translate="danceFormApp.competition-timeline.organizer">Организатор</span>
+                            <span data-translate="danceFormApp.schedule.organizer">Организатор</span>
                         </th>
                     </tr>
                 </thead>
