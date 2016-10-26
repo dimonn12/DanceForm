@@ -2,11 +2,8 @@ package by.danceform.app.service.util;
 
 import by.danceform.app.converter.document.UploadedDocumentConverter;
 import by.danceform.app.domain.document.UploadedDocument;
-import by.danceform.app.dto.document.AttachedDocumentDTO;
 import by.danceform.app.dto.document.DocumentDTO;
 import by.danceform.app.security.SecurityUtils;
-import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;

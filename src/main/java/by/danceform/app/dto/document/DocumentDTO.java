@@ -1,7 +1,5 @@
 package by.danceform.app.dto.document;
 
-import by.danceform.app.dto.AbstractDomainDTO;
-
 import javax.persistence.Lob;
 
 /**

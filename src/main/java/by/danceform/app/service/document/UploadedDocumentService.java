@@ -9,7 +9,6 @@ import by.danceform.app.dto.document.UploadedDocumentDTO;
 import by.danceform.app.repository.competition.CompetitionRepository;
 import by.danceform.app.repository.document.UploadedDocumentRepository;
 import by.danceform.app.service.util.UploadUtil;
-import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -63,7 +62,7 @@ public class UploadedDocumentService {
     }
 
     public UploadedDocumentDTO uploadCompetitionImage(HttpServletRequest request,
-                                                                AttachedDocumentDTO attachedDocumentDTO) {
+                                                      AttachedDocumentDTO attachedDocumentDTO) {
         UploadedDocument uploadedDocument = upload(request, attachedDocumentDTO);
         Competition comp = competitionRepository.findOne(attachedDocumentDTO.getEntityId());
         comp.setBannerImageId(uploadedDocument.getId());

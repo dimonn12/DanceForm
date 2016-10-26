@@ -1,7 +1,6 @@
 package by.danceform.app.dto.document;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  * Created by dimonn12 on 22.10.2016.
