@@ -5,6 +5,7 @@ import by.danceform.app.dto.NamedReferenceDTO;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,6 +22,8 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
     @Size(max = 256)
     private String description;
 
+    private LocalDate date;
+
     private Boolean active;
 
     private Boolean checkMinAge;
@@ -31,7 +34,7 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
 
     private NamedReferenceDTO danceCategory;
 
-    private Set<NamedReferenceDTO> danceClasses = new HashSet<>();
+    private NamedReferenceDTO maxDanceClass;
 
     private Set<NamedReferenceDTO> ageCategories = new HashSet<>();
 
@@ -57,6 +60,14 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public Boolean getActive() {
@@ -99,12 +110,12 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
         this.danceCategory = danceCategory;
     }
 
-    public Set<NamedReferenceDTO> getDanceClasses() {
-        return danceClasses;
+    public NamedReferenceDTO getMaxDanceClass() {
+        return maxDanceClass;
     }
 
-    public void setDanceClasses(Set<NamedReferenceDTO> danceClas) {
-        this.danceClasses = danceClas;
+    public void setMaxDanceClass(NamedReferenceDTO maxDanceClass) {
+        this.maxDanceClass = maxDanceClass;
     }
 
     public Set<NamedReferenceDTO> getAgeCategories() {

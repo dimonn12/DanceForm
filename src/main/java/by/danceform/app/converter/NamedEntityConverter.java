@@ -16,8 +16,10 @@ public class NamedEntityConverter<T extends INamedEntity> {
 
     public NamedReferenceDTO convertToDto(T entity) {
         NamedReferenceDTO namedReferenceDTO = new NamedReferenceDTO();
-        namedReferenceDTO.setName(entity.getName());
-        namedReferenceDTO.setId(entity.getId());
+        if(null != entity) {
+            namedReferenceDTO.setName(entity.getName());
+            namedReferenceDTO.setId(entity.getId());
+        }
         return namedReferenceDTO;
     }
 

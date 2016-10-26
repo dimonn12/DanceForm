@@ -59,7 +59,7 @@ public class DownloadResource {
                                                          HttpServletResponse response) {
         log.debug("REST request to download file");
         CompetitionDTO competition = competitionService.findOne(competitionId);
-        if(null != competition && competition.isVisible()) {
+        if(null != competition && competition.isVisible() && null != competition.getDetailsDocumentId()) {
             UploadedDocument doc = uploadedDocumentService.findById(competition.getDetailsDocumentId());
             if(null != doc) {
                 return download(response, doc);
@@ -75,7 +75,7 @@ public class DownloadResource {
                                                         HttpServletResponse response) {
         log.debug("REST request to download file");
         CompetitionDTO competition = competitionService.findOne(competitionId);
-        if(null != competition && competition.isVisible()) {
+        if(null != competition && competition.isVisible() && null != competition.getBannerImageId()) {
             UploadedDocument doc = uploadedDocumentService.findById(competition.getBannerImageId());
             if(null != doc) {
                 return download(response, doc);

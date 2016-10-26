@@ -26,25 +26,19 @@ public class LoggingAspect {
     private Environment env;
 
     @Pointcut(
-        "within(by.danceform.app.repository..*) || within(by.danceform.app.service..*) || within(by.danceform.app.web.rest..*)")
+        "within(by.danceform.app.repository..*) || within(by.danceform.app.service.competition..*) || within(by.danceform.app.web.rest..*)")
     public void loggingPointcut() {
     }
 
     @AfterThrowing(pointcut = "loggingPointcut()", throwing = "e")
     public void logAfterThrowing(JoinPoint joinPoint, Throwable e) {
-        if(env.acceptsProfiles(Constants.SPRING_PROFILE_DEVELOPMENT)) {
-            log.error("Exception in {}.{}() with cause = \'{}\' and exception = \'{}\'",
-                joinPoint.getSignature().getDeclaringTypeName(),
-                joinPoint.getSignature().getName(),
-                e.getCause() != null ? e.getCause() : "NULL",
-                e.getMessage());
-
+        log.error("Exception in {}.{}() with cause = \'{}\' and exception = \'{}\'",
+            joinPoint.getSignature().getDeclaringTypeName(),
+            joinPoint.getSignature().getName(),
+            e.getCause() != null ? e.getCause() : "NULL",
+            e.getMessage());
+        if(env.acceptsProfiles(Constants.SPRING_PROFILE_DEVELOPMENT, Constants.SPRING_PROFILE_SWAGGER)) {
             e.printStackTrace();
-        } else {
-            log.error("Exception in {}.{}() with cause = {}",
-                joinPoint.getSignature().getDeclaringTypeName(),
-                joinPoint.getSignature().getName(),
-                e.getCause() != null ? e.getCause() : "NULL");
         }
     }
 

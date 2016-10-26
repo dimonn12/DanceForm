@@ -55,12 +55,13 @@ public class CompetitionCategoryConverter extends AbstractConverter<CompetitionC
         dto.setDescription(entity.getDescription());
         dto.setName(entity.getName());
         dto.setActive(entity.isActive());
+        dto.setDate(entity.getDate());
         dto.setCheckMaxAge(entity.isCheckMaxAge());
         dto.setCheckMinAge(entity.isCheckMinAge());
         dto.setCompetitionId(entity.getCompetitionId());
         dto.setDanceCategory(danceCategoryNamedEntityConverter.convertToDto(entity.getDanceCategory()));
         dto.setAgeCategories(new HashSet<>(namedEntityAgeCategoryConverter.convertToDtos(entity.getAgeCategories())));
-        dto.setDanceClasses(new HashSet<>(namedEntityDanceClassConverter.convertToDtos(entity.getDanceClasses())));
+        dto.setMaxDanceClass(namedEntityDanceClassConverter.convertToDto(entity.getMaxDanceClass()));
         return dto;
     }
 
@@ -69,12 +70,17 @@ public class CompetitionCategoryConverter extends AbstractConverter<CompetitionC
         entity.setDescription(dto.getDescription());
         entity.setName(dto.getName());
         entity.setActive(dto.getActive());
+        entity.setDate(dto.getDate());
         entity.setCheckMinAge(dto.getCheckMinAge());
         entity.setCheckMaxAge(dto.getCheckMaxAge());
         entity.setCompetitionId(dto.getCompetitionId());
 
         if(null != dto.getDanceCategory()) {
             entity.setDanceCategory(new DanceCategory(DanceCategoryEnum.valueOf(dto.getDanceCategory())));
+        }
+
+        if(null != dto.getMaxDanceClass()) {
+            entity.setMaxDanceClass(danceClassRepository.findOne(dto.getMaxDanceClass().getId()));
         }
 
         if(null != dto.getAgeCategories()) {
@@ -85,15 +91,6 @@ public class CompetitionCategoryConverter extends AbstractConverter<CompetitionC
             entity.setAgeCategories(new HashSet<>(ageCategoryRepository.findAll(ageCategoriesIds)));
         } else {
             entity.setAgeCategories(new HashSet<>());
-        }
-        if(null != dto.getDanceClasses()) {
-            Set<Long> danceClassesIds = dto.getDanceClasses()
-                .stream()
-                .map(dc -> dc.getId())
-                .collect(Collectors.toSet());
-            entity.setDanceClasses(new HashSet<>(danceClassRepository.findAll(danceClassesIds)));
-        } else {
-            entity.setDanceClasses(new HashSet<>());
         }
 
         return entity;

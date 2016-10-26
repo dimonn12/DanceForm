@@ -17,7 +17,10 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
     private String name;
 
     @NotNull
-    private LocalDate date;
+    private LocalDate startDate;
+
+    @NotNull
+    private LocalDate endDate;
 
     private boolean visible;
 
@@ -54,12 +57,20 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
         this.name = name;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public boolean isVisible() {
@@ -139,7 +150,8 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
         return "CompetitionDTO{" +
                "id=" + id +
                ", name='" + name + "'" +
-               ", date='" + date + "'" +
+               ", startDate='" + startDate + "'" +
+               ", endDate='" + endDate + "'" +
                ", visible='" + visible + "'" +
                ", organizer='" + organizer + "'" +
                ", location='" + location + "'" +

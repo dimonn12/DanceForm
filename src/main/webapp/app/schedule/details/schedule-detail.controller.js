@@ -5,9 +5,9 @@
 		.module('danceFormApp')
 		.controller('CompetitionScheduleDetailsController', CompetitionScheduleDetailsController);
 
-	CompetitionScheduleDetailsController.$inject = ['$state', '$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'CompetitionSchedule', 'AlertService'];
+	CompetitionScheduleDetailsController.$inject = ['$state', '$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'CompetitionSchedule', 'DanceClass', 'AlertService'];
 
-	function CompetitionScheduleDetailsController($state, $scope, $rootScope, $stateParams, previousState, DataUtils, CompetitionSchedule, AlertService) {
+	function CompetitionScheduleDetailsController($state, $scope, $rootScope, $stateParams, previousState, DataUtils, CompetitionSchedule, DanceClass, AlertService) {
 		var vm = this;
 
 		vm.currentCompetition = null;
@@ -17,6 +17,8 @@
 		vm.totalRegisteredCount = 0;
 
 		vm.document = {};
+
+		vm.danceClasses = DanceClass.query();
 
 		load();
 
@@ -30,6 +32,40 @@
 
 				for(var i = 0; i < vm.categories.length; i++) {
 					vm.totalRegisteredCount += vm.categories[i].registeredCouplesCount;
+				}
+
+				for (var i = 0; i < vm.categories.length; i++) {
+				    if (null != vm.categories[i].maxDanceClass.id) {
+				    vm.categories[i].danceClasses = [];
+				    var maxDanceClass = null;
+				    for (var j = 0; j < vm.danceClasses.length; j++) {
+				        if (vm.danceClasses[j].id == vm.categories[i].maxDanceClass.id) {
+				            maxDanceClass = vm.danceClasses[j];
+				            break;
+				        }
+				    }
+				    for (var j = 0; j < vm.danceClasses.length; j++) {
+                    	if (vm.danceClasses[j].weight <  maxDanceClass.weight) {
+                    		vm.categories[i].danceClasses.push(vm.danceClasses[j]);
+                    	}
+                     }
+                     var doRemoveHiddenClasses = false;
+                     for (var j = 0; j < vm.categories[i].danceClasses.length; j++) {
+                        if (vm.categories[i].danceClasses[j].weight > 0) {
+                        doRemoveHiddenClasses = true;
+                        }
+                     }
+                     if (doRemoveHiddenClasses) {
+                        var newCategoriesDanceClasses = [];
+                        for (var j = 0; j < vm.categories[i].danceClasses.length; j++) {
+                            if (vm.categories[i].danceClasses[j].weight > 0) {
+                                newCategoriesDanceClasses.push(vm.categories[i].danceClasses[j]);
+                            }
+
+                        }
+                        vm.categories[i].danceClasses = newCategoriesDanceClasses;
+                     }
+                     }
 				}
 			}
 

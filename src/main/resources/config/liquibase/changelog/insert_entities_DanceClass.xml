@@ -20,14 +20,14 @@
             <column name="name" value="_"/>
             <column name="description" value="Школа Танцев"/>
             <column name="symbol" value="_"/>
-            <column name="weight" value="-1"/>
+            <column name="weight" value="-1000"/>
         </insert>
         <insert tableName="dance_class">
             <column name="id" value="2"/>
             <column name="name" value="H"/>
             <column name="description" value="Начальный класс"/>
             <column name="symbol" value="H"/>
-            <column name="weight" value="1"/>
+            <column name="weight" value="-6"/>
             <column name="transfer_score" value="50"/>
         </insert>
         <insert tableName="dance_class">
@@ -35,7 +35,7 @@
             <column name="name" value="E4"/>
             <column name="description" value="E4 детский класс"/>
             <column name="symbol" value="E4"/>
-            <column name="weight" value="2"/>
+            <column name="weight" value="-5"/>
             <column name="transfer_score" value="30"/>
         </insert>
         <insert tableName="dance_class">
@@ -43,7 +43,7 @@
             <column name="name" value="E"/>
             <column name="description" value="E класс"/>
             <column name="symbol" value="E"/>
-            <column name="weight" value="3"/>
+            <column name="weight" value="1"/>
             <column name="transfer_score" value="50"/>
         </insert>
         <insert tableName="dance_class">
@@ -51,7 +51,7 @@
             <column name="name" value="D"/>
             <column name="description" value="D класс"/>
             <column name="symbol" value="D"/>
-            <column name="weight" value="4"/>
+            <column name="weight" value="2"/>
             <column name="transfer_score" value="45"/>
         </insert>
         <insert tableName="dance_class">
@@ -59,7 +59,7 @@
             <column name="name" value="C"/>
             <column name="description" value="C класс"/>
             <column name="symbol" value="C"/>
-            <column name="weight" value="5"/>
+            <column name="weight" value="3"/>
             <column name="transfer_score" value="50"/>
         </insert>
         <insert tableName="dance_class">
@@ -67,7 +67,7 @@
             <column name="name" value="B"/>
             <column name="description" value="B класс"/>
             <column name="symbol" value="B"/>
-            <column name="weight" value="6"/>
+            <column name="weight" value="4"/>
             <column name="transfer_score" value="45"/>
         </insert>
         <insert tableName="dance_class">
@@ -75,7 +75,7 @@
             <column name="name" value="A"/>
             <column name="description" value="A класс"/>
             <column name="symbol" value="A"/>
-            <column name="weight" value="7"/>
+            <column name="weight" value="5"/>
             <column name="transfer_score" value="40"/>
         </insert>
         <insert tableName="dance_class">
@@ -83,14 +83,14 @@
             <column name="name" value="S"/>
             <column name="description" value="S класс"/>
             <column name="symbol" value="S"/>
-            <column name="weight" value="8"/>
+            <column name="weight" value="6"/>
         </insert>
         <insert tableName="dance_class">
             <column name="id" value="10"/>
             <column name="name" value="M"/>
             <column name="description" value="Mеждународный класс"/>
             <column name="symbol" value="M"/>
-            <column name="weight" value="9"/>
+            <column name="weight" value="7"/>
         </insert>
     </changeSet>
 

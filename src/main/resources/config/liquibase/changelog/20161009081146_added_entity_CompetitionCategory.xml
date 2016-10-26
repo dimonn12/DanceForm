@@ -29,6 +29,8 @@
                 <constraints nullable="true"/>
             </column>
 
+            <column name="date" type="date"/>
+
             <column name="active" type="bit" defaultValue="0">
                 <constraints nullable="false"/>
             </column>
@@ -49,20 +51,12 @@
                 <constraints nullable="false"/>
             </column>
 
+            <column name="max_dance_class_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
-
-        <createTable tableName="competition_category_dance_class">
-            <column name="dance_classes_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="competition_categories_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="competition_categories_id, dance_classes_id"
-                       tableName="competition_category_dance_class"/>
 
         <createTable tableName="competition_category_age_category">
             <column name="age_categories_id" type="bigint">

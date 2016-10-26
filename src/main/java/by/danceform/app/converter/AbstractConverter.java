@@ -11,7 +11,7 @@ import java.util.List;
  * Created by dimonn12 on 07.10.2016.
  */
 public abstract class AbstractConverter<T extends AbstractEntity<I>, D extends AbstractDomainDTO<I>, I extends Serializable>
-    implements Converter<T, D> {
+    extends Converter<T, D> {
 
     @Override
     public final D convertToDto(final T entity) {

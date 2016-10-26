@@ -101,7 +101,7 @@ public class CompetitionResourceIntTest {
     public static Competition createEntity(EntityManager em) {
         Competition competition = new Competition();
         competition.setName(DEFAULT_NAME);
-        competition.setDate(DEFAULT_DATE);
+        competition.setStartDate(DEFAULT_DATE);
         competition.setVisible(DEFAULT_IS_VISIBLE);
         competition.setOrganizer(DEFAULT_ORGANIZER);
         competition.setLocation(DEFAULT_LOCATION);
@@ -129,7 +129,7 @@ public class CompetitionResourceIntTest {
         assertThat(competitions).hasSize(databaseSizeBeforeCreate + 1);
         Competition testCompetition = competitions.get(competitions.size() - 1);
         assertThat(testCompetition.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testCompetition.getDate()).isEqualTo(DEFAULT_DATE);
+        assertThat(testCompetition.getStartDate()).isEqualTo(DEFAULT_DATE);
         assertThat(testCompetition.isVisible()).isEqualTo(DEFAULT_IS_VISIBLE);
         assertThat(testCompetition.getOrganizer()).isEqualTo(DEFAULT_ORGANIZER);
         assertThat(testCompetition.getLocation()).isEqualTo(DEFAULT_LOCATION);
@@ -157,7 +157,7 @@ public class CompetitionResourceIntTest {
     public void checkDateIsRequired() throws Exception {
         int databaseSizeBeforeTest = competitionRepository.findAll().size();
         // set the field null
-        competition.setDate(null);
+        competition.setStartDate(null);
 
         // Create the Competition, which fails.
         CompetitionDTO competitionDTO = competitionConverter.convertToDto(competition);
@@ -239,7 +239,7 @@ public class CompetitionResourceIntTest {
         // Update the competition
         Competition updatedCompetition = competitionRepository.findOne(competition.getId());
         updatedCompetition.setName(UPDATED_NAME);
-        updatedCompetition.setDate(UPDATED_DATE);
+        updatedCompetition.setStartDate(UPDATED_DATE);
         updatedCompetition.setVisible(UPDATED_IS_VISIBLE);
         updatedCompetition.setOrganizer(UPDATED_ORGANIZER);
         updatedCompetition.setLocation(UPDATED_LOCATION);
@@ -253,7 +253,7 @@ public class CompetitionResourceIntTest {
         assertThat(competitions).hasSize(databaseSizeBeforeUpdate);
         Competition testCompetition = competitions.get(competitions.size() - 1);
         assertThat(testCompetition.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testCompetition.getDate()).isEqualTo(UPDATED_DATE);
+        assertThat(testCompetition.getStartDate()).isEqualTo(UPDATED_DATE);
         assertThat(testCompetition.isVisible()).isEqualTo(UPDATED_IS_VISIBLE);
         assertThat(testCompetition.getOrganizer()).isEqualTo(UPDATED_ORGANIZER);
         assertThat(testCompetition.getLocation()).isEqualTo(UPDATED_LOCATION);

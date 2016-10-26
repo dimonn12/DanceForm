@@ -20,14 +20,9 @@
                                  referencedColumnNames="id"
                                  referencedTableName="dance_category"/>
 
-        <addForeignKeyConstraint baseColumnNames="competition_categories_id"
-                                 baseTableName="competition_category_dance_class"
-                                 constraintName="fk_competition_category_dance_class_competition_categories_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="competition_category"/>
-        <addForeignKeyConstraint baseColumnNames="dance_classes_id"
-                                 baseTableName="competition_category_dance_class"
-                                 constraintName="fk_competition_category_dance_class_dance_classes_id"
+        <addForeignKeyConstraint baseColumnNames="max_dance_class_id"
+                                 baseTableName="competition_category"
+                                 constraintName="fk_competition_category_max_dance_class_id_id"
                                  referencedColumnNames="id"
                                  referencedTableName="dance_class"/>
 

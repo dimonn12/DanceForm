@@ -9,7 +9,7 @@ import java.util.List;
  * Created by dimonn12 on 07.10.2016.
  */
 
-public interface Converter<T extends Serializable, D extends AbstractDomainDTO<? extends Serializable>> {
+public abstract class Converter<T extends Serializable, D extends AbstractDomainDTO<? extends Serializable>> {
 
     /**
      * Convert entity object to DTO.
@@ -17,7 +17,7 @@ public interface Converter<T extends Serializable, D extends AbstractDomainDTO<?
      * @param entity entity object
      * @return DTO object
      */
-    D convertToDto(T entity);
+    public abstract D convertToDto(T entity);
 
     /**
      * Convert a list of entity objects to a list of DTOs.
@@ -25,7 +25,7 @@ public interface Converter<T extends Serializable, D extends AbstractDomainDTO<?
      * @param entities a list of entity objects
      * @return a list of DTO objects
      */
-    List<D> convertToDtos(List<T> entities);
+    public abstract List<D> convertToDtos(List<T> entities);
 
     /**
      * Convert DTO object to entity.
@@ -33,7 +33,7 @@ public interface Converter<T extends Serializable, D extends AbstractDomainDTO<?
      * @param dto DTO object
      * @return entity object
      */
-    T convertToEntity(D dto);
+    public abstract T convertToEntity(D dto);
 
     /**
      * Convert a list of DTOs to a list of entity objects.
@@ -41,6 +41,6 @@ public interface Converter<T extends Serializable, D extends AbstractDomainDTO<?
      * @param dtos a list of DTO objects
      * @return a list of entity objects
      */
-    List<T> convertToEntities(List<D> dtos);
+    public abstract List<T> convertToEntities(List<D> dtos);
 
 }

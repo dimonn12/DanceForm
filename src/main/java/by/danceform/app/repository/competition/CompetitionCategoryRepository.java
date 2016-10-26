@@ -15,15 +15,15 @@ import java.util.List;
 public interface CompetitionCategoryRepository extends JpaRepository<CompetitionCategory, Long> {
 
     @Query(
-        "select distinct competitionCategory from CompetitionCategory competitionCategory left join fetch competitionCategory.danceClasses left join fetch competitionCategory.ageCategories")
+        "select distinct competitionCategory from CompetitionCategory competitionCategory left join fetch competitionCategory.ageCategories")
     List<CompetitionCategory> findAllWithEagerRelationships();
 
     @Query(
-        "select distinct competitionCategory from CompetitionCategory competitionCategory left join fetch competitionCategory.danceClasses left join fetch competitionCategory.ageCategories where competitionCategory.id =:id")
+        "select distinct competitionCategory from CompetitionCategory competitionCategory left join fetch competitionCategory.ageCategories where competitionCategory.id =:id")
     CompetitionCategory findOneWithEagerRelationships(@Param("id") Long id);
 
     @Query(
-        "select distinct competitionCategory from CompetitionCategory competitionCategory left join fetch competitionCategory.danceClasses left join fetch competitionCategory.ageCategories where competitionCategory.competitionId=:competitionId")
+        "select distinct competitionCategory from CompetitionCategory competitionCategory left join fetch competitionCategory.ageCategories where competitionCategory.competitionId=:competitionId")
     List<CompetitionCategory> findAllByCompetitionId(@Param("competitionId") Long competitionId);
 
     @Query(

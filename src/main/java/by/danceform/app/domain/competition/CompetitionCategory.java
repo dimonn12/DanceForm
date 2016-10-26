@@ -15,9 +15,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,6 +45,10 @@ public class CompetitionCategory extends AbstractEntity<Long> implements INamedE
     @Column(name = "description", length = 256)
     private String description;
 
+    @NotNull
+    @Column(name = "date", nullable = false)
+    private LocalDate date;
+
     @Column(name = "active")
     private Boolean active;
 
@@ -60,11 +66,9 @@ public class CompetitionCategory extends AbstractEntity<Long> implements INamedE
     @JoinColumn(name = "dance_category_id")
     private DanceCategory danceCategory;
 
-    @ManyToMany
-    @JoinTable(name = "competition_category_dance_class",
-               joinColumns = @JoinColumn(name = "competition_categories_id", referencedColumnName = "ID"),
-               inverseJoinColumns = @JoinColumn(name = "dance_classes_id", referencedColumnName = "ID"))
-    private Set<DanceClass> danceClasses = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "max_dance_class_id")
+    private DanceClass maxDanceClass;
 
     @ManyToMany
     @JoinTable(name = "competition_category_age_category",
@@ -96,6 +100,14 @@ public class CompetitionCategory extends AbstractEntity<Long> implements INamedE
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public Boolean isActive() {
@@ -130,12 +142,12 @@ public class CompetitionCategory extends AbstractEntity<Long> implements INamedE
         this.competitionId = competitionId;
     }
 
-    public Set<DanceClass> getDanceClasses() {
-        return danceClasses;
+    public DanceClass getMaxDanceClass() {
+        return maxDanceClass;
     }
 
-    public void setDanceClasses(Set<DanceClass> danceClas) {
-        this.danceClasses = danceClas;
+    public void setMaxDanceClass(DanceClass maxDanceClass) {
+        this.maxDanceClass = maxDanceClass;
     }
 
     public Set<AgeCategory> getAgeCategories() {

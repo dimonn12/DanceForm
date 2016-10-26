@@ -25,7 +25,11 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="date" type="date">
+            <column name="start_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="end_date" type="date">
                 <constraints nullable="false"/>
             </column>
 

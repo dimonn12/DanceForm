@@ -18,7 +18,8 @@
         <insert tableName="competition">
             <column name="id" value="1"/>
             <column name="name" value="Огни Столицы"/>
-            <column name="date" value="2016-12-17"/>
+            <column name="start_date" value="2016-12-17"/>
+            <column name="end_date" value="2016-12-18"/>
             <column name="is_visible" valueBoolean="true"/>
             <column name="organizer" value="Танго"/>
             <column name="location" value="где-то в Минске"/>
@@ -28,7 +29,8 @@
         <insert tableName="competition">
             <column name="id" value="2"/>
             <column name="name" value="NOT VISIBLE"/>
-            <column name="date" value="2016-12-12"/>
+            <column name="start_date" value="2016-12-12"/>
+            <column name="end_date" value="2016-12-15"/>
             <column name="is_visible" valueBoolean="false"/>
             <column name="organizer" value="test"/>
             <column name="location" value="test"/>
@@ -38,7 +40,8 @@
         <insert tableName="competition">
             <column name="id" value="3"/>
             <column name="name" value="Прошедший"/>
-            <column name="date" value="2016-10-01"/>
+            <column name="start_date" value="2016-10-01"/>
+            <column name="end_date" value="2016-10-03"/>
             <column name="is_visible" valueBoolean="true"/>
             <column name="organizer" value="Прошел"/>
             <column name="location" value="Локейшен"/>
@@ -48,7 +51,8 @@
         <insert tableName="competition">
             <column name="id" value="4"/>
             <column name="name" value="Гомель"/>
-            <column name="date" value="2016-11-15"/>
+            <column name="start_date" value="2016-11-15"/>
+            <column name="end_date" value="2016-11-17"/>
             <column name="is_visible" valueBoolean="true"/>
             <column name="organizer" value="Гомельчанки"/>
             <column name="location" value="Гомель"/>

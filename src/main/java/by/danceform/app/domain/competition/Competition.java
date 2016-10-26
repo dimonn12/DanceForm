@@ -32,8 +32,12 @@ public class Competition extends AbstractEntity<Long> implements INamedEntity {
     private String name;
 
     @NotNull
-    @Column(name = "date", nullable = false)
-    private LocalDate date;
+    @Column(name = "start_date", nullable = false)
+    private LocalDate startDate;
+
+    @NotNull
+    @Column(name = "end_date", nullable = false)
+    private LocalDate endDate;
 
     @Column(name = "is_visible")
     private boolean visible;
@@ -70,12 +74,20 @@ public class Competition extends AbstractEntity<Long> implements INamedEntity {
         this.name = name;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public boolean isVisible() {
@@ -126,8 +138,11 @@ public class Competition extends AbstractEntity<Long> implements INamedEntity {
                ", name='" +
                name +
                "'" +
-               ", date='" +
-               date +
+               ", startDate='" +
+               startDate +
+               "'" +
+               ", endDate='" +
+               endDate +
                "'" +
                ", visible='" +
                visible +

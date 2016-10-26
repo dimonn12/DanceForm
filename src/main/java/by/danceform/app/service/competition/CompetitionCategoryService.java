@@ -1,19 +1,25 @@
 package by.danceform.app.service.competition;
 
 import by.danceform.app.converter.competition.CompetitionCategoryConverter;
+import by.danceform.app.domain.competition.Competition;
 import by.danceform.app.domain.competition.CompetitionCategory;
+import by.danceform.app.domain.config.AgeCategory;
 import by.danceform.app.domain.config.DanceClass;
 import by.danceform.app.domain.config.enums.DanceCategoryEnum;
 import by.danceform.app.dto.competition.CompetitionCategoryDTO;
 import by.danceform.app.dto.couple.RegisteredCoupleDTO;
 import by.danceform.app.repository.competition.CompetitionCategoryRepository;
+import by.danceform.app.repository.competition.CompetitionRepository;
+import by.danceform.app.repository.config.AgeCategoryRepository;
 import by.danceform.app.repository.config.DanceClassRepository;
+import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -39,6 +45,9 @@ public class CompetitionCategoryService {
 
     @Inject
     private DanceClassRepository danceClassRepository;
+
+    @Inject
+    private CompetitionRepository competitionRepository;
 
     /**
      * Save a competitionCategory.
@@ -114,16 +123,27 @@ public class CompetitionCategoryService {
     public List<CompetitionCategoryDTO> findAvailableByCompetitionId(RegisteredCoupleDTO registeredCoupleDTO,
                                                                      Long competitionId) {
         log.debug("Request to get CompetitionCategory : {}", competitionId);
-        List<CompetitionCategory> allCategories = competitionCategoryRepository.findAllWithEagerRelationships();
+        List<CompetitionCategory> allCategories = competitionCategoryRepository.findAllByCompetitionId(competitionId);
         Set<CompetitionCategory> availableCategories = new HashSet<>();
+        Competition competition = competitionRepository.findOne(competitionId);
         for(CompetitionCategory existingCategory : allCategories) {
             if(existingCategory.isCheckMaxAge()) {
-
+                if(!checkMinAgeCategory(existingCategory,
+                    competition,
+                    registeredCoupleDTO.getPartner1DateOfBirth(),
+                    registeredCoupleDTO.getPartner2DateOfBirth())) {
+                    continue;
+                }
             }
             if(existingCategory.isCheckMaxAge()) {
-
+                if(!checkMaxAgeCategory(existingCategory,
+                    competition,
+                    registeredCoupleDTO.getPartner1DateOfBirth(),
+                    registeredCoupleDTO.getPartner2DateOfBirth())) {
+                    continue;
+                }
             }
-            if(checkDanceClasses(existingCategory.getDanceClasses(),
+            if(checkDanceClasses(existingCategory.getMaxDanceClass(),
                 Objects.equals(existingCategory.getDanceCategory().getId(), DanceCategoryEnum.LA.getValue()) ?
                     registeredCoupleDTO.getPartner1DanceClassLA().getId() :
                     registeredCoupleDTO.getPartner1DanceClassST().getId(),
@@ -136,28 +156,59 @@ public class CompetitionCategoryService {
         return competitionCategoryConverter.convertToDtos(new ArrayList<>(availableCategories));
     }
 
-    private boolean checkDanceClasses(Set<DanceClass> categoryClasses,
+    private boolean checkDanceClasses(DanceClass maxCategoryClass,
                                       Long partner1DanceClassId,
                                       Long partner2DanceClassId) {
-        List<Long> categoryClassesIds = categoryClasses.stream()
-            .map(categoryClass -> categoryClass.getId())
-            .collect(Collectors.toList());
         DanceClass partner1Class = danceClassRepository.findOne(partner1DanceClassId);
         DanceClass partner2Class = danceClassRepository.findOne(partner2DanceClassId);
-        List<Long> partner1AvailableClasses = new ArrayList<>();
-        List<Long> partner2AvailableClasses = new ArrayList<>();
-        for(Long categoryClassId : categoryClassesIds) {
-            if(Objects.equals(categoryClassId, partner1Class.getId())) {
-                partner1AvailableClasses.add(categoryClassId);
-            }
-            if(Objects.equals(categoryClassId, partner2Class.getId())) {
-                partner2AvailableClasses.add(categoryClassId);
-            }
+        return partner1Class.getWeight() <= maxCategoryClass.getWeight() &&
+               partner2Class.getWeight() <= maxCategoryClass.getWeight();
+    }
+
+    private boolean checkMinAgeCategory(CompetitionCategory existingCategory,
+                                        Competition competition,
+                                        LocalDate partner1Date,
+                                        LocalDate partner2Date) {
+        Set<AgeCategory> availableAgeCategories = existingCategory.getAgeCategories();
+        LocalDate date = existingCategory.getDate();
+        if(null == date) {
+            date = competition.getEndDate();
         }
-        if(!partner1AvailableClasses.isEmpty() && !partner2AvailableClasses.isEmpty()) {
-            return true;
+        for(AgeCategory ageCategory : availableAgeCategories) {
+            if(!isDateSmaller(date, partner1Date, ageCategory.getMinAge()) &&
+               !isDateSmaller(date, partner2Date, ageCategory.getMinAge())) {
+                return true;
+            }
         }
         return false;
+    }
+
+    private boolean checkMaxAgeCategory(CompetitionCategory existingCategory,
+                                        Competition competition,
+                                        LocalDate partner1Date,
+                                        LocalDate partner2Date) {
+        Set<AgeCategory> availableAgeCategories = existingCategory.getAgeCategories();
+        LocalDate date = existingCategory.getDate();
+        if(null == date) {
+            date = competition.getStartDate();
+        }
+        for(AgeCategory ageCategory : availableAgeCategories) {
+            if(!isDateBigger(date, partner1Date, ageCategory.getMaxAge()) &&
+               !isDateBigger(date, partner2Date, ageCategory.getMaxAge())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isDateSmaller(LocalDate date, LocalDate birthday, int years) {
+        LocalDate newDate = birthday.plusYears(years);
+        return newDate.isBefore(date);
+    }
+
+    private boolean isDateBigger(LocalDate date, LocalDate birthday, int years) {
+        LocalDate newDate = birthday.plusYears(years);
+        return newDate.isAfter(date);
     }
 
 }

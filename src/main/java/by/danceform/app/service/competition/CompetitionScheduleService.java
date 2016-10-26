@@ -69,14 +69,14 @@ public class CompetitionScheduleService {
         List<CompetitionDTO> competitions = result.stream()
             .map(competition -> competitionConverter.convertToDto(competition))
             .collect(Collectors.toList());
-        Collections.sort(competitions, (c1, c2) -> ObjectUtils.compare(c1.getDate(), c2.getDate()));
+        Collections.sort(competitions, (c1, c2) -> ObjectUtils.compare(c1.getStartDate(), c2.getStartDate()));
         SystemSetting daysBeforeRegistrationClosesSetting = systemSettingService.findByName(SystemSettingNames.DAYS_BEFORE_REGISTRATION_CLOSES);
         int daysBeforeRegistrationCloses = (null != daysBeforeRegistrationClosesSetting ?
             NumberUtils.toInt(daysBeforeRegistrationClosesSetting.getValue(), 1) :
             1);
         LocalDate registrationCloses = LocalDate.now().minusDays(daysBeforeRegistrationCloses);
         for(CompetitionDTO compDto : competitions) {
-            if(!registrationCloses.isBefore(compDto.getDate())) {
+            if(!registrationCloses.isBefore(compDto.getStartDate())) {
                 compDto.setRegistrationClosed(true);
             }
         }

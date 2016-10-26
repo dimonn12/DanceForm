@@ -14,7 +14,8 @@ public class CompetitionConverter extends AbstractConverter<Competition, Competi
     @Override
     protected CompetitionDTO convertEntityToDto(Competition entity, CompetitionDTO dto) {
         dto.setName(entity.getName());
-        dto.setDate(entity.getDate());
+        dto.setStartDate(entity.getStartDate());
+        dto.setEndDate(entity.getEndDate());
         dto.setLocation(entity.getLocation());
         dto.setOrganizer(entity.getOrganizer());
         dto.setVisible(entity.isVisible());
@@ -26,7 +27,8 @@ public class CompetitionConverter extends AbstractConverter<Competition, Competi
     @Override
     public Competition convertDtoToEntity(CompetitionDTO dto, Competition entity) {
         entity.setName(dto.getName());
-        entity.setDate(dto.getDate());
+        entity.setStartDate(dto.getStartDate());
+        entity.setEndDate(dto.getEndDate());
         entity.setVisible(dto.isVisible());
         entity.setOrganizer(dto.getOrganizer());
         entity.setLocation(dto.getLocation());
