@@ -11,7 +11,8 @@
         <div class="form-group" ngf-drop ngf-change="vm.setContent($file, vm.uploadedImage)" ngf-pattern="'image/*'">
             <label class="control-label" data-translate="danceFormApp.competition.upload.addDocument" for="field_content">Content</label>
             <div>
-                <img data-ng-src="{{'data:' + vm.uploadedImage.contentContentType + ';base64,' + vm.uploadedImage.content}}" style="max-height: 100px;" ng-if="vm.uploadedImage.content"/>
+                <img data-ng-src="{{'data:' + vm.uploadedImage.contentContentType + ';base64,' + vm.uploadedImage.content}}" style="max-height: 100px;"
+                     ng-if="vm.uploadedImage.content"/>
                 <div ng-if="vm.uploadedImage.content" class="help-block clearfix">
                     <span class="pull-left">{{vm.uploadedDocument.contentContentType}}, {{vm.byteSize(vm.uploadedDocument.content)}}</span>
                     <button ng-click="vm.uploadedImage.content=null;vm.uploadedImage.contentContentType=null;"

@@ -5,7 +5,7 @@
 		.module('danceFormApp')
 		.controller('CategoryCouplesController', CategoryCouplesController);
 
-	CategoryCouplesController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity','CompetitionScheduleCategory', 'RegisteredCouple', 'AlertService'];
+	CategoryCouplesController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'CompetitionScheduleCategory', 'RegisteredCouple', 'AlertService'];
 
 	function CategoryCouplesController($scope, $rootScope, $stateParams, previousState, entity, CompetitionScheduleCategory, RegisteredCouple, AlertService) {
 		var vm = this;

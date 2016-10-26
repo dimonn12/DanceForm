@@ -30,7 +30,8 @@
              relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20161021120752_added_entity_UploadedDocument.xml"
              relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20161024091006_added_entity_UploadedImage.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161024091006_added_entity_UploadedImage.xml"
+             relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20161007135824_added_entity_constraints_DanceClass.xml"
              relativeToChangelogFile="false"/>

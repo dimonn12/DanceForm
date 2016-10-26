@@ -39,7 +39,7 @@
 		}
 
 		vm.setContent = function($file, uploadedImage) {
-			if ($file && $file.$error === 'pattern') {
+			if($file && $file.$error === 'pattern') {
 				return;
 			}
 			if($file) {

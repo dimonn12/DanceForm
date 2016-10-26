@@ -1,34 +1,50 @@
-
 <div>
-    <h2><span data-translate="danceFormApp.uploadedImage.detail.title">Uploaded Image</span> {{vm.uploadedImage.id}}</h2>
+    <h2>
+        <span data-translate="danceFormApp.uploadedImage.detail.title">Uploaded Image</span>
+        {{vm.uploadedImage.id}}
+    </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="danceFormApp.uploadedImage.fullName">Full Name</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.uploadedImage.fullName">Full Name</span>
+        </dt>
         <dd>
             <span>{{vm.uploadedImage.fullName}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.uploadedImage.path">Path</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.uploadedImage.path">Path</span>
+        </dt>
         <dd>
             <span>{{vm.uploadedImage.path}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.uploadedImage.externalPath">External Path</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.uploadedImage.externalPath">External Path</span>
+        </dt>
         <dd>
             <span>{{vm.uploadedImage.externalPath}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.uploadedImage.uploadedBy">Uploaded By</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.uploadedImage.uploadedBy">Uploaded By</span>
+        </dt>
         <dd>
             <span>{{vm.uploadedImage.uploadedBy}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.uploadedImage.uploadedDate">Uploaded Date</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.uploadedImage.uploadedDate">Uploaded Date</span>
+        </dt>
         <dd>
             <span>{{vm.uploadedImage.uploadedDate | date:'medium'}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.uploadedImage.contentType">Content Type</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.uploadedImage.contentType">Content Type</span>
+        </dt>
         <dd>
             <span>{{vm.uploadedImage.contentType}}</span>
         </dd>
-        <dt><span data-translate="danceFormApp.uploadedImage.content">Content</span></dt>
+        <dt>
+            <span data-translate="danceFormApp.uploadedImage.content">Content</span>
+        </dt>
         <dd>
             <div ng-if="vm.uploadedImage.content">
                 <a ng-click="vm.openFile(vm.uploadedImage.contentContentType, vm.uploadedImage.content)">
@@ -42,7 +58,9 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        &nbsp;
+        <span data-translate="entity.action.back"> Back</span>
     </button>
 
     <button type="button" ui-sref="uploaded-image-detail.edit({id:vm.uploadedImage.id})" class="btn btn-primary">
