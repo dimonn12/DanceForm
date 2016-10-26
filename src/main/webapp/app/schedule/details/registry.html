@@ -283,16 +283,30 @@
 
             <div class="registry-block" ng-show="vm.availableCategories.length > 0">
                 <h4 class="registry-classes-label">
-                    <span data-translate="danceFormApp.schedule.registry.availableCategories">Classes</span>
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.availableCategories" for="field_category">Classes</label>
+                    (
+                    <span class="asterisk">*</span>
+                    )
                 </h4>
+
                 <div class="form-group" ng-repeat="availableCategory in vm.availableCategories track by availableCategory.id">
                     <div>
-                        <input type="checkbox"
-                               name="vm.registerCouple.competitionCategoryIds[]"
-                               value="{{availableCategory.id}}"
-                               ng-model="availableCategory.selected"
-                               ng-change="vm.updateSelectedCategory();"/>
-                        <span>{{availableCategory.name}}</span>
+                        <table class="registry-category-table ">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input id="field_category" type="checkbox" class="registry-category-checkbox"
+                                               name="vm.registerCouple.competitionCategoryIds[]"
+                                               value="{{availableCategory.id}}"
+                                               ng-model="availableCategory.selected"
+                                               ng-change="vm.updateSelectedCategory();"/>
+                                    </td>
+                                    <td>
+                                        <span class="registry-category-label">{{availableCategory.name}}, {{availableCategory.danceCategory.name}} - {{availableCategory.description}}</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 

@@ -142,6 +142,7 @@ public class CompetitionCategoryService {
                 }
             }
             if (null == existingCategory.getMaxDanceClass()) {
+                availableCategories.add(existingCategory);
                 continue;
             }
             if(checkDanceClasses(existingCategory.getMaxDanceClass(),

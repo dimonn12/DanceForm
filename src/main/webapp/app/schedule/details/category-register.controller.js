@@ -47,6 +47,8 @@
 
 		function update() {
 			if(null != vm.registerCouple.partner1DateOfBirth && null != vm.registerCouple.partner2DateOfBirth &&
+			   null != vm.registerCouple.partner1DanceClassST && null != vm.registerCouple.partner1DanceClassLA &&
+			   null != vm.registerCouple.partner2DanceClassST && null != vm.registerCouple.partner2DanceClassLA &&
 			   null != vm.registerCouple.partner1DanceClassST.id && null != vm.registerCouple.partner1DanceClassLA.id &&
 			   null != vm.registerCouple.partner2DanceClassST.id && null != vm.registerCouple.partner2DanceClassLA.id) {
 				CompetitionCategory.available({competitionId: vm.currentCompetition.id}, vm.registerCouple, onSuccess, onError);

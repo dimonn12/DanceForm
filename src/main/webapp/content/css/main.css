@@ -537,6 +537,19 @@ dl > dt > span {
     background-color: inherit !important;
 }
 
+.registry-category-label {
+    font-size: 16px;
+}
+
+.registry-category-table > tbody > tr > td {
+    padding: 5px !important;
+}
+
+.registry-category-checkbox {
+    width: 20px;
+    height: 20px;
+}
+
 .banner {
     height: 340px;
     margin-top: -20px;
