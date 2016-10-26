@@ -17,7 +17,7 @@
     <table>
         <tr>
             <td>
-                <div ng-show="vm.currentCompetition.bannerImageId != null">
+                <div ng-if="vm.currentCompetition.bannerImageId != null">
                     <a href="uploads/competition/{{vm.currentCompetition.id}}/banner" target="_new">
                         <img class="banner" data-ng-src="uploads/competition/{{vm.currentCompetition.id}}/banner"/>
                     </a>

@@ -1,4 +1,13 @@
 <div>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        &nbsp;
+        <span data-translate="entity.action.back"> Back</span>
+    </button>
+
     <h2>
         <span data-translate="danceFormApp.competition.detail.title">Competition</span>
         {{vm.competition.id}}
@@ -8,7 +17,7 @@
     <table>
         <tr>
             <td>
-                <div ng-show="vm.competition.bannerImageId != null">
+                <div ng-if="vm.competition.bannerImageId != null">
                     <a href="uploads/{{vm.competition.bannerImageId}}" target="_new">
                         <img class="banner" data-ng-src="uploads/{{vm.competition.bannerImageId}}"/>
                     </a>
@@ -49,7 +58,7 @@
                     <dt ng-show="vm.competition.detailsDocumentId != null">
                         <span data-translate="danceFormApp.competition.detailsDocument">Location</span>
                     </dt>
-                    <dd ng-show="vm.competition.detailsDocumentId != null">
+                    <dd ng-if="vm.competition.detailsDocumentId != null">
                         <!--<a href="{{vm.currentCompetition.uploadedDocumentDTO.externalPath}}" target="_blank" data-translate="entity.action.open">-->
                         <!--<a ng-click="vm.loadDocumentDetails()" target="_new" data-translate="entity.action.open">-->
                         <a href="uploads/{{vm.competition.detailsDocumentId}}" target="_new" data-translate="entity.action.open">
@@ -60,13 +69,6 @@
             </td>
         </tr>
     </table>
-    <button type="submit"
-            ui-sref="{{ vm.previousState }}"
-            class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>
-        &nbsp;
-        <span data-translate="entity.action.back"> Back</span>
-    </button>
 
     <button type="submit"
             ui-sref="competition-category({competitionId:vm.competition.id})"
