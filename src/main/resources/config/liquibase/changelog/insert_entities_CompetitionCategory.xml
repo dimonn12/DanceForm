@@ -34,7 +34,7 @@
             <column name="description" value="с категориями"/>
             <column name="date" value="2016-12-18"/>
             <column name="active" valueBoolean="true"/>
-            <column name="check_min_age" valueBoolean="false"/>
+            <column name="check_min_age" valueBoolean="true"/>
             <column name="check_max_age" valueBoolean="false"/>
             <column name="competition_id" value="1"/>
             <column name="dance_category_id" value="-2"/>
@@ -65,6 +65,32 @@
             <column name="dance_category_id" value="-1"/>
             <column name="max_dance_class_id"/>
         </insert>
+
+        <insert tableName="competition_category">
+            <column name="id" value="5"/>
+            <column name="name" value="Сениоры ST Open"/>
+            <column name="description" value="с категориями"/>
+            <column name="date" value="2016-12-18"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="check_min_age" valueBoolean="true"/>
+            <column name="check_max_age" valueBoolean="false"/>
+            <column name="competition_id" value="1"/>
+            <column name="dance_category_id" value="-1"/>
+            <column name="max_dance_class_id" value="10"/>
+        </insert>
+
+        <insert tableName="competition_category">
+            <column name="id" value="6"/>
+            <column name="name" value="Дети-2 ST E4"/>
+            <column name="description" value="с категориями"/>
+            <column name="date" value="2016-12-18"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="check_min_age" valueBoolean="true"/>
+            <column name="check_max_age" valueBoolean="true"/>
+            <column name="competition_id" value="1"/>
+            <column name="dance_category_id" value="-1"/>
+            <column name="max_dance_class_id" value="3"/>
+        </insert>
     </changeSet>
 
     <changeSet id="20161009-12" author="dmitry_shanko">
@@ -75,6 +101,21 @@
         <insert tableName="competition_category_age_category">
             <column name="age_categories_id" value="7"/>
             <column name="competition_categories_id" value="2"/>
+        </insert>
+
+        <insert tableName="competition_category_age_category">
+            <column name="age_categories_id" value="8"/>
+            <column name="competition_categories_id" value="5"/>
+        </insert>
+
+        <insert tableName="competition_category_age_category">
+            <column name="age_categories_id" value="3"/>
+            <column name="competition_categories_id" value="6"/>
+        </insert>
+
+        <insert tableName="competition_category_age_category">
+            <column name="age_categories_id" value="2"/>
+            <column name="competition_categories_id" value="6"/>
         </insert>
     </changeSet>
 

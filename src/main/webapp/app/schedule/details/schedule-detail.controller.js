@@ -55,16 +55,21 @@
 								doRemoveHiddenClasses = true;
 							}
 						}
+						var newCategoriesDanceClasses = [];
 						if(doRemoveHiddenClasses) {
-							var newCategoriesDanceClasses = [];
 							for(var j = 0; j < vm.categories[i].danceClasses.length; j++) {
 								if(vm.categories[i].danceClasses[j].weight > 0) {
 									newCategoriesDanceClasses.push(vm.categories[i].danceClasses[j]);
 								}
-
 							}
-							vm.categories[i].danceClasses = newCategoriesDanceClasses;
+						} else {
+							for(var j = 0; j < vm.categories[i].danceClasses.length; j++) {
+								if(vm.categories[i].danceClasses[j].weight > -100) {
+									newCategoriesDanceClasses.push(vm.categories[i].danceClasses[j]);
+								}
+							}
 						}
+						vm.categories[i].danceClasses = newCategoriesDanceClasses;
 					}
 				}
 			}

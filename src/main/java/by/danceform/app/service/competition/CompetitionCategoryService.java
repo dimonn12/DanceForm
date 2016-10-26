@@ -125,7 +125,7 @@ public class CompetitionCategoryService {
         Set<CompetitionCategory> availableCategories = new HashSet<>();
         Competition competition = competitionRepository.findOne(competitionId);
         for(CompetitionCategory existingCategory : allCategories) {
-            if(existingCategory.isCheckMaxAge()) {
+            if(existingCategory.isCheckMinAge()) {
                 if(!checkMinAgeCategory(existingCategory,
                     competition,
                     registeredCoupleDTO.getPartner1DateOfBirth(),
@@ -140,6 +140,9 @@ public class CompetitionCategoryService {
                     registeredCoupleDTO.getPartner2DateOfBirth())) {
                     continue;
                 }
+            }
+            if (null == existingCategory.getMaxDanceClass()) {
+                continue;
             }
             if(checkDanceClasses(existingCategory.getMaxDanceClass(),
                 Objects.equals(existingCategory.getDanceCategory().getId(), DanceCategoryEnum.LA.getValue()) ?
@@ -173,8 +176,8 @@ public class CompetitionCategoryService {
             date = competition.getEndDate();
         }
         for(AgeCategory ageCategory : availableAgeCategories) {
-            if(!isDateSmaller(date, partner1Date, ageCategory.getMinAge()) &&
-               !isDateSmaller(date, partner2Date, ageCategory.getMinAge())) {
+            if(!isDateBigger(date, partner1Date, ageCategory.getMinAge()) &&
+               !isDateBigger(date, partner2Date, ageCategory.getMinAge())) {
                 return true;
             }
         }
@@ -191,8 +194,8 @@ public class CompetitionCategoryService {
             date = competition.getStartDate();
         }
         for(AgeCategory ageCategory : availableAgeCategories) {
-            if(!isDateBigger(date, partner1Date, ageCategory.getMaxAge()) &&
-               !isDateBigger(date, partner2Date, ageCategory.getMaxAge())) {
+            if(!isDateSmaller(date, partner1Date, ageCategory.getMaxAge()) &&
+               !isDateSmaller(date, partner2Date, ageCategory.getMaxAge())) {
                 return true;
             }
         }
