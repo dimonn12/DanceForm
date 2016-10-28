@@ -19,7 +19,6 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
     @NotNull
     private LocalDate startDate;
 
-    @NotNull
     private LocalDate endDate;
 
     private boolean visible;

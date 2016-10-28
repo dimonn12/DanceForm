@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing Location.
@@ -51,6 +53,13 @@ public class LocationService {
         log.debug("Request to get all Locations");
         Page<Location> result = locationRepository.findAll(pageable);
         return result.map(location -> locationConverter.convertToDto(location));
+    }
+
+    public List<LocationDTO> findVisible() {
+        return locationRepository.findAll()
+            .stream()
+            .map(location -> locationConverter.convertToDto(location))
+            .collect(Collectors.toList());
     }
 
     /**

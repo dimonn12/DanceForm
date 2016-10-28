@@ -83,7 +83,7 @@
 				}],
 				previousState: ["$state", function($state) {
 					var currentStateData = {
-						name: $state.current.name || 'schedule',
+						name: $state.current.name || 'schedule-details',
 						params: $state.params,
 						url: $state.href($state.current.name, $state.params)
 					};
@@ -111,7 +111,7 @@
 				}],
 				previousState: ["$state", function($state) {
 					var currentStateData = {
-						name: $state.current.name || 'schedule',
+						name: $state.current.name || 'schedule-details',
 						params: $state.params,
 						url: $state.href($state.current.name, $state.params)
 					};

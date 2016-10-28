@@ -341,10 +341,19 @@ entity detail page css
     margin-bottom: 15px;
 }
 
-@media screen and (min-width: 638px) {
+@media screen and (min-width: 658px) {
     .dl-horizontal.jh-entity-details > dt {
         margin-bottom: 15px;
     }
+
+    .dl-horizontal.jh-entity-details > dd {
+        border-bottom: 1px solid #eee;
+        padding-left: 180px;
+        margin-left: 0;
+    }
+}
+
+@media screen and (min-width: 900px) {
 
     .dl-horizontal.jh-entity-details > dd {
         border-bottom: 1px solid #eee;
@@ -428,7 +437,15 @@ Competition schedule styles
 }
 
 .competition-dl > dt {
-    width: 220px;
+    width: 170px;
+}
+
+
+@media screen and (min-width: 900px) {
+
+    .competition-dl > dt {
+        width: 220px;
+    }
 }
 
 dl > dt > span {
@@ -443,7 +460,7 @@ dl > dt > span {
     text-align: center;
 }
 
-@media screen and (min-width: 638px) {
+@media screen and (min-width: 658px) {
     .registry-block {
         width: 45%;
         display: inline-block;
@@ -523,7 +540,7 @@ dl > dt > span {
 }
 
 .registry-button {
-    padding: 15px;
+    padding-bottom: 15px;
     display: inline-block;
     width: 100%;
     text-align: center;

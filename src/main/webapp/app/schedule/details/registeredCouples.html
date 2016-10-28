@@ -25,7 +25,7 @@
             <span data-translate="danceFormApp.schedule.date">Date</span>
         </dt>
         <dd>
-            <span>{{vm.currentCompetition.date | date:'d MMMM yyyy'}}</span>
+            <span><div>{{vm.currentCompetition.startDate | date:'d MMMM yyyy'}}</div><div ng-if="vm.currentCompetition.endDate != null"> - {{vm.currentCompetition.endDate | date:'d MMMM yyyy'}}</div></span>
         </dd>
         <dt>
             <span data-translate="danceFormApp.schedule.organizer">Organizer</span>

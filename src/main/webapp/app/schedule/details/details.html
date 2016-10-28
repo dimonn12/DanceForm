@@ -35,7 +35,7 @@
                         <span data-translate="danceFormApp.schedule.date">Date</span>
                     </dt>
                     <dd>
-                        <span>{{vm.currentCompetition.date | date:'d MMMM yyyy'}}</span>
+                        <span><div>{{vm.currentCompetition.startDate | date:'d MMMM yyyy'}}</div><div ng-if="vm.currentCompetition.endDate != null"> - {{vm.currentCompetition.endDate | date:'d MMMM yyyy'}}</div></span>
                     </dd>
                     <dt>
                         <span data-translate="danceFormApp.schedule.organizer">Organizer</span>
@@ -55,8 +55,7 @@
                     <dd>
                         <span>{{vm.totalRegisteredCount}}
                             <span ng-show="vm.currentCompetition.amountOfUniqueRegisteredPairs > 0">
-                                <span data-translate="danceFormApp.schedule.uniqueAmount"></span>
-                                {{vm.currentCompetition.amountOfUniqueRegisteredPairs}})
+                                ({{'danceFormApp.schedule.uniqueAmount' | translate}} {{vm.currentCompetition.amountOfUniqueRegisteredPairs}})
                             </span>
                         </span>
                     </dd>
@@ -87,16 +86,16 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th>
-                        <span data-translate="danceFormApp.schedule.categories.name">Дата</span>
+                        <span data-translate="danceFormApp.schedule.categories.name">Категория</span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.schedule.categories.description">Дата</span>
+                        <span data-translate="danceFormApp.schedule.categories.description">Описние</span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.schedule.categories.amount">Дата</span>
+                        <span data-translate="danceFormApp.schedule.categories.amount">Количество пар</span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.schedule.categories.danceClass">Dance Class</span>
+                        <span data-translate="danceFormApp.schedule.categories.danceClass">Классы</span>
                     </th>
                 </tr>
             </thead>
@@ -105,7 +104,7 @@
                     <td>
                         <button type="button"
                                 ui-sref="schedule-category-details({competitionId:vm.currentCompetition.id, categoryId:category.id})"
-                                class="btn btn-link show-competition-link">
+                                class="btn btn-link show-competition-link" >
                             <span>{{category.name}}</span>
                         </button>
                     </td>

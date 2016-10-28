@@ -2,6 +2,7 @@ package by.danceform.app.web.rest.config;
 
 import by.danceform.app.dto.config.LocationDTO;
 import by.danceform.app.security.AuthoritiesConstants;
+import by.danceform.app.security.SecurityUtils;
 import by.danceform.app.service.config.LocationService;
 import by.danceform.app.web.rest.util.HeaderUtil;
 import by.danceform.app.web.rest.util.PaginationUtil;
@@ -107,9 +108,13 @@ public class LocationResource {
     @Secured({ AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS })
     public ResponseEntity<List<LocationDTO>> getAllLocations(Pageable pageable) throws URISyntaxException {
         log.debug("REST request to get a page of Locations");
-        Page<LocationDTO> page = locationService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/config/locations");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        if(SecurityUtils.isAdmin()) {
+            Page<LocationDTO> page = locationService.findAll(pageable);
+            HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/config/locations");
+            return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(locationService.findVisible(), HttpStatus.OK);
+        }
     }
 
     /**

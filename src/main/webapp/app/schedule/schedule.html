@@ -5,42 +5,42 @@
     <div class="table-responsive">
         <table class="jh-table table table-bordered table-schedule">
             <thead>
-                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th>
-                        <span data-translate="danceFormApp.schedule.date">Дата</span>
-                    </th>
-                    <th>
-                        <span data-translate="danceFormApp.schedule.name">Название</span>
-                    </th>
-                    <th>
-                        <span data-translate="danceFormApp.schedule.location">Место</span>
-                    </th>
-                    <th>
-                        <span data-translate="danceFormApp.schedule.organizer">Организатор</span>
-                    </th>
-                </tr>
+            <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                <th>
+                    <span data-translate="danceFormApp.schedule.date">Дата</span>
+                </th>
+                <th>
+                    <span data-translate="danceFormApp.schedule.name">Название</span>
+                </th>
+                <th>
+                    <span data-translate="danceFormApp.schedule.location">Место</span>
+                </th>
+                <th>
+                    <span data-translate="danceFormApp.schedule.organizer">Организатор</span>
+                </th>
+            </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="competition in vm.futureCompetitions track by competition.id">
-                    <td>{{competition.startDate | date:'d MMMM yyyy'}} - {{competition.endDate | date:'d MMMM yyyy'}}</td>
-                    <td>
-                        <button type="button"
-                                ui-sref="schedule-details({id:competition.id})"
-                                class="btn btn-link show-competition-link">
-                            <span>{{competition.name}}</span>
-                        </button>
-                    </td>
-                    <td>{{competition.location}}</td>
-                    <td>{{competition.organizer}}</td>
-                </tr>
+            <tr ng-repeat="competition in vm.futureCompetitions track by competition.id">
+                <td><div>{{competition.startDate | date:'d MMMM yyyy'}}</div><div ng-if="competition.endDate != null"> - {{competition.endDate | date:'d MMMM yyyy'}}</div></td>
+                <td>
+                    <button type="button"
+                            ui-sref="schedule-details({id:competition.id})"
+                            class="btn btn-link show-competition-link">
+                        <span>{{competition.name}}</span>
+                    </button>
+                </td>
+                <td>{{competition.location}}</td>
+                <td>{{competition.organizer}}</td>
+            </tr>
             </tbody>
         </table>
+        <div ng-if="vm.pastCompetitions != null && vm.pastCompetitions.length > 0">
+            <h2 data-translate="danceFormApp.schedule.past.title">Прошедшие турниры </h2>
 
-        <h2 data-translate="danceFormApp.schedule.past.title">Прошедшие турниры </h2>
-
-        <div class="table-responsive">
-            <table class="jh-table table table-bordered table-timeline">
-                <thead>
+            <div class="table-responsive">
+                <table class="jh-table table table-bordered table-timeline">
+                    <thead>
                     <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                         <th>
                             <span data-translate="danceFormApp.schedule.date">Дата</span>
@@ -55,17 +55,20 @@
                             <span data-translate="danceFormApp.schedule.organizer">Организатор</span>
                         </th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     <tr ng-repeat="competition in vm.pastCompetitions track by competition.id">
-                        <td>{{competition.startDate | date:'d MMMM yyyy'}} - {{competition.endDate | date:'d MMMM yyyy'}}</td>
+                        <td>{{competition.startDate | date:'d MMMM yyyy'}} - {{competition.endDate | date:'d MMMM
+                            yyyy'}}
+                        </td>
                         <td>{{competition.name}}</td>
                         <td>{{competition.location}}</td>
                         <td>{{competition.organizer}}</td>
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
 
+            </div>
         </div>
     </div>
 </div>

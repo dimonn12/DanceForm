@@ -7,6 +7,7 @@ import by.danceform.app.service.config.TrainerService;
 import by.danceform.app.web.rest.util.HeaderUtil;
 import by.danceform.app.web.rest.util.PaginationUtil;
 import com.codahale.metrics.annotation.Timed;
+import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -26,7 +27,10 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -111,6 +115,14 @@ public class TrainerResource {
             HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/config/trainers");
             return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
         } else {
+            List<TrainerDTO> visibleTrainers = trainerService.findVisible();
+            Collections.sort(visibleTrainers, new Comparator<TrainerDTO>() {
+
+                @Override
+                public int compare(TrainerDTO o1, TrainerDTO o2) {
+                    return ObjectUtils.compare(o1.getSurname() + " " + o1.getName(), o2.getSurname() + " " + o2.getName());
+                }
+            });
             return new ResponseEntity<>(trainerService.findVisible(), HttpStatus.OK);
         }
     }

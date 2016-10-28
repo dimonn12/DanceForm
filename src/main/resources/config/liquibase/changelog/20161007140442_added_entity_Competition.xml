@@ -30,7 +30,7 @@
             </column>
 
             <column name="end_date" type="date">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
 
             <column name="is_visible" type="bit" defaultValue="0">
