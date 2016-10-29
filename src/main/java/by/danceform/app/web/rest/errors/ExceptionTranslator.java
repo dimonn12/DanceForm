@@ -1,5 +1,6 @@
 package by.danceform.app.web.rest.errors;
 
+import by.danceform.app.exception.ApplicationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
@@ -49,6 +50,13 @@ public class ExceptionTranslator {
     @ResponseBody
     public ParameterizedErrorVM processParameterizedValidationError(CustomParameterizedException ex) {
         return ex.getErrorVM();
+    }
+
+    @ExceptionHandler(ApplicationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ApplicationExceptionDTO processApplicationException(ApplicationException ex) {
+        return new ApplicationExceptionDTO(ex.getCode());
     }
 
     @ExceptionHandler(AccessDeniedException.class)

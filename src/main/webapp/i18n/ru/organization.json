@@ -2,22 +2,21 @@
     "danceFormApp": {
         "organization" : {
             "home": {
-                "title": "Organizations",
-                "createLabel": "Создать новый Organization",
-                "createOrEditLabel": "Создать или отредактировать Organization",
-                "search": "Найти Organization"
+                "title": "Организации",
+                "createLabel": "Создать новую Организацию",
+                "createOrEditLabel": "Создать или отредактировать Организацию"
             },
-            "created": "Новый Organization создан с идентификатором {{ param }}",
-            "updated": "Organization обновлен с идентификатором {{ param }}",
-            "deleted": "Organization удален с идентификатором {{ param }}",
+            "created": "Новая Организация создана с идентификатором {{ param }}",
+            "updated": "Организация обновлена с идентификатором {{ param }}",
+            "deleted": "Организация удалена с идентификатором {{ param }}",
             "delete": {
-                "question": "Вы уверены что хотите удалить Organization {{ id }}?"
+                "question": "Вы уверены что хотите удалить Организацию {{ id }}?"
             },
             "detail": {
-                "title": "Organization"
+                "title": "Организация"
             },
-            "name": "Name",
-            "visible": "Visible"
+            "name": "Навзание",
+            "visible": "Доступна для выбора"
         }
     }
 }

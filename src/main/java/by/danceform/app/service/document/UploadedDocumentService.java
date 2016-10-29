@@ -119,7 +119,8 @@ public class UploadedDocumentService {
      */
     public void delete(Long id) {
         log.debug("Request to delete UploadedDocument : {}", id);
-        //competitionRepository.updateDocumentAttachment(id);
+        competitionRepository.updateDocumentAttachment(id);
+        competitionRepository.updateImageAttachment(id);
         uploadedDocumentRepository.delete(id);
     }
 }

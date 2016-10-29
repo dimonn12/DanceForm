@@ -51,14 +51,22 @@ public class RegisteredCoupleDTO extends AbstractDomainDTO<Long> {
     @Size(min = 1, max = 80)
     private String trainer2;
 
+    @NotNull
     private NamedReferenceDTO partner1DanceClassST;
 
+    @NotNull
     private NamedReferenceDTO partner1DanceClassLA;
 
+    @NotNull
     private NamedReferenceDTO partner2DanceClassST;
 
+    @NotNull
     private NamedReferenceDTO partner2DanceClassLA;
 
+    @NotNull
+    private Long competitionId;
+
+    @NotNull
     private List<Long> competitionCategoryIds;
 
     public String getPartner1Name() {
@@ -107,6 +115,14 @@ public class RegisteredCoupleDTO extends AbstractDomainDTO<Long> {
 
     public void setPartner2DateOfBirth(LocalDate partner2DateOfBirth) {
         this.partner2DateOfBirth = partner2DateOfBirth;
+    }
+
+    public Long getCompetitionId() {
+        return competitionId;
+    }
+
+    public void setCompetitionId(Long competitionId) {
+        this.competitionId = competitionId;
     }
 
     public String getOrganization() {

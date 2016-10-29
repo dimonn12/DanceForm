@@ -103,6 +103,10 @@
     },
     "ribbon": {
       "dev": "Development"
+    },
+    "variables": {
+      "true": "Да",
+      "false": "Нет"
     }
   },
   "entity": {

@@ -31,9 +31,8 @@ public class Trainer extends AbstractEntity<Long> implements INamedEntity {
     @Column(name = "name", length = 32, nullable = false)
     private String name;
 
-    @NotNull
-    @Size(min = 1, max = 32)
-    @Column(name = "surname", length = 32, nullable = false)
+    @Size(max = 32)
+    @Column(name = "surname", length = 32, nullable = true)
     private String surname;
 
     @Column(name = "visible")

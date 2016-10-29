@@ -1,33 +1,32 @@
 (function() {
 	'use strict';
 
-	/*angular
+	angular
 		.module('danceFormApp')
 		.config(stateConfig);
 
 	stateConfig.$inject = ['$stateProvider'];
 
 	function stateConfig($stateProvider) {
-		$stateProvider.state('register', {
+		$stateProvider.state('login', {
 			parent: 'account',
-			url: '/register',
+			url: '/login',
 			data: {
-				authorities: [],
-				pageTitle: 'register.title'
+				pageTitle: 'global.menu.account.login'
 			},
 			views: {
 				'content@': {
-					templateUrl: 'app/account/register/register.html',
-					controller: 'RegisterController',
+					templateUrl: 'app/components/login/login.html',
+					controller: 'LoginController',
 					controllerAs: 'vm'
 				}
 			},
 			resolve: {
 				translatePartialLoader: ['$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
-					$translatePartialLoader.addPart('register');
+					$translatePartialLoader.addPart('login');
 					return $translate.refresh();
 				}]
 			}
 		});
-	}*/
+	}
 })();

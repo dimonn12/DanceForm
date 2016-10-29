@@ -35,13 +35,19 @@
                         <span data-translate="danceFormApp.competition.date">Date</span>
                     </dt>
                     <dd>
-                        <span>{{vm.competition.date | date:'mediumDate'}}</span>
+                        <div>{{vm.competition.startDate | date:'d MMMM yyyy'}}</div>
+                        <div ng-if="vm.competition.endDate != null"> - {{vm.competition.endDate | date:'d MMMM yyyy'}}</div>
                     </dd>
                     <dt>
                         <span data-translate="danceFormApp.competition.visible">Is Visible</span>
                     </dt>
                     <dd>
-                        <span>{{vm.competition.visible}}</span>
+                        <div ng-if="vm.competition.visible">
+                            <span data-translate="global.variables.true"></span>
+                        </div>
+                        <div ng-if="!vm.competition.visible">
+                            <span data-translate="global.variables.false"></span>
+                        </div>
                     </dd>
                     <dt>
                         <span data-translate="danceFormApp.competition.organizer">Organizer</span>

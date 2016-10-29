@@ -121,7 +121,7 @@ public class CompetitionCategoryService {
     public List<CompetitionCategoryDTO> findAvailableByCompetitionId(RegisteredCoupleDTO registeredCoupleDTO,
                                                                      Long competitionId) {
         log.debug("Request to get CompetitionCategory : {}", competitionId);
-        List<CompetitionCategory> allCategories = competitionCategoryRepository.findAllByCompetitionId(competitionId);
+        List<CompetitionCategory> allCategories = competitionCategoryRepository.findAvailableByCompetitionId(competitionId);
         Set<CompetitionCategory> availableCategories = new HashSet<>();
         Competition competition = competitionRepository.findOne(competitionId);
         for(CompetitionCategory existingCategory : allCategories) {

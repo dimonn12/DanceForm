@@ -33,13 +33,13 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="danceFormApp.competition.date" for="field_date">Date</label>
+            <label class="control-label" data-translate="danceFormApp.competition.startDate" for="field_startDate">Date</label>
             <div class="input-group">
-                <input id="field_date" type="text" class="form-control" name="date" uib-datepicker-popup="{{dateformat}}" ng-model="vm.competition.date"
-                       is-open="vm.datePickerOpenStatus.date"
+                <input id="field_startDate" type="text" class="form-control" name="startDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.competition.startDate"
+                       is-open="vm.datePickerOpenStatus.startDate"
                        required/>
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('date')">
+                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('startDate')">
                         <i class="glyphicon glyphicon-calendar"></i>
                     </button>
                 </span>
@@ -49,6 +49,18 @@
                    ng-show="editForm.date.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="danceFormApp.competition.endDate" for="field_endDate">Date</label>
+            <div class="input-group">
+                <input id="field_endDate" type="text" class="form-control" name="endDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.competition.endDate"
+                       is-open="vm.datePickerOpenStatus.endDate"/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('endDate')">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </span>
             </div>
         </div>
         <div class="form-group">

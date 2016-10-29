@@ -17,27 +17,34 @@
     <changeSet id="0161017-12" author="dmitry_shanko">
         <insert tableName="trainer">
             <column name="id" value="1"/>
+            <column name="name" value="Другой"/>
+            <column name="surname" value=""/>
+            <column name="visible" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="trainer">
+            <column name="id" value="2"/>
             <column name="name" value="Павел"/>
             <column name="surname" value="Ярцев"/>
             <column name="visible" valueBoolean="true"/>
         </insert>
 
         <insert tableName="trainer">
-            <column name="id" value="2"/>
+            <column name="id" value="3"/>
             <column name="name" value="1"/>
             <column name="surname" value="Козыро"/>
             <column name="visible" valueBoolean="false"/>
         </insert>
 
         <insert tableName="trainer">
-            <column name="id" value="3"/>
+            <column name="id" value="4"/>
             <column name="name" value="Светлана"/>
             <column name="surname" value="Ярцева"/>
             <column name="visible" valueBoolean="true"/>
         </insert>
 
         <insert tableName="trainer">
-            <column name="id" value="4"/>
+            <column name="id" value="5"/>
             <column name="name" value="2"/>
             <column name="surname" value="Козыро"/>
             <column name="visible" valueBoolean="false"/>

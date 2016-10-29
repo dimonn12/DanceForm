@@ -23,9 +23,9 @@ public class DanceClassConverter extends AbstractConverter<DanceClass, DanceClas
 
     @Override
     protected DanceClassDTO convertEntityToDto(DanceClass entity, DanceClassDTO dto) {
-        dto.setName(entity.getName());
-        dto.setDescription(entity.getDescription());
-        dto.setSymbol(entity.getSymbol());
+        dto.setName(trimIfNull(entity.getName()));
+        dto.setDescription(trimIfNull(entity.getDescription()));
+        dto.setSymbol(trimIfNull(entity.getSymbol()));
         dto.setTransferScore(entity.getTransferScore());
         dto.setWeight(entity.getWeight());
         if(null != entity.getNextDanceClass()) {
@@ -36,11 +36,11 @@ public class DanceClassConverter extends AbstractConverter<DanceClass, DanceClas
 
     @Override
     protected DanceClass convertDtoToEntity(DanceClassDTO dto, DanceClass entity) {
-        entity.setDescription(dto.getDescription());
-        entity.setName(dto.getName());
+        entity.setDescription(trimIfNull(dto.getDescription()));
+        entity.setName(trimIfNull(dto.getName()));
         entity.setWeight(dto.getWeight());
         entity.setTransferScore(dto.getTransferScore());
-        entity.setSymbol(dto.getSymbol());
+        entity.setSymbol(trimIfNull(dto.getSymbol()));
         if(null != dto.getNextDanceClass()) {
             entity.setNextDanceClass(danceClassRepository.findOne(dto.getNextDanceClass().getId()));
         }

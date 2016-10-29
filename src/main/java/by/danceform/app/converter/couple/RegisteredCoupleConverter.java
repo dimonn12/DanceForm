@@ -25,18 +25,18 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
 
     @Override
     protected RegisteredCoupleDTO convertEntityToDto(RegisteredCouple entity, RegisteredCoupleDTO dto) {
-        dto.setPartner1Name(entity.getPartner1Name());
-        dto.setPartner1Surname(entity.getPartner1Surname());
+        dto.setPartner1Name(trimIfNull(entity.getPartner1Name()));
+        dto.setPartner1Surname(trimIfNull(entity.getPartner1Surname()));
         dto.setPartner1DateOfBirth(entity.getPartner1DateOfBirth());
 
-        dto.setPartner2Name(entity.getPartner2Name());
-        dto.setPartner2Surname(entity.getPartner2Surname());
+        dto.setPartner2Name(trimIfNull(entity.getPartner2Name()));
+        dto.setPartner2Surname(trimIfNull(entity.getPartner2Surname()));
         dto.setPartner2DateOfBirth(entity.getPartner2DateOfBirth());
 
-        dto.setTrainer1(entity.getTrainer1());
-        dto.setTrainer2(entity.getTrainer2());
-        dto.setLocation(entity.getLocation());
-        dto.setOrganization(entity.getOrganization());
+        dto.setTrainer1(trimIfNull(entity.getTrainer1()));
+        dto.setTrainer2(trimIfNull(entity.getTrainer2()));
+        dto.setLocation(trimIfNull(entity.getLocation()));
+        dto.setOrganization(trimIfNull(entity.getOrganization()));
 
         if(null != entity.getPartner1DanceClassST()) {
             dto.setPartner1DanceClassST(danceClassNamedEntityConverter.convertToDto(entity.getPartner1DanceClassST()));
@@ -58,18 +58,18 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
 
     @Override
     protected RegisteredCouple convertDtoToEntity(RegisteredCoupleDTO dto, RegisteredCouple entity) {
-        entity.setPartner1Name(dto.getPartner1Name());
-        entity.setPartner1Surname(dto.getPartner1Surname());
+        entity.setPartner1Name(trimIfNull(dto.getPartner1Name()));
+        entity.setPartner1Surname(trimIfNull(dto.getPartner1Surname()));
         entity.setPartner1DateOfBirth(dto.getPartner1DateOfBirth());
 
-        entity.setPartner2Name(dto.getPartner2Name());
-        entity.setPartner2Surname(dto.getPartner2Surname());
+        entity.setPartner2Name(trimIfNull(dto.getPartner2Name()));
+        entity.setPartner2Surname(trimIfNull(dto.getPartner2Surname()));
         entity.setPartner2DateOfBirth(dto.getPartner2DateOfBirth());
 
-        entity.setTrainer1(dto.getTrainer1());
-        entity.setTrainer2(dto.getTrainer2());
-        entity.setLocation(dto.getLocation());
-        entity.setOrganization(dto.getOrganization());
+        entity.setTrainer1(trimIfNull(dto.getTrainer1()));
+        entity.setTrainer2(trimIfNull(dto.getTrainer2()));
+        entity.setLocation(trimIfNull(dto.getLocation()));
+        entity.setOrganization(trimIfNull(dto.getOrganization()));
 
         if(null != dto.getPartner1DanceClassLA()) {
             entity.setPartner1DanceClassLA(danceClassRepository.findOne(dto.getPartner1DanceClassLA().getId()));

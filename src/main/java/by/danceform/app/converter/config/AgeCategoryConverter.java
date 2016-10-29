@@ -13,7 +13,7 @@ public class AgeCategoryConverter extends AbstractConverter<AgeCategory, AgeCate
 
     @Override
     protected AgeCategoryDTO convertEntityToDto(AgeCategory entity, AgeCategoryDTO dto) {
-        dto.setName(entity.getName());
+        dto.setName(trimIfNull(entity.getName()));
         dto.setMaxAge(entity.getMaxAge());
         dto.setMinAge(entity.getMinAge());
         return dto;
@@ -21,7 +21,7 @@ public class AgeCategoryConverter extends AbstractConverter<AgeCategory, AgeCate
 
     @Override
     protected AgeCategory convertDtoToEntity(AgeCategoryDTO dto, AgeCategory entity) {
-        entity.setName(dto.getName());
+        entity.setName(trimIfNull(dto.getName()));
         entity.setMinAge(dto.getMinAge());
         entity.setMaxAge(dto.getMaxAge());
         return entity;

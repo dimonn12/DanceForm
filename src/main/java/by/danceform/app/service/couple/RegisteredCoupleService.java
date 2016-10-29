@@ -5,6 +5,7 @@ import by.danceform.app.domain.couple.RegisteredCouple;
 import by.danceform.app.dto.couple.RegisteredCoupleDTO;
 import by.danceform.app.repository.competition.CompetitionCategoryRepository;
 import by.danceform.app.repository.couple.RegisteredCoupleRepository;
+import by.danceform.app.validator.couple.RegisteredCoupleValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,9 @@ public class RegisteredCoupleService {
     @Inject
     private CompetitionCategoryRepository competitionCategoryRepository;
 
+    @Inject
+    private RegisteredCoupleValidator validator;
+
     /**
      * Save a registeredCouple.
      *
@@ -42,6 +46,7 @@ public class RegisteredCoupleService {
     public RegisteredCoupleDTO save(RegisteredCoupleDTO registeredCoupleDTO) {
         log.debug("Request to save RegisteredCouple : {}", registeredCoupleDTO);
         RegisteredCoupleDTO result = null;
+        validator.validate(registeredCoupleDTO);
         if(null != registeredCoupleDTO.getCompetitionCategoryIds()) {
             for(Long competitionCategoryId : registeredCoupleDTO.getCompetitionCategoryIds()) {
                 RegisteredCouple registeredCouple = registeredCoupleConverter.convertToEntity(registeredCoupleDTO);

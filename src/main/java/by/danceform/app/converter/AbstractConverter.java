@@ -142,4 +142,11 @@ public abstract class AbstractConverter<T extends AbstractEntity<I>, D extends A
     protected void setDtoIdToEntity(T entity, D dto) {
         entity.setId(dto.getId());
     }
+
+    protected String trimIfNull(String value) {
+        if(null == value) {
+            return null;
+        }
+        return value.trim();
+    }
 }

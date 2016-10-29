@@ -35,8 +35,7 @@ public class Competition extends AbstractEntity<Long> implements INamedEntity {
     @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
 
-    @NotNull
-    @Column(name = "end_date", nullable = true)
+    @Column(name = "end_date")
     private LocalDate endDate;
 
     @Column(name = "is_visible")

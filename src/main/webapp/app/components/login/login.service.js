@@ -7,8 +7,9 @@
 
 	LoginService.$inject = ['$uibModal'];
 
-	function LoginService($uibModal) {
-		var service = {
+	function LoginService() {
+		return {};
+/*		var service = {
 			open: open
 		};
 
@@ -39,6 +40,6 @@
 				resetModal,
 				resetModal
 			);
-		}
+		}*/
 	}
 })();

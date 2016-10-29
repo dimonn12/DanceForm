@@ -17,18 +17,24 @@
     <changeSet id="0161017-11" author="dmitry_shanko">
         <insert tableName="organization">
             <column name="id" value="1"/>
-            <column name="name" value="ТСК Танго"/>
+            <column name="name" value="Иное объединение"/>
             <column name="visible" valueBoolean="true"/>
         </insert>
 
         <insert tableName="organization">
             <column name="id" value="2"/>
+            <column name="name" value="ТСК Танго"/>
+            <column name="visible" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="organization">
+            <column name="id" value="3"/>
             <column name="name" value="ТСК Сигма"/>
             <column name="visible" valueBoolean="false"/>
         </insert>
 
         <insert tableName="organization">
-            <column name="id" value="3"/>
+            <column name="id" value="4"/>
             <column name="name" value="Мой клуб (тест)"/>
             <column name="visible" valueBoolean="true"/>
         </insert>

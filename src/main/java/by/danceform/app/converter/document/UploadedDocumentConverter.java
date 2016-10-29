@@ -13,21 +13,21 @@ public class UploadedDocumentConverter extends AbstractConverter<UploadedDocumen
 
     @Override
     protected UploadedDocumentDTO convertEntityToDto(UploadedDocument entity, UploadedDocumentDTO dto) {
-        dto.setFullName(entity.getFullName());
-        dto.setContentContentType(entity.getContentContentType());
-        dto.setExternalPath(entity.getExternalPath());
-        dto.setPath(entity.getPath());
-        dto.setUploadedBy(entity.getUploadedBy());
+        dto.setFullName(trimIfNull(entity.getFullName()));
+        dto.setContentContentType(trimIfNull(entity.getContentContentType()));
+        dto.setExternalPath(trimIfNull(entity.getExternalPath()));
+        dto.setPath(trimIfNull(entity.getPath()));
+        dto.setUploadedBy(trimIfNull(entity.getUploadedBy()));
         dto.setUploadedDate(entity.getUploadedDate());
         return dto;
     }
 
     @Override
     protected UploadedDocument convertDtoToEntity(UploadedDocumentDTO dto, UploadedDocument entity) {
-        entity.setExternalPath(dto.getExternalPath());
-        entity.setPath(dto.getPath());
-        entity.setContentContentType(dto.getContentContentType());
-        entity.setFullName(dto.getFullName());
+        entity.setExternalPath(trimIfNull(dto.getExternalPath()));
+        entity.setPath(trimIfNull(dto.getPath()));
+        entity.setContentContentType(trimIfNull(dto.getContentContentType()));
+        entity.setFullName(trimIfNull(dto.getFullName()));
         return entity;
     }
 

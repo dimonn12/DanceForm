@@ -52,8 +52,8 @@ public class CompetitionCategoryConverter extends AbstractConverter<CompetitionC
 
     @Override
     protected CompetitionCategoryDTO convertEntityToDto(CompetitionCategory entity, CompetitionCategoryDTO dto) {
-        dto.setDescription(entity.getDescription());
-        dto.setName(entity.getName());
+        dto.setDescription(trimIfNull(entity.getDescription()));
+        dto.setName(trimIfNull(entity.getName()));
         dto.setActive(entity.isActive());
         dto.setDate(entity.getDate());
         dto.setCheckMaxAge(entity.isCheckMaxAge());
@@ -67,8 +67,8 @@ public class CompetitionCategoryConverter extends AbstractConverter<CompetitionC
 
     @Override
     protected CompetitionCategory convertDtoToEntity(CompetitionCategoryDTO dto, CompetitionCategory entity) {
-        entity.setDescription(dto.getDescription());
-        entity.setName(dto.getName());
+        entity.setDescription(trimIfNull(dto.getDescription()));
+        entity.setName(trimIfNull(dto.getName()));
         entity.setActive(dto.getActive());
         entity.setDate(dto.getDate());
         entity.setCheckMinAge(dto.getCheckMinAge());

@@ -13,13 +13,13 @@ public class LocationConverter extends AbstractConverter<Location, LocationDTO, 
 
     @Override
     protected LocationDTO convertEntityToDto(Location entity, LocationDTO dto) {
-        dto.setName(entity.getName());
+        dto.setName(trimIfNull(entity.getName()));
         return dto;
     }
 
     @Override
     protected Location convertDtoToEntity(LocationDTO dto, Location entity) {
-        entity.setName(dto.getName());
+        entity.setName(trimIfNull(dto.getName()));
         return entity;
     }
 

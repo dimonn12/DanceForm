@@ -13,15 +13,15 @@ public class SystemSettingConverter extends AbstractConverter<SystemSetting, Sys
 
     @Override
     protected SystemSettingDTO convertEntityToDto(SystemSetting entity, SystemSettingDTO dto) {
-        dto.setName(entity.getName());
-        dto.setValue(entity.getValue());
+        dto.setName(trimIfNull(entity.getName()));
+        dto.setValue(trimIfNull(entity.getValue()));
         return dto;
     }
 
     @Override
     public SystemSetting convertDtoToEntity(SystemSettingDTO dto, SystemSetting entity) {
-        entity.setName(dto.getName());
-        entity.setValue(dto.getValue());
+        entity.setName(trimIfNull(dto.getName()));
+        entity.setValue(trimIfNull(dto.getValue()));
         return entity;
     }
 

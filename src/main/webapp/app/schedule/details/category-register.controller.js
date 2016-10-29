@@ -22,6 +22,8 @@
 
 		vm.registerCouple = {};
 
+		vm.registerCouple.competitionId = vm.currentCompetition.id;
+
 		vm.save = save;
 		vm.update = update;
 

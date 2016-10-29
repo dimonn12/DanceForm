@@ -13,16 +13,16 @@ public class TrainerConverter extends AbstractConverter<Trainer, TrainerDTO, Lon
 
     @Override
     protected TrainerDTO convertEntityToDto(Trainer entity, TrainerDTO dto) {
-        dto.setName(entity.getName());
-        dto.setSurname(entity.getSurname());
+        dto.setName(trimIfNull(entity.getName()));
+        dto.setSurname(trimIfNull(entity.getSurname()));
         dto.setVisible(entity.isVisible());
         return dto;
     }
 
     @Override
     protected Trainer convertDtoToEntity(TrainerDTO dto, Trainer entity) {
-        entity.setName(dto.getName());
-        entity.setSurname(dto.getSurname());
+        entity.setName(trimIfNull(dto.getName()));
+        entity.setSurname(trimIfNull(dto.getSurname()));
         entity.setVisible(dto.isVisible());
         return entity;
     }

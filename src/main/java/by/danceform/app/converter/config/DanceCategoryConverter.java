@@ -13,13 +13,13 @@ public class DanceCategoryConverter extends AbstractConverter<DanceCategory, Dan
 
     @Override
     protected DanceCategoryDTO convertEntityToDto(DanceCategory entity, DanceCategoryDTO dto) {
-        dto.setName(entity.getName());
+        dto.setName(trimIfNull(entity.getName()));
         return dto;
     }
 
     @Override
     protected DanceCategory convertDtoToEntity(DanceCategoryDTO dto, DanceCategory entity) {
-        entity.setName(dto.getName());
+        entity.setName(trimIfNull(dto.getName()));
         return entity;
     }
 

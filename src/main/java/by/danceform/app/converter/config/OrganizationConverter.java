@@ -13,14 +13,14 @@ public class OrganizationConverter extends AbstractConverter<Organization, Organ
 
     @Override
     protected OrganizationDTO convertEntityToDto(Organization entity, OrganizationDTO dto) {
-        dto.setName(entity.getName());
+        dto.setName(trimIfNull(entity.getName()));
         dto.setVisible(entity.isVisible());
         return dto;
     }
 
     @Override
     protected Organization convertDtoToEntity(OrganizationDTO dto, Organization entity) {
-        entity.setName(dto.getName());
+        entity.setName(trimIfNull(dto.getName()));
         entity.setVisible(dto.isVisible());
         return entity;
     }

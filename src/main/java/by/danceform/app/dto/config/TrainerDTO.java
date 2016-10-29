@@ -14,8 +14,7 @@ public class TrainerDTO extends AbstractDomainDTO<Long> {
     @Size(min = 1, max = 32)
     private String name;
 
-    @NotNull
-    @Size(min = 1, max = 32)
+    @Size(max = 32)
     private String surname;
 
     private Boolean visible;

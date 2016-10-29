@@ -25,7 +25,12 @@ public interface CompetitionRepository extends JpaRepository<Competition, Long> 
 
     @Modifying(clearAutomatically = true)
     @Query(
-        "UPDATE FROM Competition comp SET comp.detailsDocumentId = null WHERE comp.detailsDocumentId = :detailsDocumentId")
-    void updateDocumentAttachment(@Param("detailsDocumentId") Long detailsDocumentId);
+        "UPDATE FROM Competition comp SET comp.detailsDocumentId = null WHERE comp.detailsDocumentId = :documentId")
+    void updateDocumentAttachment(@Param("documentId") Long documentId);
+
+    @Modifying(clearAutomatically = true)
+    @Query(
+        "UPDATE FROM Competition comp SET comp.bannerImageId = null WHERE comp.bannerImageId = :documentId")
+    void updateImageAttachment(@Param("documentId") Long documentId);
 
 }
