@@ -5,12 +5,11 @@
             class="btn btn-info">
         <span class="glyphicon glyphicon-arrow-left"></span>
         &nbsp;
-        <span data-translate="entity.action.back"> Back</span>
+        <span data-translate="entity.action.back"> Назад</span>
     </button>
 
     <h2>
-        <span data-translate="danceFormApp.schedule.details.title">Competition</span>
-        "{{vm.currentCompetition.name}}"
+        <span>{{'danceFormApp.schedule.details.title' | translate}} "{{vm.currentCompetition.name}}"</span>
     </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
@@ -26,31 +25,32 @@
             <td>
                 <dl class="dl-horizontal jh-entity-details competition-dl">
                     <dt>
-                        <span data-translate="danceFormApp.schedule.name">Name</span>
+                        <span data-translate="danceFormApp.schedule.name">Навзание</span>
                     </dt>
                     <dd>
                         <span>{{vm.currentCompetition.name}}</span>
                     </dd>
                     <dt>
-                        <span data-translate="danceFormApp.schedule.date">Date</span>
+                        <span data-translate="danceFormApp.schedule.date">Дата проведения</span>
                     </dt>
                     <dd>
-                        <span><div>{{vm.currentCompetition.startDate | date:'d MMMM yyyy'}}</div><div ng-if="vm.currentCompetition.endDate != null"> - {{vm.currentCompetition.endDate | date:'d MMMM yyyy'}}</div></span>
+                        <div class="div-inline">{{vm.currentCompetition.startDate | date:'d MMMM yyyy'}}</div>
+                        <div class="div-inline" ng-if="vm.currentCompetition.endDate != null"> - {{vm.currentCompetition.endDate | date:'d MMMM yyyy'}}</div>
                     </dd>
                     <dt>
-                        <span data-translate="danceFormApp.schedule.organizer">Organizer</span>
+                        <span data-translate="danceFormApp.schedule.organizer">Организатор</span>
                     </dt>
                     <dd>
                         <span>{{vm.currentCompetition.organizer}}</span>
                     </dd>
                     <dt>
-                        <span data-translate="danceFormApp.schedule.location">Location</span>
+                        <span data-translate="danceFormApp.schedule.location">Место проведения</span>
                     </dt>
                     <dd>
                         <span>{{vm.currentCompetition.location}}</span>
                     </dd>
                     <dt>
-                        <span data-translate="danceFormApp.schedule.amount">Location</span>
+                        <span data-translate="danceFormApp.schedule.amount">Общее число зарегистрированных пар</span>
                     </dt>
                     <dd>
                         <span>{{vm.totalRegisteredCount}}
@@ -60,7 +60,7 @@
                         </span>
                     </dd>
                     <dt ng-show="vm.currentCompetition.detailsDocumentId != null">
-                        <span data-translate="danceFormApp.schedule.detailsDocument">Location</span>
+                        <span data-translate="danceFormApp.schedule.detailsDocument">Описание</span>
                     </dt>
                     <dd ng-show="vm.currentCompetition.detailsDocumentId != null">
                         <a href="uploads/competition/{{vm.currentCompetition.id}}/details" target="_new" data-translate="entity.action.open">
@@ -72,7 +72,7 @@
         </tr>
     </table>
 
-    <div class="registry-button">
+    <div class="registry-button" ng-if="vm.currentCompetition.registrationOpen">
         <button type="submit"
                 ui-sref="schedule-category-register({competitionId:vm.currentCompetition.id})"
                 class="btn btn-success">
@@ -82,7 +82,7 @@
     </div>
 
     <div class="table-responsive">
-        <table class="jh-table table table-bordered table-schedule wrap-text nowrap-content">
+        <table class="jh-table table table-bordered table-schedule wrap-text competition-table">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th>
@@ -104,7 +104,7 @@
                     <td>
                         <button type="button"
                                 ui-sref="schedule-category-details({competitionId:vm.currentCompetition.id, categoryId:category.id})"
-                                class="btn btn-link show-competition-link" >
+                                class="btn btn-link show-competition-link">
                             <span>{{category.name}}</span>
                         </button>
                     </td>

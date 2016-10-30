@@ -33,7 +33,7 @@
 			url: '/{id}',
 			data: {
 				authorities: [],
-				pageTitle: 'global.menu.schedule'
+				pageTitle: 'global.title'
 			},
 			views: {
 				'content@': {
@@ -64,7 +64,7 @@
 			url: '/registry',
 			data: {
 				authorities: [],
-				pageTitle: 'global.menu.schedule'
+				pageTitle: 'global.title'
 			},
 			views: {
 				'content@': {
@@ -95,7 +95,7 @@
 			url: '/category/{categoryId}/couples',
 			data: {
 				authorities: [],
-				pageTitle: 'global.menu.schedule'
+				pageTitle: 'global.title'
 			},
 			views: {
 				'content@': {

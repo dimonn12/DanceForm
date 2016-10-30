@@ -19,29 +19,50 @@
             <span>{{vm.competitionCategory.description}}</span>
         </dd>
         <dt>
+            <span data-translate="danceFormApp.competitionCategory.date">Date</span>
+        </dt>
+        <dd>
+            <span>{{vm.competitionCategory.date | date:'d MMMM yyyy'}}</span>
+        </dd>
+        <dt>
             <span data-translate="danceFormApp.competitionCategory.active">Active</span>
         </dt>
         <dd>
-            <span>{{vm.competitionCategory.active}}</span>
+            <div ng-if="vm.competitionCategory.active">
+                <span data-translate="global.variables.true"></span>
+            </div>
+            <div ng-if="!vm.competitionCategory.active">
+                <span data-translate="global.variables.false"></span>
+            </div>
         </dd>
         <dt>
             <span data-translate="danceFormApp.competitionCategory.checkMinAge">Check Min Age</span>
         </dt>
         <dd>
-            <span>{{vm.competitionCategory.checkMinAge}}</span>
+            <div ng-if="vm.competitionCategory.checkMinAge">
+                <span data-translate="global.variables.true"></span>
+            </div>
+            <div ng-if="!vm.competitionCategory.checkMinAge">
+                <span data-translate="global.variables.false"></span>
+            </div>
         </dd>
         <dt>
             <span data-translate="danceFormApp.competitionCategory.checkMaxAge">Check Max Age</span>
         </dt>
         <dd>
-            <span>{{vm.competitionCategory.checkMaxAge}}</span>
+            <div ng-if="vm.competitionCategory.checkMaxAge">
+                <span data-translate="global.variables.true"></span>
+            </div>
+            <div ng-if="!vm.competitionCategory.checkMaxAge">
+                <span data-translate="global.variables.false"></span>
+            </div>
         </dd>
         <dt>
-            <span data-translate="danceFormApp.competitionCategory.danceClass">Dance Class</span>
+            <span data-translate="danceFormApp.competitionCategory.maxDanceClass">Dance Class</span>
         </dt>
         <dd>
             <span ng-repeat="danceClass in vm.competitionCategory.danceClasses">
-                <a ui-sref="dance-clas-detail({id: danceClass.id})">{{danceClass.id}}</a>
+                <a class="form-control-static" ui-sref="dance-class-detail({id: danceClass.id})">{{danceClass.name}}</a>
                 {{$last ? '' : ', '}}
             </span>
         </dd>
@@ -50,7 +71,7 @@
         </dt>
         <dd>
             <span ng-repeat="ageCategory in vm.competitionCategory.ageCategories">
-                <a ui-sref="age-category-detail({id: ageCategory.id})">{{ageCategory.id}}</a>
+                <a class="form-control-static" ui-sref="age-category-detail({id: ageCategory.id})">{{ageCategory.name}}</a>
                 {{$last ? '' : ', '}}
             </span>
         </dd>

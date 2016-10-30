@@ -9,63 +9,84 @@
     </button>
 
     <h2>
-        <span data-translate="danceFormApp.schedule.details.title">Competition</span>
-        "{{vm.currentCompetition.name}}"
+        <span>{{'danceFormApp.schedule.details.title' | translate}} "{{vm.currentCompetition.name}}"</span>
     </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="dl-horizontal jh-entity-details competition-dl">
-        <dt>
-            <span data-translate="danceFormApp.schedule.name">Name</span>
-        </dt>
-        <dd>
-            <span>{{vm.currentCompetition.name}}</span>
-        </dd>
-        <dt>
-            <span data-translate="danceFormApp.schedule.date">Date</span>
-        </dt>
-        <dd>
-            <span><div>{{vm.currentCompetition.startDate | date:'d MMMM yyyy'}}</div><div ng-if="vm.currentCompetition.endDate != null"> - {{vm.currentCompetition.endDate | date:'d MMMM yyyy'}}</div></span>
-        </dd>
-        <dt>
-            <span data-translate="danceFormApp.schedule.organizer">Organizer</span>
-        </dt>
-        <dd>
-            <span>{{vm.currentCompetition.organizer}}</span>
-        </dd>
-        <dt>
-            <span data-translate="danceFormApp.schedule.location">Location</span>
-        </dt>
-        <dd>
-            <span>{{vm.currentCompetition.location}}</span>
-        </dd>
-        <dt>
-            <span data-translate="danceFormApp.schedule.category.amount">Location</span>
-        </dt>
-        <dd>
-            <span>{{vm.category.registeredCouplesCount}}</span>
-        </dd>
-    </dl>
+    <table>
+        <tr>
+            <td>
+                <div ng-if="vm.currentCompetition.bannerImageId != null">
+                    <a href="uploads/competition/{{vm.currentCompetition.id}}/banner" target="_new">
+                        <img class="banner" data-ng-src="uploads/competition/{{vm.currentCompetition.id}}/banner"/>
+                    </a>
+                </div>
+            </td>
+            <td>
+                <dl class="dl-horizontal jh-entity-details competition-dl">
+                    <dt>
+                        <span data-translate="danceFormApp.schedule.name">Навзание</span>
+                    </dt>
+                    <dd>
+                        <span>{{vm.currentCompetition.name}}</span>
+                    </dd>
+                    <dt>
+                        <span data-translate="danceFormApp.schedule.date">Дата проведения</span>
+                    </dt>
+                    <dd>
+                        <div class="div-inline">{{vm.currentCompetition.startDate | date:'d MMMM yyyy'}}</div>
+                        <div class="div-inline" ng-if="vm.currentCompetition.endDate != null"> - {{vm.currentCompetition.endDate | date:'d MMMM yyyy'}}</div>
+                    </dd>
+                    <dt>
+                        <span data-translate="danceFormApp.schedule.organizer">Организатор</span>
+                    </dt>
+                    <dd>
+                        <span>{{vm.currentCompetition.organizer}}</span>
+                    </dd>
+                    <dt>
+                        <span data-translate="danceFormApp.schedule.location">Место проведения</span>
+                    </dt>
+                    <dd>
+                        <span>{{vm.currentCompetition.location}}</span>
+                    </dd>
+                    <dt>
+                        <span data-translate="danceFormApp.schedule.category.amount">Пар в категории</span>
+                    </dt>
+                    <dd>
+                        <span>{{vm.category.registeredCouplesCount}}</span>
+                    </dd>
+                    <dt ng-show="vm.currentCompetition.detailsDocumentId != null">
+                        <span data-translate="danceFormApp.schedule.detailsDocument">Описание</span>
+                    </dt>
+                    <dd ng-show="vm.currentCompetition.detailsDocumentId != null">
+                        <a href="uploads/competition/{{vm.currentCompetition.id}}/details" target="_new" data-translate="entity.action.open">
+                            open
+                        </a>
+                    </dd>
+                </dl>
+            </td>
+        </tr>
+    </table>
 
     <div class="table-responsive">
-        <table class="jh-table table table-bordered table-schedule">
+        <table class="jh-table table table-bordered table-schedule ">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th>
-                        <span data-translate="danceFormApp.schedule.couples.names">Дата</span>
+                        <span data-translate="danceFormApp.schedule.couples.names">Название</span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.schedule.couples.danceClass">Дата</span>
+                        <span data-translate="danceFormApp.schedule.couples.danceClass">Классы</span>
                         <br>
                         <span data-translate="{{vm.category.danceCategory.id === -1 ? ('danceFormApp.schedule.registry.st' | translate) : ('danceFormApp.schedule.registry.la' | translate)}}">
-                            Дата
+                            Классы
                         </span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.schedule.couples.organization">Дата</span>
+                        <span data-translate="danceFormApp.schedule.couples.organization">Организация</span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.schedule.couples.trainer">Дата</span>
+                        <span data-translate="danceFormApp.schedule.couples.trainer">Тренер</span>
                     </th>
                 </tr>
             </thead>
@@ -80,8 +101,12 @@
                         <br>
                         {{vm.category.danceCategory.id === -1 ? couple.partner2DanceClassST.name : couple.partner2DanceClassLA.name}}
                     </td>
-                    <td>{{couple.organization}}</td>
-                    <td>{{couple.trainer1}}</td>
+                    <td style="white-space: nowrap;">{{couple.organization}}</td>
+                    <td style="white-space: nowrap;">
+                        <div class="div-inline">{{couple.trainer1}}{{couple.trainer2 != null ? ',' : ''}}</div>
+                        <br ng-if="couple.trainer2 != null">
+                        <div class="div-inline" ng-if="couple.trainer2 != null">{{couple.trainer2}}</div>
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -45,7 +45,7 @@
 							}
 						}
 						for(var j = 0; j < vm.danceClasses.length; j++) {
-							if(vm.danceClasses[j].weight < maxDanceClass.weight) {
+							if(vm.danceClasses[j].weight <= maxDanceClass.weight) {
 								vm.categories[i].danceClasses.push(vm.danceClasses[j]);
 							}
 						}

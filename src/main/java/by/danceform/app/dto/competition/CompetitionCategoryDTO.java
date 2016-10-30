@@ -132,6 +132,7 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
                "id=" + id +
                ", name='" + name + "'" +
                ", description='" + description + "'" +
+               ", date='" + date + "'" +
                ", active='" + active + "'" +
                ", checkMinAge='" + checkMinAge + "'" +
                ", checkMaxAge='" + checkMaxAge + "'" +

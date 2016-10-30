@@ -35,8 +35,6 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
 
     private boolean isRegistrationClosed;
 
-    private boolean isDetailsAvailable;
-
     private Long bannerImageId;
 
     private Long detailsDocumentId;
@@ -118,14 +116,6 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
 
     public void setRegistrationClosed(boolean registrationClosed) {
         isRegistrationClosed = registrationClosed;
-    }
-
-    public boolean isDetailsAvailable() {
-        return isDetailsAvailable;
-    }
-
-    public void setDetailsAvailable(boolean detailsAvailable) {
-        isDetailsAvailable = detailsAvailable;
     }
 
     public Long getDetailsDocumentId() {

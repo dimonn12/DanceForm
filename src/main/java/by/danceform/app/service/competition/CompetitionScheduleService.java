@@ -75,29 +75,32 @@ public class CompetitionScheduleService {
             NumberUtils.toInt(daysBeforeRegistrationClosesSetting.getValue(), 1) :
             1);
         LocalDate registrationCloses = LocalDate.now().minusDays(daysBeforeRegistrationCloses);
-        for(CompetitionDTO compDto : competitions) {
-            if(!registrationCloses.isBefore(compDto.getStartDate())) {
+        competitions.stream()
+            .filter(compDto -> !registrationCloses.isBefore(compDto.getStartDate()))
+            .forEach(compDto -> {
                 compDto.setRegistrationClosed(true);
-            }
-        }
+            });
         return competitions;
     }
 
     @Transactional(readOnly = true)
     public CompetitionWithDetailsDTO findCompetitionWithDetails(Long id) {
         CompetitionWithDetails compWithDetails = competitionRepository.findOneWithDetails(id);
-        Competition comp = compWithDetails.getCompetition();
-        if(null != comp) {
-            if(!comp.isVisible()) {
+        if(null != compWithDetails) {
+            Competition comp = compWithDetails.getCompetition();
+            if(null != comp && !comp.isVisible()) {
                 return null;
             }
+        } else {
+            return null;
         }
         CompetitionWithDetailsDTO dto = competitionWithDetailsConverter.convertToDto(compWithDetails);
         dto.setAmountOfUniqueRegisteredPairs(registeredCoupleRepository.groupUniqueByCompetitionId(dto.getId()).size());
-        List<CompetitionCategoryWithDetails> competitionCategoryWithDetailses = competitionCategoryRepository.findWithDetailsByCompetitionId(
+        List<CompetitionCategoryWithDetails> competitionCategoryWithDetails = competitionCategoryRepository.findWithDetailsByCompetitionId(
             id);
+        dto.setRegistrationOpen(competitionCategoryWithDetails.size() > 0);
         dto.setCompetitionCategoryDTOs(competitionCategoryWithDetailsConverter.convertToDtos(
-            competitionCategoryWithDetailses));
+            competitionCategoryWithDetails));
         return dto;
     }
 

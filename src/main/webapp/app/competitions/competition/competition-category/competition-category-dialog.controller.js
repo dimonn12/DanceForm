@@ -13,8 +13,10 @@
 		vm.competitionCategory = entity;
 		vm.clear = clear;
 		vm.save = save;
+		vm.datePickerOpenStatus = {};
+		vm.openCalendar = openCalendar;
 		vm.competitions = Competition.query();
-		vm.danceclass = DanceClass.query();
+		vm.danceClasses = DanceClass.query();
 		vm.agecategories = AgeCategory.query();
 		vm.dancecategories = DanceCategory.query();
 
@@ -36,6 +38,21 @@
 		}
 
 		function onSaveSuccess(result) {
+			if(null != result.maxDanceClass.id) {
+				result.danceClasses = [];
+				var maxDanceClass = null;
+				for(var j = 0; j < vm.danceClasses.length; j++) {
+					if(vm.danceClasses[j].id == result.maxDanceClass.id) {
+						maxDanceClass = vm.danceClasses[j];
+						break;
+					}
+				}
+				for(var j = 0; j < vm.danceClasses.length; j++) {
+					if(vm.danceClasses[j].weight <= maxDanceClass.weight) {
+						result.danceClasses.push(vm.danceClasses[j]);
+					}
+				}
+			}
 			$scope.$emit('danceFormApp:competitionCategoryUpdate', result);
 			$uibModalInstance.close(result);
 			vm.isSaving = false;
@@ -45,6 +62,11 @@
 			vm.isSaving = false;
 		}
 
+		vm.datePickerOpenStatus.date = false;
+
+		function openCalendar(date) {
+			vm.datePickerOpenStatus[date] = true;
+		}
 
 	}
 })();

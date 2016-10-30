@@ -40,8 +40,8 @@
 				}
 			})
 			.state('competition-category-detail', {
-				parent: 'competition-category',
-				url: '/{id}',
+				parent: 'competition',
+				url: '/{competitionId}/competition-category/{id}',
 				data: {
 					authorities: ['ROLE_ADMIN'],
 					pageTitle: 'danceFormApp.competitionCategory.detail.title'
@@ -61,7 +61,7 @@
 					entity: ['$state', '$stateParams', 'CompetitionCategory', function($state, $stateParams, CompetitionCategory) {
 						return CompetitionCategory.get({
 							id: $stateParams.id,
-							competitionId: $state.params.competitionId
+							competitionId: $stateParams.competitionId
 						}).$promise;
 					}],
 					previousState: ["$state", function($state) {
@@ -91,7 +91,7 @@
 							entity: ['CompetitionCategory', function(CompetitionCategory) {
 								return CompetitionCategory.get({
 									id: $stateParams.id,
-									competitionId: $state.params.competitionId
+									competitionId: $stateParams.competitionId
 								}).$promise;
 							}]
 						}

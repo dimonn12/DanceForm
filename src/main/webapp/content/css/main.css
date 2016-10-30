@@ -337,8 +337,13 @@ entity tables helpers
 /* ==========================================================================
 entity detail page css
 ========================================================================== */
+.dl-horizontal.jh-entity-details > dt {
+    font-size: 16px;
+}
+
 .dl-horizontal.jh-entity-details > dd {
     margin-bottom: 15px;
+    font-size: 14px;
 }
 
 @media screen and (min-width: 658px) {
@@ -440,7 +445,6 @@ Competition schedule styles
     width: 170px;
 }
 
-
 @media screen and (min-width: 900px) {
 
     .competition-dl > dt {
@@ -498,6 +502,22 @@ dl > dt > span {
 
 .nowrap-content > tbody > tr > td {
     white-space: nowrap !important;
+}
+
+.competition-name {
+    text-align: center;
+    height: 51px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.competition-name > span {
+    width: 100%;
+    padding: 6px 12px;
 }
 
 .show-competition-link {
@@ -584,6 +604,14 @@ dl > dt > span {
 .footer > table {
     text-align: center;
     width: 1px;
+}
+
+.div-inline {
+    display: inline-block;
+}
+
+.competition-table > thead > tr > th {
+    width: 25%
 }
 
 @media screen and (min-width: 992px) {

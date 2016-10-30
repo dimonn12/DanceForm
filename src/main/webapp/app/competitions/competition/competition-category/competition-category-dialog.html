@@ -44,27 +44,49 @@
                 </p>
             </div>
         </div>
+
+        <div class="form-group">
+            <label class="control-label" data-translate="danceFormApp.competitionCategory.date" for="field_date">Date</label>
+            <br>
+            <span>({{'danceFormApp.competitionCategory.dateDetails' | translate}})</span>
+            <div class="input-group">
+                <input id="field_date" type="text" class="form-control" name="date" uib-datepicker-popup="{{dateformat}}" ng-model="vm.competitionCategory.date"
+                       is-open="vm.datePickerOpenStatus.date"/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('date')">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+
         <div class="form-group">
             <label class="control-label" data-translate="danceFormApp.competitionCategory.active" for="field_active">Active</label>
+            <br>
+            <span>({{'danceFormApp.competitionCategory.activeDetails' | translate}})</span>
             <input type="checkbox" class="form-control" name="active" id="field_active"
                    ng-model="vm.competitionCategory.active"
             />
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="danceFormApp.competitionCategory.checkMinAge" for="field_checkMinAge">Check Min Age</label>
+            <br>
+            <span>({{'danceFormApp.competitionCategory.checkMinAgeDetails' | translate}})</span>
             <input type="checkbox" class="form-control" name="checkMinAge" id="field_checkMinAge"
                    ng-model="vm.competitionCategory.checkMinAge"
             />
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="danceFormApp.competitionCategory.checkMaxAge" for="field_checkMaxAge">Check Max Age</label>
+            <br>
+            <span>({{'danceFormApp.competitionCategory.checkMaxAgeDetails' | translate}})</span>
             <input type="checkbox" class="form-control" name="checkMaxAge" id="field_checkMaxAge"
                    ng-model="vm.competitionCategory.checkMaxAge"
             />
         </div>
 
         <div class="form-group">
-            <label data-translate="danceFormApp.competitionCategory.danceCategory" for="field_danceCategory">Dance Class</label>
+            <label data-translate="danceFormApp.competitionCategory.danceCategory" for="field_danceCategory">Dance Category</label>
             <select class="form-control" id="field_danceCategory" name="danceCategory" ng-model="vm.competitionCategory.danceCategory.id"
                     ng-options="danceCategory.id as danceCategory.name for danceCategory in vm.dancecategories | orderBy:'id'">
                 <option value=""></option>
@@ -72,10 +94,15 @@
         </div>
 
         <div class="form-group">
-            <label data-translate="danceFormApp.competitionCategory.danceClass" for="field_danceClass">Dance Class</label>
-            <select class="form-control" id="field_danceClass" multiple name="danceClass" ng-model="vm.competitionCategory.danceClasses"
-                    ng-options="danceClass as danceClass.name for danceClass in vm.danceclass track by danceClass.id"></select>
+            <label data-translate="danceFormApp.competitionCategory.maxDanceClass" for="field_danceClass">Dance Class</label>
+            <br>
+            <span>({{'danceFormApp.competitionCategory.maxDanceClassDetails' | translate}})</span>
+            <select class="form-control" id="field_danceClass" name="danceClass" ng-model="vm.competitionCategory.maxDanceClass.id"
+                    ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'">
+                <option value=""></option>
+            </select>
         </div>
+
         <div class="form-group">
             <label data-translate="danceFormApp.competitionCategory.ageCategory" for="field_ageCategory">Age Category</label>
             <select class="form-control" id="field_ageCategory" multiple name="ageCategory" ng-model="vm.competitionCategory.ageCategories"

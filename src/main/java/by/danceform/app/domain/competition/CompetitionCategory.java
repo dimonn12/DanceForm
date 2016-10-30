@@ -44,8 +44,7 @@ public class CompetitionCategory extends AbstractEntity<Long> implements INamedE
     @Column(name = "description", length = 256)
     private String description;
 
-    @NotNull
-    @Column(name = "date", nullable = false)
+    @Column(name = "date")
     private LocalDate date;
 
     @Column(name = "active")

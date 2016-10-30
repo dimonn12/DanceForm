@@ -3,7 +3,7 @@
     <h1 data-translate="danceFormApp.schedule.title">Предстоящие Турниры</h1>
 
     <div class="table-responsive">
-        <table class="jh-table table table-bordered table-schedule">
+        <table class="jh-table table table-bordered table-schedule competition-table">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th>
@@ -21,10 +21,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="competition in vm.futureCompetitions track by competition.id">
+                <tr ng-repeat="competition in vm.futureCompetitions | orderBy:'startDate'">
                     <td>
-                        <div>{{competition.startDate | date:'d MMMM yyyy'}}</div>
-                        <div ng-if="competition.endDate != null"> - {{competition.endDate | date:'d MMMM yyyy'}}</div>
+                        <div class="div-inline">{{competition.startDate | date:'d MMMM yyyy'}}</div>
+                        <div class="div-inline" ng-if="competition.endDate != null"> - {{competition.endDate | date:'d MMMM yyyy'}}</div>
                     </td>
                     <td>
                         <button type="button"
@@ -42,7 +42,7 @@
             <h2 data-translate="danceFormApp.schedule.past.title">Прошедшие турниры </h2>
 
             <div class="table-responsive">
-                <table class="jh-table table table-bordered table-timeline">
+                <table class="jh-table table table-bordered table-schedule competition-table">
                     <thead>
                         <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                             <th>
@@ -60,11 +60,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="competition in vm.pastCompetitions track by competition.id">
-                            <td>{{competition.startDate | date:'d MMMM yyyy'}} - {{competition.endDate | date:'d MMMM
-                                yyyy'}}
+                        <tr ng-repeat="competition in vm.pastCompetitions | orderBy:'startDate'">
+                            <td>
+                                <div class="div-inline">{{competition.startDate | date:'d MMMM yyyy'}}</div>
+                                <div class="div-inline" ng-if="competition.endDate != null"> - {{competition.endDate | date:'d MMMM yyyy'}}</div>
                             </td>
-                            <td>{{competition.name}}</td>
+                            <td class="competition-name">
+                                <button type="button" ng-if="competition.resultsAvailable"
+                                        ui-sref="schedule-results({id:competition.id})"
+                                        class="btn btn-link show-competition-link competition-name">
+                                    <span>{{competition.name}}</span>
+                                </button>
+                                <span ng-if="!competition.resultsAvailable">{{competition.name}}</span>
+                            </td>
                             <td>{{competition.location}}</td>
                             <td>{{competition.organizer}}</td>
                         </tr>
