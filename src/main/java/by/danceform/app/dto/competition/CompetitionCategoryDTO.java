@@ -24,11 +24,11 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
 
     private LocalDate date;
 
-    private Boolean active;
+    private boolean active;
 
-    private Boolean checkMinAge;
+    private boolean checkMinAge;
 
-    private Boolean checkMaxAge;
+    private boolean checkMaxAge;
 
     private Long competitionId;
 
@@ -70,27 +70,27 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
         this.date = date;
     }
 
-    public Boolean getActive() {
+    public boolean getActive() {
         return active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 
-    public Boolean getCheckMinAge() {
+    public boolean getCheckMinAge() {
         return checkMinAge;
     }
 
-    public void setCheckMinAge(Boolean checkMinAge) {
+    public void setCheckMinAge(boolean checkMinAge) {
         this.checkMinAge = checkMinAge;
     }
 
-    public Boolean getCheckMaxAge() {
+    public boolean getCheckMaxAge() {
         return checkMaxAge;
     }
 
-    public void setCheckMaxAge(Boolean checkMaxAge) {
+    public void setCheckMaxAge(boolean checkMaxAge) {
         this.checkMaxAge = checkMaxAge;
     }
 

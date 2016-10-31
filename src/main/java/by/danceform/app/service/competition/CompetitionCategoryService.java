@@ -121,7 +121,8 @@ public class CompetitionCategoryService {
     public List<CompetitionCategoryDTO> findAvailableByCompetitionId(RegisteredCoupleDTO registeredCoupleDTO,
                                                                      Long competitionId) {
         log.debug("Request to get CompetitionCategory : {}", competitionId);
-        List<CompetitionCategory> allCategories = competitionCategoryRepository.findAvailableByCompetitionId(competitionId);
+        List<CompetitionCategory> allCategories = competitionCategoryRepository.findAvailableByCompetitionId(
+            competitionId);
         Set<CompetitionCategory> availableCategories = new HashSet<>();
         Competition competition = competitionRepository.findOne(competitionId);
         for(CompetitionCategory existingCategory : allCategories) {
@@ -141,18 +142,29 @@ public class CompetitionCategoryService {
                     continue;
                 }
             }
-            if (null == existingCategory.getMaxDanceClass()) {
+            if(null == existingCategory.getMaxDanceClass()) {
                 availableCategories.add(existingCategory);
                 continue;
             }
-            if(checkDanceClasses(existingCategory.getMaxDanceClass(),
-                Objects.equals(existingCategory.getDanceCategory().getId(), DanceCategoryEnum.LA.getValue()) ?
-                    registeredCoupleDTO.getPartner1DanceClassLA().getId() :
-                    registeredCoupleDTO.getPartner1DanceClassST().getId(),
-                Objects.equals(existingCategory.getDanceCategory().getId(), DanceCategoryEnum.LA.getValue()) ?
-                    registeredCoupleDTO.getPartner2DanceClassLA().getId() :
-                    registeredCoupleDTO.getPartner2DanceClassST().getId())) {
-                availableCategories.add(existingCategory);
+            if(null == existingCategory.getDanceCategory()) {
+                if(checkDanceClasses(existingCategory.getMaxDanceClass(),
+                    registeredCoupleDTO.getPartner1DanceClassLA().getId(),
+                    registeredCoupleDTO.getPartner2DanceClassLA().getId()) &&
+                   checkDanceClasses(existingCategory.getMaxDanceClass(),
+                       registeredCoupleDTO.getPartner1DanceClassST().getId(),
+                       registeredCoupleDTO.getPartner2DanceClassST().getId())) {
+                    availableCategories.add(existingCategory);
+                }
+            } else {
+                if(checkDanceClasses(existingCategory.getMaxDanceClass(),
+                    Objects.equals(existingCategory.getDanceCategory().getId(), DanceCategoryEnum.LA.getValue()) ?
+                        registeredCoupleDTO.getPartner1DanceClassLA().getId() :
+                        registeredCoupleDTO.getPartner1DanceClassST().getId(),
+                    Objects.equals(existingCategory.getDanceCategory().getId(), DanceCategoryEnum.LA.getValue()) ?
+                        registeredCoupleDTO.getPartner2DanceClassLA().getId() :
+                        registeredCoupleDTO.getPartner2DanceClassST().getId())) {
+                    availableCategories.add(existingCategory);
+                }
             }
         }
         return competitionCategoryConverter.convertToDtos(new ArrayList<>(availableCategories));

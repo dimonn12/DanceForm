@@ -47,9 +47,7 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="dance_category_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
+            <column name="dance_category_id" type="bigint"/>
 
             <column name="max_dance_class_id" type="bigint">
                 <constraints nullable="true"/>

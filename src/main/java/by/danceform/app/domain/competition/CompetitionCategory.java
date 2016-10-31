@@ -60,7 +60,6 @@ public class CompetitionCategory extends AbstractEntity<Long> implements INamedE
     private Long competitionId;
 
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "dance_category_id")
     private DanceCategory danceCategory;
 
