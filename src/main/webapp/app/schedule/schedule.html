@@ -24,7 +24,7 @@
                 <tr ng-repeat="competition in vm.futureCompetitions | orderBy:'startDate'">
                     <td>
                         <div class="div-inline">{{competition.startDate | date:'d MMMM yyyy'}}</div>
-                        <div class="div-inline" ng-if="competition.endDate != null"> - {{competition.endDate | date:'d MMMM yyyy'}}</div>
+                        <div class="div-inline" ng-if="competition.endDate != null">&nbsp;- {{competition.endDate | date:'d MMMM yyyy'}}</div>
                     </td>
                     <td>
                         <button type="button"
