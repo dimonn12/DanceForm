@@ -10,6 +10,7 @@
 	function CompetitionCategoryController($scope, $state, $stateParams, previousState, CompetitionCategory, DanceClass) {
 		var vm = this;
 
+		vm.competitionId = $stateParams.competitionId;
 		vm.previousState = previousState;
 
 		vm.competitionCategories = [];
@@ -18,7 +19,7 @@
 		loadAll();
 
 		function loadAll() {
-			CompetitionCategory.query({competitionId: $stateParams.competitionId}, function(result) {
+			CompetitionCategory.query({competitionId: vm.competitionId}, function(result) {
 				vm.competitionCategories = result;
 
 				for(var i = 0; i < vm.competitionCategories.length; i++) {

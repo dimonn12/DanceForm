@@ -1,4 +1,13 @@
 <div>
+
+    <button type="submit"
+            ui-sref="competition-category({competitionId:{{vm.competitionCategory.competitionId}}})"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        &nbsp;
+        <span data-translate="entity.action.back"> Back</span>
+    </button>
+
     <h2>
         <span data-translate="danceFormApp.competitionCategory.detail.title">Competition Category</span>
         {{vm.competitionCategory.id}}
@@ -76,14 +85,6 @@
             </span>
         </dd>
     </dl>
-
-    <button type="submit"
-            ui-sref="{{ vm.previousState }}"
-            class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>
-        &nbsp;
-        <span data-translate="entity.action.back"> Back</span>
-    </button>
 
     <button type="button" ui-sref="competition-category-detail.edit({id:vm.competitionCategory.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>

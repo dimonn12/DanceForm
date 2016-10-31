@@ -34,15 +34,15 @@
             </column>
 
             <column name="partner_2_name" type="varchar(128)">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
 
             <column name="partner_2_surname" type="varchar(128)">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
 
             <column name="partner_2_date_of_birth" type="date">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
 
             <column name="organization" type="varchar(80)">
@@ -68,10 +68,10 @@
                 <constraints nullable="false"/>
             </column>
             <column name="partner_2_dance_class_st_id" type="bigint">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="partner_2_dance_class_la_id" type="bigint">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
 
             <column name="competition_category_id" type="bigint">

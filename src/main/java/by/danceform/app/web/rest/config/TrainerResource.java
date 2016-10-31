@@ -116,13 +116,8 @@ public class TrainerResource {
             return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
         } else {
             List<TrainerDTO> visibleTrainers = trainerService.findVisible();
-            Collections.sort(visibleTrainers, new Comparator<TrainerDTO>() {
-
-                @Override
-                public int compare(TrainerDTO o1, TrainerDTO o2) {
-                    return ObjectUtils.compare(o1.getSurname() + " " + o1.getName(), o2.getSurname() + " " + o2.getName());
-                }
-            });
+            Collections.sort(visibleTrainers,
+                (o1, o2) -> ObjectUtils.compare(o1.getSurname() + " " + o1.getName(), o2.getSurname() + " " + o2.getName()));
             return new ResponseEntity<>(trainerService.findVisible(), HttpStatus.OK);
         }
     }

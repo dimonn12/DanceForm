@@ -11,7 +11,7 @@
 		var vm = this;
 
 		vm.ageCategory = entity;
-		vm.previousState = previousState.name;
+		vm.previousState = previousState;
 
 		var unsubscribe = $rootScope.$on('danceFormApp:ageCategoryUpdate', function(event, result) {
 			vm.ageCategory = result;

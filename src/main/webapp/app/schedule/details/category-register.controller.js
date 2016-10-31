@@ -5,9 +5,9 @@
 		.module('danceFormApp')
 		.controller('CategoryRegisterController', CategoryRegisterController);
 
-	CategoryRegisterController.$inject = ['$scope', '$rootScope', '$stateParams', '$state', 'previousState', 'entity', 'CompetitionCategory', 'DanceClass', 'RegisteredCouple', 'AlertService', 'Location', 'Organization', 'Trainer'];
+	CategoryRegisterController.$inject = ['$scope', '$translate', '$state', 'previousState', 'entity', 'CompetitionCategory', 'DanceClass', 'RegisteredCouple', 'AlertService', 'Location', 'Organization', 'Trainer'];
 
-	function CategoryRegisterController($scope, $rootScope, $stateParams, $state, previousState, entity, CompetitionCategory, DanceClass, RegisteredCouple, AlertService, Location, Organization, Trainer) {
+	function CategoryRegisterController($scope, $translate, $state, previousState, entity, CompetitionCategory, DanceClass, RegisteredCouple, AlertService, Location, Organization, Trainer) {
 		var vm = this;
 
 		vm.currentCompetition = entity;
@@ -18,7 +18,7 @@
 		vm.danceClasses = DanceClass.query();
 		vm.locations = Location.query();
 		vm.organizations = Organization.query();
-		vm.trainers = Trainer.query();
+		vm.trainers = Trainer.query(unshiftTrainer);
 
 		vm.registerCouple = {};
 
@@ -107,6 +107,10 @@
 				}
 			}
 			return false;
+		}
+
+		function unshiftTrainer() {
+			vm.trainers.unshift({id: -1, name: $translate.instant('danceFormApp.schedule.registry.emptyTrainer'), surname:''});
 		}
 
 		vm.datePickerOpenStatus.date = false;

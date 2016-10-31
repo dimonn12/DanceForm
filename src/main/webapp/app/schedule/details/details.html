@@ -92,10 +92,10 @@
                         <span data-translate="danceFormApp.schedule.categories.description">Описние</span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.schedule.categories.amount">Количество пар</span>
+                        <span data-translate="danceFormApp.schedule.categories.danceClass">Классы</span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.schedule.categories.danceClass">Классы</span>
+                        <span data-translate="danceFormApp.schedule.categories.amount">Количество пар</span>
                     </th>
                 </tr>
             </thead>
@@ -109,12 +109,12 @@
                         </button>
                     </td>
                     <td>{{category.description}}</td>
-                    <td>{{category.registeredCouplesCount}}</td>
                     <td>
                         <span ng-repeat="danceClass in category.danceClasses">
                             {{danceClass.name}}{{$last ? '' : ', '}}
                         </span>
                     </td>
+                    <td>{{category.registeredCouplesCount}}</td>
                 </tr>
             </tbody>
         </table>
