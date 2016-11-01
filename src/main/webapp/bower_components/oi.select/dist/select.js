@@ -341,7 +341,7 @@ angular.module('oi.select')
 
     return {
         restrict: 'AE',
-        templateUrl: 'src/template.html',
+        templateUrl: 'bower_components/oi.select/src/template.html',
         require: 'ngModel',
         scope: {},
         compile: function (element, attrs) {

@@ -107,6 +107,21 @@
             <label data-translate="danceFormApp.competitionCategory.ageCategory" for="field_ageCategory">Age Category</label>
             <select class="form-control" id="field_ageCategory" multiple name="ageCategory" ng-model="vm.competitionCategory.ageCategories"
                     ng-options="ageCategory as ageCategory.name for ageCategory in vm.agecategories track by ageCategory.id"></select>
+
+            <br>
+            <br>
+            <br>
+            <oi-select
+                    oi-options="ageCategory as ageCategory.name for ageCategory in vm.agecategories track by ageCategory.id"
+                    ng-model="vm.competitionCategory.ageCategories"
+                    placeholder="{{'danceFormApp.competitionCategory.ageCategory' | translate}}"
+                    required
+                    multiple
+                    oi-select-options="{
+                        closeList: false
+                    }"/>
+
+
         </div>
     </div>
     <div class="modal-footer">

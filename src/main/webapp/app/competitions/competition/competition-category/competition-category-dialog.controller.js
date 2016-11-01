@@ -17,8 +17,10 @@
 		vm.openCalendar = openCalendar;
 		vm.competitions = Competition.query();
 		vm.danceClasses = DanceClass.query();
-		vm.agecategories = AgeCategory.query();
+		vm.agecategories = [];
 		vm.dancecategories = DanceCategory.query();
+
+		AgeCategory.query(onAgeCategoriesLoad);
 
 		$timeout(function() {
 			angular.element('.form-group:eq(1)>input').focus();
@@ -60,6 +62,12 @@
 
 		function onSaveError() {
 			vm.isSaving = false;
+		}
+
+		function onAgeCategoriesLoad(data) {
+			for(var i = 0; i < data.length; i++) {
+				vm.agecategories.push({id: data[i].id, name: data[i].name});
+			}
 		}
 
 		vm.datePickerOpenStatus.date = false;
