@@ -207,8 +207,8 @@ public class CompetitionCategoryService {
             date = competition.getStartDate();
         }
         for(AgeCategory ageCategory : availableAgeCategories) {
-            if(!isDateSmaller(date, partner1Date, ageCategory.getMaxAge()) &&
-               !isDateSmaller(date, partner2Date, ageCategory.getMaxAge())) {
+            if(!isDateSmaller(date, partner1Date, ageCategory.getMaxAge() + 1) &&
+               !isDateSmaller(date, partner2Date, ageCategory.getMaxAge() + 1)) {
                 return true;
             }
         }

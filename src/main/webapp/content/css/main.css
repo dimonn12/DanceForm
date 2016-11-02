@@ -529,7 +529,7 @@ dl > dt > span {
     font-weight: normal;
     line-height: 1.42857143;
     text-align: center;
-    white-space: nowrap;
+    white-space: normal;
     vertical-align: middle;
     -ms-touch-action: manipulation;
     touch-action: manipulation;
