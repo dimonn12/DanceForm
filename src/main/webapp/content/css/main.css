@@ -614,6 +614,11 @@ dl > dt > span {
     width: 25%
 }
 
+.solo-checkbox-table > tbody > tr > td {
+    padding: 10px;
+    vertical-align: middle;
+}
+
 @media screen and (min-width: 992px) {
     .banner {
         max-width: 240px;

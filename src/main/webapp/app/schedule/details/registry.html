@@ -65,6 +65,25 @@
     <form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
 
         <div>
+            <div class="form-group solo-checkbox">
+                <table class="solo-checkbox-table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label class="control-label" data-translate="danceFormApp.schedule.registry.solo" for="field_solo">Solo</label>
+                            </td>
+                            <td>
+                                <input id="field_solo" type="checkbox" class="registry-category-checkbox"
+                                       name="soloCouple"
+                                       value="{{vm.soloCouple}}"
+                                       ng-model="vm.soloCouple"
+                                       ng-change="vm.updateSolo();"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <div class="registry-block">
                 <div class="form-group">
                     <label class="control-label" data-translate="danceFormApp.schedule.registry.partner1Surname" for="field_partner1surname">Name</label>
@@ -73,7 +92,7 @@
                     )
                     <input type="text" class="form-control" name="partner1Surname" id="field_partner1surname"
                            ng-model="vm.registerCouple.partner1Surname"
-                           required ng-minlength="1" ng-maxlength="128"/>
+                           ng-maxlength="128"/>
                 </div>
 
                 <div class="form-group">
@@ -83,7 +102,7 @@
                     )
                     <input type="text" class="form-control" name="partner1Name" id="field_partner1name"
                            ng-model="vm.registerCouple.partner1Name"
-                           required ng-minlength="1" ng-maxlength="128"/>
+                           ng-maxlength="128"/>
                 </div>
 
                 <div class="form-group">
@@ -95,7 +114,7 @@
                         <input id="field_partner1DateOfBirth" type="text" class="form-control" name="partner1DateOfBirth" uib-datepicker-popup="dd MMMM yyyy"
                                datepicker-options="vm.dateOptions1"
                                ng-model="vm.registerCouple.partner1DateOfBirth" is-open="vm.datePickerOpenStatus.partner1DateOfBirth"
-                               required ng-change="vm.update()"
+                               ng-change="vm.update()"
                                current-text="{{'global.buttons.today' | translate}}" clear-text="{{'global.buttons.clear' | translate}}"
                                close-text="{{'global.buttons.close' | translate}}"/>
                         <span class="input-group-btn">
@@ -135,7 +154,7 @@
                             <tr>
                                 <td class="registry-class">
                                     <select class="form-control" id="field_partner1DanceClassST" name="partner1DanceClassST" ng-model="vm.registerCouple.partner1DanceClassST.id"
-                                            ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'" required
+                                            ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'"
                                             ng-change="vm.update();">
                                         <option value=""></option>
                                     </select>
@@ -143,7 +162,7 @@
 
                                 <td class="registry-class">
                                     <select class="form-control" id="field_partner1DanceClassLA" name="partner1DanceClassLA" ng-model="vm.registerCouple.partner1DanceClassLA.id"
-                                            ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'" required
+                                            ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'"
                                             ng-change="vm.update();">
                                         <option value=""></option>
                                     </select>
@@ -164,7 +183,7 @@
                     )
                     <input type="text" class="form-control" name="partner2Surname" id="field_partner2surname"
                            ng-model="vm.registerCouple.partner2Surname"
-                           required ng-minlength="1" ng-maxlength="128"/>
+                           ng-maxlength="128"/>
                 </div>
                 <div class="form-group">
                     <label class="control-label" data-translate="danceFormApp.schedule.registry.partner2Name" for="field_partner2name">Name</label>
@@ -173,7 +192,7 @@
                     )
                     <input type="text" class="form-control" name="partner2Name" id="field_partner2name"
                            ng-model="vm.registerCouple.partner2Name"
-                           required ng-minlength="1" ng-maxlength="128"/>
+                           ng-maxlength="128"/>
                 </div>
                 <div class="form-group">
                     <label class="control-label" data-translate="danceFormApp.schedule.registry.partner2DateOfBirth" for="field_partner2DateOfBirth">Date</label>
@@ -184,7 +203,7 @@
                         <input id="field_partner2DateOfBirth" type="text" class="form-control" name="partner2DateOfBirth" uib-datepicker-popup="dd MMMM yyyy"
                                datepicker-options="vm.dateOptions2"
                                ng-model="vm.registerCouple.partner2DateOfBirth" is-open="vm.datePickerOpenStatus.partner2DateOfBirth"
-                               required ng-change="vm.update()"
+                               ng-change="vm.update()"
                                current-text="{{'global.buttons.today' | translate}}" clear-text="{{'global.buttons.clear' | translate}}"
                                close-text="{{'global.buttons.close' | translate}}"/>
                         <span class="input-group-btn">
@@ -224,7 +243,7 @@
                             <tr>
                                 <td class="registry-class">
                                     <select class="form-control" id="field_partner2DanceClassST" name="partner2DanceClassST" ng-model="vm.registerCouple.partner2DanceClassST.id"
-                                            ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'" required
+                                            ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'"
                                             ng-change="vm.update();">
                                         <option value=""></option>
                                     </select>
@@ -232,7 +251,7 @@
 
                                 <td class="registry-class">
                                     <select class="form-control" id="field_partner2DanceClassLA" name="partner2DanceClassLA" ng-model="vm.registerCouple.partner2DanceClassLA.id"
-                                            ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'" required
+                                            ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'"
                                             ng-change="vm.update();">
                                         <option value=""></option>
                                     </select>
@@ -264,7 +283,7 @@
                     )
                     <input type="text" class="form-control" name="location" id="field_location"
                            ng-model="vm.registerCouple.location"
-                           required ng-minlength="1" ng-maxlength="128"/>
+                           ng-maxlength="128"/>
                 </div>
             </div>
 
@@ -279,7 +298,6 @@
                             oi-options="trainer for trainer in vm.trainerNames"
                             ng-model="vm.registerCouple.trainer1"
                             placeholder="{{'danceFormApp.schedule.registry.trainer1' | translate}}"
-                            required
                             oi-select-options="{
                                 newItem: true,
                                 editItem: 'correct',
@@ -294,7 +312,6 @@
                             oi-options="trainer for trainer in vm.trainerNames"
                             ng-model="vm.registerCouple.trainer2"
                             placeholder="{{'danceFormApp.schedule.registry.trainer2' | translate}}"
-                            required
                             oi-select-options="{
                                 newItem: true,
                                 editItem: 'correct',
@@ -335,7 +352,7 @@
             </div>
 
             <div>
-                <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving || !vm.isCategorySelected" class="btn btn-primary">
+                <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving || !vm.isValidForm() || !vm.isCategorySelected" class="btn btn-primary">
                     <span class="glyphicon glyphicon-save"></span>
                     &nbsp;
                     <span data-translate="danceFormApp.schedule.registry.register">Save</span>

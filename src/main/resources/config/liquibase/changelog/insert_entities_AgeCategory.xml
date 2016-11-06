@@ -52,20 +52,27 @@
 
         <insert tableName="age_category">
             <column name="id" value="6"/>
-            <column name="name" value="Молодежь"/>
+            <column name="name" value="Молодежь 1"/>
             <column name="min_age" value="16"/>
-            <column name="max_age" value="21"/>
+            <column name="max_age" value="18"/>
         </insert>
 
         <insert tableName="age_category">
             <column name="id" value="7"/>
+            <column name="name" value="Молодежь 2"/>
+            <column name="min_age" value="19"/>
+            <column name="max_age" value="21"/>
+        </insert>
+
+        <insert tableName="age_category">
+            <column name="id" value="8"/>
             <column name="name" value="Взрослые"/>
             <column name="min_age" value="22"/>
             <column name="max_age" value="34"/>
         </insert>
 
         <insert tableName="age_category">
-            <column name="id" value="8"/>
+            <column name="id" value="9"/>
             <column name="name" value="Сеньоры"/>
             <column name="min_age" value="35"/>
             <column name="max_age" value="200"/>

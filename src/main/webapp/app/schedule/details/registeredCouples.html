@@ -92,14 +92,19 @@
             </thead>
             <tbody>
                 <tr ng-repeat="couple in vm.couples track by couple.id">
-                    <td>{{couple.partner1Surname}} {{couple.partner1Name}},
-                        <br/>
-                        {{couple.partner2Surname}}
-                        {{couple.partner2Name}}
+                    <td style="white-space: nowrap;">
+                        <div class="div-inline">{{couple.partner1Surname}} {{couple.partner1Name}}{{null != couple.partner2Surname && null != couple.partner2Name ? ',' : ''}}</div>
+                        <br ng-if="null != couple.partner2Surname && null != couple.partner2Name">
+                        <div class="div-inline" ng-if="null != couple.partner2Surname && null != couple.partner2Name">{{couple.partner2Surname}} {{couple.partner2Name}}</div>
                     </td>
-                    <td>{{vm.category.danceCategory.id === -1 ? couple.partner1DanceClassST.name : couple.partner1DanceClassLA.name}},
-                        <br>
-                        {{vm.category.danceCategory.id === -1 ? couple.partner2DanceClassST.name : couple.partner2DanceClassLA.name}}
+                    <td style="white-space: nowrap;">
+                        <div class="div-inline">{{vm.category.danceCategory.id === -1 ? couple.partner1DanceClassST.name : couple.partner1DanceClassLA.name}}{{null !=
+                            couple.partner2DanceClassST || null != couple.partner2DanceClassLA ? ',' : ''}}
+                        </div>
+                        <br ng-if="null != couple.partner2DanceClassST || null != couple.partner2DanceClassLA">
+                        <div class="div-inline" ng-if="null != couple.partner2DanceClassST || null != couple.partner2DanceClassLA">{{vm.category.danceCategory.id === -1 ?
+                            couple.partner2DanceClassST.name : couple.partner2DanceClassLA.name}}
+                        </div>
                     </td>
                     <td style="white-space: nowrap;">{{couple.organization}}</td>
                     <td style="white-space: nowrap;">

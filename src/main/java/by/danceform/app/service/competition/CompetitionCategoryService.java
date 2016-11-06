@@ -6,6 +6,7 @@ import by.danceform.app.domain.competition.CompetitionCategory;
 import by.danceform.app.domain.config.AgeCategory;
 import by.danceform.app.domain.config.DanceClass;
 import by.danceform.app.domain.config.enums.DanceCategoryEnum;
+import by.danceform.app.dto.NamedReferenceDTO;
 import by.danceform.app.dto.competition.CompetitionCategoryDTO;
 import by.danceform.app.dto.couple.RegisteredCoupleDTO;
 import by.danceform.app.repository.competition.CompetitionCategoryRepository;
@@ -119,15 +120,20 @@ public class CompetitionCategoryService {
 
     @Transactional(readOnly = true)
     public List<CompetitionCategoryDTO> findAvailableByCompetitionId(RegisteredCoupleDTO registeredCoupleDTO,
-                                                                     Long competitionId) {
+                                                                     Long competitionId,
+                                                                     Boolean isSoloCouple) {
         log.debug("Request to get CompetitionCategory : {}", competitionId);
         List<CompetitionCategory> allCategories = competitionCategoryRepository.findAvailableByCompetitionId(
             competitionId);
         Set<CompetitionCategory> availableCategories = new HashSet<>();
         Competition competition = competitionRepository.findOne(competitionId);
         for(CompetitionCategory existingCategory : allCategories) {
+            if (isSoloCouple && !existingCategory.isAllowSolo()) {
+                continue;
+            }
             if(existingCategory.isCheckMinAge()) {
-                if(!checkMinAgeCategory(existingCategory,
+                if(!checkMinAgeCategory(isSoloCouple,
+                    existingCategory,
                     competition,
                     registeredCoupleDTO.getPartner1DateOfBirth(),
                     registeredCoupleDTO.getPartner2DateOfBirth())) {
@@ -135,7 +141,8 @@ public class CompetitionCategoryService {
                 }
             }
             if(existingCategory.isCheckMaxAge()) {
-                if(!checkMaxAgeCategory(existingCategory,
+                if(!checkMaxAgeCategory(isSoloCouple,
+                    existingCategory,
                     competition,
                     registeredCoupleDTO.getPartner1DateOfBirth(),
                     registeredCoupleDTO.getPartner2DateOfBirth())) {
@@ -147,22 +154,25 @@ public class CompetitionCategoryService {
                 continue;
             }
             if(null == existingCategory.getDanceCategory()) {
-                if(checkDanceClasses(existingCategory.getMaxDanceClass(),
-                    registeredCoupleDTO.getPartner1DanceClassLA().getId(),
-                    registeredCoupleDTO.getPartner2DanceClassLA().getId()) &&
-                   checkDanceClasses(existingCategory.getMaxDanceClass(),
-                       registeredCoupleDTO.getPartner1DanceClassST().getId(),
-                       registeredCoupleDTO.getPartner2DanceClassST().getId())) {
+                if(checkDanceClasses(isSoloCouple,
+                    existingCategory.getMaxDanceClass(),
+                    registeredCoupleDTO.getPartner1DanceClassLA(),
+                    registeredCoupleDTO.getPartner2DanceClassLA()) &&
+                   checkDanceClasses(isSoloCouple,
+                       existingCategory.getMaxDanceClass(),
+                       registeredCoupleDTO.getPartner1DanceClassST(),
+                       registeredCoupleDTO.getPartner2DanceClassST())) {
                     availableCategories.add(existingCategory);
                 }
             } else {
-                if(checkDanceClasses(existingCategory.getMaxDanceClass(),
+                if(checkDanceClasses(isSoloCouple,
+                    existingCategory.getMaxDanceClass(),
                     Objects.equals(existingCategory.getDanceCategory().getId(), DanceCategoryEnum.LA.getValue()) ?
-                        registeredCoupleDTO.getPartner1DanceClassLA().getId() :
-                        registeredCoupleDTO.getPartner1DanceClassST().getId(),
+                        registeredCoupleDTO.getPartner1DanceClassLA() :
+                        registeredCoupleDTO.getPartner1DanceClassST(),
                     Objects.equals(existingCategory.getDanceCategory().getId(), DanceCategoryEnum.LA.getValue()) ?
-                        registeredCoupleDTO.getPartner2DanceClassLA().getId() :
-                        registeredCoupleDTO.getPartner2DanceClassST().getId())) {
+                        registeredCoupleDTO.getPartner2DanceClassLA() :
+                        registeredCoupleDTO.getPartner2DanceClassST())) {
                     availableCategories.add(existingCategory);
                 }
             }
@@ -170,16 +180,18 @@ public class CompetitionCategoryService {
         return competitionCategoryConverter.convertToDtos(new ArrayList<>(availableCategories));
     }
 
-    private boolean checkDanceClasses(DanceClass maxCategoryClass,
-                                      Long partner1DanceClassId,
-                                      Long partner2DanceClassId) {
-        DanceClass partner1Class = danceClassRepository.findOne(partner1DanceClassId);
-        DanceClass partner2Class = danceClassRepository.findOne(partner2DanceClassId);
+    private boolean checkDanceClasses(Boolean isSoloCouple,
+                                      DanceClass maxCategoryClass,
+                                      NamedReferenceDTO partner1DanceClass,
+                                      NamedReferenceDTO partner2DanceClass) {
+        DanceClass partner1Class = danceClassRepository.findOne(partner1DanceClass.getId());
+        DanceClass partner2Class = isSoloCouple ? null : danceClassRepository.findOne(partner2DanceClass.getId());
         return partner1Class.getWeight() <= maxCategoryClass.getWeight() &&
-               partner2Class.getWeight() <= maxCategoryClass.getWeight();
+               (isSoloCouple || partner2Class.getWeight() <= maxCategoryClass.getWeight());
     }
 
-    private boolean checkMinAgeCategory(CompetitionCategory existingCategory,
+    private boolean checkMinAgeCategory(Boolean isSoloCouple,
+                                        CompetitionCategory existingCategory,
                                         Competition competition,
                                         LocalDate partner1Date,
                                         LocalDate partner2Date) {
@@ -190,14 +202,15 @@ public class CompetitionCategoryService {
         }
         for(AgeCategory ageCategory : availableAgeCategories) {
             if(!isDateBigger(date, partner1Date, ageCategory.getMinAge()) &&
-               !isDateBigger(date, partner2Date, ageCategory.getMinAge())) {
+               (isSoloCouple || !isDateBigger(date, partner2Date, ageCategory.getMinAge()))) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean checkMaxAgeCategory(CompetitionCategory existingCategory,
+    private boolean checkMaxAgeCategory(Boolean isSoloCouple,
+                                        CompetitionCategory existingCategory,
                                         Competition competition,
                                         LocalDate partner1Date,
                                         LocalDate partner2Date) {
@@ -208,7 +221,7 @@ public class CompetitionCategoryService {
         }
         for(AgeCategory ageCategory : availableAgeCategories) {
             if(!isDateSmaller(date, partner1Date, ageCategory.getMaxAge() + 1) &&
-               !isDateSmaller(date, partner2Date, ageCategory.getMaxAge() + 1)) {
+               (isSoloCouple || !isDateSmaller(date, partner2Date, ageCategory.getMaxAge() + 1))) {
                 return true;
             }
         }

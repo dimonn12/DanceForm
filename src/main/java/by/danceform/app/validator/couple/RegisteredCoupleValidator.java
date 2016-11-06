@@ -10,6 +10,8 @@ import by.danceform.app.repository.competition.CompetitionRepository;
 import by.danceform.app.service.competition.CompetitionCategoryService;
 import by.danceform.app.service.system.SystemSettingNames;
 import by.danceform.app.service.system.SystemSettingService;
+import by.danceform.app.validator.AbstractValidator;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.stereotype.Component;
 
@@ -35,6 +37,7 @@ public class RegisteredCoupleValidator extends AbstractValidator<Long, Registere
 
     @Override
     public void validate(RegisteredCoupleDTO dto) {
+        validateRequiredField(dto);
         Long competitionId = dto.getCompetitionId();
         Competition comp = competitionRepository.findOne(competitionId);
         if(null == comp || !comp.isVisible()) {
@@ -49,13 +52,28 @@ public class RegisteredCoupleValidator extends AbstractValidator<Long, Registere
             throw new ApplicationException(ApplicationExceptionCodes.REGISTRATION_CLOSED);
         }
         List<CompetitionCategoryDTO> availableCategories = competitionCategoryService.findAvailableByCompetitionId(dto,
-            competitionId);
+            competitionId,
+            dto.isSoloCouple());
         List<Long> availableIds = availableCategories.stream()
             .map(availableCategory -> availableCategory.getId())
             .collect(Collectors.toList());
         for(Long categoryToRegister : dto.getCompetitionCategoryIds()) {
             if(!availableIds.contains(categoryToRegister)) {
                 throw new ApplicationException(ApplicationExceptionCodes.REGISTRATION_CLOSED);
+            }
+        }
+    }
+
+    private void validateRequiredField(RegisteredCoupleDTO dto) {
+        if(!dto.isSoloCouple()) {
+            if(StringUtils.isBlank(dto.getPartner2Name()) ||
+               StringUtils.isBlank(dto.getPartner2Surname()) ||
+               null == dto.getPartner2DateOfBirth() ||
+               null == dto.getPartner2DanceClassLA() ||
+               null == dto.getPartner2DanceClassLA().getId() ||
+               null == dto.getPartner2DanceClassST() ||
+               null == dto.getPartner2DanceClassST().getId()) {
+                throw new ApplicationException(ApplicationExceptionCodes.FIELD_NOT_VALID);
             }
         }
     }

@@ -22,18 +22,15 @@ public class RegisteredCoupleDTO extends AbstractDomainDTO<Long> {
     @Size(min = 1, max = 128)
     private String partner1Surname;
 
-    @NotNull
-    @Size(min = 1, max = 128)
+    @Size(max = 128)
     private String partner2Name;
 
-    @NotNull
-    @Size(min = 1, max = 128)
+    @Size(max = 128)
     private String partner2Surname;
 
     @NotNull
     private LocalDate partner1DateOfBirth;
 
-    @NotNull
     private LocalDate partner2DateOfBirth;
 
     @NotNull
@@ -57,10 +54,8 @@ public class RegisteredCoupleDTO extends AbstractDomainDTO<Long> {
     @NotNull
     private NamedReferenceDTO partner1DanceClassLA;
 
-    @NotNull
     private NamedReferenceDTO partner2DanceClassST;
 
-    @NotNull
     private NamedReferenceDTO partner2DanceClassLA;
 
     @NotNull
@@ -68,6 +63,8 @@ public class RegisteredCoupleDTO extends AbstractDomainDTO<Long> {
 
     @NotNull
     private List<Long> competitionCategoryIds;
+
+    private boolean soloCouple;
 
     public String getPartner1Name() {
         return partner1Name;
@@ -195,6 +192,14 @@ public class RegisteredCoupleDTO extends AbstractDomainDTO<Long> {
 
     public void setCompetitionCategoryIds(List<Long> competitionCategoryIds) {
         this.competitionCategoryIds = competitionCategoryIds;
+    }
+
+    public boolean isSoloCouple() {
+        return soloCouple;
+    }
+
+    public void setSoloCouple(boolean soloCouple) {
+        this.soloCouple = soloCouple;
     }
 
 }

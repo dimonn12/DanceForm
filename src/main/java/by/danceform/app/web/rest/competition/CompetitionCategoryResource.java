@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
@@ -122,10 +123,15 @@ public class CompetitionCategoryResource {
     @Timed
     @Secured({ AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS })
     public List<CompetitionCategoryDTO> getAllAvailableCompetitionCategories(@PathVariable Long competitionId,
+                                                                             @RequestParam(name = "soloCouple",
+                                                                                           required = false)
+                                                                                 Boolean isSoloCouple,
                                                                              @RequestBody
                                                                                  RegisteredCoupleDTO registeredCoupleDTO) {
         log.debug("REST request to get all CompetitionCategories");
-        return competitionCategoryService.findAvailableByCompetitionId(registeredCoupleDTO, competitionId);
+        return competitionCategoryService.findAvailableByCompetitionId(registeredCoupleDTO,
+            competitionId,
+            isSoloCouple);
     }
 
     /**

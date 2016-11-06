@@ -5,7 +5,8 @@ package by.danceform.app.exception;
  */
 public enum ApplicationExceptionCodes {
 
-    REGISTRATION_CLOSED(1, "Registration is not available");
+    REGISTRATION_CLOSED(1, "Registration is not available"),
+    FIELD_NOT_VALID(2, "Some of required field are not valid");
 
     private final int id;
     private final String value;

@@ -34,6 +34,11 @@
 		vm.isCategorySelected = false;
 		vm.updateSelectedCategory = updateSelectedCategory;
 
+		vm.soloCouple = false;
+		vm.updateSolo = updateSolo;
+
+		vm.isValidForm = isValidForm;
+
 		vm.dateOptions1 = {
 			maxDate: new Date(),
 			minDate: new Date(1930, 1, 1),
@@ -49,12 +54,17 @@
 		};
 
 		function update() {
-			if(null != vm.registerCouple.partner1DateOfBirth && null != vm.registerCouple.partner2DateOfBirth &&
-			   null != vm.registerCouple.partner1DanceClassST && null != vm.registerCouple.partner1DanceClassLA &&
-			   null != vm.registerCouple.partner2DanceClassST && null != vm.registerCouple.partner2DanceClassLA &&
-			   null != vm.registerCouple.partner1DanceClassST.id && null != vm.registerCouple.partner1DanceClassLA.id &&
-			   null != vm.registerCouple.partner2DanceClassST.id && null != vm.registerCouple.partner2DanceClassLA.id) {
-				CompetitionCategory.available({competitionId: vm.currentCompetition.id}, vm.registerCouple, onSuccess, onError);
+			if(null != vm.registerCouple.partner1DateOfBirth && null != vm.registerCouple.partner1DanceClassST &&
+			   null != vm.registerCouple.partner1DanceClassST.id && null != vm.registerCouple.partner1DanceClassLA &&
+			   null != vm.registerCouple.partner1DanceClassLA.id &&
+			   (vm.soloCouple || (null != vm.registerCouple.partner2DateOfBirth && null != vm.registerCouple.partner2DanceClassST &&
+								  null != vm.registerCouple.partner2DanceClassLA && null != vm.registerCouple.partner2DanceClassST.id &&
+								  null != vm.registerCouple.partner2DanceClassLA.id))) {
+				vm.registerCouple.isSoloCouple = vm.soloCouple;
+				CompetitionCategory.available({
+					competitionId: vm.currentCompetition.id,
+					soloCouple: vm.soloCouple
+				}, vm.registerCouple, onSuccess, onError);
 			} else {
 				vm.availableCategories = [];
 			}
@@ -79,6 +89,7 @@
 		}
 
 		function save() {
+			vm.registerCouple.soloCouple = vm.soloCouple;
 			vm.registerCouple.competitionCategoryIds = [];
 			for(var i = 0; i < vm.availableCategories.length; i++) {
 				var availableCategory = vm.availableCategories[i];
@@ -100,20 +111,73 @@
 
 		}
 
-		function isCategorySelected() {
-			for(var i = 0; i < vm.availableCategories.length; i++) {
-				var availableCategory = vm.availableCategories[i];
-				if(availableCategory.selected) {
-					return true;
-				}
+		function updateSolo() {
+			if(vm.soloCouple) {
+				vm.registerCouple.partner2DateOfBirth = null;
+				vm.registerCouple.partner2Surname = null;
+				vm.registerCouple.partner2Name = null;
+				vm.registerCouple.partner2DanceClassLA = null;
+				vm.registerCouple.partner2DanceClassST = null;
+
+				$('#field_partner2surname').attr('required', true);
+				$('#field_partner2surname').attr('disabled', true);
+
+				$('#field_partner2name').attr('required', true);
+				$('#field_partner2name').attr('disabled', true);
+
+				$('#field_partner2DateOfBirth').attr('required', true);
+				$('#field_partner2DateOfBirth').attr('disabled', true);
+
+				$('#field_partner2DanceClassLA').attr('required', true);
+				$('#field_partner2DanceClassLA').attr('disabled', true);
+
+				$('#field_partner2DanceClassST').attr('required', true);
+				$('#field_partner2DanceClassST').attr('disabled', true);
+			} else {
+				$('#field_partner2surname').removeAttr('required');
+				$('#field_partner2surname').removeAttr('disabled');
+
+				$('#field_partner2name').removeAttr('required');
+				$('#field_partner2name').removeAttr('disabled');
+
+				$('#field_partner2DateOfBirth').removeAttr('required');
+				$('#field_partner2DateOfBirth').removeAttr('disabled');
+
+				$('#field_partner2DanceClassLA').removeAttr('required');
+				$('#field_partner2DanceClassLA').removeAttr('disabled');
+
+				$('#field_partner2DanceClassST').removeAttr('required');
+				$('#field_partner2DanceClassST').removeAttr('disabled');
 			}
-			return false;
+			update();
+			updateSelectedCategory();
+		}
+
+		function isValidForm() {
+			return null != vm.registerCouple.partner1Surname && null != vm.registerCouple.partner1Name &&
+				   vm.registerCouple.partner1Surname.trim().length > 0 && vm.registerCouple.partner1Name.trim().length > 0 &&
+				   null != vm.registerCouple.trainer1 && null != vm.registerCouple.location &&
+				   null != vm.registerCouple.organization &&
+				   vm.registerCouple.trainer1.trim().length > 0 && vm.registerCouple.location.trim().length > 0 &&
+				   vm.registerCouple.organization.trim().length > 0 &&
+				   null != vm.registerCouple.partner1DateOfBirth && null != vm.registerCouple.partner1DanceClassST &&
+				   null != vm.registerCouple.partner1DanceClassST.id && null != vm.registerCouple.partner1DanceClassLA &&
+				   null != vm.registerCouple.partner1DanceClassLA.id &&
+				   (vm.soloCouple || (null != vm.registerCouple.partner2Name && null != vm.registerCouple.partner2Surname &&
+									  vm.registerCouple.partner2Name.trim().length > 0 && vm.registerCouple.partner2Surname.trim().length > 0 &&
+									  null != vm.registerCouple.partner2DateOfBirth && null != vm.registerCouple.partner2DanceClassST &&
+									  null != vm.registerCouple.partner2DanceClassLA && null != vm.registerCouple.partner2DanceClassST.id &&
+									  null != vm.registerCouple.partner2DanceClassLA.id))
 		}
 
 		function trainerOnLoad() {
-			vm.trainers.unshift({id: -1, name: $translate.instant('danceFormApp.schedule.registry.emptyTrainer'), surname:''});
-			for (var i = 0; i < vm.trainers.length; i++) {
-			    vm.trainerNames.push(vm.trainers[i].surname + ' ' + vm.trainers[i].name);
+			vm.trainers.unshift({
+				id: -1,
+				name: $translate.instant('danceFormApp.schedule.registry.emptyTrainer'),
+				surname: ''
+			});
+			for(var i = 0; i < vm.trainers.length; i++) {
+				vm.trainerNames.push(vm.trainers[i].surname + ' ' + vm.trainers[i].name);
 			}
 		}
 

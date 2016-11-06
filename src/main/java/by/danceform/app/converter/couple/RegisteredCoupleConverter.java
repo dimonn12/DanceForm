@@ -25,6 +25,7 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
 
     @Override
     protected RegisteredCoupleDTO convertEntityToDto(RegisteredCouple entity, RegisteredCoupleDTO dto) {
+        fillSoloCoupleFields(dto);
         dto.setPartner1Name(trimIfNull(entity.getPartner1Name()));
         dto.setPartner1Surname(trimIfNull(entity.getPartner1Surname()));
         dto.setPartner1DateOfBirth(entity.getPartner1DateOfBirth());
@@ -95,5 +96,15 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
     @Override
     protected RegisteredCouple getNewEntity() {
         return new RegisteredCouple();
+    }
+
+    protected void fillSoloCoupleFields(RegisteredCoupleDTO dto) {
+        if(dto.isSoloCouple()) {
+            dto.setPartner2DanceClassLA(null);
+            dto.setPartner2DanceClassST(null);
+            dto.setPartner2DateOfBirth(null);
+            dto.setPartner2Name(null);
+            dto.setPartner2Surname(null);
+        }
     }
 }

@@ -67,6 +67,17 @@
             </div>
         </dd>
         <dt>
+            <span data-translate="danceFormApp.competitionCategory.allowSolo">Allow Solo</span>
+        </dt>
+        <dd>
+            <div ng-if="vm.competitionCategory.allowSolo">
+                <span data-translate="global.variables.true"></span>
+            </div>
+            <div ng-if="!vm.competitionCategory.allowSolo">
+                <span data-translate="global.variables.false"></span>
+            </div>
+        </dd>
+        <dt>
             <span data-translate="danceFormApp.competitionCategory.danceCategory">Dance Category</span>
         </dt>
         <dd>

@@ -30,6 +30,8 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
 
     private boolean checkMaxAge;
 
+    private boolean allowSolo;
+
     private Long competitionId;
 
     private NamedReferenceDTO danceCategory;
@@ -39,7 +41,6 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
     private Set<NamedReferenceDTO> ageCategories = new HashSet<>();
 
     public CompetitionCategoryDTO() {
-
     }
 
     public CompetitionCategoryDTO(Long id) {
@@ -92,6 +93,14 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
 
     public void setCheckMaxAge(boolean checkMaxAge) {
         this.checkMaxAge = checkMaxAge;
+    }
+
+    public boolean getAllowSolo() {
+        return allowSolo;
+    }
+
+    public void setAllowSolo(boolean allowSolo) {
+        this.allowSolo = allowSolo;
     }
 
     public Long getCompetitionId() {

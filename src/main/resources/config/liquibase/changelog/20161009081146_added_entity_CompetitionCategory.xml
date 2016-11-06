@@ -43,6 +43,10 @@
                 <constraints nullable="false"/>
             </column>
 
+            <column name="allow_solo" type="bit" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+
             <column name="competition_id" type="bigint">
                 <constraints nullable="false"/>
             </column>

@@ -56,6 +56,9 @@ public class CompetitionCategory extends AbstractEntity<Long> implements INamedE
     @Column(name = "check_max_age")
     private Boolean checkMaxAge;
 
+    @Column(name = "allow_solo")
+    private Boolean allowSolo;
+
     @Column(name = "competition_id", nullable = false)
     private Long competitionId;
 
@@ -129,6 +132,14 @@ public class CompetitionCategory extends AbstractEntity<Long> implements INamedE
 
     public void setCheckMaxAge(Boolean checkMaxAge) {
         this.checkMaxAge = checkMaxAge;
+    }
+
+    public Boolean isAllowSolo() {
+        return allowSolo;
+    }
+
+    public void setAllowSolo(Boolean allowSolo) {
+        this.allowSolo = allowSolo;
     }
 
     public Long getCompetitionId() {

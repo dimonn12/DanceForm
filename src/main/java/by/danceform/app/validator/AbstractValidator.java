@@ -1,4 +1,4 @@
-package by.danceform.app.validator.couple;
+package by.danceform.app.validator;
 
 import by.danceform.app.dto.AbstractDomainDTO;
 

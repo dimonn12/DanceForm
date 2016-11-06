@@ -40,12 +40,10 @@ public class RegisteredCouple extends AbstractEntity<Long> {
     @Column(name = "partner_1_surname", length = 128, nullable = false)
     private String partner1Surname;
 
-    @NotNull
     @Size(min = 1, max = 128)
     @Column(name = "partner_2_name", length = 128, nullable = false)
     private String partner2Name;
 
-    @NotNull
     @Size(min = 1, max = 128)
     @Column(name = "partner_2_surname", length = 128, nullable = false)
     private String partner2Surname;
@@ -54,7 +52,6 @@ public class RegisteredCouple extends AbstractEntity<Long> {
     @Column(name = "partner_1_date_of_birth", nullable = false)
     private LocalDate partner1DateOfBirth;
 
-    @NotNull
     @Column(name = "partner_2_date_of_birth", nullable = false)
     private LocalDate partner2DateOfBirth;
 
@@ -88,12 +85,10 @@ public class RegisteredCouple extends AbstractEntity<Long> {
     private DanceClass partner1DanceClassLA;
 
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "partner_2_dance_class_st_id")
     private DanceClass partner2DanceClassST;
 
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "partner_2_dance_class_la_id")
     private DanceClass partner2DanceClassLA;
 

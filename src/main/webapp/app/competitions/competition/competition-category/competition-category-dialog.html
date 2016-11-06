@@ -86,6 +86,15 @@
         </div>
 
         <div class="form-group">
+            <label class="control-label" data-translate="danceFormApp.competitionCategory.allowSolo" for="field_allowSolo">Allow Solo</label>
+            <br>
+            <span>({{'danceFormApp.competitionCategory.allowSoloDetails' | translate}})</span>
+            <input type="checkbox" class="form-control" name="allowSolo" id="field_allowSolo"
+                   ng-model="vm.competitionCategory.allowSolo"
+            />
+        </div>
+
+        <div class="form-group">
             <label data-translate="danceFormApp.competitionCategory.danceCategory" for="field_danceCategory">Dance Category</label>
             <select class="form-control" id="field_danceCategory" name="danceCategory" ng-model="vm.competitionCategory.danceCategory.id"
                     ng-options="danceCategory.id as danceCategory.name for danceCategory in vm.dancecategories | orderBy:'id'">
