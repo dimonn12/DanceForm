@@ -6,12 +6,12 @@
     <title>DanceForm</title>
     <meta name="description" content="">
     <meta name="google" value="notranslate">
-    <meta id="vp" name="viewport" content="width=device-width, initial-scale=1">
+    <!--<meta id="vp" name="viewport" content="width=device-width, initial-scale=1">-->
     <script>
-        if (screen.width < 670)
-        {
-            var mvp = document.getElementById('vp');
-            mvp.setAttribute('content','width=670');
+        if (screen.width < 670) {
+            document.write('<meta name="viewport" content="width=670, initial-scale=1">');
+        } else {
+            document.write('<meta name="viewport" content="width=device-width, initial-scale=1">');
         }
     </script>
     <!--<meta name="viewport" content="width=device-width">-->
