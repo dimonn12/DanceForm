@@ -43,19 +43,17 @@ public class TrainerService {
     /**
      * Get all the trainers.
      *
-     * @param pageable the pagination information
      * @return the list of entities
      */
     @Transactional(readOnly = true)
-    public Page<TrainerDTO> findAll(Pageable pageable) {
+    public List<TrainerDTO> findAll() {
         log.debug("Request to get all Trainers");
-        Page<Trainer> result = trainerRepository.findAll(pageable);
-        return result.map(trainer -> trainerConverter.convertToDto(trainer));
+        return trainerConverter.convertToDtos(trainerRepository.findAll());
     }
 
     @Transactional(readOnly = true)
     public List<TrainerDTO> findVisible() {
-        log.debug("Request to get all Trainers");
+        log.debug("Request to get all visible Trainers");
         return trainerConverter.convertToDtos(trainerRepository.findVisible());
     }
 

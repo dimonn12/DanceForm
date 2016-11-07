@@ -99,7 +99,6 @@ public class TrainerResource {
     /**
      * GET  /trainers : get all the trainers.
      *
-     * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of trainers in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
@@ -108,18 +107,16 @@ public class TrainerResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     @Secured({ AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS })
-    public ResponseEntity<List<TrainerDTO>> getAllTrainers(Pageable pageable) throws URISyntaxException {
+    public ResponseEntity<List<TrainerDTO>> getAllTrainers() throws URISyntaxException {
         log.debug("REST request to get a page of Trainers");
+        List<TrainerDTO> result;
         if(SecurityUtils.isAdmin()) {
-            Page<TrainerDTO> page = trainerService.findAll(pageable);
-            HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/config/trainers");
-            return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+            result = trainerService.findAll();
         } else {
-            List<TrainerDTO> visibleTrainers = trainerService.findVisible();
-            Collections.sort(visibleTrainers,
-                (o1, o2) -> ObjectUtils.compare(o1.getSurname() + " " + o1.getName(), o2.getSurname() + " " + o2.getName()));
-            return new ResponseEntity<>(trainerService.findVisible(), HttpStatus.OK);
+            result = trainerService.findVisible();
         }
+        Collections.sort(result, (o1, o2) -> ObjectUtils.compare(o1.getSurname() + " " + o1.getName(), o2.getSurname() + " " + o2.getName()));
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     /**

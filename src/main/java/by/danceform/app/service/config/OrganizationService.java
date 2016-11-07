@@ -44,19 +44,17 @@ public class OrganizationService {
     /**
      * Get all the organizations.
      *
-     * @param pageable the pagination information
      * @return the list of entities
      */
     @Transactional(readOnly = true)
-    public Page<OrganizationDTO> findAll(Pageable pageable) {
+    public List<OrganizationDTO> findAll() {
         log.debug("Request to get all Organizations");
-        Page<Organization> result = organizationRepository.findAll(pageable);
-        return result.map(organization -> organizationConverter.convertToDto(organization));
+        return organizationConverter.convertToDtos(organizationRepository.findAll());
     }
 
     @Transactional(readOnly = true)
     public List<OrganizationDTO> findVisible() {
-        log.debug("Request to get all Organizations");
+        log.debug("Request to get all visible Organizations");
         return organizationConverter.convertToDtos(organizationRepository.findVisible());
     }
 

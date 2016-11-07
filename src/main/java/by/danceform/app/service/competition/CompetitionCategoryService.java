@@ -12,6 +12,7 @@ import by.danceform.app.dto.couple.RegisteredCoupleDTO;
 import by.danceform.app.repository.competition.CompetitionCategoryRepository;
 import by.danceform.app.repository.competition.CompetitionRepository;
 import by.danceform.app.repository.config.DanceClassRepository;
+import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -128,7 +130,7 @@ public class CompetitionCategoryService {
         Set<CompetitionCategory> availableCategories = new HashSet<>();
         Competition competition = competitionRepository.findOne(competitionId);
         for(CompetitionCategory existingCategory : allCategories) {
-            if (isSoloCouple && !existingCategory.isAllowSolo()) {
+            if(isSoloCouple && !existingCategory.isAllowSolo()) {
                 continue;
             }
             if(existingCategory.isCheckMinAge()) {
@@ -177,7 +179,7 @@ public class CompetitionCategoryService {
                 }
             }
         }
-        return competitionCategoryConverter.convertToDtos(new ArrayList<>(availableCategories));
+        return competitionCategoryConverter.convertToDtos(sortAvailableCategories(availableCategories));
     }
 
     private boolean checkDanceClasses(Boolean isSoloCouple,
@@ -236,6 +238,29 @@ public class CompetitionCategoryService {
     private boolean isDateBigger(LocalDate date, LocalDate birthday, int years) {
         LocalDate newDate = birthday.plusYears(years);
         return newDate.isAfter(date);
+    }
+
+    private List<CompetitionCategory> sortAvailableCategories(Set<CompetitionCategory> availableCategories) {
+        List<CompetitionCategory> competitionCategories = new ArrayList<>(availableCategories);
+        Collections.sort(competitionCategories, (cat1, cat2) -> {
+            int result = Objects.compare(new ArrayList<>(cat1.getAgeCategories()),
+                new ArrayList<>(cat2.getAgeCategories()),
+                (age1, age2) -> {
+                    Collections.sort(age1);
+                    Collections.sort(age2);
+                    AgeCategory maxCategory1 = age1.get(age1.size() - 1);
+                    AgeCategory maxCategory2 = age2.get(age1.size() - 1);
+                    return ObjectUtils.compare(maxCategory1, maxCategory2);
+                });
+            if(result == 0) {
+                result = ObjectUtils.compare(cat1.getMaxDanceClass(), cat2.getMaxDanceClass());
+            }
+            if(result == 0) {
+                result = ObjectUtils.compare(cat1.getName(), cat2.getName());
+            }
+            return result;
+        });
+        return competitionCategories;
     }
 
 }

@@ -5,13 +5,11 @@ import by.danceform.app.security.AuthoritiesConstants;
 import by.danceform.app.security.SecurityUtils;
 import by.danceform.app.service.config.OrganizationService;
 import by.danceform.app.web.rest.util.HeaderUtil;
-import by.danceform.app.web.rest.util.PaginationUtil;
 import com.codahale.metrics.annotation.Timed;
+import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +24,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -97,7 +96,6 @@ public class OrganizationResource {
     /**
      * GET  /organizations : get all the organizations.
      *
-     * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of organizations in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
@@ -106,15 +104,16 @@ public class OrganizationResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     @Secured({ AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS })
-    public ResponseEntity<List<OrganizationDTO>> getAllOrganizations(Pageable pageable) throws URISyntaxException {
+    public ResponseEntity<List<OrganizationDTO>> getAllOrganizations() throws URISyntaxException {
         log.debug("REST request to get a page of Organizations");
+        List<OrganizationDTO> result;
         if(SecurityUtils.isAdmin()) {
-            Page<OrganizationDTO> page = organizationService.findAll(pageable);
-            HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/config/organizations");
-            return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+            result = organizationService.findAll();
         } else {
-            return new ResponseEntity<>(organizationService.findVisible(), HttpStatus.OK);
+            result = organizationService.findVisible();
         }
+        Collections.sort(result, (o1, o2) -> ObjectUtils.compare(o1.getName(), o2.getName()));
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     /**

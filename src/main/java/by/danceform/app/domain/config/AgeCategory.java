@@ -3,6 +3,7 @@ package by.danceform.app.domain.config;
 
 import by.danceform.app.domain.AbstractEntity;
 import by.danceform.app.domain.INamedEntity;
+import org.apache.commons.lang3.ObjectUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +20,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "age_category")
-public class AgeCategory extends AbstractEntity<Long> implements INamedEntity {
+public class AgeCategory extends AbstractEntity<Long> implements INamedEntity, Comparable<AgeCategory> {
 
     private static final long serialVersionUID = 1L;
 
@@ -82,5 +83,10 @@ public class AgeCategory extends AbstractEntity<Long> implements INamedEntity {
                ", minAge='" + minAge + "'" +
                ", maxAge='" + maxAge + "'" +
                '}';
+    }
+
+    @Override
+    public int compareTo(AgeCategory o) {
+        return ObjectUtils.compare(this.getMaxAge(), o.getMaxAge());
     }
 }
