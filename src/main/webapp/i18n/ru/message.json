@@ -15,9 +15,9 @@
       "detail": {
         "title": "Системное сообщение"
       },
-      "fromEmail": "From Email",
-      "subject": "Subject",
-      "content": "Content",
+      "fromEmail": "От кого",
+      "subject": "Тема",
+      "content": "Сообщение",
       "dateCreated": "Дата создания",
       "sent": "Отправлено",
       "dateSent": "Дата отправки"

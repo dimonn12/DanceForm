@@ -1,22 +1,22 @@
 {
-    "danceFormApp": {
-        "danceCategory" : {
-            "home": {
-                "title": "Dance Categories",
-                "createLabel": "Создать новый Dance Category",
-                "createOrEditLabel": "Создать или отредактировать Dance Category",
-                "search": "Найти Dance Category"
-            },
-            "created": "Новый Dance Category создан с идентификатором {{ param }}",
-            "updated": "Dance Category обновлен с идентификатором {{ param }}",
-            "deleted": "Dance Category удален с идентификатором {{ param }}",
-            "delete": {
-                "question": "Вы уверены что хотите удалить Dance Category {{ id }}?"
-            },
-            "detail": {
-                "title": "Dance Category"
-            },
-            "name": "Name"
-        }
+  "danceFormApp": {
+    "danceCategory": {
+      "home": {
+        "title": "Dance Categories",
+        "createLabel": "Создать новый Dance Category",
+        "createOrEditLabel": "Создать или отредактировать Dance Category",
+        "search": "Найти Dance Category"
+      },
+      "created": "Новый Dance Category создан с идентификатором {{ param }}",
+      "updated": "Dance Category обновлен с идентификатором {{ param }}",
+      "deleted": "Dance Category удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Dance Category {{ id }}?"
+      },
+      "detail": {
+        "title": "Dance Category"
+      },
+      "name": "Name"
     }
+  }
 }

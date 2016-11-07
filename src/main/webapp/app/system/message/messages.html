@@ -30,10 +30,6 @@
                         <span data-translate="danceFormApp.message.subject">Subject</span>
                         <span class="glyphicon glyphicon-sort"></span>
                     </th>
-                    <th jh-sort-by="content">
-                        <span data-translate="danceFormApp.message.content">Content</span>
-                        <span class="glyphicon glyphicon-sort"></span>
-                    </th>
                     <th jh-sort-by="dateCreated">
                         <span data-translate="danceFormApp.message.dateCreated">Date Created</span>
                         <span class="glyphicon glyphicon-sort"></span>
@@ -56,7 +52,6 @@
                     </td>
                     <td>{{message.fromEmail}}</td>
                     <td>{{message.subject}}</td>
-                    <td>{{message.content}}</td>
                     <td>{{message.dateCreated | date:'medium'}}</td>
                     <td>
                         <div ng-if="message.sent">
