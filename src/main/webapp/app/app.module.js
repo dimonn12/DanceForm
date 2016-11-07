@@ -21,9 +21,10 @@
 		])
 		.run(run);
 
-	run.$inject = ['stateHandler', 'translationHandler'];
+	run.$inject = ['$http', 'stateHandler', 'translationHandler'];
 
-	function run(stateHandler, translationHandler) {
+	function run($http, stateHandler, translationHandler) {
+		$http.defaults.headers.get = { 'Cache-Control' : 'no-store' }
 		stateHandler.initialize();
 		translationHandler.initialize();
 	}
