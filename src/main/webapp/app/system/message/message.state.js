@@ -9,17 +9,17 @@
 
 	function stateConfig($stateProvider) {
 		$stateProvider
-			.state('location', {
-				parent: 'config',
-				url: '/location?page&sort&search',
+			.state('message', {
+				parent: 'system',
+				url: '/message?page&sort&search',
 				data: {
 					authorities: ['ROLE_ADMIN'],
-					pageTitle: 'danceFormApp.location.home.title'
+					pageTitle: 'danceFormApp.message.home.title'
 				},
 				views: {
 					'content@': {
-						templateUrl: 'app/config/location/locations.html',
-						controller: 'LocationController',
+						templateUrl: 'app/system/message/messages.html',
+						controller: 'MessageController',
 						controllerAs: 'vm'
 					}
 				},
@@ -45,37 +45,37 @@
 						};
 					}],
 					translatePartialLoader: ['$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
-						$translatePartialLoader.addPart('location');
+						$translatePartialLoader.addPart('message');
 						$translatePartialLoader.addPart('global');
 						return $translate.refresh();
 					}]
 				}
 			})
-			.state('location-detail', {
-				parent: 'config',
-				url: '/location/{id}',
+			.state('message-detail', {
+				parent: 'system',
+				url: '/message/{id}',
 				data: {
 					authorities: ['ROLE_ADMIN'],
-					pageTitle: 'danceFormApp.location.detail.title'
+					pageTitle: 'danceFormApp.message.detail.title'
 				},
 				views: {
 					'content@': {
-						templateUrl: 'app/config/location/location-detail.html',
-						controller: 'LocationDetailController',
+						templateUrl: 'app/system/message/message-detail.html',
+						controller: 'MessageDetailController',
 						controllerAs: 'vm'
 					}
 				},
 				resolve: {
 					translatePartialLoader: ['$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
-						$translatePartialLoader.addPart('location');
+						$translatePartialLoader.addPart('message');
 						return $translate.refresh();
 					}],
-					entity: ['$stateParams', 'Location', function($stateParams, Location) {
-						return Location.get({id: $stateParams.id}).$promise;
+					entity: ['$stateParams', 'Message', function($stateParams, Message) {
+						return Message.get({id: $stateParams.id}).$promise;
 					}],
 					previousState: ["$state", function($state) {
 						var currentStateData = {
-							name: $state.current.name || 'location',
+							name: $state.current.name || 'message',
 							params: $state.params,
 							url: $state.href($state.current.name, $state.params)
 						};
@@ -83,22 +83,22 @@
 					}]
 				}
 			})
-			.state('location-detail.edit', {
-				parent: 'location-detail',
+			.state('message-detail.edit', {
+				parent: 'message-detail',
 				url: '/detail/edit',
 				data: {
 					authorities: ['ROLE_ADMIN']
 				},
 				onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
 					$uibModal.open({
-						templateUrl: 'app/config/location/location-dialog.html',
-						controller: 'LocationDialogController',
+						templateUrl: 'app/system/message/message-dialog.html',
+						controller: 'MessageDialogController',
 						controllerAs: 'vm',
 						backdrop: 'static',
 						size: 'lg',
 						resolve: {
-							entity: ['Location', function(Location) {
-								return Location.get({id: $stateParams.id}).$promise;
+							entity: ['Message', function(Message) {
+								return Message.get({id: $stateParams.id}).$promise;
 							}]
 						}
 					}).result.then(function() {
@@ -108,78 +108,83 @@
 					});
 				}]
 			})
-			.state('location.new', {
-				parent: 'location',
+			.state('message.new', {
+				parent: 'message',
 				url: '/new',
 				data: {
 					authorities: ['ROLE_ADMIN']
 				},
 				onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
 					$uibModal.open({
-						templateUrl: 'app/config/location/location-dialog.html',
-						controller: 'LocationDialogController',
+						templateUrl: 'app/system/message/message-dialog.html',
+						controller: 'MessageDialogController',
 						controllerAs: 'vm',
 						backdrop: 'static',
 						size: 'lg',
 						resolve: {
 							entity: function() {
 								return {
-									name: null,
+									fromEmail: null,
+									subject: null,
+									content: null,
+									dateCreated: null,
+									sent: null,
+									dateSent: null,
 									id: null
 								};
 							}
 						}
 					}).result.then(function() {
-						$state.go('location', null, {reload: 'location'});
+						$state.go('message', null, {reload: 'message'});
 					}, function() {
-						$state.go('location');
+						$state.go('message');
 					});
 				}]
 			})
-			.state('location.edit', {
-				parent: 'location',
+			.state('message.edit', {
+				parent: 'message',
 				url: '/{id}/edit',
 				data: {
 					authorities: ['ROLE_ADMIN']
 				},
 				onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
 					$uibModal.open({
-						templateUrl: 'app/config/location/location-dialog.html',
-						controller: 'LocationDialogController',
+						templateUrl: 'app/system/message/message-dialog.html',
+						controller: 'MessageDialogController',
 						controllerAs: 'vm',
 						backdrop: 'static',
 						size: 'lg',
 						resolve: {
-							entity: ['Location', function(Location) {
-								return Location.get({id: $stateParams.id}).$promise;
+							entity: ['Message', function(Message) {
+								return Message.get({id: $stateParams.id}).$promise;
 							}]
 						}
 					}).result.then(function() {
-						$state.go('location', null, {reload: 'location'});
+						$state.go('message', null, {reload: 'message'});
 					}, function() {
 						$state.go('^');
 					});
 				}]
 			})
-			.state('location.delete', {
-				parent: 'location',
+			.state('message.delete', {
+				parent: 'message',
 				url: '/{id}/delete',
 				data: {
 					authorities: ['ROLE_ADMIN']
 				},
 				onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
 					$uibModal.open({
-						templateUrl: 'app/config/location/location-delete-dialog.html',
-						controller: 'LocationDeleteController',
+						templateUrl: 'app/system/message/message-delete-dialog.html',
+						controller: 'MessageDeleteController',
 						controllerAs: 'vm',
 						size: 'md',
 						resolve: {
-							entity: ['Location', function(Location) {
-								return Location.get({id: $stateParams.id}).$promise;
+							entity: ['Message', function(Message) {
+								return Message.get({id: $stateParams.id}).$promise;
 							}]
 						}
 					}).result.then(function() {
-						$state.go('location', null, {reload: 'location'});
+						$state.go('message', null, {reload: 'message'});
 					}, function() {
 						$state.go('^');
 					});

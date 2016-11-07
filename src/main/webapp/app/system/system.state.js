@@ -9,6 +9,7 @@
 
 	function stateConfig($stateProvider) {
 		$stateProvider.state('system', {
+			url: '/system',
 			abstract: true,
 			parent: 'app'
 		});

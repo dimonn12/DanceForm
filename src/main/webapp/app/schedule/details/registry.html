@@ -266,14 +266,19 @@
 
             <div class="registry-block">
                 <div class="form-group">
-                    <label class="control-label" data-translate="danceFormApp.schedule.registry.organization" for="field_organization">Name</label>
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.organization">Name</label>
                     (
                     <span class="asterisk">*</span>
                     )
-                    <select class="form-control" id="field_organization" name="organization" ng-model="vm.registerCouple.organization"
-                            ng-options="organization.name as organization.name for organization in vm.organizations | orderBy:'name'">
-                        <option value=""></option>
-                    </select>
+                    <oi-select
+                            oi-options="organization for organization in vm.organizationNames"
+                            ng-model="vm.registerCouple.organization"
+                            placeholder="{{'danceFormApp.schedule.registry.organization' | translate}}"
+                            oi-select-options="{
+                                newItem: true,
+                                editItem: 'correct',
+                                saveTrigger: 'enter blur tab'
+                            }"/>
                 </div>
 
                 <div class="form-group">

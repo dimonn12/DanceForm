@@ -1,0 +1,64 @@
+<div>
+    <h2>
+        <span data-translate="danceFormApp.message.detail.title">Message</span>
+        {{vm.message.id}}
+    </h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt>
+            <span data-translate="danceFormApp.message.fromEmail">From Email</span>
+        </dt>
+        <dd>
+            <span>{{vm.message.fromEmail}}</span>
+        </dd>
+        <dt>
+            <span data-translate="danceFormApp.message.subject">Subject</span>
+        </dt>
+        <dd>
+            <span>{{vm.message.subject}}</span>
+        </dd>
+        <dt>
+            <span data-translate="danceFormApp.message.content">Content</span>
+        </dt>
+        <dd>
+            <span>{{vm.message.content}}</span>
+        </dd>
+        <dt>
+            <span data-translate="danceFormApp.message.dateCreated">Date Created</span>
+        </dt>
+        <dd>
+            <span>{{vm.message.dateCreated | date:'medium'}}</span>
+        </dd>
+        <dt>
+            <span data-translate="danceFormApp.message.sent">Sent</span>
+        </dt>
+        <dd>
+            <div ng-if="message.sent">
+                <span data-translate="global.variables.true"></span>
+            </div>
+            <div ng-if="!message.sent">
+                <span data-translate="global.variables.false"></span>
+            </div>
+        </dd>
+        <dt>
+            <span data-translate="danceFormApp.message.dateSent">Date Sent</span>
+        </dt>
+        <dd>
+            <span>{{vm.message.dateSent | date:'medium'}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        &nbsp;
+        <span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="message-detail.edit({id:vm.message.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

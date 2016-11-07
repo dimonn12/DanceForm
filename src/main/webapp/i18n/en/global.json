@@ -19,6 +19,7 @@
                 "trainer": "Trainer",
                 "uploadedDocument": "Uploaded Document",
                 "uploadedImage": "Uploaded Image",
+                "message": "Message",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

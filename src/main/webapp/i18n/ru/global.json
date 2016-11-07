@@ -37,7 +37,8 @@
       },
       "system": {
         "main": "Система",
-        "systemSetting": "Системные параметры"
+        "systemSetting": "Системные параметры",
+        "message": "Сообщения"
       },
       "config": {
         "main": "Конфигурация",

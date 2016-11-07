@@ -11,7 +11,7 @@
 		$stateProvider
 			.state('trainer', {
 				parent: 'config',
-				url: '/config/trainer?page&sort&search',
+				url: '/trainer?page&sort&search',
 				data: {
 					authorities: ['ROLE_ADMIN'],
 					pageTitle: 'danceFormApp.trainer.home.title'
@@ -53,7 +53,7 @@
 			})
 			.state('trainer-detail', {
 				parent: 'config',
-				url: '/config/trainer/{id}',
+				url: '/trainer/{id}',
 				data: {
 					authorities: ['ROLE_ADMIN'],
 					pageTitle: 'danceFormApp.trainer.detail.title'

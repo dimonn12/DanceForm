@@ -17,7 +17,8 @@
 
 		vm.danceClasses = DanceClass.query();
 		vm.locations = Location.query();
-		vm.organizations = Organization.query();
+		vm.organizationNames = [];
+		vm.organizations = Organization.query(organizationOnLoad);
 		vm.trainerNames = [];
 		vm.trainers = Trainer.query(trainerOnLoad);
 
@@ -178,6 +179,12 @@
 			});
 			for(var i = 0; i < vm.trainers.length; i++) {
 				vm.trainerNames.push(vm.trainers[i].surname + ' ' + vm.trainers[i].name);
+			}
+		}
+		
+		function organizationOnLoad() {
+			for(var i = 0; i < vm.organizations.length; i++) {
+				vm.organizationNames.push(vm.organizations[i].name);
 			}
 		}
 

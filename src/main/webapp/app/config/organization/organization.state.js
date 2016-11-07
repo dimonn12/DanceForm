@@ -11,7 +11,7 @@
 		$stateProvider
 			.state('organization', {
 				parent: 'config',
-				url: '/config/organization?page&sort&search',
+				url: '/organization?page&sort&search',
 				data: {
 					authorities: ['ROLE_ADMIN'],
 					pageTitle: 'danceFormApp.organization.home.title'
@@ -53,7 +53,7 @@
 			})
 			.state('organization-detail', {
 				parent: 'config',
-				url: '/config/organization/{id}',
+				url: '/organization/{id}',
 				data: {
 					authorities: ['ROLE_ADMIN'],
 					pageTitle: 'danceFormApp.organization.detail.title'
