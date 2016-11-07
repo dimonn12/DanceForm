@@ -2,17 +2,21 @@ package by.danceform.app.service.system;
 
 import by.danceform.app.converter.system.MessageConverter;
 import by.danceform.app.domain.system.Message;
+import by.danceform.app.domain.system.SystemSetting;
 import by.danceform.app.dto.system.MessageDTO;
-import by.danceform.app.repository.MessageRepository;
+import by.danceform.app.repository.system.MessageRepository;
+import by.danceform.app.service.MailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 /**
  * Service Implementation for managing Message.
@@ -28,6 +32,12 @@ public class MessageService {
 
     @Inject
     private MessageConverter messageConverter;
+
+    @Inject
+    private SystemSettingService systemSettingService;
+
+    @Inject
+    private MailService mailService;
 
     /**
      * Save a message.
@@ -84,5 +94,30 @@ public class MessageService {
     public void delete(Long id) {
         log.debug("Request to delete Message : {}", id);
         messageRepository.delete(id);
+    }
+
+    @Scheduled(cron = "0 */10 * * * *")
+    public void sendMessages() {
+        List<Message> messagesToSent = messageRepository.findNotSent();
+        if(messagesToSent.isEmpty()) {
+            return;
+        }
+        String adminEmail = "dimonn12@hotmail.com";
+        SystemSetting administratorSetting = systemSettingService.findByName(SystemSettingNames.ADMINISTRATION_EMAIL);
+        if(null != administratorSetting) {
+            adminEmail = administratorSetting.getValue();
+        }
+        for(Message message : messagesToSent) {
+            boolean success = mailService.sendEmail(adminEmail,
+                message.getSubject() + " (" + message.getFromEmail() + ")",
+                message.getContent(),
+                false,
+                false);
+            if(success) {
+                message.setSent(true);
+                message.setDateSent(ZonedDateTime.now());
+                messageRepository.save(message);
+            }
+        }
     }
 }

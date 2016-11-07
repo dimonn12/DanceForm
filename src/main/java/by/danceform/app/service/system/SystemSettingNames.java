@@ -6,6 +6,7 @@ package by.danceform.app.service.system;
 public final class SystemSettingNames {
 
     public static final String DAYS_BEFORE_REGISTRATION_CLOSES = "DAYS_BEFORE_REGISTRATION_CLOSES";
+    public static final String ADMINISTRATION_EMAIL = "ADMINISTRATION_EMAIL";
 
     private SystemSettingNames() {
 

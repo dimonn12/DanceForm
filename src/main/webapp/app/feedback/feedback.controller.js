@@ -25,6 +25,7 @@
 
 		function onSaveSuccess(result) {
 			vm.success = true;
+			vm.feedback = {};
 		}
 
 		function onSaveError() {

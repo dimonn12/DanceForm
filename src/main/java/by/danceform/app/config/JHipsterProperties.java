@@ -144,7 +144,7 @@ public class JHipsterProperties {
 
     public static class Mail {
 
-        private String from = "DanceForm@localhost";
+        private String from = "danceform.by";
 
         public String getFrom() {
             return from;

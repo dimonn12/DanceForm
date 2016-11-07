@@ -20,6 +20,12 @@
             <column name="name" value="DAYS_BEFORE_REGISTRATION_CLOSES"/>
             <column name="value" value="2"/>
         </insert>
+
+        <insert tableName="system_setting">
+            <column name="id" value="2"/>
+            <column name="name" value="ADMINISTRATION_EMAIL"/>
+            <column name="value" value="dimonn12@hotmail.com"/>
+        </insert>
     </changeSet>
 
 </databaseChangeLog>

@@ -4,7 +4,7 @@ import by.danceform.app.DanceFormApp;
 import by.danceform.app.converter.system.MessageConverter;
 import by.danceform.app.domain.system.Message;
 import by.danceform.app.dto.system.MessageDTO;
-import by.danceform.app.repository.MessageRepository;
+import by.danceform.app.repository.system.MessageRepository;
 import by.danceform.app.service.system.MessageService;
 import by.danceform.app.web.rest.system.MessageResource;
 import org.junit.Before;

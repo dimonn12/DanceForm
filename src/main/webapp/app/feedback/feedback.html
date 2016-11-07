@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label class="control-label" for="content" data-translate="danceFormApp.feedback.content">Content</label>
                     <textarea rows="10" cols="50" class="form-control" id="content" name="content" placeholder="{{'danceFormApp.feedback.content' | translate}}"
-                           ng-model="vm.feedback.content" ng-minlength=1 ng-maxlength=3000 required maxlength="3000"/>
+                              ng-model="vm.feedback.content" ng-minlength=1 ng-maxlength=3000 required maxlength="3000"></textarea>
                     <div ng-show="form.content.$dirty && form.content.$invalid">
                         <p class="help-block"
                            ng-show="form.content.$error.required" data-translate="danceFormApp.feedback.messages.validate.content.required">
