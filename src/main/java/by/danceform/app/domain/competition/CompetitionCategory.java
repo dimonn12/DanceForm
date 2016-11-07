@@ -5,6 +5,7 @@ import by.danceform.app.domain.INamedEntity;
 import by.danceform.app.domain.config.AgeCategory;
 import by.danceform.app.domain.config.DanceCategory;
 import by.danceform.app.domain.config.DanceClass;
+import org.apache.commons.lang3.ObjectUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +20,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -27,7 +31,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "competition_category")
-public class CompetitionCategory extends AbstractEntity<Long> implements INamedEntity {
+public class CompetitionCategory extends AbstractEntity<Long> implements INamedEntity, Comparable<CompetitionCategory> {
 
     private static final long serialVersionUID = 3728310148232456453L;
 
@@ -198,5 +202,25 @@ public class CompetitionCategory extends AbstractEntity<Long> implements INamedE
                competitionId +
                "'" +
                '}';
+    }
+
+    @Override
+    public int compareTo(CompetitionCategory o) {
+        int result = Objects.compare(new ArrayList<>(this.getAgeCategories()),
+            new ArrayList<>(o.getAgeCategories()),
+            (age1, age2) -> {
+                Collections.sort(age1);
+                Collections.sort(age2);
+                AgeCategory maxCategory1 = !age1.isEmpty() ? age1.get(age1.size() - 1) : null;
+                AgeCategory maxCategory2 = !age2.isEmpty() ? age2.get(age2.size() - 1) : null;
+                return ObjectUtils.compare(maxCategory1, maxCategory2);
+            });
+        if(result == 0) {
+            result = ObjectUtils.compare(this.getMaxDanceClass(), o.getMaxDanceClass());
+        }
+        if(result == 0) {
+            result = ObjectUtils.compare(this.getName(), o.getName());
+        }
+        return result;
     }
 }

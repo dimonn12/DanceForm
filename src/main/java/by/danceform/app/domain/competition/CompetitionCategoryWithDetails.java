@@ -1,6 +1,7 @@
 package by.danceform.app.domain.competition;
 
 import by.danceform.app.domain.AbstractEntity;
+import org.apache.commons.lang3.ObjectUtils;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,7 +10,8 @@ import javax.persistence.Id;
  * Created by Dmitry_Shanko on 10/10/2016.
  */
 @Entity
-public class CompetitionCategoryWithDetails extends AbstractEntity<Long> {
+public class CompetitionCategoryWithDetails extends AbstractEntity<Long>
+    implements Comparable<CompetitionCategoryWithDetails> {
 
     private static final long serialVersionUID = 1347401563146165129L;
 
@@ -50,4 +52,8 @@ public class CompetitionCategoryWithDetails extends AbstractEntity<Long> {
         return competitionCategory.getId();
     }
 
+    @Override
+    public int compareTo(CompetitionCategoryWithDetails o) {
+        return ObjectUtils.compare(this.getCompetitionCategory(), o.getCompetitionCategory());
+    }
 }

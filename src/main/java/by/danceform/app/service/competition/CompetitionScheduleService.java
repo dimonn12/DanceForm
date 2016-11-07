@@ -98,6 +98,7 @@ public class CompetitionScheduleService {
         dto.setAmountOfUniqueRegisteredPairs(registeredCoupleRepository.groupUniqueByCompetitionId(dto.getId()).size());
         List<CompetitionCategoryWithDetails> competitionCategoryWithDetails = competitionCategoryRepository.findWithDetailsByCompetitionId(
             id);
+        Collections.sort(competitionCategoryWithDetails);
         dto.setRegistrationOpen(competitionCategoryWithDetails.size() > 0);
         dto.setCompetitionCategoryDTOs(competitionCategoryWithDetailsConverter.convertToDtos(
             competitionCategoryWithDetails));

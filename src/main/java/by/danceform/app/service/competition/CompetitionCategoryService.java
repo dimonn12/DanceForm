@@ -12,7 +12,6 @@ import by.danceform.app.dto.couple.RegisteredCoupleDTO;
 import by.danceform.app.repository.competition.CompetitionCategoryRepository;
 import by.danceform.app.repository.competition.CompetitionRepository;
 import by.danceform.app.repository.config.DanceClassRepository;
-import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -21,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -88,8 +88,8 @@ public class CompetitionCategoryService {
     @Transactional(readOnly = true)
     public List<CompetitionCategoryDTO> findByCompetitionId(Long competitionId) {
         log.debug("Request to get all CompetitionCategories");
-        List<CompetitionCategoryDTO> result = competitionCategoryRepository.findAllByCompetitionId(competitionId)
-            .stream()
+        List<CompetitionCategoryDTO> result = sortAvailableCategories(competitionCategoryRepository.findAllByCompetitionId(
+            competitionId)).stream()
             .map(competitionCategoryConverter::convertToDto)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -240,26 +240,9 @@ public class CompetitionCategoryService {
         return newDate.isAfter(date);
     }
 
-    private List<CompetitionCategory> sortAvailableCategories(Set<CompetitionCategory> availableCategories) {
+    private List<CompetitionCategory> sortAvailableCategories(Collection<CompetitionCategory> availableCategories) {
         List<CompetitionCategory> competitionCategories = new ArrayList<>(availableCategories);
-        Collections.sort(competitionCategories, (cat1, cat2) -> {
-            int result = Objects.compare(new ArrayList<>(cat1.getAgeCategories()),
-                new ArrayList<>(cat2.getAgeCategories()),
-                (age1, age2) -> {
-                    Collections.sort(age1);
-                    Collections.sort(age2);
-                    AgeCategory maxCategory1 = age1.get(age1.size() - 1);
-                    AgeCategory maxCategory2 = age2.get(age1.size() - 1);
-                    return ObjectUtils.compare(maxCategory1, maxCategory2);
-                });
-            if(result == 0) {
-                result = ObjectUtils.compare(cat1.getMaxDanceClass(), cat2.getMaxDanceClass());
-            }
-            if(result == 0) {
-                result = ObjectUtils.compare(cat1.getName(), cat2.getName());
-            }
-            return result;
-        });
+        Collections.sort(competitionCategories);
         return competitionCategories;
     }
 
