@@ -91,6 +91,19 @@
 
 		function save() {
 			vm.registerCouple.soloCouple = vm.soloCouple;
+			if (vm.registerCouple.soloCouple) {
+				vm.registerCouple.partner1DateOfBirth = vm.registerCouple.partner2DateOfBirth;
+				vm.registerCouple.partner1Surname = vm.registerCouple.partner2Surname;
+				vm.registerCouple.partner1Name = vm.registerCouple.partner2Name;
+				vm.registerCouple.partner1DanceClassLA = vm.registerCouple.partner2DanceClassLA;
+				vm.registerCouple.partner1DanceClassST = vm.registerCouple.partner2DanceClassST;
+
+				vm.registerCouple.partner2DateOfBirth = null;
+				vm.registerCouple.partner2Surname = null;
+				vm.registerCouple.partner2Name = null;
+				vm.registerCouple.partner2DanceClassLA = null;
+				vm.registerCouple.partner2DanceClassST = null;
+			}
 			vm.registerCouple.competitionCategoryIds = [];
 			for(var i = 0; i < vm.availableCategories.length; i++) {
 				var availableCategory = vm.availableCategories[i];
@@ -114,41 +127,41 @@
 
 		function updateSolo() {
 			if(vm.soloCouple) {
-				vm.registerCouple.partner2DateOfBirth = null;
-				vm.registerCouple.partner2Surname = null;
-				vm.registerCouple.partner2Name = null;
-				vm.registerCouple.partner2DanceClassLA = null;
-				vm.registerCouple.partner2DanceClassST = null;
+				vm.registerCouple.partner1DateOfBirth = null;
+				vm.registerCouple.partner1Surname = null;
+				vm.registerCouple.partner1Name = null;
+				vm.registerCouple.partner1DanceClassLA = null;
+				vm.registerCouple.partner1DanceClassST = null;
 
-				$('#field_partner2surname').attr('required', true);
-				$('#field_partner2surname').attr('disabled', true);
+				$('#field_partner1surname').attr('required', true);
+				$('#field_partner1surname').attr('disabled', true);
 
-				$('#field_partner2name').attr('required', true);
-				$('#field_partner2name').attr('disabled', true);
+				$('#field_partner1name').attr('required', true);
+				$('#field_partner1name').attr('disabled', true);
 
-				$('#field_partner2DateOfBirth').attr('required', true);
-				$('#field_partner2DateOfBirth').attr('disabled', true);
+				$('#field_partner1DateOfBirth').attr('required', true);
+				$('#field_partner1DateOfBirth').attr('disabled', true);
 
-				$('#field_partner2DanceClassLA').attr('required', true);
-				$('#field_partner2DanceClassLA').attr('disabled', true);
+				$('#field_partner1DanceClassLA').attr('required', true);
+				$('#field_partner1DanceClassLA').attr('disabled', true);
 
-				$('#field_partner2DanceClassST').attr('required', true);
-				$('#field_partner2DanceClassST').attr('disabled', true);
+				$('#field_partner1DanceClassST').attr('required', true);
+				$('#field_partner1DanceClassST').attr('disabled', true);
 			} else {
-				$('#field_partner2surname').removeAttr('required');
-				$('#field_partner2surname').removeAttr('disabled');
+				$('#field_partner1surname').removeAttr('required');
+				$('#field_partner1surname').removeAttr('disabled');
 
-				$('#field_partner2name').removeAttr('required');
-				$('#field_partner2name').removeAttr('disabled');
+				$('#field_partner1name').removeAttr('required');
+				$('#field_partner1name').removeAttr('disabled');
 
-				$('#field_partner2DateOfBirth').removeAttr('required');
-				$('#field_partner2DateOfBirth').removeAttr('disabled');
+				$('#field_partner1DateOfBirth').removeAttr('required');
+				$('#field_partner1DateOfBirth').removeAttr('disabled');
 
-				$('#field_partner2DanceClassLA').removeAttr('required');
-				$('#field_partner2DanceClassLA').removeAttr('disabled');
+				$('#field_partner1DanceClassLA').removeAttr('required');
+				$('#field_partner1DanceClassLA').removeAttr('disabled');
 
-				$('#field_partner2DanceClassST').removeAttr('required');
-				$('#field_partner2DanceClassST').removeAttr('disabled');
+				$('#field_partner1DanceClassST').removeAttr('required');
+				$('#field_partner1DanceClassST').removeAttr('disabled');
 			}
 			update();
 			updateSelectedCategory();
