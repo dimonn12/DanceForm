@@ -47,9 +47,6 @@
 					$translatePartialLoader.addPart('schedule');
 					return $translate.refresh();
 				}],
-				entity: ['$stateParams', 'CompetitionSchedule', function($stateParams, CompetitionSchedule) {
-					return CompetitionSchedule.get({id: $stateParams.id}).$promise;
-				}],
 				previousState: ["$state", function($state) {
 					var currentStateData = {
 						name: $state.current.name || 'schedule',

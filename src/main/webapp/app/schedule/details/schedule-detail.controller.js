@@ -5,9 +5,9 @@
 		.module('danceFormApp')
 		.controller('CompetitionScheduleDetailsController', CompetitionScheduleDetailsController);
 
-	CompetitionScheduleDetailsController.$inject = ['$state', '$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'CompetitionSchedule', 'DanceClass', 'AlertService'];
+	CompetitionScheduleDetailsController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'CompetitionSchedule', 'DanceClass', 'AlertService'];
 
-	function CompetitionScheduleDetailsController($state, $scope, $rootScope, $stateParams, previousState, DataUtils, CompetitionSchedule, DanceClass, AlertService) {
+	function CompetitionScheduleDetailsController($scope, $rootScope, $stateParams, previousState, CompetitionSchedule, DanceClass, AlertService) {
 		var vm = this;
 
 		vm.currentCompetition = null;
@@ -24,7 +24,7 @@
 
 		function load() {
 			CompetitionSchedule.get({id: $stateParams.id}, onSuccess, onError);
-			function onSuccess(data, headers) {
+			function onSuccess(data) {
 				vm.currentCompetition = data;
 				vm.categories = vm.currentCompetition.competitionCategoryDTOs;
 

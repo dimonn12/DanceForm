@@ -136,7 +136,7 @@ public class CompetitionScheduleService {
     }
 
     private boolean isClosedCompetition(LocalDateTime registrationClosesTime) {
-        return !LocalDateTime.now().isBefore(registrationClosesTime);
+        return !LocalDateTime.now(ZoneId.of("UTC")).isBefore(registrationClosesTime);
     }
 
 }

@@ -636,6 +636,10 @@ dl > dt > span {
     }
 }
 
+td, th {
+    white-space: nowrap;
+}
+
 /*@media screen and (max-width: 900px) {
     .registry-block .form-group {
         padding-bottom: 30px;

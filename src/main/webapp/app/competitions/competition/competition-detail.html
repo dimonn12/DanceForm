@@ -35,8 +35,10 @@
                         <span data-translate="danceFormApp.competition.date">Date</span>
                     </dt>
                     <dd>
-                        <div>{{vm.competition.startDate | date:'d MMMM yyyy'}}</div>
-                        <div ng-if="vm.competition.endDate != null"> - {{vm.competition.endDate | date:'d MMMM yyyy'}}</div>
+                        <div class="div-inline">{{vm.competition.startDate | date:'d MMMM yyyy'}}</div>
+                        <div class="div-inline" ng-if="vm.competition.endDate != null && vm.competition.endDate != vm.competition.startDate">&nbsp;-
+                            {{vm.competition.endDate | date:'d MMMM yyyy'}}
+                        </div>
                     </dd>
                     <dt>
                         <span data-translate="danceFormApp.competition.registrationClosesTime">Дата окончания регистрации</span>

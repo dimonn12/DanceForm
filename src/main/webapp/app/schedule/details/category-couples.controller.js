@@ -5,12 +5,12 @@
 		.module('danceFormApp')
 		.controller('CategoryCouplesController', CategoryCouplesController);
 
-	CategoryCouplesController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'CompetitionScheduleCategory', 'RegisteredCouple', 'AlertService'];
+	CategoryCouplesController.$inject = ['$stateParams', 'previousState', 'CompetitionSchedule', 'CompetitionScheduleCategory', 'RegisteredCouple', 'AlertService'];
 
-	function CategoryCouplesController($scope, $rootScope, $stateParams, previousState, entity, CompetitionScheduleCategory, RegisteredCouple, AlertService) {
+	function CategoryCouplesController($stateParams, previousState, CompetitionSchedule, CompetitionScheduleCategory, RegisteredCouple, AlertService) {
 		var vm = this;
 
-		vm.currentCompetition = entity;
+		vm.currentCompetition = null;
 		vm.previousState = previousState.name;
 
 		vm.category = null;
@@ -20,14 +20,17 @@
 		load();
 
 		function load() {
-			CompetitionScheduleCategory.get({
-				competitionId: vm.currentCompetition.id,
-				id: $stateParams.categoryId
-			}, onSuccess, onError);
-			function onSuccess(data, headers) {
-				vm.category = data;
-				loadCouples();
-			}
+			CompetitionSchedule.get({id: $stateParams.id}, function(data) {
+				vm.currentCompetition = data;
+				CompetitionScheduleCategory.get({
+					competitionId: vm.currentCompetition.id,
+					id: $stateParams.categoryId
+				}, onSuccess, onError);
+				function onSuccess(data, headers) {
+					vm.category = data;
+					loadCouples();
+				}
+			}, onError);
 
 			function onError(error) {
 				AlertService.error(error.data.message);

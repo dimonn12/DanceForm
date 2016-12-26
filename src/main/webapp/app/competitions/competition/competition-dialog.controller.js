@@ -5,9 +5,9 @@
 		.module('danceFormApp')
 		.controller('CompetitionDialogController', CompetitionDialogController);
 
-	CompetitionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Competition'];
+	CompetitionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Competition', 'DateUtils'];
 
-	function CompetitionDialogController($timeout, $scope, $stateParams, $uibModalInstance, entity, Competition) {
+	function CompetitionDialogController($timeout, $scope, $stateParams, $uibModalInstance, entity, Competition, DateUtils) {
 		var vm = this;
 
 		vm.competition = entity;
@@ -35,6 +35,7 @@
 
 		function onSaveSuccess(result) {
 			$scope.$emit('danceFormApp:competitionUpdate', result);
+			result.registrationClosesTime = DateUtils.convertDateTimeFromServer(result.registrationClosesTime);
 			$uibModalInstance.close(result);
 			vm.isSaving = false;
 		}

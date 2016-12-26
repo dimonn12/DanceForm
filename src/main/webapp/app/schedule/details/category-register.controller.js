@@ -5,9 +5,9 @@
 		.module('danceFormApp')
 		.controller('CategoryRegisterController', CategoryRegisterController);
 
-	CategoryRegisterController.$inject = ['$scope', '$q', '$translate', '$state', '$timeout', 'previousState', 'entity', 'CompetitionCategory', 'DanceClass', 'RegisteredCouple', 'AlertService', 'Location', 'Organization', 'Trainer'];
+	CategoryRegisterController.$inject = ['$scope', '$translate', '$stateParams', '$state', 'previousState', 'entity', 'CompetitionCategory', 'DanceClass', 'RegisteredCouple', 'AlertService', 'Location', 'Organization', 'Trainer'];
 
-	function CategoryRegisterController($scope, $q, $translate, $state, $timeout, previousState, entity, CompetitionCategory, DanceClass, RegisteredCouple, AlertService, Location, Organization, Trainer) {
+	function CategoryRegisterController($scope, $translate, $stateParams, $state, previousState, entity, CompetitionCategory, DanceClass, RegisteredCouple, AlertService, Location, Organization, Trainer) {
 		var vm = this;
 
 		vm.currentCompetition = entity;
@@ -24,7 +24,7 @@
 
 		vm.registerCouple = {};
 
-		vm.registerCouple.competitionId = vm.currentCompetition.id;
+		vm.registerCouple.competitionId = null;
 
 		vm.save = save;
 		vm.update = update;
@@ -56,12 +56,18 @@
 			showWeeks: false
 		};
 
-		readOnlyForm();
+		load();
 
-		function readOnlyForm() {
+		function load() {
+			vm.registerCouple.competitionId = vm.currentCompetition.id;
+			setReadOnlyForm();
+		}
+
+		function setReadOnlyForm() {
 			if(vm.isReadOnlyForm()) {
 				$('form input').attr('disabled', true);
 				$('form select').attr('disabled', true);
+				$('form button').attr('disabled', true);
 				$('form input').attr('readonly', true);
 				$('form select').attr('readonly', true);
 				$('form oi-select').attr('ng-disabled', true);
@@ -90,12 +96,8 @@
 			} else {
 				vm.availableCategories = [];
 			}
-			function onSuccess(data, headers) {
+			function onSuccess(data) {
 				vm.availableCategories = data;
-			}
-
-			function onError(error) {
-				AlertService.error(error.data.message);
 			}
 		}
 
@@ -143,7 +145,6 @@
 				vm.isSaving = false;
 				AlertService.error(error.data.message);
 			}
-
 		}
 
 		function updateSolo() {
@@ -154,34 +155,18 @@
 				vm.registerCouple.partner1DanceClassLA = null;
 				vm.registerCouple.partner1DanceClassST = null;
 
-				$('#field_partner1surname').attr('required', true);
 				$('#field_partner1surname').attr('disabled', true);
-
-				$('#field_partner1name').attr('required', true);
 				$('#field_partner1name').attr('disabled', true);
-
-				$('#field_partner1DateOfBirth').attr('required', true);
 				$('#field_partner1DateOfBirth').attr('disabled', true);
-
-				$('#field_partner1DanceClassLA').attr('required', true);
+				$('#field_partner1DateOfBirth ~ span > button').attr('disabled', true);
 				$('#field_partner1DanceClassLA').attr('disabled', true);
-
-				$('#field_partner1DanceClassST').attr('required', true);
 				$('#field_partner1DanceClassST').attr('disabled', true);
 			} else {
-				$('#field_partner1surname').removeAttr('required');
 				$('#field_partner1surname').removeAttr('disabled');
-
-				$('#field_partner1name').removeAttr('required');
 				$('#field_partner1name').removeAttr('disabled');
-
-				$('#field_partner1DateOfBirth').removeAttr('required');
 				$('#field_partner1DateOfBirth').removeAttr('disabled');
-
-				$('#field_partner1DanceClassLA').removeAttr('required');
+				$('#field_partner1DateOfBirth ~ span > button').removeAttr('disabled');
 				$('#field_partner1DanceClassLA').removeAttr('disabled');
-
-				$('#field_partner1DanceClassST').removeAttr('required');
 				$('#field_partner1DanceClassST').removeAttr('disabled');
 			}
 			update();
@@ -233,6 +218,10 @@
 			if(vm.registerCouple.partner2DateOfBirth == null) {
 				vm.dateOptions2.datepickerMode = 'year';
 			}
+		}
+
+		function onError(error) {
+			AlertService.error(error.data.message);
 		}
 	}
 })();
