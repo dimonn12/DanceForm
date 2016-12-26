@@ -14,7 +14,7 @@
 		vm.previousState = previousState.name;
 
 		vm.danceClasses = DanceClass.query(onLoad);
-		
+
 		function onLoad() {
 			if(null != vm.competitionCategory.maxDanceClass.id) {
 				vm.competitionCategory.danceClasses = [];

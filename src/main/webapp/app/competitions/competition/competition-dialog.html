@@ -67,7 +67,8 @@
         <div class="form-group">
             <label class="control-label" data-translate="danceFormApp.competition.registrationClosesTime" for="field_registrationClosesTime">registrationClosesTime</label>
             <div class="input-group">
-                <input id="field_registrationClosesTime" type="text" class="form-control" name="endDate" datetime-picker="{{dateformat}}" ng-model="vm.competition.registrationClosesTime"
+                <input id="field_registrationClosesTime" type="text" class="form-control" name="endDate" datetime-picker="{{dateformat}}"
+                       ng-model="vm.competition.registrationClosesTime"
                        is-open="vm.datePickerOpenStatus.registrationClosesTime"/>
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="vm.openCalendar('registrationClosesTime')">

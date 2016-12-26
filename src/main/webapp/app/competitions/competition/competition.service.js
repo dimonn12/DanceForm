@@ -10,18 +10,20 @@
 		var resourceUrl = 'api/competitions/:id';
 
 		return $resource(resourceUrl, {}, {
-			'query': {method: 'GET', isArray: true,
-			 transformResponse: function(data) {
-             					if(data) {
-             						data = angular.fromJson(data);
-             						for (var i = 0; i < data.length; i++) {
-             						data[i].startDate = DateUtils.convertLocalDateFromServer(data[i].startDate);
-             						data[i].endDate = DateUtils.convertLocalDateFromServer(data[i].endDate);
-             						data[i].registrationClosesTime = DateUtils.convertDateTimeFromServer(data[i].registrationClosesTime);
-             						}
-             					}
-             					return data;
-             				}},
+			'query': {
+				method: 'GET', isArray: true,
+				transformResponse: function(data) {
+					if(data) {
+						data = angular.fromJson(data);
+						for(var i = 0; i < data.length; i++) {
+							data[i].startDate = DateUtils.convertLocalDateFromServer(data[i].startDate);
+							data[i].endDate = DateUtils.convertLocalDateFromServer(data[i].endDate);
+							data[i].registrationClosesTime = DateUtils.convertDateTimeFromServer(data[i].registrationClosesTime);
+						}
+					}
+					return data;
+				}
+			},
 			'get': {
 				method: 'GET',
 				transformResponse: function(data) {

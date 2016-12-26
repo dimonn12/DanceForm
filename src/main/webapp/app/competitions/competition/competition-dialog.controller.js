@@ -45,7 +45,7 @@
 
 		vm.datePickerOpenStatus.startDate = false;
 		vm.datePickerOpenStatus.endDate = false;
-vm.datePickerOpenStatus.registrationClosesTime = false;
+		vm.datePickerOpenStatus.registrationClosesTime = false;
 
 		function openCalendar(date) {
 			vm.datePickerOpenStatus[date] = true;

@@ -59,37 +59,23 @@
 		readOnlyForm();
 
 		function readOnlyForm() {
-		    if (vm.isReadOnlyForm()) {
-		        $('form input').attr('disabled', true);
-		        $('form select').attr('disabled', true);
-		        $('form input').attr('readonly', true);
-                		        $('form readonly').attr('disabled', true);
-		        $('form oi-select').attr('ng-disabled', true);
-            				/*$('#field_partner1surname').attr('disabled', true);
-            				$('#field_partner1name').attr('disabled', true);
-            				$('#field_partner1DateOfBirth').attr('disabled', true);
-            				$('#field_partner1DanceClassLA').attr('disabled', true);
-            				$('#field_partner1DanceClassST').attr('disabled', true);
-            				$('#field_partner2surname').attr('disabled', true);
-                                        				$('#field_partner2name').attr('disabled', true);
-                                        				$('#field_partner2DateOfBirth').attr('disabled', true);
-                                        				$('#field_partner2DanceClassLA').attr('disabled', true);
-                                        				$('#field_partner2DanceClassST').attr('disabled', true);
-                                        				$('#field_organization').attr('disabled', true);
-                                        				$('#field_location').attr('disabled', true);
-                                        				$('#field_trainer1').attr('disabled', true);
-                                        				$('#field_trainer2').attr('disabled', true);*/
-                                        				}
+			if(vm.isReadOnlyForm()) {
+				$('form input').attr('disabled', true);
+				$('form select').attr('disabled', true);
+				$('form input').attr('readonly', true);
+				$('form select').attr('readonly', true);
+				$('form oi-select').attr('ng-disabled', true);
+			}
 		}
 
 		function isReadOnlyForm() {
-		    return !vm.currentCompetition.registrationOpen || vm.currentCompetition.registrationClosed;
+			return !vm.currentCompetition.registrationOpen || vm.currentCompetition.registrationClosed;
 		}
 
 		function update() {
-		    if (vm.isReadOnlyForm()) {
-		        return;
-		    }
+			if(vm.isReadOnlyForm()) {
+				return;
+			}
 			if(null != vm.registerCouple.partner1DateOfBirth && null != vm.registerCouple.partner1DanceClassST &&
 			   null != vm.registerCouple.partner1DanceClassST.id && null != vm.registerCouple.partner1DanceClassLA &&
 			   null != vm.registerCouple.partner1DanceClassLA.id &&
@@ -126,7 +112,7 @@
 
 		function save() {
 			vm.registerCouple.soloCouple = vm.soloCouple;
-			if (vm.registerCouple.soloCouple) {
+			if(vm.registerCouple.soloCouple) {
 				vm.registerCouple.partner1DateOfBirth = vm.registerCouple.partner2DateOfBirth;
 				vm.registerCouple.partner1Surname = vm.registerCouple.partner2Surname;
 				vm.registerCouple.partner1Name = vm.registerCouple.partner2Name;
@@ -204,7 +190,7 @@
 
 		function isValidForm() {
 			return !vm.isReadOnlyForm() &&
-			    null != vm.registerCouple.partner1Surname && null != vm.registerCouple.partner1Name &&
+				   null != vm.registerCouple.partner1Surname && null != vm.registerCouple.partner1Name &&
 				   vm.registerCouple.partner1Surname.trim().length > 0 && vm.registerCouple.partner1Name.trim().length > 0 &&
 				   null != vm.registerCouple.trainer1 && null != vm.registerCouple.location &&
 				   null != vm.registerCouple.organization &&
