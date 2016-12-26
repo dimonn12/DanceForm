@@ -1,13 +1,10 @@
 package by.danceform.app.service.config;
 
 import by.danceform.app.converter.config.TrainerConverter;
-import by.danceform.app.domain.config.Trainer;
 import by.danceform.app.dto.config.TrainerDTO;
 import by.danceform.app.repository.config.TrainerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,8 +1,8 @@
 package by.danceform.app.web.rest.system;
 
+import by.danceform.app.dto.system.MessageDTO;
 import by.danceform.app.security.AuthoritiesConstants;
 import by.danceform.app.service.system.MessageService;
-import by.danceform.app.dto.system.MessageDTO;
 import by.danceform.app.web.rest.util.HeaderUtil;
 import by.danceform.app.web.rest.util.PaginationUtil;
 import com.codahale.metrics.annotation.Timed;

@@ -1,6 +1,5 @@
 package by.danceform.app.service.competition;
 
-import by.danceform.app.converter.competition.CompetitionCategoryConverter;
 import by.danceform.app.converter.competition.CompetitionCategoryWithDetailsConverter;
 import by.danceform.app.converter.competition.CompetitionConverter;
 import by.danceform.app.converter.competition.CompetitionWithDetailsConverter;
@@ -59,9 +58,6 @@ public class CompetitionScheduleService {
     @Inject
     private CompetitionCategoryWithDetailsConverter competitionCategoryWithDetailsConverter;
 
-    @Inject
-    private CompetitionCategoryConverter competitionCategoryConverter;
-
     @Transactional(readOnly = true)
     public List<CompetitionDTO> findForSchedule() {
         log.debug("Request to get all Competitions");
@@ -70,28 +66,16 @@ public class CompetitionScheduleService {
             .map(competition -> competitionConverter.convertToDto(competition))
             .collect(Collectors.toList());
         Collections.sort(competitions, (c1, c2) -> ObjectUtils.compare(c1.getStartDate(), c2.getStartDate()));
-        SystemSetting daysBeforeRegistrationClosesSetting = systemSettingService.findByName(SystemSettingNames.DAYS_BEFORE_REGISTRATION_CLOSES);
-        int daysBeforeRegistrationCloses = (null != daysBeforeRegistrationClosesSetting ?
-            NumberUtils.toInt(daysBeforeRegistrationClosesSetting.getValue(), 1) :
-            1);
-        LocalDate registrationCloses = LocalDate.now().minusDays(daysBeforeRegistrationCloses);
+
         competitions.stream()
-            .filter(compDto -> !registrationCloses.isBefore(compDto.getStartDate()))
-            .forEach(compDto -> {
-                compDto.setRegistrationClosed(true);
-            });
+            .forEach(compDto -> compDto.setRegistrationClosed(isClosedCompetition(compDto.getStartDate())));
         return competitions;
     }
 
     @Transactional(readOnly = true)
     public CompetitionWithDetailsDTO findCompetitionWithDetails(Long id) {
         CompetitionWithDetails compWithDetails = competitionRepository.findOneWithDetails(id);
-        if(null != compWithDetails) {
-            Competition comp = compWithDetails.getCompetition();
-            if(null != comp && !comp.isVisible()) {
-                return null;
-            }
-        } else {
+        if(!isCompetitionAvailable(compWithDetails.getCompetition())) {
             return null;
         }
         CompetitionWithDetailsDTO dto = competitionWithDetailsConverter.convertToDto(compWithDetails);
@@ -99,7 +83,8 @@ public class CompetitionScheduleService {
         List<CompetitionCategoryWithDetails> competitionCategoryWithDetails = competitionCategoryRepository.findWithDetailsByCompetitionId(
             id);
         Collections.sort(competitionCategoryWithDetails);
-        dto.setRegistrationOpen(competitionCategoryWithDetails.size() > 0);
+        dto.setRegistrationOpen(isRegistrationAvailable(compWithDetails.getCompetition()));
+        dto.setRegistrationClosed(isClosedCompetition(compWithDetails.getCompetition()));
         dto.setCompetitionCategoryDTOs(competitionCategoryWithDetailsConverter.convertToDtos(
             competitionCategoryWithDetails));
         return dto;
@@ -109,6 +94,30 @@ public class CompetitionScheduleService {
     public CompetitionCategoryWithDetailsDTO findCategoryWithDetails(Long id) {
         return competitionCategoryWithDetailsConverter.convertToDto(competitionCategoryRepository.findWithDetailsByCategoryId(
             id));
+    }
+
+    public boolean isCompetitionAvailable(Competition comp) {
+        if(null != comp && comp.isVisible()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isRegistrationAvailable(Competition competition) {
+        return competitionCategoryRepository.isRegistrationAvailable(competition.getId());
+    }
+
+    public boolean isClosedCompetition(Competition competition) {
+        return isClosedCompetition(competition.getStartDate());
+    }
+
+    private boolean isClosedCompetition(LocalDate startDate) {
+        SystemSetting daysBeforeRegistrationClosesSetting = systemSettingService.findByName(SystemSettingNames.DAYS_BEFORE_REGISTRATION_CLOSES);
+        int daysBeforeRegistrationCloses = (null != daysBeforeRegistrationClosesSetting ?
+            NumberUtils.toInt(daysBeforeRegistrationClosesSetting.getValue(), 1) :
+            1);
+        LocalDate registrationCloses = LocalDate.now().minusDays(daysBeforeRegistrationCloses);
+        return registrationCloses.isBefore(startDate);
     }
 
 }

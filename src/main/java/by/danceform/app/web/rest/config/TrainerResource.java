@@ -5,14 +5,10 @@ import by.danceform.app.security.AuthoritiesConstants;
 import by.danceform.app.security.SecurityUtils;
 import by.danceform.app.service.config.TrainerService;
 import by.danceform.app.web.rest.util.HeaderUtil;
-import by.danceform.app.web.rest.util.PaginationUtil;
 import com.codahale.metrics.annotation.Timed;
 import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,9 +24,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
