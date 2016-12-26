@@ -1,34 +1,34 @@
 {
-    "danceFormApp": {
-        "registeredCouple" : {
-            "home": {
-                "title": "Registered Couples",
-                "createLabel": "Create a new Registered Couple",
-                "createOrEditLabel": "Create or edit a Registered Couple",
-                "search": "Search for Registered Couple"
-            },
-            "created": "A new Registered Couple is created with identifier {{ param }}",
-            "updated": "A Registered Couple is updated with identifier {{ param }}",
-            "deleted": "A Registered Couple is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete Registered Couple {{ id }}?"
-            },
-            "detail": {
-                "title": "Registered Couple"
-            },
-            "partner1Name": "Partner 1 Name",
-            "partner1Surname": "Partner 1 Surname",
-            "partner2Name": "Partner 2 Name",
-            "partner2Surname": "Partner 2 Surname",
-            "partner1DateOfBirth": "Partner 1 Date Of Birth",
-            "partner2DateOfBirth": "Partner 2 Date Of Birth",
-            "partner1Organization": "Partner 1 Organization",
-            "partner1Location": "Partner 1 Location",
-            "trainer1": "Trainer 1",
-            "partner1DanceClassST": "Partner 1 Dance Class ST",
-            "partner1DanceClassLA": "Partner 1 Dance Class LA",
-            "partner2DanceClassST": "Partner 2 Dance Class ST",
-            "partner2DanceClassLA": "Partner 2 Dance Class LA"
-        }
+  "danceFormApp": {
+    "registeredCouple": {
+      "home": {
+        "title": "Registered Couples",
+        "createLabel": "Create a new Registered Couple",
+        "createOrEditLabel": "Create or edit a Registered Couple",
+        "search": "Search for Registered Couple"
+      },
+      "created": "A new Registered Couple is created with identifier {{ param }}",
+      "updated": "A Registered Couple is updated with identifier {{ param }}",
+      "deleted": "A Registered Couple is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Registered Couple {{ id }}?"
+      },
+      "detail": {
+        "title": "Registered Couple"
+      },
+      "partner1Name": "Partner 1 Name",
+      "partner1Surname": "Partner 1 Surname",
+      "partner2Name": "Partner 2 Name",
+      "partner2Surname": "Partner 2 Surname",
+      "partner1DateOfBirth": "Partner 1 Date Of Birth",
+      "partner2DateOfBirth": "Partner 2 Date Of Birth",
+      "partner1Organization": "Partner 1 Organization",
+      "partner1Location": "Partner 1 Location",
+      "trainer1": "Trainer 1",
+      "partner1DanceClassST": "Partner 1 Dance Class ST",
+      "partner1DanceClassLA": "Partner 1 Dance Class LA",
+      "partner2DanceClassST": "Partner 2 Dance Class ST",
+      "partner2DanceClassLA": "Partner 2 Dance Class LA"
     }
+  }
 }

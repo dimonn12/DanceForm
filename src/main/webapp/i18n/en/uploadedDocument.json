@@ -1,28 +1,28 @@
 {
-    "danceFormApp": {
-        "uploadedDocument" : {
-            "home": {
-                "title": "Uploaded Documents",
-                "createLabel": "Create a new Uploaded Document",
-                "createOrEditLabel": "Create or edit a Uploaded Document",
-                "search": "Search for Uploaded Document"
-            },
-            "created": "A new Uploaded Document is created with identifier {{ param }}",
-            "updated": "A Uploaded Document is updated with identifier {{ param }}",
-            "deleted": "A Uploaded Document is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete Uploaded Document {{ id }}?"
-            },
-            "detail": {
-                "title": "Uploaded Document"
-            },
-            "name": "Name",
-            "extension": "Extension",
-            "path": "Path",
-            "externalPath": "External Path",
-            "content": "Content",
-            "uploadedDate": "Uploaded Date",
-            "uploadedBy": "Uploaded By"
-        }
+  "danceFormApp": {
+    "uploadedDocument": {
+      "home": {
+        "title": "Uploaded Documents",
+        "createLabel": "Create a new Uploaded Document",
+        "createOrEditLabel": "Create or edit a Uploaded Document",
+        "search": "Search for Uploaded Document"
+      },
+      "created": "A new Uploaded Document is created with identifier {{ param }}",
+      "updated": "A Uploaded Document is updated with identifier {{ param }}",
+      "deleted": "A Uploaded Document is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Uploaded Document {{ id }}?"
+      },
+      "detail": {
+        "title": "Uploaded Document"
+      },
+      "name": "Name",
+      "extension": "Extension",
+      "path": "Path",
+      "externalPath": "External Path",
+      "content": "Content",
+      "uploadedDate": "Uploaded Date",
+      "uploadedBy": "Uploaded By"
     }
+  }
 }
