@@ -3,13 +3,19 @@ package by.danceform.app.converter.competition;
 import by.danceform.app.converter.AbstractConverter;
 import by.danceform.app.domain.competition.Competition;
 import by.danceform.app.dto.competition.CompetitionDTO;
+import by.danceform.app.service.competition.CompetitionScheduleService;
 import org.springframework.stereotype.Component;
+
+import javax.inject.Inject;
 
 /**
  * Created by dimonn12 on 07.10.2016.
  */
 @Component("competitionConverter")
 public class CompetitionConverter extends AbstractConverter<Competition, CompetitionDTO, Long> {
+
+    @Inject
+    private CompetitionScheduleService competitionScheduleService;
 
     @Override
     protected CompetitionDTO convertEntityToDto(Competition entity, CompetitionDTO dto) {

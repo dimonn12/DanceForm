@@ -19,6 +19,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +29,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,6 +40,8 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class CompetitionScheduleService {
+
+    private static final int HOURS_TIMEZONE = 3;
 
     private final Logger log = LoggerFactory.getLogger(CompetitionScheduleService.class);
 
@@ -132,7 +136,7 @@ public class CompetitionScheduleService {
     }
 
     private boolean isClosedCompetition(LocalDateTime registrationClosesTime) {
-        return !LocalDateTime.now(Clock.system(ZoneId.of("+3"))).isBefore(registrationClosesTime);
+        return !LocalDateTime.now().isBefore(registrationClosesTime);
     }
 
 }
