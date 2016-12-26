@@ -619,6 +619,11 @@ dl > dt > span {
     vertical-align: middle;
 }
 
+.error-label {
+    color: #d9534f;
+    font-weight: bold;
+}
+
 @media screen and (min-width: 992px) {
     .banner {
         max-width: 240px;

@@ -38,6 +38,12 @@
                         <div class="div-inline" ng-if="vm.currentCompetition.endDate != null">&nbsp;- {{vm.currentCompetition.endDate | date:'d MMMM yyyy'}}</div>
                     </dd>
                     <dt>
+                        <span data-translate="danceFormApp.schedule.registrationCloses">Дата окончания регистрации</span>
+                    </dt>
+                    <dd>
+                        <div class="div-inline">{{vm.currentCompetition.registrationClosesTime | date:'d MMMM yyyy HH:mm Z'}}</div>
+                    </dd>
+                    <dt>
                         <span data-translate="danceFormApp.schedule.organizer">Организатор</span>
                     </dt>
                     <dd>

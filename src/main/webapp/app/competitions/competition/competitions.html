@@ -30,6 +30,9 @@
                         <span data-translate="danceFormApp.competition.date">Date</span>
                         <span class="glyphicon glyphicon-sort"></span>
                     </th>
+                    <th>
+                        <span data-translate="danceFormApp.competition.registrationCloses">Date</span>
+                    </th>
                     <th jh-sort-by="isVisible">
                         <span data-translate="danceFormApp.competition.visible">Is Visible</span>
                         <span class="glyphicon glyphicon-sort"></span>
@@ -54,6 +57,9 @@
                     <td>
                         <div>{{competition.startDate | date:'d MMMM yyyy'}}</div>
                         <div ng-if="competition.endDate != null"> - {{competition.endDate | date:'d MMMM yyyy'}}</div>
+                    </td>
+                    <td>
+                        <div>{{competition.registrationClosesTime | date:'d MMMM yyyy HH:mm Z'}}</div>
                     </td>
                     <td>
                         <div ng-if="competition.visible">

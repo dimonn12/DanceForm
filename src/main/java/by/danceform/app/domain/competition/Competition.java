@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * A Competition.
@@ -37,6 +38,9 @@ public class Competition extends AbstractEntity<Long> implements INamedEntity {
 
     @Column(name = "end_date")
     private LocalDate endDate;
+
+    @Column(name = "registration_closes_time")
+    private LocalDateTime registrationClosesTime;
 
     @Column(name = "is_visible")
     private boolean visible;
@@ -87,6 +91,14 @@ public class Competition extends AbstractEntity<Long> implements INamedEntity {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public LocalDateTime getRegistrationClosesTime() {
+        return registrationClosesTime;
+    }
+
+    public void setRegistrationClosesTime(LocalDateTime registrationClosesTime) {
+        this.registrationClosesTime = registrationClosesTime;
     }
 
     public boolean isVisible() {

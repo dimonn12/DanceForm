@@ -42,6 +42,11 @@
              relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 
+    <!-- update tables on production-->
+    <include file="classpath:config/liquibase/changelog/20161226120820_updated_entity_Competition.xml"
+             relativeToChangelogFile="false"/>
+
+
     <!-- insert values into tables-->
     <include file="classpath:config/liquibase/changelog/insert_entities_SystemSetting.xml"
              relativeToChangelogFile="false"/>

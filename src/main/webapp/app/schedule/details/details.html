@@ -38,6 +38,12 @@
                         <div class="div-inline" ng-if="vm.currentCompetition.endDate != null && vm.currentCompetition.endDate != vm.currentCompetition.startDate">&nbsp;- {{vm.currentCompetition.endDate | date:'d MMMM yyyy'}}</div>
                     </dd>
                     <dt>
+                        <span data-translate="danceFormApp.schedule.registrationCloses">Дата окончания регистрации</span>
+                    </dt>
+                    <dd>
+                        <div class="div-inline">{{vm.currentCompetition.registrationClosesTime | date:'d MMMM yyyy HH:mm Z'}}</div>
+                    </dd>
+                    <dt>
                         <span data-translate="danceFormApp.schedule.organizer">Организатор</span>
                     </dt>
                     <dd>
@@ -72,12 +78,20 @@
         </tr>
     </table>
 
-    <div class="registry-button" ng-if="vm.currentCompetition.registrationOpen">
+    <div class="registry-button" ng-if="vm.currentCompetition.registrationOpen && !vm.currentCompetition.registrationClosed">
         <button type="submit"
                 ui-sref="schedule-category-register({competitionId:vm.currentCompetition.id})"
                 class="btn btn-success">
             <span class="glyphicon glyphicon-plus"></span>
             <span data-translate="danceFormApp.schedule.categories.register"></span>
+        </button>
+    </div>
+
+    <div class="registry-button" ng-if="vm.currentCompetition.registrationOpen && vm.currentCompetition.registrationClosed">
+        <button type="submit"
+                ui-sref=""
+                class="btn btn-danger" ng-disabled="true">
+            <span data-translate="danceFormApp.schedule.categories.registerClosed"></span>
         </button>
     </div>
 

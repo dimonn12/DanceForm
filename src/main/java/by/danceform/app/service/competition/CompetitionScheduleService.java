@@ -23,7 +23,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.time.Clock;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -68,7 +72,8 @@ public class CompetitionScheduleService {
         Collections.sort(competitions, (c1, c2) -> ObjectUtils.compare(c1.getStartDate(), c2.getStartDate()));
 
         competitions.stream()
-            .forEach(compDto -> compDto.setRegistrationClosed(isClosedCompetition(compDto.getStartDate())));
+            .forEach(compDto -> compDto.setRegistrationClosed(isClosedCompetition(compDto.getRegistrationClosesTime(),
+                compDto.getStartDate())));
         return competitions;
     }
 
@@ -108,16 +113,26 @@ public class CompetitionScheduleService {
     }
 
     public boolean isClosedCompetition(Competition competition) {
-        return isClosedCompetition(competition.getStartDate());
+        return isClosedCompetition(competition.getRegistrationClosesTime(), competition.getStartDate());
     }
 
-    private boolean isClosedCompetition(LocalDate startDate) {
-        SystemSetting daysBeforeRegistrationClosesSetting = systemSettingService.findByName(SystemSettingNames.DAYS_BEFORE_REGISTRATION_CLOSES);
-        int daysBeforeRegistrationCloses = (null != daysBeforeRegistrationClosesSetting ?
-            NumberUtils.toInt(daysBeforeRegistrationClosesSetting.getValue(), 1) :
-            1);
-        LocalDate registrationCloses = LocalDate.now().minusDays(daysBeforeRegistrationCloses);
-        return registrationCloses.isBefore(startDate);
+    private boolean isClosedCompetition(LocalDateTime registrationClosesTime, LocalDate startDate) {
+        return isClosedCompetition(getRegistrationClosesTime(registrationClosesTime, startDate));
+    }
+
+    public LocalDateTime getRegistrationClosesTime(LocalDateTime registrationClosesTime, LocalDate startDate) {
+        if(null == registrationClosesTime) {
+            SystemSetting daysBeforeRegistrationClosesSetting = systemSettingService.findByName(SystemSettingNames.DAYS_BEFORE_REGISTRATION_CLOSES);
+            int daysBeforeRegistrationCloses = (null != daysBeforeRegistrationClosesSetting ?
+                NumberUtils.toInt(daysBeforeRegistrationClosesSetting.getValue(), 1) :
+                1);
+            registrationClosesTime = startDate.minusDays(daysBeforeRegistrationCloses).atTime(LocalTime.NOON);
+        }
+        return registrationClosesTime;
+    }
+
+    private boolean isClosedCompetition(LocalDateTime registrationClosesTime) {
+        return !LocalDateTime.now(Clock.system(ZoneId.of("+3"))).isBefore(registrationClosesTime);
     }
 
 }

@@ -11,6 +11,10 @@
     <h2>
         <span>{{'danceFormApp.schedule.details.title' | translate}} "{{vm.currentCompetition.name}}"</span>
     </h2>
+    <br/>
+    <h3 style="text-align:center;" ng-if="vm.isReadOnlyForm()">
+        <span class="error-label" data-translate="danceFormApp.schedule.registry.registrationClosed"></span>
+    </h3>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <table>
@@ -36,6 +40,12 @@
                     <dd>
                         <div class="div-inline">{{vm.currentCompetition.startDate | date:'d MMMM yyyy'}}</div>
                         <div class="div-inline" ng-if="vm.currentCompetition.endDate != null">&nbsp;- {{vm.currentCompetition.endDate | date:'d MMMM yyyy'}}</div>
+                    </dd>
+                    <dt>
+                        <span data-translate="danceFormApp.schedule.registrationCloses">Дата окончания регистрации</span>
+                    </dt>
+                    <dd>
+                        <div class="div-inline">{{vm.currentCompetition.registrationClosesTime | date:'d MMMM yyyy HH:mm Z'}}</div>
                     </dd>
                     <dt>
                         <span data-translate="danceFormApp.schedule.organizer">Организатор</span>
@@ -274,6 +284,7 @@
                             oi-options="organization for organization in vm.organizationNames"
                             ng-model="vm.registerCouple.organization"
                             placeholder="{{'danceFormApp.schedule.registry.organization' | translate}}"
+                            ng-disabled="{{vm.isReadOnlyForm()}}"
                             oi-select-options="{
                                 newItem: true,
                                 editItem: 'correct',
@@ -287,6 +298,7 @@
                     <span class="asterisk">*</span>
                     )
                     <input type="text" class="form-control" name="location" id="field_location"
+                           placeholder="{{'danceFormApp.schedule.registry.location' | translate}}"
                            ng-model="vm.registerCouple.location"
                            ng-maxlength="128"/>
                 </div>
@@ -303,6 +315,7 @@
                             oi-options="trainer for trainer in vm.trainerNames"
                             ng-model="vm.registerCouple.trainer1"
                             placeholder="{{'danceFormApp.schedule.registry.trainer1' | translate}}"
+                            ng-disabled="{{vm.isReadOnlyForm()}}"
                             oi-select-options="{
                                 newItem: true,
                                 editItem: 'correct',
@@ -317,6 +330,7 @@
                             oi-options="trainer for trainer in vm.trainerNames"
                             ng-model="vm.registerCouple.trainer2"
                             placeholder="{{'danceFormApp.schedule.registry.trainer2' | translate}}"
+                            ng-disabled="{{vm.isReadOnlyForm()}}"
                             oi-select-options="{
                                 newItem: true,
                                 editItem: 'correct',

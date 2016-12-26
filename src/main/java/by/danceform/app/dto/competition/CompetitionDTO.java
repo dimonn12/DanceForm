@@ -5,6 +5,7 @@ import by.danceform.app.dto.AbstractDomainDTO;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 /**
@@ -20,6 +21,8 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
     private LocalDate startDate;
 
     private LocalDate endDate;
+
+    private LocalDateTime registrationClosesTime;
 
     private boolean visible;
 
@@ -68,6 +71,14 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public LocalDateTime getRegistrationClosesTime() {
+        return registrationClosesTime;
+    }
+
+    public void setRegistrationClosesTime(LocalDateTime registrationClosesTime) {
+        this.registrationClosesTime = registrationClosesTime;
     }
 
     public boolean isVisible() {
