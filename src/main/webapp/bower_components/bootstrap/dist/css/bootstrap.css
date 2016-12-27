@@ -1608,6 +1608,11 @@ pre code {
     width: 1170px;
   }
 }
+@media (min-width: 1340px) {
+    .container {
+        width: 1300px;
+    }
+}
 .container-fluid {
   padding-right: 15px;
   padding-left: 15px;
