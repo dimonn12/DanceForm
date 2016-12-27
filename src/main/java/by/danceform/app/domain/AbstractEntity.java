@@ -4,6 +4,7 @@ import com.google.common.base.Objects;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -13,7 +14,6 @@ import java.time.LocalDate;
  */
 
 @MappedSuperclass
-@Access(AccessType.FIELD)
 public abstract class AbstractEntity<I extends Serializable> implements IEntity<I> {
 
     private static final long serialVersionUID = 2586176618057178629L;

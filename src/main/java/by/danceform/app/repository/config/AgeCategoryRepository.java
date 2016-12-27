@@ -1,11 +1,11 @@
 package by.danceform.app.repository.config;
 
 import by.danceform.app.domain.config.AgeCategory;
-import org.springframework.data.jpa.repository.JpaRepository;
+import by.danceform.app.repository.AbstractEntityRepository;
 
 /**
  * Spring Data JPA repository for the AgeCategory entity.
  */
-public interface AgeCategoryRepository extends JpaRepository<AgeCategory, Long> {
+public interface AgeCategoryRepository extends AbstractEntityRepository<AgeCategory, Long> {
 
 }

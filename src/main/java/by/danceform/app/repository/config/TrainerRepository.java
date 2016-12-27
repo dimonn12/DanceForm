@@ -1,7 +1,7 @@
 package by.danceform.app.repository.config;
 
 import by.danceform.app.domain.config.Trainer;
-import org.springframework.data.jpa.repository.JpaRepository;
+import by.danceform.app.repository.AbstractEntityRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Spring Data JPA repository for the Trainer entity.
  */
-public interface TrainerRepository extends JpaRepository<Trainer, Long> {
+public interface TrainerRepository extends AbstractEntityRepository<Trainer, Long> {
 
     @Query(
         "SELECT tr FROM Trainer tr WHERE tr.visible IN (true)")

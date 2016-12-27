@@ -1,7 +1,7 @@
 package by.danceform.app.repository.couple;
 
 import by.danceform.app.domain.couple.RegisteredCouple;
-import org.springframework.data.jpa.repository.JpaRepository;
+import by.danceform.app.repository.AbstractEntityRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Spring Data JPA repository for the RegisteredCouple entity.
  */
-public interface RegisteredCoupleRepository extends JpaRepository<RegisteredCouple, Long> {
+public interface RegisteredCoupleRepository extends AbstractEntityRepository<RegisteredCouple, Long> {
 
     @Query("SELECT COUNT(couples.id) FROM RegisteredCouple couples WHERE couples.competitionCategory.id IN " +
            "(SELECT id FROM CompetitionCategory WHERE competitionId = :competitionId AND active IN (TRUE))" +

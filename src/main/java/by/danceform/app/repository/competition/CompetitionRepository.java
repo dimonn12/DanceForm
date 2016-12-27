@@ -2,7 +2,7 @@ package by.danceform.app.repository.competition;
 
 import by.danceform.app.domain.competition.Competition;
 import by.danceform.app.domain.competition.CompetitionWithDetails;
-import org.springframework.data.jpa.repository.JpaRepository;
+import by.danceform.app.repository.AbstractEntityRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Spring Data JPA repository for the Competition entity.
  */
-public interface CompetitionRepository extends JpaRepository<Competition, Long> {
+public interface CompetitionRepository extends AbstractEntityRepository<Competition, Long> {
 
     @Query(
         "SELECT NEW CompetitionWithDetails(competition," +
