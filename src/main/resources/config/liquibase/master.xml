@@ -66,4 +66,5 @@
     <include file="classpath:config/liquibase/changelog/insert_entities_Organization.xml"
              relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/insert_entities_Trainer.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/insert_entities_Message.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

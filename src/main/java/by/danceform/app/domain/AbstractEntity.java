@@ -2,9 +2,6 @@ package by.danceform.app.domain;
 
 import com.google.common.base.Objects;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.time.LocalDate;

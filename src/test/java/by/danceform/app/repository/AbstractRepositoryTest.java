@@ -35,6 +35,8 @@ public abstract class AbstractRepositoryTest<R extends AbstractEntityRepository<
 
     private final static Long ENTITY_ALLOCATION_SIZE = 1L;
 
+    protected static final Long EXISTING_ID = -999L;
+
     @Autowired
     private R repository;
 
