@@ -14,7 +14,7 @@
     <property name="floatType" value="float" dbms="mysql, oracle"/>
 
 
-    <changeSet id="20161008-3" author="dmitry_shanko">
+    <changeSet id="20161008-3" author="dmitry_shanko" context="dev or prod">
         <insert tableName="dance_class">
             <column name="id" value="1"/>
             <column name="name" value="_"/>
@@ -94,7 +94,7 @@
         </insert>
     </changeSet>
 
-    <changeSet id="20161008-4" author="dmitry_shanko">
+    <changeSet id="20161008-4" author="dmitry_shanko" context="dev or prod">
         <update tableName="dance_class">
             <column name="next_dance_class_id" value="3"/>
             <where>id=:value</where>

@@ -14,7 +14,7 @@
     <property name="floatType" value="float" dbms="mysql, oracle"/>
 
 
-    <changeSet id="20161010-10" author="dmitry_shanko">
+    <changeSet id="20161010-10" author="dmitry_shanko" context="dev">
         <insert tableName="registered_couple">
             <column name="id" value="1"/>
             <column name="partner_1_name" value="partner_1_name"/>

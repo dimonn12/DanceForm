@@ -1,5 +1,6 @@
 package by.danceform.app.repository.config;
 
+import by.danceform.app.domain.config.Organization;
 import by.danceform.app.domain.config.Trainer;
 import by.danceform.app.repository.AbstractRepositoryTest;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -14,30 +15,28 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * Created by Dmitry_Shanko on 12/27/2016.
  */
-public class TrainerRepositoryTest extends AbstractRepositoryTest<TrainerRepository, Trainer, Long> {
+public class OrganizationRepositoryTest extends AbstractRepositoryTest<OrganizationRepository, Organization, Long> {
 
     private static final String EXISTING_NAME = "Test_name";
-    private static final String EXISTING_SURNAME = "test_surname";
     private static final boolean EXISTING_VISIBLE = true;
 
     private static final Integer VISIBLE_AMOUNT = 2;
 
-    private final Trainer existing = new Trainer();
+    private final Organization existing = new Organization();
 
     @Before
     public void init() {
         existing.setId(EXISTING_ID);
         existing.setName(EXISTING_NAME);
-        existing.setSurname(EXISTING_SURNAME);
         existing.setVisible(EXISTING_VISIBLE);
     }
 
     @Test
     public void testFindVisible() {
-        List<Trainer> visibleTrainers = getRepository().findVisible();
-        assertThat(visibleTrainers.size(), is(VISIBLE_AMOUNT));
-        for(Trainer trainer : visibleTrainers) {
-            assertThat(trainer.isVisible(), is(true));
+        List<Organization> visibleOrganizations = getRepository().findVisible();
+        assertThat(visibleOrganizations.size(), is(VISIBLE_AMOUNT));
+        for(Organization organization : visibleOrganizations) {
+            assertThat(organization.isVisible(), is(true));
         }
     }
 
@@ -47,15 +46,14 @@ public class TrainerRepositoryTest extends AbstractRepositoryTest<TrainerReposit
     }
 
     @Override
-    protected Trainer getExistingEntity() {
+    protected Organization getExistingEntity() {
         return existing;
     }
 
     @Override
-    protected Trainer getNewEntity() {
-        Trainer trainer = new Trainer();
-        trainer.setName(RandomStringUtils.random(5));
-        trainer.setSurname(RandomStringUtils.random(10));
-        return trainer;
+    protected Organization getNewEntity() {
+        Organization organization = new Organization();
+        organization.setName(RandomStringUtils.random(5));
+        return organization;
     }
 }

@@ -13,8 +13,27 @@
     <property name="floatType" value="float4" dbms="postgresql, h2"/>
     <property name="floatType" value="float" dbms="mysql, oracle"/>
 
+    <changeSet id="0170103-17" author="dmitry_shanko" context="test">
+        <insert tableName="organization">
+            <column name="id" value="-999"/>
+            <column name="name" value="Test_name"/>
+            <column name="visible" valueBoolean="true"/>
+        </insert>
 
-    <changeSet id="0161017-11" author="dmitry_shanko">
+        <insert tableName="organization">
+            <column name="id" value="-998"/>
+            <column name="name" value="Test_name_2"/>
+            <column name="visible" valueBoolean="false"/>
+        </insert>
+
+        <insert tableName="organization">
+            <column name="id" value="-997"/>
+            <column name="name" value="Test_name_3"/>
+            <column name="visible" valueBoolean="true"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="0161017-11" author="dmitry_shanko" context="dev">
         <insert tableName="organization">
             <column name="id" value="1"/>
             <column name="name" value="Иное объединение"/>
