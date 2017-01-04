@@ -1,4 +1,4 @@
-package by.danceform.app.repository;
+package by.danceform.app.repository.security;
 
 import by.danceform.app.DanceFormApp;
 import by.danceform.app.domain.security.SocialUserConnection;
@@ -297,17 +297,6 @@ public class CustomSocialUsersConnectionRepositoryIntTest {
         Connection<TestFacebookApi> restoredConnection = connectionRepository.getPrimaryConnection(TestFacebookApi.class);
         assertEquals(connection, restoredConnection);
         assertNewConnection(restoredConnection);
-    }
-
-    @Test(expected = DataIntegrityViolationException.class)
-    public void addConnectionDuplicate() {
-        Connection<TestFacebookApi> connection = connectionFactory.createConnection(new AccessGrant("123456789",
-            null,
-            "987654321",
-            3600L));
-        connectionRepository.addConnection(connection);
-        connectionRepository.addConnection(connection);
-        socialUserConnectionRepository.flush();
     }
 
     @Test
