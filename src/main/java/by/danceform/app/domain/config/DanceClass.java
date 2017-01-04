@@ -51,7 +51,7 @@ public class DanceClass extends AbstractEntity<Long> implements INamedEntity, Co
     private Integer transferScore;
 
     @OneToOne
-    @JoinColumn(unique = true, updatable = true, insertable = true)
+    @JoinColumn(unique = true)
     private DanceClass nextDanceClass;
 
     public Long getId() {

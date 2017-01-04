@@ -34,7 +34,7 @@ public class TrainerRepositoryTest extends AbstractRepositoryTest<TrainerReposit
 
     @Test
     public void testFindVisible() {
-        List<Trainer> visibleTrainers = getRepository().findVisible();
+        final List<Trainer> visibleTrainers = getRepository().findVisible();
         assertThat(visibleTrainers.size(), is(VISIBLE_AMOUNT));
         for(Trainer trainer : visibleTrainers) {
             assertThat(trainer.isVisible(), is(true));
@@ -53,7 +53,7 @@ public class TrainerRepositoryTest extends AbstractRepositoryTest<TrainerReposit
 
     @Override
     protected Trainer getNewEntity() {
-        Trainer trainer = new Trainer();
+        final Trainer trainer = new Trainer();
         trainer.setName(RandomStringUtils.random(5));
         trainer.setSurname(RandomStringUtils.random(10));
         return trainer;

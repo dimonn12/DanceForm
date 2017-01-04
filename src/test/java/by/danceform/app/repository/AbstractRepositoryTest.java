@@ -69,8 +69,8 @@ public abstract class AbstractRepositoryTest<R extends AbstractEntityRepository<
     @Transactional
     public void testSaveNewEntity() {
         final E entity = getNewEntity();
-        E savedEntity = repository.save(entity);
-        E entityInDatabase = repository.findOne(savedEntity.getId());
+        final E savedEntity = repository.save(entity);
+        final E entityInDatabase = repository.findOne(savedEntity.getId());
         assertThat(entityInDatabase, not(nullValue()));
         assertThat(entityInDatabase.getId(), not(nullValue()));
         compareFieldValues(entity, entityInDatabase);

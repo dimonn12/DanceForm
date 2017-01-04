@@ -47,7 +47,7 @@ public class MessageRepositoryTest extends AbstractRepositoryTest<MessageReposit
 
     @Test
     public void testFindNotSent() {
-        List<Message> notSent = getRepository().findNotSent();
+        final List<Message> notSent = getRepository().findNotSent();
         assertThat(notSent.size(), is(NOT_SENT_AMOUNT));
         for(Message message : notSent) {
             assertThat(message.isSent(), is(false));
@@ -66,7 +66,7 @@ public class MessageRepositoryTest extends AbstractRepositoryTest<MessageReposit
 
     @Override
     protected Message getNewEntity() {
-        Message message = new Message();
+        final Message message = new Message();
         message.setFromEmail("test@ya.ru");
         message.setSubject("test subject");
         return message;

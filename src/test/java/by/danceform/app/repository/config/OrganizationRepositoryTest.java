@@ -33,7 +33,7 @@ public class OrganizationRepositoryTest extends AbstractRepositoryTest<Organizat
 
     @Test
     public void testFindVisible() {
-        List<Organization> visibleOrganizations = getRepository().findVisible();
+        final List<Organization> visibleOrganizations = getRepository().findVisible();
         assertThat(visibleOrganizations.size(), is(VISIBLE_AMOUNT));
         for(Organization organization : visibleOrganizations) {
             assertThat(organization.isVisible(), is(true));
@@ -52,7 +52,7 @@ public class OrganizationRepositoryTest extends AbstractRepositoryTest<Organizat
 
     @Override
     protected Organization getNewEntity() {
-        Organization organization = new Organization();
+        final Organization organization = new Organization();
         organization.setName(RandomStringUtils.random(5));
         return organization;
     }

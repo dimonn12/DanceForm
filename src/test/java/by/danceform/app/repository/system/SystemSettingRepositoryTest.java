@@ -36,7 +36,7 @@ public class SystemSettingRepositoryTest extends AbstractRepositoryTest<SystemSe
 
     @Test
     public void testFindByName() {
-        SystemSetting systemSetting = getRepository().findByName(EXISTING_NAME);
+        final SystemSetting systemSetting = getRepository().findByName(EXISTING_NAME);
         assertThat(systemSetting, notNullValue());
         assertThat(systemSetting.getName(), equalTo(EXISTING_NAME));
     }
@@ -53,7 +53,7 @@ public class SystemSettingRepositoryTest extends AbstractRepositoryTest<SystemSe
 
     @Override
     protected SystemSetting getNewEntity() {
-        SystemSetting systemSetting = new SystemSetting();
+        final SystemSetting systemSetting = new SystemSetting();
         systemSetting.setName("new_name");
         systemSetting.setValue("new_value");
         return systemSetting;
