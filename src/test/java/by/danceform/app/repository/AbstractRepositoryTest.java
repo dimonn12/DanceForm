@@ -58,6 +58,7 @@ public abstract class AbstractRepositoryTest<R extends AbstractEntityRepository<
     }
 
     @Test
+    @Transactional
     public void testFindById() {
         final E entityInDatabase = repository.findOne(getExistingId());
         final E existingEntity = getExistingEntity();

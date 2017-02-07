@@ -10,6 +10,4 @@ import org.springframework.data.repository.query.Param;
  */
 public interface UploadedDocumentRepository extends AbstractEntityRepository<UploadedDocument, Long> {
 
-    @Query("SELECT doc FROM UploadedDocument doc WHERE doc.fullName = :fileName")
-    UploadedDocument findByName(@Param("fileName") String fileName);
 }

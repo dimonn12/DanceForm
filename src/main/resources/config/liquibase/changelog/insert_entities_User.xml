@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle"/>
+
+    <changeSet id="20170207-1" author="dmitry_shanko" context="test">
+        <insert tableName="jhi_user">
+            <column name="id" value="-999"/>
+            <column name="login" value="test_login"/>
+            <column name="password_hash" value="test_password_hash"/>
+            <column name="first_name" value="test_first_name"/>
+            <column name="last_name" value="test_last_name"/>
+            <column name="email" value="test_email"/>
+            <column name="activated" valueBoolean="true"/>
+            <column name="lang_key" value="en"/>
+            <column name="activation_key" value="test_activation_key"/>
+            <column name="reset_key" value="test_reset_key"/>
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+        </insert>
+
+        <insert tableName="jhi_user">
+            <column name="id" value="-998"/>
+            <column name="login" value="activation_key_login"/>
+            <column name="password_hash" value="test_password_hash"/>
+            <column name="first_name" value="test_first_name"/>
+            <column name="last_name" value="test_last_name"/>
+            <column name="email" value="activation_key_email"/>
+            <column name="activated" valueBoolean="true"/>
+            <column name="lang_key" value="en"/>
+            <column name="activation_key" value="FIND_ONE_BY_ACT_KEY"/>
+            <column name="reset_key" value="test_reset_key"/>
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+        </insert>
+
+        <insert tableName="jhi_user">
+            <column name="id" value="-997"/>
+            <column name="login" value="reset_key_login"/>
+            <column name="password_hash" value="test_password_hash"/>
+            <column name="first_name" value="test_first_name"/>
+            <column name="last_name" value="test_last_name"/>
+            <column name="email" value="reset_key_email"/>
+            <column name="activated" valueBoolean="true"/>
+            <column name="lang_key" value="en"/>
+            <column name="activation_key" value="test_activation_key"/>
+            <column name="reset_key" value="FIND_ONE_BY_RST_KEY"/>
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+        </insert>
+
+        <insert tableName="jhi_user">
+            <column name="id" value="-996"/>
+            <column name="login" value="FIND_ONE_BY_LOGIN"/>
+            <column name="password_hash" value="test_password_hash"/>
+            <column name="first_name" value="test_first_name"/>
+            <column name="last_name" value="test_last_name"/>
+            <column name="email" value="login_email"/>
+            <column name="activated" valueBoolean="false"/>
+            <column name="lang_key" value="en"/>
+            <column name="activation_key" value="test_activation_key"/>
+            <column name="reset_key" value="test_reset_key"/>
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-01 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+        </insert>
+
+        <insert tableName="jhi_user">
+            <column name="id" value="-995"/>
+            <column name="login" value="email_login"/>
+            <column name="password_hash" value="test_password_hash"/>
+            <column name="first_name" value="test_first_name"/>
+            <column name="last_name" value="test_last_name"/>
+            <column name="email" value="FIND_ONE_BY_EMAIL"/>
+            <column name="activated" valueBoolean="false"/>
+            <column name="lang_key" value="en"/>
+            <column name="activation_key" value="test_activation_key"/>
+            <column name="reset_key" value="test_reset_key"/>
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-01 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+        </insert>
+
+        <insert tableName="jhi_user_authority">
+            <column name="user_id" value="-995"/>
+            <column name="authority_name" value="ROLE_ADMIN"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
