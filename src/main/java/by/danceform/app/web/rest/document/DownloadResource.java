@@ -5,6 +5,7 @@ import by.danceform.app.dto.competition.CompetitionDTO;
 import by.danceform.app.security.AuthoritiesConstants;
 import by.danceform.app.service.competition.CompetitionService;
 import by.danceform.app.service.document.UploadedDocumentService;
+import by.danceform.app.web.rest.util.DownloadUtil;
 import com.codahale.metrics.annotation.Timed;
 import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -47,7 +48,7 @@ public class DownloadResource {
         log.debug("REST request to download file");
         UploadedDocument doc = uploadedDocumentService.findById(id);
         if(null != doc) {
-            return download(response, doc);
+            return DownloadUtil.download(response, doc);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -62,7 +63,7 @@ public class DownloadResource {
         if(null != competition && competition.isVisible() && null != competition.getDetailsDocumentId()) {
             UploadedDocument doc = uploadedDocumentService.findById(competition.getDetailsDocumentId());
             if(null != doc) {
-                return download(response, doc);
+                return DownloadUtil.download(response, doc);
             }
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -78,28 +79,10 @@ public class DownloadResource {
         if(null != competition && competition.isVisible() && null != competition.getBannerImageId()) {
             UploadedDocument doc = uploadedDocumentService.findById(competition.getBannerImageId());
             if(null != doc) {
-                return download(response, doc);
+                return DownloadUtil.download(response, doc);
             }
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    private HttpEntity<byte[]> download(HttpServletResponse response, UploadedDocument doc) {
-        return download(response,
-            doc.getFullName(),
-            StringUtils.split(doc.getContentContentType(), "/"),
-            doc.getContent());
-    }
-
-
-    private HttpEntity<byte[]> download(HttpServletResponse response,
-                                        String fileName,
-                                        String[] contentTypes,
-                                        byte[] content) {
-        HttpHeaders header = new HttpHeaders();
-        header.setContentType(new MediaType(contentTypes[0], contentTypes[1]));
-        header.set("Content-Disposition", "inline; filename=" + fileName);
-        header.setContentLength(content.length);
-        return new HttpEntity<>(content, header);
-    }
 }
