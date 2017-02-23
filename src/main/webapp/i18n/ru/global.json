@@ -39,7 +39,8 @@
       "system": {
         "main": "Система",
         "systemSetting": "Системные параметры",
-        "message": "Сообщения"
+        "message": "Сообщения",
+        "languageString": "Локализованные строки"
       },
       "config": {
         "main": "Конфигурация",

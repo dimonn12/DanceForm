@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
-    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <include file="classpath:config/liquibase/changelog/initial.xml" relativeToChangelogFile="false"/>
 
@@ -31,6 +31,8 @@
     <include file="classpath:config/liquibase/changelog/20161021120752_added_entity_UploadedDocument.xml"
              relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20161107131041_added_entity_Message.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170223201542_added_entity_LanguageString.xml"
              relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20161007135824_added_entity_constraints_DanceClass.xml"
@@ -67,4 +69,5 @@
     <include file="classpath:config/liquibase/changelog/insert_entities_Trainer.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/insert_entities_Message.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/insert_entities_User.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/insert_entities_LanguageString.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

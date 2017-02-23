@@ -20,6 +20,7 @@
         "uploadedDocument": "Uploaded Document",
         "uploadedImage": "Uploaded Image",
         "message": "Message",
+        "languageString": "Language String",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

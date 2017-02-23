@@ -63,7 +63,7 @@ public class SystemSettingResource {
                 .body(null);
         }
         SystemSettingDTO result = systemSettingService.save(systemSettingDTO);
-        return ResponseEntity.created(new URI("/api/system-settings/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/system/system-settings/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("systemSetting", result.getId().toString()))
             .body(result);
     }

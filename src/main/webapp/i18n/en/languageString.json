@@ -1,0 +1,24 @@
+{
+  "danceFormApp": {
+    "languageString": {
+      "home": {
+        "title": "Language Strings",
+        "createLabel": "Create a new Language String",
+        "createOrEditLabel": "Create or edit a Language String",
+        "search": "Search for Language String"
+      },
+      "created": "A new Language String is created with identifier {{ param }}",
+      "updated": "A Language String is updated with identifier {{ param }}",
+      "deleted": "A Language String is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Language String {{ id }}?"
+      },
+      "detail": {
+        "title": "Language String"
+      },
+      "lang": "Lang",
+      "name": "Name",
+      "value": "Value"
+    }
+  }
+}
