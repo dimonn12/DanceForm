@@ -82,13 +82,22 @@
 			if(vm.isReadOnlyForm()) {
 				return;
 			}
-			if(null != vm.registerCouple.partner1DateOfBirth && null != vm.registerCouple.partner1DanceClassST &&
-			   null != vm.registerCouple.partner1DanceClassST.id && null != vm.registerCouple.partner1DanceClassLA &&
-			   null != vm.registerCouple.partner1DanceClassLA.id &&
-			   (vm.soloCouple || (null != vm.registerCouple.partner2DateOfBirth && null != vm.registerCouple.partner2DanceClassST &&
-								  null != vm.registerCouple.partner2DanceClassLA && null != vm.registerCouple.partner2DanceClassST.id &&
-								  null != vm.registerCouple.partner2DanceClassLA.id))) {
+			if(null != vm.registerCouple.partner2DateOfBirth && null != vm.registerCouple.partner2DanceClassST &&
+			   null != vm.registerCouple.partner2DanceClassLA && null != vm.registerCouple.partner2DanceClassST.id &&
+			   null != vm.registerCouple.partner2DanceClassLA.id &&
+			   (vm.soloCouple || (null != vm.registerCouple.partner1DateOfBirth && null != vm.registerCouple.partner1DanceClassST &&
+								  null != vm.registerCouple.partner1DanceClassST.id && null != vm.registerCouple.partner1DanceClassLA &&
+								  null != vm.registerCouple.partner1DanceClassLA.id ))) {
 				vm.registerCouple.isSoloCouple = vm.soloCouple;
+
+				if (vm.soloCouple) {
+					vm.registerCouple.partner1DateOfBirth = vm.registerCouple.partner2DateOfBirth;
+					vm.registerCouple.partner1Surname = vm.registerCouple.partner2Surname;
+					vm.registerCouple.partner1Name = vm.registerCouple.partner2Name;
+					vm.registerCouple.partner1DanceClassLA = vm.registerCouple.partner2DanceClassLA;
+					vm.registerCouple.partner1DanceClassST = vm.registerCouple.partner2DanceClassST;
+				}
+
 				CompetitionCategory.available({
 					competitionId: vm.currentCompetition.id,
 					soloCouple: vm.soloCouple
@@ -97,6 +106,19 @@
 				vm.availableCategories = [];
 			}
 			function onSuccess(data) {
+				if (vm.soloCouple) {
+					vm.registerCouple.partner2DateOfBirth = vm.registerCouple.partner1DateOfBirth;
+					vm.registerCouple.partner2Surname = vm.registerCouple.partner1Surname;
+					vm.registerCouple.partner2Name = vm.registerCouple.partner1Name;
+					vm.registerCouple.partner2DanceClassLA = vm.registerCouple.partner1DanceClassLA;
+					vm.registerCouple.partner2DanceClassST = vm.registerCouple.partner1DanceClassST;
+
+					vm.registerCouple.partner1DateOfBirth = null;
+					vm.registerCouple.partner1Surname = null;
+					vm.registerCouple.partner1Name = null;
+					vm.registerCouple.partner1DanceClassLA = null;
+					vm.registerCouple.partner1DanceClassST = null;
+				}
 				vm.availableCategories = data;
 			}
 		}
@@ -175,20 +197,20 @@
 
 		function isValidForm() {
 			return !vm.isReadOnlyForm() &&
-				   null != vm.registerCouple.partner1Surname && null != vm.registerCouple.partner1Name &&
-				   vm.registerCouple.partner1Surname.trim().length > 0 && vm.registerCouple.partner1Name.trim().length > 0 &&
+				   null != vm.registerCouple.partner2Surname && null != vm.registerCouple.partner2Name &&
+				   vm.registerCouple.partner2Surname.trim().length > 0 && vm.registerCouple.partner2Name.trim().length > 0 &&
 				   null != vm.registerCouple.trainer1 && null != vm.registerCouple.location &&
 				   null != vm.registerCouple.organization &&
 				   vm.registerCouple.trainer1.trim().length > 0 && vm.registerCouple.location.trim().length > 0 &&
 				   vm.registerCouple.organization.trim().length > 0 &&
-				   null != vm.registerCouple.partner1DateOfBirth && null != vm.registerCouple.partner1DanceClassST &&
-				   null != vm.registerCouple.partner1DanceClassST.id && null != vm.registerCouple.partner1DanceClassLA &&
-				   null != vm.registerCouple.partner1DanceClassLA.id &&
-				   (vm.soloCouple || (null != vm.registerCouple.partner2Name && null != vm.registerCouple.partner2Surname &&
-									  vm.registerCouple.partner2Name.trim().length > 0 && vm.registerCouple.partner2Surname.trim().length > 0 &&
-									  null != vm.registerCouple.partner2DateOfBirth && null != vm.registerCouple.partner2DanceClassST &&
-									  null != vm.registerCouple.partner2DanceClassLA && null != vm.registerCouple.partner2DanceClassST.id &&
-									  null != vm.registerCouple.partner2DanceClassLA.id))
+				   null != vm.registerCouple.partner2DateOfBirth && null != vm.registerCouple.partner2DanceClassST &&
+				   null != vm.registerCouple.partner2DanceClassST.id && null != vm.registerCouple.partner2DanceClassLA &&
+				   null != vm.registerCouple.partner2DanceClassLA.id &&
+				   (vm.soloCouple || (null != vm.registerCouple.partner1Name && null != vm.registerCouple.partner1Surname &&
+									  vm.registerCouple.partner1Name.trim().length > 0 && vm.registerCouple.partner1Surname.trim().length > 0 &&
+									  null != vm.registerCouple.partner1DateOfBirth && null != vm.registerCouple.partner1DanceClassST &&
+									  null != vm.registerCouple.partner1DanceClassLA && null != vm.registerCouple.partner1DanceClassST.id &&
+									  null != vm.registerCouple.partner1DanceClassLA.id))
 		}
 
 		function trainerOnLoad() {

@@ -640,6 +640,25 @@ td, th {
     white-space: nowrap;
 }
 
+@media (min-width: 1560px) {
+    .container {
+        width: 1510px;
+    }
+}
+
+@media (min-width: 1680px) {
+    .container {
+        width: 1625px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .container {
+        width: 1850px;
+    }
+}
+
+
 /*@media screen and (max-width: 900px) {
     .registry-block .form-group {
         padding-bottom: 30px;
