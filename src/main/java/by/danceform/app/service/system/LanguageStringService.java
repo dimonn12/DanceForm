@@ -3,6 +3,7 @@ package by.danceform.app.service.system;
 import by.danceform.app.converter.system.LanguageStringConverter;
 import by.danceform.app.domain.system.LanguageString;
 import by.danceform.app.dto.system.LanguageStringDTO;
+import by.danceform.app.localization.LocalizationHelper;
 import by.danceform.app.repository.system.LanguageStringRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Service Implementation for managing LanguageString.
@@ -28,6 +30,9 @@ public class LanguageStringService {
     @Inject
     private LanguageStringConverter languageStringConverter;
 
+    @Inject
+    private LocalizationHelper localizationHelper;
+
     /**
      * Save a languageString.
      *
@@ -39,6 +44,7 @@ public class LanguageStringService {
         LanguageString languageString = languageStringConverter.convertToEntity(languageStringDTO);
         languageString = languageStringRepository.save(languageString);
         LanguageStringDTO result = languageStringConverter.convertToDto(languageString);
+        localizationHelper.putIntoCache(languageString.getLang(), languageString.getName(), languageString.getValue());
         return result;
     }
 
@@ -77,5 +83,15 @@ public class LanguageStringService {
     public void delete(Long id) {
         log.debug("Request to delete LanguageString : {}", id);
         languageStringRepository.delete(id);
+        localizationHelper.clearCache();
     }
+
+    public LanguageString findByLanguage(String name, String lang) {
+        List<LanguageString> languageStringList = languageStringRepository.findByNameAndLang(name, lang);
+        if(!languageStringList.isEmpty()) {
+            return languageStringList.get(0);
+        }
+        return null;
+    }
+
 }

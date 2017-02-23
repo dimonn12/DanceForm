@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -104,10 +105,10 @@ public class LanguageStringResource {
                     method = RequestMethod.GET,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<List<LanguageStringDTO>> getAllLanguageStrings(Pageable pageable) throws URISyntaxException {
+    public ResponseEntity<List<LanguageStringDTO>> getAllLanguageStrings(HttpServletRequest request, Pageable pageable) throws URISyntaxException {
         log.debug("REST request to get a page of LanguageStrings");
         Page<LanguageStringDTO> page = languageStringService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/language-strings");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/system/language-strings");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

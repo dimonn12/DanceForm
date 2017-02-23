@@ -22,6 +22,8 @@ public class LanguageString extends AbstractEntity<Long> implements INamedEntity
 
     private static final long serialVersionUID = 1L;
 
+    public static final String DEFAULT_SYSTEM_LANGUAGE = "en";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
