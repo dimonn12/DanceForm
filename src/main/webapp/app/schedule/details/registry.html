@@ -45,7 +45,7 @@
                         <span data-translate="danceFormApp.schedule.registrationCloses">Дата окончания регистрации</span>
                     </dt>
                     <dd>
-                        <div class="div-inline">{{vm.currentCompetition.registrationClosesTime | date:'d MMMM yyyy HH:mm Z'}}</div>
+                        <div class="div-inline">{{vm.currentCompetition.registrationClosesTime | date:'d MMMM yyyy HH:mm'}}</div>
                     </dd>
                     <dt>
                         <span data-translate="danceFormApp.schedule.organizer">Организатор</span>
@@ -53,7 +53,7 @@
                     <dd>
                         <span>{{vm.currentCompetition.organizer}}</span>
                     </dd>
-                    <dt>
+                    <dt style="white-space: normal">
                         <span data-translate="danceFormApp.schedule.location">Место проведения</span>
                     </dt>
                     <dd>
@@ -94,7 +94,7 @@
                 </table>
             </div>
 
-            <div class="registry-block">
+            <div class="registry-block" ng-show="!vm.soloCouple">
                 <div class="form-group">
                     <label class="control-label" data-translate="danceFormApp.schedule.registry.partner1Surname" for="field_partner1surname">Name</label>
                     (
@@ -185,7 +185,7 @@
                 </div>
             </div>
 
-            <div class="registry-block">
+            <div class="registry-block" ng-show="!vm.soloCouple">
                 <div class="form-group">
                     <label class="control-label" data-translate="danceFormApp.schedule.registry.partner2Surname" for="field_partner2surname">Name</label>
                     (
@@ -274,7 +274,7 @@
                 </div>
             </div>
 
-            <div class="registry-block">
+            <div class="registry-block" ng-show="!vm.soloCouple">
                 <div class="form-group">
                     <label class="control-label" data-translate="danceFormApp.schedule.registry.organization">Name</label>
                     (
@@ -304,7 +304,7 @@
                 </div>
             </div>
 
-            <div class="registry-block">
+            <div class="registry-block" ng-show="!vm.soloCouple">
                 <div class="form-group">
                     <label class="control-label" data-translate="danceFormApp.schedule.registry.trainer1">Name</label>
                     (
@@ -339,13 +339,178 @@
                 </div>
             </div>
 
-            <div class="registry-block" ng-show="vm.availableCategories.length > 0">
-                <h4 class="registry-classes-label">
+
+
+
+
+
+
+
+
+
+
+
+            <div class="registry-block" ng-show="vm.soloCouple">
+                <div class="form-group">
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.partner2Surname" for="field_soloSurname">Name</label>
+                    (
+                    <span class="asterisk">*</span>
+                    )
+                    <input type="text" class="form-control" name="soloSurname" id="field_soloSurname"
+                           ng-model="vm.registerSolo.surname"
+                           ng-maxlength="128"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.partner2Name" for="field_soloName">Name</label>
+                    (
+                    <span class="asterisk">*</span>
+                    )
+                    <input type="text" class="form-control" name="soloName" id="field_soloName"
+                           ng-model="vm.registerSolo.name"
+                           ng-maxlength="128"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.partner2DateOfBirth" for="field_soloDateOfBirth">Date</label>
+                    (
+                    <span class="asterisk">*</span>
+                    )
+                    <div class="input-group">
+                        <input id="field_soloDateOfBirth" type="text" class="form-control" name="soloDateOfBirth" uib-datepicker-popup="dd MMMM yyyy"
+                               datepicker-options="vm.dateOptions3"
+                               ng-model="vm.registerSolo.dateOfBirth" is-open="vm.datePickerOpenStatus.soloDateOfBirth"
+                               ng-change="vm.update()"
+                               current-text="{{'global.buttons.today' | translate}}" clear-text="{{'global.buttons.clear' | translate}}"
+                               close-text="{{'global.buttons.close' | translate}}"/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="vm.openCalendar('soloDateOfBirth')">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="classes-group form-group">
+                    <table class="registry-classes">
+                        <thead>
+                            <tr>
+                                <th colspan="2">
+                                    <h4 class="registry-classes-label">
+                                        <span data-translate="danceFormApp.schedule.registry.partner2Classes">Classes</span>
+                                    </h4>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label class="control-label" data-translate="danceFormApp.schedule.registry.st" for="field_soloDanceClassST">Date</label>
+                                    (
+                                    <span class="asterisk">*</span>
+                                    )
+                                </th>
+                                <th>
+                                    <label class="control-label" data-translate="danceFormApp.schedule.registry.la" for="field_soloDanceClassLA">Date</label>
+                                    (
+                                    <span class="asterisk">*</span>
+                                    )
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="registry-class">
+                                    <select class="form-control" id="field_soloDanceClassST" name="soloDanceClassST" ng-model="vm.registerSolo.danceClassST.id"
+                                            ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'"
+                                            ng-change="vm.update();">
+                                        <option value=""></option>
+                                    </select>
+                                </td>
+
+                                <td class="registry-class">
+                                    <select class="form-control" id="field_soloDanceClassLA" name="soloDanceClassLA" ng-model="vm.registerSolo.danceClassLA.id"
+                                            ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'"
+                                            ng-change="vm.update();">
+                                        <option value=""></option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.organization">Name</label>
+                    (
+                    <span class="asterisk">*</span>
+                    )
+                    <oi-select
+                            oi-options="organization for organization in vm.organizationNames"
+                            ng-model="vm.registerSolo.organization"
+                            placeholder="{{'danceFormApp.schedule.registry.organization' | translate}}"
+                            ng-disabled="{{vm.isReadOnlyForm()}}"
+                            oi-select-options="{
+                                newItem: true,
+                                editItem: 'correct',
+                                saveTrigger: 'enter blur tab'
+                            }"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.location" for="field_solo_location">Name</label>
+                    (
+                    <span class="asterisk">*</span>
+                    )
+                    <input type="text" class="form-control" name="soloLocation" id="field_solo_location"
+                           placeholder="{{'danceFormApp.schedule.registry.location' | translate}}"
+                           ng-model="vm.registerSolo.location"
+                           ng-maxlength="128"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.trainer1">Name</label>
+                    (
+                    <span class="asterisk">*</span>
+                    )
+
+                    <oi-select
+                            oi-options="trainer for trainer in vm.trainerNames"
+                            ng-model="vm.registerSolo.trainer1"
+                            placeholder="{{'danceFormApp.schedule.registry.trainer1' | translate}}"
+                            ng-disabled="{{vm.isReadOnlyForm()}}"
+                            oi-select-options="{
+                                newItem: true,
+                                editItem: 'correct',
+                                saveTrigger: 'enter blur tab'
+                            }"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.trainer2">Name</label>
+
+                    <oi-select
+                            oi-options="trainer for trainer in vm.trainerNames"
+                            ng-model="vm.registerSolo.trainer2"
+                            placeholder="{{'danceFormApp.schedule.registry.trainer2' | translate}}"
+                            ng-disabled="{{vm.isReadOnlyForm()}}"
+                            oi-select-options="{
+                                newItem: true,
+                                editItem: 'correct',
+                                saveTrigger: 'enter blur tab'
+                            }"/>
+                </div>
+            </div>
+
+            <div class="registry-block" style="width:100%;">
+                <h4 class="registry-classes-label" style="text-align: left;">
                     <label class="control-label" data-translate="danceFormApp.schedule.registry.availableCategories" for="field_category">Classes</label>
                     (
                     <span class="asterisk">*</span>
                     )
                 </h4>
+
+                <h5 ng-show="null === vm.availableCategories || vm.availableCategories.length === 0">
+                    <label class="control-label" data-translate="danceFormApp.schedule.registry.noAvailableCategories">Classes</label>
+                </h5>
 
                 <div class="form-group" ng-repeat="availableCategory in vm.availableCategories track by availableCategory.id">
                     <div>

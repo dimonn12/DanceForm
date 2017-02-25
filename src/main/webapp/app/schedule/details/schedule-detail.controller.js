@@ -5,9 +5,9 @@
 		.module('danceFormApp')
 		.controller('CompetitionScheduleDetailsController', CompetitionScheduleDetailsController);
 
-	CompetitionScheduleDetailsController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'CompetitionSchedule', 'DanceClass', 'AlertService'];
+	CompetitionScheduleDetailsController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'CompetitionSchedule', 'CompetitionReport', 'DanceClass', 'AlertService'];
 
-	function CompetitionScheduleDetailsController($scope, $rootScope, $stateParams, previousState, CompetitionSchedule, DanceClass, AlertService) {
+	function CompetitionScheduleDetailsController($scope, $rootScope, $stateParams, previousState, CompetitionSchedule, CompetitionReport, DanceClass, AlertService) {
 		var vm = this;
 
 		vm.currentCompetition = null;
@@ -19,6 +19,8 @@
 		vm.document = {};
 
 		vm.danceClasses = DanceClass.query();
+
+		vm.download = donwload;
 
 		load();
 
@@ -76,6 +78,27 @@
 
 			function onError(error) {
 				AlertService.error(error.data.message);
+			}
+		}
+		
+		function donwload() {
+			CompetitionReport.get({id: $stateParams.id}, onSuccess, onError);
+			function onSuccess(result) {
+				var url = URL.createObjectURL(new Blob([result.data]));
+				var a = document.createElement('a');
+				a.href = url;
+				a.download = result.filename;
+				a.target = '_blank';
+				a.click();
+			}
+			function onError(error) {
+				var charCodeArray = Array.apply(null, new Uint8Array(error).data);
+				var result = '';
+				for (var i = 0, len = charCodeArray.length; i < len; i++) {
+					var code = charCodeArray[i];
+					result += String.fromCharCode(code);
+				}
+				AlertService.error(result);
 			}
 		}
 

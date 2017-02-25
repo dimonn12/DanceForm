@@ -36,7 +36,13 @@ public class CompetitionService {
      */
     public CompetitionDTO save(CompetitionDTO competitionDTO) {
         log.debug("Request to save Competition : {}", competitionDTO);
-        Competition competition = competitionConverter.convertToEntity(competitionDTO);
+        Competition competition;
+        if(null != competitionDTO.getId()) {
+            Competition existingCompetition = competitionRepository.findOne(competitionDTO.getId());
+            competition = competitionConverter.convertDtoToEntity(competitionDTO, existingCompetition);
+        } else {
+            competition = competitionConverter.convertToEntity(competitionDTO);
+        }
         competition = competitionRepository.save(competition);
         CompetitionDTO result = competitionConverter.convertToDto(competition);
         return result;

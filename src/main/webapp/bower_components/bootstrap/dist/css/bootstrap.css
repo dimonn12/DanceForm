@@ -1588,9 +1588,9 @@ pre code {
   margin-right: auto;
   margin-left: auto;
 }
-@media (min-width: 638px) {
+/*@media (min-width: 638px) {
   .container {
-    width: 620px;
+    width: 750px;
   }
 }
 @media (min-width: 768px) {
@@ -1612,7 +1612,7 @@ pre code {
     .container {
         width: 1300px;
     }
-}
+}*/
 .container-fluid {
   padding-right: 15px;
   padding-left: 15px;

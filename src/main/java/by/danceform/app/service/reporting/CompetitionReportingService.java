@@ -1,16 +1,16 @@
 package by.danceform.app.service.reporting;
 
-import by.danceform.app.domain.couple.RegisteredCouple;
 import by.danceform.app.dto.competition.CompetitionCategoryDTO;
 import by.danceform.app.dto.competition.CompetitionDTO;
 import by.danceform.app.dto.couple.RegisteredCoupleDTO;
 import by.danceform.app.service.competition.CompetitionCategoryService;
 import by.danceform.app.service.competition.CompetitionService;
 import by.danceform.app.service.couple.RegisteredCoupleService;
-import java.util.List;
-import javax.inject.Inject;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
+
+import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by USER on 22.02.2017.

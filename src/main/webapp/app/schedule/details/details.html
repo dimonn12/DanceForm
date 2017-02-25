@@ -8,6 +8,14 @@
         <span data-translate="entity.action.back"> Назад</span>
     </button>
 
+    <button
+            ng-click="vm.download()"
+            class="btn btn-primary btn-download-report" has-authority="ROLE_ADMIN">
+        <span class="glyphicon glyphicon-download-alt"></span>
+        &nbsp;
+        <span data-translate="danceFormApp.schedule.downloadReport"> Download</span>
+    </button>
+
     <h2>
         <span>{{'danceFormApp.schedule.details.title' | translate}} "{{vm.currentCompetition.name}}"</span>
     </h2>
@@ -43,7 +51,7 @@
                         <span data-translate="danceFormApp.schedule.registrationCloses">Дата окончания регистрации</span>
                     </dt>
                     <dd>
-                        <div class="div-inline">{{vm.currentCompetition.registrationClosesTime | date:'d MMMM yyyy HH:mm Z'}}</div>
+                        <div class="div-inline">{{vm.currentCompetition.registrationClosesTime | date:'d MMMM yyyy HH:mm'}}</div>
                     </dd>
                     <dt>
                         <span data-translate="danceFormApp.schedule.organizer">Организатор</span>
@@ -54,7 +62,7 @@
                     <dt>
                         <span data-translate="danceFormApp.schedule.location">Место проведения</span>
                     </dt>
-                    <dd>
+                    <dd style="white-space: normal">
                         <span>{{vm.currentCompetition.location}}</span>
                     </dd>
                     <dt>
