@@ -6,6 +6,7 @@ import by.danceform.app.domain.config.DanceClass;
 import by.danceform.app.domain.couple.RegisteredCouple;
 import by.danceform.app.dto.couple.RegisteredCoupleDTO;
 import by.danceform.app.repository.config.DanceClassRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
@@ -54,6 +55,7 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
         if(null != entity.getCompetitionCategory()) {
             dto.setCompetitionCategoryIds(Arrays.asList(entity.getCompetitionCategory().getId()));
         }
+        setIsSoloCouple(entity, dto);
         return dto;
     }
 
@@ -106,5 +108,13 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
             dto.setPartner2Name(null);
             dto.setPartner2Surname(null);
         }
+    }
+
+    protected void setIsSoloCouple(RegisteredCouple entity, RegisteredCoupleDTO dto) {
+        dto.setSoloCouple(StringUtils.isBlank(entity.getPartner2Name()) &&
+                          StringUtils.isBlank(entity.getPartner2Surname()) &&
+                          null == entity.getPartner2DateOfBirth() &&
+                          null == entity.getPartner2DanceClassST() &&
+                          null == entity.getPartner2DanceClassLA());
     }
 }

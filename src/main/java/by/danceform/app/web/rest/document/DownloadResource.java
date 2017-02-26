@@ -44,11 +44,11 @@ public class DownloadResource {
                     method = RequestMethod.GET)
     @Timed
     @Secured(AuthoritiesConstants.ADMIN)
-    public HttpEntity<byte[]> download(@PathVariable("id") Long id, HttpServletResponse response) {
+    public HttpEntity<byte[]> download(@PathVariable("id") Long id) {
         log.debug("REST request to download file");
         UploadedDocument doc = uploadedDocumentService.findById(id);
         if(null != doc) {
-            return DownloadUtil.download(response, doc);
+            return DownloadUtil.download(doc);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -56,14 +56,13 @@ public class DownloadResource {
     @RequestMapping(value = "/competition/{competitionId}/details",
                     method = RequestMethod.GET)
     @Timed
-    public HttpEntity<byte[]> downloadCompetitionDetails(@PathVariable("competitionId") Long competitionId,
-                                                         HttpServletResponse response) {
+    public HttpEntity<byte[]> downloadCompetitionDetails(@PathVariable("competitionId") Long competitionId) {
         log.debug("REST request to download file");
         CompetitionDTO competition = competitionService.findOne(competitionId);
         if(null != competition && competition.isVisible() && null != competition.getDetailsDocumentId()) {
             UploadedDocument doc = uploadedDocumentService.findById(competition.getDetailsDocumentId());
             if(null != doc) {
-                return DownloadUtil.download(response, doc);
+                return DownloadUtil.download(doc);
             }
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -72,14 +71,13 @@ public class DownloadResource {
     @RequestMapping(value = "/competition/{competitionId}/banner",
                     method = RequestMethod.GET)
     @Timed
-    public HttpEntity<byte[]> downloadCompetitionBanner(@PathVariable("competitionId") Long competitionId,
-                                                        HttpServletResponse response) {
+    public HttpEntity<byte[]> downloadCompetitionBanner(@PathVariable("competitionId") Long competitionId) {
         log.debug("REST request to download file");
         CompetitionDTO competition = competitionService.findOne(competitionId);
         if(null != competition && competition.isVisible() && null != competition.getBannerImageId()) {
             UploadedDocument doc = uploadedDocumentService.findById(competition.getBannerImageId());
             if(null != doc) {
-                return DownloadUtil.download(response, doc);
+                return DownloadUtil.download(doc);
             }
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);

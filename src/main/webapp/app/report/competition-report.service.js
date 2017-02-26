@@ -14,13 +14,12 @@
 				method: 'GET',
 				responseType: 'arraybuffer',
 				transformResponse: function(data, headers) {
+					var header = headers('content-disposition');
+					var result = header.split(';')[1].trim().split('=')[1];
+					var filename = result.replace(/"/g, '');
 					return {
 						data: data,
-						filename: function(headers) {
-							var header = headers('content-disposition');
-							var result = header.split(';')[1].trim().split('=')[1];
-							return result.replace(/"/g, '');
-						}
+						filename: filename
 					}
 				}
 			}

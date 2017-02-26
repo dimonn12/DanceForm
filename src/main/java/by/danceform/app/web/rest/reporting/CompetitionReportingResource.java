@@ -2,10 +2,7 @@ package by.danceform.app.web.rest.reporting;
 
 import by.danceform.app.security.AuthoritiesConstants;
 import by.danceform.app.service.reporting.CompetitionReportingService;
-import by.danceform.app.web.rest.util.DownloadUtil;
 import com.codahale.metrics.annotation.Timed;
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -17,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+
 /**
  * Created by USER on 22.02.2017.
  */
 @RestController
 @RequestMapping("/api/reports/competition")
-@Secured({AuthoritiesConstants.ADMIN})
+@Secured({ AuthoritiesConstants.ADMIN })
 public class CompetitionReportingResource {
 
     private final Logger log = LoggerFactory.getLogger(CompetitionReportingResource.class);
@@ -31,13 +32,17 @@ public class CompetitionReportingResource {
     private CompetitionReportingService competitionReportingService;
 
     @RequestMapping(value = "/{id}/registered-couples",
-        method = RequestMethod.GET)
+                    method = RequestMethod.GET)
     @Timed
-    public HttpEntity<byte[]> download(@PathVariable("id") Long competitionId, HttpServletResponse response) {
+    public HttpEntity<byte[]> download(@PathVariable("id") Long competitionId, HttpServletRequest request) {
         log.debug("REST request to download registered couples report for competition with id=" + competitionId);
-        Object doc = competitionReportingService.getCompetitionReport(competitionId);
-        if (null != doc) {
-            return DownloadUtil.download(response, null);
+        try {
+            HttpEntity<byte[]> result = competitionReportingService.getCompetitionReport(request, competitionId);
+            if(null != result) {
+                return result;
+            }
+        } catch(IOException ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
