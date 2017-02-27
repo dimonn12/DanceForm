@@ -4,7 +4,7 @@
         <table class="jh-table table table-bordered table-schedule competition-table">
             <tbody>
                 <tr class="table-head">
-                    <td colspan="4">
+                    <td colspan="5">
                         <h1 data-translate="danceFormApp.schedule.title">Предстоящие Турниры</h1>
                     </td>
                 </tr>
@@ -12,15 +12,16 @@
                     <td style="width:15%">
                         <span data-translate="danceFormApp.schedule.date">Дата</span>
                     </td>
-                    <td style="width:25%">
+                    <td style="width:20%">
                         <span data-translate="danceFormApp.schedule.name">Название</span>
                     </td>
-                    <td class="wrap-text" style="width:35%;">
+                    <td class="wrap-text" style="width:30%;">
                         <span data-translate="danceFormApp.schedule.location">Место</span>
                     </td>
-                    <td style="width:25%">
+                    <td style="width:20%">
                         <span data-translate="danceFormApp.schedule.organizer">Организатор</span>
                     </td>
+                    <td style="width:15%"/>
                 </tr>
                 <tr ng-repeat="competition in vm.futureCompetitions | orderBy:'startDate'">
                     <td>
@@ -37,10 +38,18 @@
                     </td>
                     <td style="white-space: normal;">{{competition.location}}</td>
                     <td>{{competition.organizer}}</td>
+                    <td>
+                        <button type="button"
+                                ng-if="competition.registrationOpen && !competition.registrationClosed"
+                                ui-sref="schedule-category-register({id:competition.id})"
+                                class="btn btn-link show-competition-link">
+                            <span>{{'danceFormApp.schedule.registry.register' | translate}}</span>
+                        </button>
+                    </td>
                 </tr>
 
                 <tr class="table-head" ng-if="vm.pastCompetitions != null && vm.pastCompetitions.length > 0">
-                    <td colspan="4" style="border: none; text-align: left">
+                    <td colspan="5" style="border: none; text-align: left">
                         <h2 data-translate="danceFormApp.schedule.past.title">Прошедшие турниры </h2>
                     </td>
                 </tr>
@@ -57,6 +66,7 @@
                     <td>
                         <span data-translate="danceFormApp.schedule.organizer">Организатор</span>
                     </td>
+                    <td/>
                 </tr>
                 <tr ng-if="vm.pastCompetitions != null && vm.pastCompetitions.length > 0" ng-repeat="competition in vm.pastCompetitions | orderBy:'startDate'">
                     <td>
@@ -73,9 +83,28 @@
                     </td>
                     <td style="white-space: normal;">{{competition.location}}</td>
                     <td>{{competition.organizer}}</td>
+                    <td/>
                 </tr>
             </tbody>
         </table>
+
+        <div class="afisha" ng-cloak>
+            <table align="center">
+                <tbody>
+                    <tr>
+                        <td width="200" align="center" ng-repeat="competition in vm.futureCompetitions | orderBy:'startDate'">
+                            <div ng-if="competition.bannerImageId != null">
+                                <a href="uploads/competition/{{competition.id}}/banner" target="_new">
+                                    <img class="banner" data-ng-src="uploads/competition/{{competition.id}}/banner"/>
+                                </a>
+                            </div>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
 
     </div>
 </div>
