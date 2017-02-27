@@ -57,7 +57,7 @@ public class CompetitionReportingService {
         workBook.write(os);
         return DownloadUtil.download(fileName,
             new String[]{ "application", "vnd.openxmlformats-officedocument.spreadsheetml.sheet" },
-            os.toByteArray());
+            os.toByteArray(), false);
     }
 
     private void generateCategorySheet(Workbook workBook, String competitionName, CompetitionCategoryDTO categoryDTO) {
@@ -134,6 +134,7 @@ public class CompetitionReportingService {
         if(null == danceCategory) {
             value = couple.getPartner1DanceClassST().getName() +
                     (!couple.isSoloCouple() ? "/" + couple.getPartner2DanceClassST().getName() : "");
+            value = value.concat(" ");
             value = value.concat(couple.getPartner1DanceClassLA().getName() +
                                  (!couple.isSoloCouple() ? "/" + couple.getPartner2DanceClassLA().getName() : ""));
         } else {
@@ -148,7 +149,7 @@ public class CompetitionReportingService {
                     break;
             }
         }
-        return value;
+        return value.trim();
     }
 
     private class SheetInfo {
