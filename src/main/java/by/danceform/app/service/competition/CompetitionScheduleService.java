@@ -72,9 +72,11 @@ public class CompetitionScheduleService {
             .collect(Collectors.toList());
         Collections.sort(competitions, (c1, c2) -> ObjectUtils.compare(c1.getStartDate(), c2.getStartDate()));
 
-        competitions.stream()
-            .forEach(compDto -> compDto.setRegistrationClosed(isClosedCompetition(compDto.getRegistrationClosesTime(),
-                compDto.getStartDate())));
+        competitions.stream().forEach(compDto -> {
+            compDto.setRegistrationOpen(isRegistrationAvailable(compDto.getId()));
+            compDto.setRegistrationClosed(isClosedCompetition(compDto.getRegistrationClosesTime(),
+                compDto.getStartDate()));
+        });
         return competitions;
     }
 
@@ -110,7 +112,11 @@ public class CompetitionScheduleService {
     }
 
     public boolean isRegistrationAvailable(Competition competition) {
-        return competitionCategoryRepository.isRegistrationAvailable(competition.getId());
+        return isRegistrationAvailable(competition.getId());
+    }
+
+    public boolean isRegistrationAvailable(Long competitionId) {
+        return competitionCategoryRepository.isRegistrationAvailable(competitionId);
     }
 
     public boolean isClosedCompetition(Competition competition) {
