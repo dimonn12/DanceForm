@@ -56,7 +56,8 @@
         "availableCategories": "Доступные категории",
         "noAvailableCategories": "Для Ваших данных нету подходящих категорий",
         "solo": "Регистрация Соло участников",
-        "emptyTrainer": "__________"
+        "emptyTrainer": "__________",
+        "info": "<strong>Поля отмеченные (<span class='asterisk'>*</span>) являются обязательными для заполнения!</strong>"
       }
     }
   }
