@@ -1,5 +1,6 @@
 package by.danceform.app.service.competition;
 
+import by.danceform.app.converter.NamedEntityConverter;
 import by.danceform.app.converter.competition.CompetitionCategoryConverter;
 import by.danceform.app.domain.competition.Competition;
 import by.danceform.app.domain.competition.CompetitionCategory;
@@ -49,6 +50,9 @@ public class CompetitionCategoryService {
 
     @Inject
     private CompetitionRepository competitionRepository;
+
+    @Inject
+    private NamedEntityConverter<DanceClass> danceClassNamedEntityConverter;
 
     /**
      * Save a competitionCategory.
@@ -125,6 +129,7 @@ public class CompetitionCategoryService {
                                                                      Long competitionId,
                                                                      Boolean isSoloCouple) {
         log.debug("Request to get CompetitionCategory : {}", competitionId);
+        setDefaultValues(registeredCoupleDTO);
         List<CompetitionCategory> allCategories = competitionCategoryRepository.findAvailableByCompetitionId(
             competitionId);
         Set<CompetitionCategory> availableCategories = new HashSet<>();
@@ -180,6 +185,23 @@ public class CompetitionCategoryService {
             }
         }
         return competitionCategoryConverter.convertToDtos(sortAvailableCategories(availableCategories));
+    }
+
+    private void setDefaultValues(RegisteredCoupleDTO dto) {
+        if(null == dto.getPartner1DanceClassLA()) {
+            dto.setPartner1DanceClassLA(danceClassNamedEntityConverter.convertToDto(danceClassRepository.findDefault()));
+        }
+        if(null == dto.getPartner1DanceClassST()) {
+            dto.setPartner1DanceClassST(danceClassNamedEntityConverter.convertToDto(danceClassRepository.findDefault()));
+        }
+        if(!dto.isSoloCouple()) {
+            if(null == dto.getPartner2DanceClassLA()) {
+                dto.setPartner2DanceClassLA(danceClassNamedEntityConverter.convertToDto(danceClassRepository.findDefault()));
+            }
+            if(null == dto.getPartner2DanceClassST()) {
+                dto.setPartner2DanceClassST(danceClassNamedEntityConverter.convertToDto(danceClassRepository.findDefault()));
+            }
+        }
     }
 
     private boolean checkDanceClasses(Boolean isSoloCouple,

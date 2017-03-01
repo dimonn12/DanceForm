@@ -47,7 +47,7 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
             dto.setPartner2DanceClassST(danceClassNamedEntityConverter.convertToDto(entity.getPartner2DanceClassST()));
         }
         if(null != entity.getPartner1DanceClassLA()) {
-            dto.setPartner1DanceClassLAId(danceClassNamedEntityConverter.convertToDto(entity.getPartner1DanceClassLA()));
+            dto.setPartner1DanceClassLA(danceClassNamedEntityConverter.convertToDto(entity.getPartner1DanceClassLA()));
         }
         if(null != entity.getPartner2DanceClassLA()) {
             dto.setPartner2DanceClassLA(danceClassNamedEntityConverter.convertToDto(entity.getPartner2DanceClassLA()));

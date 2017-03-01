@@ -91,21 +91,21 @@
 				return;
 			}
 			if((null != vm.registerCouple.partner2DateOfBirth &&
-				null != vm.registerCouple.partner2DanceClassST &&
+				/*null != vm.registerCouple.partner2DanceClassST &&
 				null != vm.registerCouple.partner2DanceClassLA &&
 				null != vm.registerCouple.partner2DanceClassST.id &&
-				null != vm.registerCouple.partner2DanceClassLA.id &&
-				null != vm.registerCouple.partner1DateOfBirth &&
+				null != vm.registerCouple.partner2DanceClassLA.id &&*/
+				null != vm.registerCouple.partner1DateOfBirth /*&&
 				null != vm.registerCouple.partner1DanceClassST &&
 				null != vm.registerCouple.partner1DanceClassST.id &&
 				null != vm.registerCouple.partner1DanceClassLA &&
-				null != vm.registerCouple.partner1DanceClassLA.id) ||
+				null != vm.registerCouple.partner1DanceClassLA.id*/) ||
 			   (vm.soloCouple &&
-				null != vm.registerSolo.dateOfBirth &&
+				null != vm.registerSolo.dateOfBirth /*&&
 				null != vm.registerSolo.danceClassST &&
 				null != vm.registerSolo.danceClassLA &&
 				null != vm.registerSolo.danceClassST.id &&
-				null != vm.registerSolo.danceClassLA.id)) {
+				null != vm.registerSolo.danceClassLA.id*/)) {
 				vm.registerCouple.isSoloCouple = vm.soloCouple;
 				vm.registerCouple.competitionId = vm.currentCompetition.id;
 				CompetitionCategory.available({
@@ -226,29 +226,29 @@
 					 vm.registerCouple.location.trim().length > 0 &&
 					 vm.registerCouple.organization.trim().length > 0 &&
 					 null != vm.registerCouple.partner2DateOfBirth &&
-					 null != vm.registerCouple.partner2DanceClassST &&
+					/* null != vm.registerCouple.partner2DanceClassST &&
 					 null != vm.registerCouple.partner2DanceClassST.id &&
 					 null != vm.registerCouple.partner2DanceClassLA &&
-					 null != vm.registerCouple.partner2DanceClassLA.id &&
+					 null != vm.registerCouple.partner2DanceClassLA.id &&*/
 					 null != vm.registerCouple.partner1Name &&
 					 null != vm.registerCouple.partner1Surname &&
 					 vm.registerCouple.partner1Name.trim().length > 0 &&
 					 vm.registerCouple.partner1Surname.trim().length > 0 &&
-					 null != vm.registerCouple.partner1DateOfBirth &&
+					 null != vm.registerCouple.partner1DateOfBirth /*&&
 					 null != vm.registerCouple.partner1DanceClassST &&
 					 null != vm.registerCouple.partner1DanceClassLA &&
 					 null != vm.registerCouple.partner1DanceClassST.id &&
-					 null != vm.registerCouple.partner1DanceClassLA.id) ||
+					 null != vm.registerCouple.partner1DanceClassLA.id*/) ||
 					(vm.soloCouple &&
 					 null != vm.registerSolo.name &&
 					 null != vm.registerSolo.surname &&
 					 vm.registerSolo.name.trim().length > 0 &&
 					 vm.registerSolo.surname.trim().length > 0 &&
 					 null != vm.registerSolo.dateOfBirth &&
-					 null != vm.registerSolo.danceClassST &&
+					 /*null != vm.registerSolo.danceClassST &&
 					 null != vm.registerSolo.danceClassLA &&
 					 null != vm.registerSolo.danceClassST.id &&
-					 null != vm.registerSolo.danceClassLA.id &&
+					 null != vm.registerSolo.danceClassLA.id &&*/
 					 null != vm.registerSolo.trainer1 &&
 					 null != vm.registerSolo.location &&
 					 null != vm.registerSolo.organization));

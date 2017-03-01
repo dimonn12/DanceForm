@@ -48,10 +48,8 @@ public class RegisteredCoupleDTO extends AbstractDomainDTO<Long> {
     @Size(min = 1, max = 80)
     private String trainer2;
 
-    @NotNull
     private NamedReferenceDTO partner1DanceClassST;
 
-    @NotNull
     private NamedReferenceDTO partner1DanceClassLA;
 
     private NamedReferenceDTO partner2DanceClassST;
@@ -166,7 +164,7 @@ public class RegisteredCoupleDTO extends AbstractDomainDTO<Long> {
         return partner1DanceClassLA;
     }
 
-    public void setPartner1DanceClassLAId(NamedReferenceDTO danceClass) {
+    public void setPartner1DanceClassLA(NamedReferenceDTO danceClass) {
         this.partner1DanceClassLA = danceClass;
     }
 
