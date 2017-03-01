@@ -69,7 +69,29 @@
 		function load() {
 			vm.registerCouple.competitionId = vm.currentCompetition.id;
 			setReadOnlyForm();
+			preLoadDefault();
 		}
+
+		function preLoadDefault() {
+		    if (null == vm.registerCouple.partner1DanceClassST) {
+                vm.registerCouple.partner1DanceClassST = {id: 1};
+            }
+            if (null == vm.registerCouple.partner1DanceClassLA) {
+                vm.registerCouple.partner1DanceClassLA = {id: 1};
+            }
+            if (null == vm.registerCouple.partner2DanceClassST) {
+                vm.registerCouple.partner2DanceClassST = {id: 1};
+            }
+            if (null == vm.registerCouple.partner2DanceClassLA) {
+                vm.registerCouple.partner2DanceClassLA = {id: 1};
+            }
+            if (null == vm.registerSolo.danceClassST) {
+                vm.registerSolo.danceClassST = {id: 1};
+            }
+            if (null == vm.registerSolo.danceClassLA) {
+                vm.registerSolo.danceClassLA = {id: 1};
+            }
+        }
 
 		function setReadOnlyForm() {
 			if(vm.isReadOnlyForm()) {
@@ -211,6 +233,7 @@
 			}
 			update();
 			updateSelectedCategory();
+            preLoadDefault();
 		}
 
 		function isValidForm() {
