@@ -1,23 +1,22 @@
 package by.danceform.app.domain;
 
 import com.google.common.base.Objects;
-
-import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.MappedSuperclass;
 
 /**
  * Created by dimonn12 on 07.10.2016.
  */
 
 @MappedSuperclass
-public abstract class AbstractEntity<I extends Serializable> implements IEntity<I> {
+public abstract class AbstractEntity<ID extends Serializable> implements IEntity<ID> {
 
     private static final long serialVersionUID = 2586176618057178629L;
 
     public static final LocalDate DEFAULT_END_DATE = LocalDate.of(3000, 1, 1);
 
-    public abstract void setId(I id);
+    public abstract void setId(ID id);
 
     @SuppressWarnings("rawtypes")
     @Override

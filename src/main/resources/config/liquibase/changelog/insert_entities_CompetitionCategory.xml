@@ -13,6 +13,20 @@
     <property name="floatType" value="float4" dbms="postgresql, h2"/>
     <property name="floatType" value="float" dbms="mysql, oracle"/>
 
+    <changeSet id="20170316-12" author="dmitry_shanko" context="test">
+        <insert tableName="competition_category">
+            <column name="id" value="-999"/>
+            <column name="name" value="TEST"/>
+            <column name="description" value="Test description"/>
+            <column name="date" value="${now}"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="check_min_age" valueBoolean="true"/>
+            <column name="check_max_age" valueBoolean="false"/>
+            <column name="competition_id" value="-999"/>
+            <column name="dance_category_id" value="-999"/>
+            <column name="max_dance_class_id"/>
+        </insert>
+    </changeSet>
 
     <changeSet id="20161009-10" author="dmitry_shanko" context="dev">
         <insert tableName="competition_category">

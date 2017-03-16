@@ -1,10 +1,10 @@
 package by.danceform.app.domain.couple;
 
 
-import by.danceform.app.domain.AbstractEntity;
+import by.danceform.app.domain.SoftDeletedEntity;
 import by.danceform.app.domain.competition.CompetitionCategory;
 import by.danceform.app.domain.config.DanceClass;
-
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,14 +15,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
 
 /**
  * A RegisteredCouple.
  */
 @Entity
 @Table(name = "registered_couple")
-public class RegisteredCouple extends AbstractEntity<Long> {
+public class RegisteredCouple extends SoftDeletedEntity<Long> {
 
     private static final long serialVersionUID = 1L;
 

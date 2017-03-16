@@ -13,6 +13,19 @@
     <property name="floatType" value="float4" dbms="postgresql, h2"/>
     <property name="floatType" value="float" dbms="mysql, oracle"/>
 
+    <changeSet id="20170316-13" author="dmitry_shanko" context="test">
+        <insert tableName="competition">
+            <column name="id" value="-999"/>
+            <column name="name" value="Test name"/>
+            <column name="start_date" value="${now}"/>
+            <column name="end_date" value="${now}"/>
+            <column name="is_visible" valueBoolean="true"/>
+            <column name="organizer" value="Test Org"/>
+            <column name="location" value="Test Loc"/>
+            <column name="banner_image_id"/>
+            <column name="details_document_id"/>
+        </insert>
+    </changeSet>
 
     <changeSet id="20161008-10" author="dmitry_shanko" context="dev">
         <insert tableName="competition">

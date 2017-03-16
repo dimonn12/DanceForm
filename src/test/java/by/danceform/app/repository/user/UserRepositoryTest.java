@@ -1,26 +1,25 @@
 package by.danceform.app.repository.user;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import by.danceform.app.domain.user.User;
-import by.danceform.app.repository.AbstractRepositoryTest;
+import by.danceform.app.repository.AbstractAuditingEntityRepositoryTest;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.List;
+import java.util.Optional;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.List;
-import java.util.Optional;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 /**
  * Created by Dmitry_Shanko on 1/3/2017.
  */
-public class UserRepositoryTest extends AbstractRepositoryTest<UserRepository, User, Long> {
+public class UserRepositoryTest extends AbstractAuditingEntityRepositoryTest<UserRepository, User, Long> {
 
     private static final Integer TOTAL_COUNT = 9;
 
@@ -32,25 +31,8 @@ public class UserRepositoryTest extends AbstractRepositoryTest<UserRepository, U
     private static final String EXISTING_LANG_KEY = "en";
     private static final String EXISTING_ACTIVATION_KEY = "test_activation_key";
     private static final String EXISTING_RESET_KEY = "test_reset_key";
-    private static final String EXISTING_CREATED_BY = "test_created_by";
-    private static final String EXISTING_LAST_MODIFIED_BY = "test_last_modified_by";
+
     private static final Boolean EXISTING_ACTIVATED = true;
-    private static final ZonedDateTime EXISTING_CREATED_DATE = ZonedDateTime.of(2017,
-        2,
-        15,
-        11,
-        12,
-        13,
-        0,
-        ZoneId.systemDefault());
-    private static final ZonedDateTime EXISTING_LAST_MODIFIED_DATE = ZonedDateTime.of(2017,
-        2,
-        16,
-        12,
-        13,
-        14,
-        0,
-        ZoneId.systemDefault());
 
     private static final String FIND_ONE_BY_ACTIVATION_KEY = "FIND_ONE_BY_ACT_KEY";
     private static final Long FIND_ONE_BY_ACTIVATION_KEY_ID = -998L;
@@ -88,11 +70,8 @@ public class UserRepositoryTest extends AbstractRepositoryTest<UserRepository, U
         existing.setLangKey(EXISTING_LANG_KEY);
         existing.setActivationKey(EXISTING_ACTIVATION_KEY);
         existing.setResetKey(EXISTING_RESET_KEY);
-        existing.setCreatedBy(EXISTING_CREATED_BY);
-        existing.setLastModifiedBy(EXISTING_LAST_MODIFIED_BY);
         existing.setActivated(EXISTING_ACTIVATED);
-        existing.setCreatedDate(EXISTING_CREATED_DATE);
-        existing.setLastModifiedDate(EXISTING_LAST_MODIFIED_DATE);
+        initExistingAuditingEntity(existing);
     }
 
     @Override
@@ -135,9 +114,10 @@ public class UserRepositoryTest extends AbstractRepositoryTest<UserRepository, U
 
     @Test
     public void testFindByIdWithAuthorities() {
-        final Page<User> entitiesWithAuthorities = getRepository().findAllWithAuthorities(new PageRequest(0, TOTAL_COUNT));
+        final Page<User> entitiesWithAuthorities = getRepository()
+            .findAllWithAuthorities(new PageRequest(0, TOTAL_COUNT));
         assertThat(entitiesWithAuthorities.getContent().size(), is(TOTAL_COUNT));
-        for(User user : entitiesWithAuthorities.getContent()) {
+        for (User user : entitiesWithAuthorities.getContent()) {
             assertThat(user.getAuthorities(), notNullValue());
         }
     }
@@ -161,10 +141,7 @@ public class UserRepositoryTest extends AbstractRepositoryTest<UserRepository, U
         user.setResetKey("new_reset_key");
         user.setResetDate(ZonedDateTime.now(ZoneId.systemDefault()));
         user.setActivated(true);
-        user.setCreatedBy("new_created_by");
-        user.setCreatedDate(ZonedDateTime.now(ZoneId.systemDefault()));
-        user.setLastModifiedBy("new_last_modified_by");
-        user.setLastModifiedDate(ZonedDateTime.now(ZoneId.systemDefault()));
+        generateAuditingFieldsForNewEntity(user);
         return user;
     }
 }

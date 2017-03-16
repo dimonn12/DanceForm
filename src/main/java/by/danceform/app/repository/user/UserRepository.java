@@ -1,19 +1,18 @@
 package by.danceform.app.repository.user;
 
 import by.danceform.app.domain.user.User;
-import by.danceform.app.repository.AbstractEntityRepository;
+import by.danceform.app.repository.AbstractAuditingEntityRepository;
+import java.time.ZonedDateTime;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 
-import java.time.ZonedDateTime;
-import java.util.List;
-import java.util.Optional;
-
 /**
  * Spring Data JPA repository for the User entity.
  */
-public interface UserRepository extends AbstractEntityRepository<User, Long> {
+public interface UserRepository extends AbstractAuditingEntityRepository<User, Long> {
 
     Optional<User> findOneByActivationKey(String activationKey);
 
