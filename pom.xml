@@ -661,8 +661,8 @@
                         src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml
                     </diffChangeLogFile>
                     <driver>com.mysql.jdbc.Driver</driver>
-                    <url>jdbc:mysql://localhost:3306/DanceForm</url>
-                    <defaultSchemaName>DanceForm</defaultSchemaName>
+                    <url>jdbc:mysql://localhost:3306/Dance_Form</url>
+                    <defaultSchemaName>Dance_Form</defaultSchemaName>
                     <username>root</username>
                     <password/>
                     <referenceUrl>
