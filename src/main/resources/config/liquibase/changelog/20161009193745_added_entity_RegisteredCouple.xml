@@ -92,7 +92,7 @@
             </column>
             <column name="last_modified_by" type="varchar(50)"/>
             <column name="last_modified_date" type="timestamp" defaultValueDate="${now}"/>
-            <column name="deleted" type="boolean"/>
+            <column name="deleted" type="boolean" defaultValueBoolean="false"/>
         </addColumn>
     </changeSet>
 </databaseChangeLog>

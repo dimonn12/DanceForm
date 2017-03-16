@@ -38,7 +38,7 @@
             <column name="created_date" value="2017-02-15 11:12:13"/>
             <column name="last_modified_date" value="2017-02-16 12:13:14"/>
 
-            <column name="deleted" value="false"/>
+            <column name="deleted" valueBoolean="false"/>
         </insert>
 
         <insert tableName="registered_couple">
@@ -65,13 +65,13 @@
             <column name="created_date" value="2017-02-15 11:12:13"/>
             <column name="last_modified_date" value="2017-02-16 12:13:14"/>
 
-            <column name="deleted" value="true"/>
+            <column name="deleted" valueBoolean="true"/>
         </insert>
     </changeSet>
 
     <changeSet id="20161010-10" author="dmitry_shanko" context="dev">
         <insert tableName="registered_couple">
-            <column name="id" value="1"/>
+            <column name="id" value="-1"/>
             <column name="partner_1_name" value="partner_1_name"/>
             <column name="partner_1_surname" value="partner_1_surname"/>
             <column name="partner_2_name" value="partner_2_name"/>
@@ -86,11 +86,18 @@
             <column name="partner_1_dance_class_la_id" value="4"/>
             <column name="partner_2_dance_class_st_id" value="5"/>
             <column name="partner_2_dance_class_la_id" value="6"/>
-            <column name="competition_category_id" value="1"/>
+            <column name="competition_category_id" value="-1"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+
+            <column name="deleted" valueBoolean="false"/>
         </insert>
 
         <insert tableName="registered_couple">
-            <column name="id" value="2"/>
+            <column name="id" value="-2"/>
             <column name="partner_1_name" value="partner_1_name2"/>
             <column name="partner_1_surname" value="partner_1_surname2"/>
             <column name="partner_2_name" value="partner_2_name2"/>
@@ -105,11 +112,18 @@
             <column name="partner_1_dance_class_la_id" value="4"/>
             <column name="partner_2_dance_class_st_id" value="5"/>
             <column name="partner_2_dance_class_la_id" value="6"/>
-            <column name="competition_category_id" value="2"/>
+            <column name="competition_category_id" value="-2"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+
+            <column name="deleted" valueBoolean="false"/>
         </insert>
 
         <insert tableName="registered_couple">
-            <column name="id" value="3"/>
+            <column name="id" value="-3"/>
             <column name="partner_1_name" value="partner_1_name3"/>
             <column name="partner_1_surname" value="partner_1_surname3"/>
             <column name="partner_2_name" value="partner_2_name3"/>
@@ -124,11 +138,18 @@
             <column name="partner_1_dance_class_la_id" value="2"/>
             <column name="partner_2_dance_class_st_id" value="2"/>
             <column name="partner_2_dance_class_la_id" value="2"/>
-            <column name="competition_category_id" value="3"/>
+            <column name="competition_category_id" value="-3"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+
+            <column name="deleted" valueBoolean="false"/>
         </insert>
 
         <insert tableName="registered_couple">
-            <column name="id" value="4"/>
+            <column name="id" value="-4"/>
             <column name="partner_1_name" value="partner_1_name4"/>
             <column name="partner_1_surname" value="partner_1_surname4"/>
             <column name="partner_2_name" value="partner_2_name4"/>
@@ -143,11 +164,18 @@
             <column name="partner_1_dance_class_la_id" value="4"/>
             <column name="partner_2_dance_class_st_id" value="5"/>
             <column name="partner_2_dance_class_la_id" value="6"/>
-            <column name="competition_category_id" value="2"/>
+            <column name="competition_category_id" value="-2"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+
+            <column name="deleted" valueBoolean="false"/>
         </insert>
 
         <insert tableName="registered_couple">
-            <column name="id" value="5"/>
+            <column name="id" value="-5"/>
             <column name="partner_1_name" value="partner_1_name5"/>
             <column name="partner_1_surname" value="partner_1_surname5"/>
             <column name="partner_2_name" value="partner_2_name5"/>
@@ -162,7 +190,14 @@
             <column name="partner_1_dance_class_la_id" value="4"/>
             <column name="partner_2_dance_class_st_id" value="5"/>
             <column name="partner_2_dance_class_la_id" value="6"/>
-            <column name="competition_category_id" value="4"/>
+            <column name="competition_category_id" value="-4"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+
+            <column name="deleted" valueBoolean="false"/>
         </insert>
 
     </changeSet>

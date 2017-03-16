@@ -29,7 +29,7 @@
 
     <changeSet id="20161008-10" author="dmitry_shanko" context="dev">
         <insert tableName="competition">
-            <column name="id" value="1"/>
+            <column name="id" value="-1"/>
             <column name="name" value="Огни Столицы"/>
             <column name="start_date" value="2016-12-17"/>
             <column name="end_date" value="2016-12-18"/>
@@ -40,7 +40,7 @@
             <column name="details_document_id"/>
         </insert>
         <insert tableName="competition">
-            <column name="id" value="2"/>
+            <column name="id" value="-2"/>
             <column name="name" value="NOT VISIBLE"/>
             <column name="start_date" value="2016-12-12"/>
             <column name="end_date" value="2016-12-15"/>
@@ -51,7 +51,7 @@
             <column name="details_document_id"/>
         </insert>
         <insert tableName="competition">
-            <column name="id" value="3"/>
+            <column name="id" value="-3"/>
             <column name="name" value="Прошедший"/>
             <column name="start_date" value="2016-10-01"/>
             <column name="end_date" value="2016-10-03"/>
@@ -62,7 +62,7 @@
             <column name="details_document_id"/>
         </insert>
         <insert tableName="competition">
-            <column name="id" value="4"/>
+            <column name="id" value="-4"/>
             <column name="name" value="Гомель"/>
             <column name="start_date" value="2016-11-15"/>
             <column name="end_date" value="2016-11-17"/>
