@@ -13,7 +13,9 @@ import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Collections;
 import java.util.List;
 import javax.persistence.Id;
 import org.junit.Test;
@@ -21,8 +23,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.util.ReflectionUtils;
 
 
 /**
@@ -62,18 +65,19 @@ public abstract class AbstractRepositoryTest<R extends AbstractEntityRepository<
         final E entityInDatabase = repository.findOne(getExistingId());
         final E existingEntity = getExistingEntity();
         assertThat(entityInDatabase, notNullValue());
-        compareFieldValues(existingEntity, entityInDatabase);
+        compareFieldValues(existingEntity, entityInDatabase, getExcludedComparingFieldsOnFind());
     }
 
     @Test
     @Transactional
     public void testSaveNewEntity() {
         final E entity = getNewEntity();
+        final E copiedEntity = entity.deepCopy();
         final E savedEntity = repository.save(entity);
         final E entityInDatabase = repository.findOne(savedEntity.getId());
         assertThat(entityInDatabase, not(nullValue()));
         assertThat(entityInDatabase.getId(), not(nullValue()));
-        compareFieldValues(entity, entityInDatabase);
+        compareFieldValues(copiedEntity, entityInDatabase, getExcludedComparingFieldsOnCreate());
     }
 
     @Test
@@ -88,13 +92,17 @@ public abstract class AbstractRepositoryTest<R extends AbstractEntityRepository<
         }
     }
 
-    protected <P extends AbstractEntity<ID>> void compareFieldValues(final P entity, final P entityInDatabase) {
+    protected void compareFieldValues(final E entity, final E entityInDatabase, final List<String> excludedFieldNames) {
         try {
             final BeanInfo modelInfo = Introspector.getBeanInfo(entity.getClass());
             for(final PropertyDescriptor fieldInfo : modelInfo.getPropertyDescriptors()) {
                 final Method getter = fieldInfo.getReadMethod();
-                if(getter != null) {
-                    compareFieldValue(entity, entityInDatabase, getter);
+                if (excludedFieldNames.contains(fieldInfo.getName())) {
+                    continue;
+                }
+                final Field field = ReflectionUtils.findField(entity.getClass(), fieldInfo.getName());
+                if(null != getter && null != field) {
+                    compareFieldValue(entity, entityInDatabase, getter, field);
                 }
             }
         } catch(ReflectiveOperationException | IntrospectionException e) {
@@ -102,19 +110,29 @@ public abstract class AbstractRepositoryTest<R extends AbstractEntityRepository<
         }
     }
 
-    private <P extends AbstractEntity<ID>> void compareFieldValue(final P entity,
-                                                                  final P entityInDatabase,
-                                                                  final Method getter)
+    private void compareFieldValue(final E entity, final E entityInDatabase, final Method getter, final Field field)
         throws ReflectiveOperationException, IntrospectionException {
         final Object entityFieldValue = getter.invoke(entity);
         final Object databaseFieldValue = getter.invoke(entityInDatabase);
-        if(getter.getAnnotation(Id.class) != null) {
+        if(field.getAnnotation(Id.class) != null) {
             assertThat(databaseFieldValue, not(nullValue()));
         } else {
-            if(entityFieldValue != null) {
+            if (null != entityFieldValue && !checkAdditionalFieldAnnotations(databaseFieldValue, field)) {
                 assertThat(databaseFieldValue, equalTo(entityFieldValue));
             }
         }
+    }
+
+    protected boolean checkAdditionalFieldAnnotations(final Object databaseFieldValue, final Field field) {
+        return false;
+    }
+
+    protected List<String> getExcludedComparingFieldsOnCreate() {
+        return Collections.emptyList();
+    }
+
+    protected List<String> getExcludedComparingFieldsOnFind() {
+        return Collections.emptyList();
     }
 
 }

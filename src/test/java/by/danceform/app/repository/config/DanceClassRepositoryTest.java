@@ -63,11 +63,12 @@ public class DanceClassRepositoryTest extends AbstractRepositoryTest<DanceClassR
     public void testSaveNewEntity() {
         final DanceClass entity = getNewEntity();
         entity.setNextDanceClass(getRepository().findOne(EXISTING_ID_3));
+        final DanceClass copiedEntity = entity.deepCopy();
         DanceClass savedEntity = getRepository().save(entity);
         DanceClass entityInDatabase = getRepository().findOne(savedEntity.getId());
         assertThat(entityInDatabase, not(nullValue()));
         assertThat(entityInDatabase.getId(), not(nullValue()));
-        compareFieldValues(entity, entityInDatabase);
+        compareFieldValues(copiedEntity, entityInDatabase, getExcludedComparingFieldsOnCreate());
     }
 
     @Override
