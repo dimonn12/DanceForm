@@ -1,6 +1,7 @@
 package by.danceform.app.repository;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import by.danceform.app.domain.AbstractAuditingEntity;
@@ -32,6 +33,7 @@ public abstract class AbstractAuditingEntityRepositoryTest<R extends AbstractAud
     AbstractAuditingEntity<ID>, ID extends Serializable> extends AbstractRepositoryTest<R, E, ID> {
 
     protected static final String ADMIN_USERNAME = "admin";
+    protected static final String SYSTEM_USERNAME = "system";
 
     protected static final String EXISTING_CREATED_BY = "test_created_by";
     protected static final String EXISTING_LAST_MODIFIED_BY = "test_last_modified_by";
@@ -53,14 +55,14 @@ public abstract class AbstractAuditingEntityRepositoryTest<R extends AbstractAud
         0,
         ZoneId.systemDefault());
 
-    protected void initExistingAuditingEntity(AbstractAuditingEntity<ID> existing) {
+    protected void initExistingAuditingEntity(final AbstractAuditingEntity<ID> existing) {
         existing.setCreatedBy(EXISTING_CREATED_BY);
         existing.setLastModifiedBy(EXISTING_LAST_MODIFIED_BY);
         existing.setCreatedDate(EXISTING_CREATED_DATE);
         existing.setLastModifiedDate(EXISTING_LAST_MODIFIED_DATE);
     }
 
-    protected void generateAuditingFieldsForNewEntity(AbstractAuditingEntity<ID> newEntity) {
+    protected void generateAuditingFieldsForNewEntity(final AbstractAuditingEntity<ID> newEntity) {
         newEntity.setCreatedBy(EXISTING_CREATED_BY);
         newEntity.setCreatedDate(ZonedDateTime.now(ZoneId.systemDefault()));
         newEntity.setLastModifiedBy(EXISTING_LAST_MODIFIED_BY);
@@ -75,14 +77,28 @@ public abstract class AbstractAuditingEntityRepositoryTest<R extends AbstractAud
         super.testSaveNewEntity();
     }
 
+    @Test
+    @Transactional
+    public void testUpdateAuditedEntity() {
+        loginAsAdmin();
+        final E createdEntity = getRepository().save(getNewEntity());
+        assertThat(createdEntity.getCreatedBy(), equalTo(ADMIN_USERNAME));
+        assertThat(createdEntity.getLastModifiedBy(), equalTo(ADMIN_USERNAME));
+        createdEntity.setLastModifiedBy(EXISTING_LAST_MODIFIED_BY);
+        loginAsSystem();
+        final E updatedEntity = getRepository().save(createdEntity);
+        getRepository().flush();
+        assertThat(updatedEntity.getCreatedDate(), not(updatedEntity.getLastModifiedDate()));
+        assertThat(updatedEntity.getCreatedBy(), equalTo(ADMIN_USERNAME));
+        assertThat(updatedEntity.getLastModifiedBy(), equalTo(SYSTEM_USERNAME));
+    }
+
     public void loginAsAdmin() {
-        SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-        SecurityContextHolder.setContext(securityContext);
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(AuthoritiesConstants.ADMIN));
-        Authentication auth = new UsernamePasswordAuthenticationToken(
-            new User(ADMIN_USERNAME, ADMIN_USERNAME, authorities), ADMIN_USERNAME);
-        securityContext.setAuthentication(auth);
+        login(AuthoritiesConstants.ADMIN, ADMIN_USERNAME);
+    }
+
+    public void loginAsSystem() {
+        login(AuthoritiesConstants.ADMIN, SYSTEM_USERNAME);
     }
 
     @Override
@@ -100,8 +116,18 @@ public abstract class AbstractAuditingEntityRepositoryTest<R extends AbstractAud
 
     @Override
     protected List<String> getExcludedComparingFieldsOnFind() {
-        List<String> result = Arrays.asList("createdBy", "createdDate", "lastModifiedBy", "lastModifiedDate");
+        final List<String> result = Arrays.asList("createdBy", "createdDate", "lastModifiedBy", "lastModifiedDate");
         result.addAll(super.getExcludedComparingFieldsOnFind());
         return result;
+    }
+
+    protected void login(final String role, final String username) {
+        final SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+        SecurityContextHolder.setContext(securityContext);
+        final Collection<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(role));
+        final Authentication auth = new UsernamePasswordAuthenticationToken(
+            new User(username, username, authorities), username);
+        securityContext.setAuthentication(auth);
     }
 }

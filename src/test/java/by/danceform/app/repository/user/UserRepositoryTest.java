@@ -1,7 +1,9 @@
 package by.danceform.app.repository.user;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import by.danceform.app.domain.user.User;
@@ -126,6 +128,18 @@ public class UserRepositoryTest extends AbstractAuditingEntityRepositoryTest<Use
     public void testFindAllByActivatedIsFalseAndCreatedDateBefore() {
         List<User> notActivatedUsers = getRepository().findAllByActivatedIsFalseAndCreatedDateBefore(CREATED_BEFORE);
         assertThat(notActivatedUsers.size(), is(NOT_ACTIVATED_USERS_COUNT));
+    }
+
+    @Test
+    public void testDelete() {
+        final User createdUser = getRepository().save(getNewEntity());
+        assertThat(createdUser, not(nullValue()));
+        final Long userId = createdUser.getId();
+        assertThat(userId, not(nullValue()));
+        getRepository().delete(createdUser);
+        getRepository().flush();
+        final User deletedUser = getRepository().findOne(userId);
+        assertThat(deletedUser, nullValue());
     }
 
     @Override
