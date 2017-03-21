@@ -28,26 +28,6 @@ public class RegisteredCoupleRepositoryTest extends
     private static final String EXISTING_TRAINER_1 = "test_trainer_1";
     private static final String EXISTING_TRAINER_2 = "test_trainer_2";
 
-    private static final String EXISTING_CREATED_BY = "created_by_test";
-    private static final String EXISTING_LAST_MODIFIED_BY = "last_modified_by_test";
-
-    private static final ZonedDateTime EXISTING_CREATED_DATE = ZonedDateTime.of(2017,
-        2,
-        15,
-        11,
-        12,
-        13,
-        0,
-        ZoneId.systemDefault());
-    private static final ZonedDateTime EXISTING_LAST_MODIFIED_DATE = ZonedDateTime.of(2017,
-        2,
-        16,
-        12,
-        13,
-        14,
-        0,
-        ZoneId.systemDefault());
-
     private static final Long EXISTING_COMPETITION_CATEGORY_ID = -999L;
     private static final Long EXISTING_DANCE_CLASS_ID = -999L;
 
@@ -87,6 +67,11 @@ public class RegisteredCoupleRepositoryTest extends
     }
 
     @Override
+    protected Long getIdForDeletedEntity() {
+        return EXISTING_DELETED_ID;
+    }
+
+    @Override
     protected RegisteredCouple getExistingEntity() {
         return existing;
     }
@@ -116,4 +101,5 @@ public class RegisteredCoupleRepositoryTest extends
         generateAuditingFieldsForNewEntity(newCouple);
         return newCouple;
     }
+
 }

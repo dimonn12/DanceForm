@@ -15,12 +15,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 /**
  * A RegisteredCouple.
  */
 @Entity
 @Table(name = "registered_couple")
+@Where(clause = "deleted <> 1")
+@SQLDelete(sql = "UPDATE registered_couple e set e.deleted=true where e.id=?")
 public class RegisteredCouple extends SoftDeletedEntity<Long> {
 
     private static final long serialVersionUID = 1L;
