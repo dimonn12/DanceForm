@@ -1,18 +1,17 @@
 package by.danceform.app.repository.system;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import by.danceform.app.domain.system.Message;
 import by.danceform.app.repository.AbstractRepositoryTest;
-import org.junit.Before;
-import org.junit.Test;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Created by Dmitry_Shanko on 1/3/2017.
@@ -67,8 +66,8 @@ public class MessageRepositoryTest extends AbstractRepositoryTest<MessageReposit
     @Override
     protected Message getNewEntity() {
         final Message message = new Message();
-        message.setFromEmail("test@ya.ru");
-        message.setSubject("test subject");
+        message.setFromEmail("myemail@test.ru");
+        message.setSubject(randomString(10));
         return message;
     }
 }

@@ -3,6 +3,7 @@ package by.danceform.app.repository.competition;
 import by.danceform.app.domain.competition.CompetitionCategory;
 import by.danceform.app.domain.competition.CompetitionCategoryWithDetails;
 import by.danceform.app.repository.AbstractEntityRepository;
+import by.danceform.app.repository.SoftDeletedEntityRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * Spring Data JPA repository for the CompetitionCategory entity.
  */
 @SuppressWarnings("unused")
-public interface CompetitionCategoryRepository extends AbstractEntityRepository<CompetitionCategory, Long> {
+public interface CompetitionCategoryRepository extends SoftDeletedEntityRepository<CompetitionCategory, Long> {
 
     @Query(
         "select distinct competitionCategory from CompetitionCategory competitionCategory left join fetch competitionCategory.ageCategories")

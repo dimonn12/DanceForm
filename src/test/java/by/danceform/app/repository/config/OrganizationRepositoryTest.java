@@ -1,16 +1,13 @@
 package by.danceform.app.repository.config;
 
-import by.danceform.app.domain.config.Organization;
-import by.danceform.app.domain.config.Trainer;
-import by.danceform.app.repository.AbstractRepositoryTest;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.List;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+
+import by.danceform.app.domain.config.Organization;
+import by.danceform.app.repository.AbstractRepositoryTest;
+import java.util.List;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Created by Dmitry_Shanko on 12/27/2016.
@@ -53,7 +50,7 @@ public class OrganizationRepositoryTest extends AbstractRepositoryTest<Organizat
     @Override
     protected Organization getNewEntity() {
         final Organization organization = new Organization();
-        organization.setName(RandomStringUtils.random(5));
+        organization.setName(randomString(5));
         return organization;
     }
 }

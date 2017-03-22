@@ -2,6 +2,7 @@ package by.danceform.app.domain.competition;
 
 import by.danceform.app.domain.AbstractEntity;
 import by.danceform.app.domain.INamedEntity;
+import by.danceform.app.domain.SoftDeletedEntity;
 import by.danceform.app.domain.config.AgeCategory;
 import by.danceform.app.domain.config.DanceCategory;
 import by.danceform.app.domain.config.DanceClass;
@@ -25,13 +26,17 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 /**
  * A CompetitionCategory.
  */
 @Entity
 @Table(name = "competition_category")
-public class CompetitionCategory extends AbstractEntity<Long> implements INamedEntity, Comparable<CompetitionCategory> {
+@Where(clause = "deleted <> 1")
+@SQLDelete(sql = "UPDATE competition_category e set e.deleted=true where e.id=?")
+public class CompetitionCategory extends SoftDeletedEntity<Long> implements INamedEntity, Comparable<CompetitionCategory> {
 
     private static final long serialVersionUID = 3728310148232456453L;
 

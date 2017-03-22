@@ -1,19 +1,17 @@
 package by.danceform.app.repository.config;
 
-import by.danceform.app.domain.config.DanceClass;
-import by.danceform.app.repository.AbstractRepositoryTest;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.RandomUtils;
-import org.junit.Before;
-import org.junit.Test;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.transaction.annotation.Transactional;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+
+import by.danceform.app.domain.config.DanceClass;
+import by.danceform.app.repository.AbstractRepositoryTest;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Dmitry_Shanko on 12/27/2016.
@@ -84,11 +82,11 @@ public class DanceClassRepositoryTest extends AbstractRepositoryTest<DanceClassR
     @Override
     protected DanceClass getNewEntity() {
         final DanceClass danceClass = new DanceClass();
-        danceClass.setName(RandomStringUtils.random(10));
-        danceClass.setDescription(RandomStringUtils.random(20));
-        danceClass.setSymbol(RandomStringUtils.random(2));
-        danceClass.setWeight(RandomUtils.nextInt(1000, 2000));
-        danceClass.setTransferScore(RandomUtils.nextInt(1000, 2000));
+        danceClass.setName(randomString(10));
+        danceClass.setDescription(randomString(20));
+        danceClass.setSymbol(randomString(2));
+        danceClass.setWeight(randomInt(1000, 2000));
+        danceClass.setTransferScore(randomInt(1000, 2000));
         return danceClass;
     }
 }

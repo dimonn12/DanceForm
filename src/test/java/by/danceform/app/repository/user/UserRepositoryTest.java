@@ -12,7 +12,6 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.data.domain.Page;
@@ -145,12 +144,12 @@ public class UserRepositoryTest extends AbstractAuditingEntityRepositoryTest<Use
     @Override
     protected User getNewEntity() {
         final User user = new User();
-        user.setLogin(RandomStringUtils.random(20, "qwertyuiopasdfghjklzxcvbnm"));
-        user.setPassword(RandomStringUtils.random(60));
+        user.setLogin(randomString(20, "qwertyuiopasdfghjklzxcvbnm"));
+        user.setPassword(randomString(60));
         user.setFirstName("new_first_name");
         user.setLastName("new_last_name");
         user.setLangKey("ru");
-        user.setEmail(RandomStringUtils.random(10, "qwertyuiopasdfghjklzxcvbnm").concat("@mail.com"));
+        user.setEmail(randomString(10, "qwertyuiopasdfghjklzxcvbnm").concat("@mail.com"));
         user.setActivationKey("new_activation_key");
         user.setResetKey("new_reset_key");
         user.setResetDate(ZonedDateTime.now(ZoneId.systemDefault()));

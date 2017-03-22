@@ -73,4 +73,18 @@
                        tableName="competition_category_age_category"/>
 
     </changeSet>
+
+    <changeSet id="2017032200000-2" author="dimonn12">
+        <addColumn tableName="competition_category">
+            <column name="created_date" type="timestamp" defaultValueDate="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp" defaultValueDate="${now}"/>
+            <column name="deleted" type="boolean" defaultValueBoolean="false"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

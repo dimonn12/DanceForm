@@ -3,6 +3,7 @@ package by.danceform.app.domain.competition;
 import by.danceform.app.domain.AbstractEntity;
 import by.danceform.app.domain.INamedEntity;
 
+import by.danceform.app.domain.SoftDeletedEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,13 +14,17 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 /**
  * A Competition.
  */
 @Entity
 @Table(name = "competition")
-public class Competition extends AbstractEntity<Long> implements INamedEntity {
+@Where(clause = "deleted <> 1")
+@SQLDelete(sql = "UPDATE competition e set e.deleted=true where e.id=?")
+public class Competition extends SoftDeletedEntity<Long> implements INamedEntity {
 
     private static final long serialVersionUID = -146024457330746645L;
 

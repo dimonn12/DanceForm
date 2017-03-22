@@ -2,8 +2,6 @@ package by.danceform.app.repository.config;
 
 import by.danceform.app.domain.config.AgeCategory;
 import by.danceform.app.repository.AbstractRepositoryTest;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.RandomUtils;
 import org.junit.Before;
 
 /**
@@ -38,9 +36,9 @@ public class AgeCategoryRepositoryTest extends AbstractRepositoryTest<AgeCategor
     @Override
     protected AgeCategory getNewEntity() {
         final AgeCategory ageCategory = new AgeCategory();
-        ageCategory.setName(RandomStringUtils.random(5));
-        ageCategory.setMinAge(RandomUtils.nextInt(10, 100));
-        ageCategory.setMaxAge(RandomUtils.nextInt(10, 100));
+        ageCategory.setName(randomString(5));
+        ageCategory.setMinAge(randomInt(10, 100));
+        ageCategory.setMaxAge(randomInt(10, 100));
         return ageCategory;
     }
 }

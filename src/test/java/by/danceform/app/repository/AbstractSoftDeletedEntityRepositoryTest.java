@@ -16,7 +16,6 @@ public abstract class AbstractSoftDeletedEntityRepositoryTest<R extends SoftDele
     protected static final Long EXISTING_DELETED_ID = -998L;
 
     private static final Boolean DELETED_FALSE = Boolean.FALSE;
-    private static final Boolean DELETED_TRUE = Boolean.TRUE;
 
     @Test
     public void testSoftDelete() {

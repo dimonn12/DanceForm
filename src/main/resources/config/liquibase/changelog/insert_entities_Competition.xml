@@ -17,13 +17,110 @@
         <insert tableName="competition">
             <column name="id" value="-999"/>
             <column name="name" value="Test name"/>
-            <column name="start_date" value="${now}"/>
-            <column name="end_date" value="${now}"/>
+            <column name="start_date" value="2016-10-01"/>
+            <column name="end_date" value="2016-10-02"/>
             <column name="is_visible" valueBoolean="true"/>
             <column name="organizer" value="Test Org"/>
             <column name="location" value="Test Loc"/>
+            <column name="banner_image_id" value="-998"/>
+            <column name="details_document_id" value="-997"/>
+            <column name="registration_closes_time" value="2017-02-15 11:12:13"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="20170322-01" author="dmitry_shanko" context="test">
+        <insert tableName="competition">
+            <column name="id" value="-998"/>
+            <column name="name" value="Test name 2"/>
+            <column name="start_date" value="${now}"/>
+            <column name="end_date" value="${now}"/>
+            <column name="is_visible" valueBoolean="true"/>
+            <column name="organizer" value="Test Org 2"/>
+            <column name="location" value="Test Loc 2"/>
             <column name="banner_image_id"/>
             <column name="details_document_id"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+        </insert>
+
+        <insert tableName="competition">
+            <column name="id" value="-997"/>
+            <column name="name" value="Test name 3"/>
+            <column name="start_date" value="${now}"/>
+            <column name="end_date" value="${now}"/>
+            <column name="is_visible" valueBoolean="true"/>
+            <column name="organizer" value="Test Org 3"/>
+            <column name="location" value="Test Loc 3"/>
+            <column name="banner_image_id"/>
+            <column name="details_document_id"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+        </insert>
+
+        <insert tableName="competition">
+            <column name="id" value="-996"/>
+            <column name="name" value="Test name 4"/>
+            <column name="start_date" value="${now}"/>
+            <column name="end_date" value="${now}"/>
+            <column name="is_visible" valueBoolean="true"/>
+            <column name="organizer" value="Test Org 4"/>
+            <column name="location" value="Test Loc 4"/>
+            <column name="banner_image_id"/>
+            <column name="details_document_id"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="20170322-04" author="dmitry_shanko" context="test">
+        <insert tableName="competition">
+            <column name="id" value="-995"/>
+            <column name="name" value="Test DELETED"/>
+            <column name="start_date" value="${now}"/>
+            <column name="end_date" value="${now}"/>
+            <column name="is_visible" valueBoolean="true"/>
+            <column name="organizer" value="Test Org 4"/>
+            <column name="location" value="Test Loc 4"/>
+            <column name="banner_image_id"/>
+            <column name="details_document_id"/>
+            <column name="deleted" valueBoolean="true"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+        </insert>
+
+        <insert tableName="competition">
+            <column name="id" value="-994"/>
+            <column name="name" value="Test NOT VISIBLE"/>
+            <column name="start_date" value="${now}"/>
+            <column name="end_date" value="${now}"/>
+            <column name="is_visible" valueBoolean="false"/>
+            <column name="organizer" value="Test Org 4"/>
+            <column name="location" value="Test Loc 4"/>
+            <column name="banner_image_id"/>
+            <column name="details_document_id"/>
+            <column name="deleted" valueBoolean="false"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
         </insert>
     </changeSet>
 
@@ -38,6 +135,11 @@
             <column name="location" value="где-то в Минске"/>
             <column name="banner_image_id"/>
             <column name="details_document_id"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
         </insert>
         <insert tableName="competition">
             <column name="id" value="-2"/>
@@ -49,6 +151,11 @@
             <column name="location" value="test"/>
             <column name="banner_image_id"/>
             <column name="details_document_id"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
         </insert>
         <insert tableName="competition">
             <column name="id" value="-3"/>
@@ -60,6 +167,11 @@
             <column name="location" value="Локейшен"/>
             <column name="banner_image_id"/>
             <column name="details_document_id"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
         </insert>
         <insert tableName="competition">
             <column name="id" value="-4"/>
@@ -71,6 +183,11 @@
             <column name="location" value="Гомель"/>
             <column name="banner_image_id"/>
             <column name="details_document_id"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
         </insert>
     </changeSet>
 

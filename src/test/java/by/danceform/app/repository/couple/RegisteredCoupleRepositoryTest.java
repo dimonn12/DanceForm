@@ -1,14 +1,16 @@
 package by.danceform.app.repository.couple;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import by.danceform.app.domain.couple.RegisteredCouple;
 import by.danceform.app.repository.AbstractSoftDeletedEntityRepositoryTest;
 import by.danceform.app.repository.competition.CompetitionCategoryRepository;
 import by.danceform.app.repository.config.DanceClassRepository;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import org.apache.commons.lang3.RandomStringUtils;
+import java.util.List;
 import org.junit.Before;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class RegisteredCoupleRepositoryTest extends
@@ -30,6 +32,12 @@ public class RegisteredCoupleRepositoryTest extends
 
     private static final Long EXISTING_COMPETITION_CATEGORY_ID = -999L;
     private static final Long EXISTING_DANCE_CLASS_ID = -999L;
+
+    private static final Long GROUP_UNIQUE_BY_COMPETITION_ID = -998L;
+    private static final Integer GROUP_UNIQUE_BY_COMPETITION_ID_RESULT = 3;
+
+    private static final Long FIND_ALL_BY_CATEGORY_ID = -997L;
+    private static final Integer FIND_ALL_BY_CATEGORY_ID_SIZE = 2;
 
     private final RegisteredCouple existing = new RegisteredCouple();
 
@@ -61,6 +69,18 @@ public class RegisteredCoupleRepositoryTest extends
         initExistingAuditingEntity(existing);
     }
 
+    @Test
+    public void testGroupUniqueByCompetitionId() {
+        List<Integer> groups = getRepository().groupUniqueByCompetitionId(GROUP_UNIQUE_BY_COMPETITION_ID);
+        assertThat(groups.size(), equalTo(GROUP_UNIQUE_BY_COMPETITION_ID_RESULT));
+    }
+
+    @Test
+    public void testFindAllByCategoryId() {
+        List<RegisteredCouple> registeredCouples = getRepository().findAllByCategoryId(FIND_ALL_BY_CATEGORY_ID);
+        assertThat(registeredCouples.size(), equalTo(FIND_ALL_BY_CATEGORY_ID_SIZE));
+    }
+
     @Override
     protected Long getExistingId() {
         return EXISTING_ID;
@@ -79,10 +99,10 @@ public class RegisteredCoupleRepositoryTest extends
     @Override
     protected RegisteredCouple getNewEntity() {
         RegisteredCouple newCouple = new RegisteredCouple();
-        newCouple.setPartner1Name(RandomStringUtils.random(5));
-        newCouple.setPartner1Surname(RandomStringUtils.random(6));
-        newCouple.setPartner2Name(RandomStringUtils.random(7));
-        newCouple.setPartner2Surname(RandomStringUtils.random(8));
+        newCouple.setPartner1Name(randomString(5));
+        newCouple.setPartner1Surname(randomString(6));
+        newCouple.setPartner2Name(randomString(7));
+        newCouple.setPartner2Surname(randomString(8));
 
         newCouple.setPartner1DateOfBirth(LocalDate.now());
         newCouple.setPartner2DateOfBirth(LocalDate.now());
@@ -93,10 +113,10 @@ public class RegisteredCoupleRepositoryTest extends
         newCouple.setPartner2DanceClassLA(danceClassRepository.findOne(EXISTING_DANCE_CLASS_ID));
         newCouple.setPartner2DanceClassST(danceClassRepository.findOne(EXISTING_DANCE_CLASS_ID));
 
-        newCouple.setLocation(RandomStringUtils.random(5));
-        newCouple.setTrainer1(RandomStringUtils.random(5));
-        newCouple.setTrainer2(RandomStringUtils.random(5));
-        newCouple.setOrganization(RandomStringUtils.random(5));
+        newCouple.setLocation(randomString(5));
+        newCouple.setTrainer1(randomString(5));
+        newCouple.setTrainer2(randomString(5));
+        newCouple.setOrganization(randomString(5));
 
         generateAuditingFieldsForNewEntity(newCouple);
         return newCouple;

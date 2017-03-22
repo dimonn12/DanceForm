@@ -18,6 +18,8 @@ import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.List;
 import javax.persistence.Id;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,4 +137,15 @@ public abstract class AbstractRepositoryTest<R extends AbstractEntityRepository<
         return Collections.emptyList();
     }
 
+    protected String randomString(int length) {
+        return RandomStringUtils.random(length);
+    }
+
+    protected String randomString(int length, String chars) {
+        return RandomStringUtils.random(length, chars);
+    }
+
+    protected int randomInt(int start, int end) {
+        return RandomUtils.nextInt(start, end);
+    }
 }

@@ -69,6 +69,278 @@
         </insert>
     </changeSet>
 
+    <changeSet id="20170322-04" author="dmitry_shanko" context="test">
+        <insert tableName="registered_couple">
+            <column name="id" value="-997"/>
+            <column name="partner_1_name" value="unique_1"/>
+            <column name="partner_1_surname" value="unique_1"/>
+            <column name="partner_2_name" value="unique_2"/>
+            <column name="partner_2_surname" value="unique_2"/>
+
+            <column name="partner_1_date_of_birth" value="2016-10-10"/>
+            <column name="partner_2_date_of_birth" value="2016-11-11"/>
+            <column name="organization" value="test_organization"/>
+            <column name="location" value="test_location"/>
+            <column name="trainer_1" value="test_trainer_1"/>
+            <column name="trainer_2" value="test_trainer_2"/>
+            <column name="partner_1_dance_class_st_id" value="-999"/>
+            <column name="partner_1_dance_class_la_id" value="-999"/>
+            <column name="partner_2_dance_class_st_id" value="-999"/>
+            <column name="partner_2_dance_class_la_id" value="-999"/>
+            <column name="competition_category_id" value="-998"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+
+            <column name="deleted" valueBoolean="false"/>
+        </insert>
+
+        <insert tableName="registered_couple">
+            <column name="id" value="-996"/>
+            <column name="partner_1_name" value="unique_1"/>
+            <column name="partner_1_surname" value="unique_1"/>
+            <column name="partner_2_name" value="unique_2"/>
+            <column name="partner_2_surname" value="unique_2"/>
+
+            <column name="partner_1_date_of_birth" value="2016-10-10"/>
+            <column name="partner_2_date_of_birth" value="2016-11-11"/>
+            <column name="organization" value="test_organization"/>
+            <column name="location" value="test_location"/>
+            <column name="trainer_1" value="test_trainer_1"/>
+            <column name="trainer_2" value="test_trainer_2"/>
+            <column name="partner_1_dance_class_st_id" value="-999"/>
+            <column name="partner_1_dance_class_la_id" value="-999"/>
+            <column name="partner_2_dance_class_st_id" value="-999"/>
+            <column name="partner_2_dance_class_la_id" value="-999"/>
+            <column name="competition_category_id" value="-997"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+
+            <column name="deleted" valueBoolean="false"/>
+        </insert>
+
+        <insert tableName="registered_couple">
+            <column name="id" value="-995"/>
+            <column name="partner_1_name" value="unique_1"/>
+            <column name="partner_1_surname" value="unique_1"/>
+            <column name="partner_2_name" value="unique_2"/>
+            <column name="partner_2_surname" value="unique_2"/>
+
+            <column name="partner_1_date_of_birth" value="2016-10-10"/>
+            <column name="partner_2_date_of_birth" value="2016-11-11"/>
+            <column name="organization" value="test_organization"/>
+            <column name="location" value="test_location"/>
+            <column name="trainer_1" value="test_trainer_1"/>
+            <column name="trainer_2" value="test_trainer_2"/>
+            <column name="partner_1_dance_class_st_id" value="-999"/>
+            <column name="partner_1_dance_class_la_id" value="-999"/>
+            <column name="partner_2_dance_class_st_id" value="-999"/>
+            <column name="partner_2_dance_class_la_id" value="-999"/>
+            <column name="competition_category_id" value="-996"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+
+            <column name="deleted" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="registered_couple">
+            <column name="id" value="-994"/>
+            <column name="partner_1_name" value="unique_3"/>
+            <column name="partner_1_surname" value="unique_3"/>
+            <column name="partner_2_name" value="unique_4"/>
+            <column name="partner_2_surname" value="unique_4"/>
+
+            <column name="partner_1_date_of_birth" value="2016-10-10"/>
+            <column name="partner_2_date_of_birth" value="2016-11-11"/>
+            <column name="organization" value="test_organization"/>
+            <column name="location" value="test_location"/>
+            <column name="trainer_1" value="test_trainer_1"/>
+            <column name="trainer_2" value="test_trainer_2"/>
+            <column name="partner_1_dance_class_st_id" value="-999"/>
+            <column name="partner_1_dance_class_la_id" value="-999"/>
+            <column name="partner_2_dance_class_st_id" value="-999"/>
+            <column name="partner_2_dance_class_la_id" value="-999"/>
+            <column name="competition_category_id" value="-998"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+
+            <column name="deleted" valueBoolean="false"/>
+        </insert>
+
+        <insert tableName="registered_couple">
+            <column name="id" value="-993"/>
+            <column name="partner_1_name" value="unique_3"/>
+            <column name="partner_1_surname" value="unique_3"/>
+            <column name="partner_2_name" value="unique_4"/>
+            <column name="partner_2_surname" value="unique_4"/>
+
+            <column name="partner_1_date_of_birth" value="2016-10-10"/>
+            <column name="partner_2_date_of_birth" value="2016-11-11"/>
+            <column name="organization" value="test_organization"/>
+            <column name="location" value="test_location"/>
+            <column name="trainer_1" value="test_trainer_1"/>
+            <column name="trainer_2" value="test_trainer_2"/>
+            <column name="partner_1_dance_class_st_id" value="-999"/>
+            <column name="partner_1_dance_class_la_id" value="-999"/>
+            <column name="partner_2_dance_class_st_id" value="-999"/>
+            <column name="partner_2_dance_class_la_id" value="-999"/>
+            <column name="competition_category_id" value="-997"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+
+            <column name="deleted" valueBoolean="false"/>
+        </insert>
+
+        <insert tableName="registered_couple">
+            <column name="id" value="-992"/>
+            <column name="partner_1_name" value="unique_3"/>
+            <column name="partner_1_surname" value="unique_3"/>
+            <column name="partner_2_name" value="unique_4"/>
+            <column name="partner_2_surname" value="unique_4"/>
+
+            <column name="partner_1_date_of_birth" value="2016-10-10"/>
+            <column name="partner_2_date_of_birth" value="2016-11-11"/>
+            <column name="organization" value="test_organization"/>
+            <column name="location" value="test_location"/>
+            <column name="trainer_1" value="test_trainer_1"/>
+            <column name="trainer_2" value="test_trainer_2"/>
+            <column name="partner_1_dance_class_st_id" value="-999"/>
+            <column name="partner_1_dance_class_la_id" value="-999"/>
+            <column name="partner_2_dance_class_st_id" value="-999"/>
+            <column name="partner_2_dance_class_la_id" value="-999"/>
+            <column name="competition_category_id" value="-996"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+
+            <column name="deleted" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="registered_couple">
+            <column name="id" value="-991"/>
+            <column name="partner_1_name" value="unique_1"/>
+            <column name="partner_1_surname" value="unique_1"/>
+            <column name="partner_2_name" value="unique_2"/>
+            <column name="partner_2_surname" value="unique_2"/>
+
+            <column name="partner_1_date_of_birth" value="2016-10-10"/>
+            <column name="partner_2_date_of_birth" value="2016-11-11"/>
+            <column name="organization" value="test_organization"/>
+            <column name="location" value="test_location"/>
+            <column name="trainer_1" value="test_trainer_1"/>
+            <column name="trainer_2" value="test_trainer_2"/>
+            <column name="partner_1_dance_class_st_id" value="-999"/>
+            <column name="partner_1_dance_class_la_id" value="-999"/>
+            <column name="partner_2_dance_class_st_id" value="-999"/>
+            <column name="partner_2_dance_class_la_id" value="-999"/>
+            <column name="competition_category_id" value="-995"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+
+            <column name="deleted" valueBoolean="false"/>
+        </insert>
+
+        <insert tableName="registered_couple">
+            <column name="id" value="-990"/>
+            <column name="partner_1_name" value="test"/>
+            <column name="partner_1_surname" value="test"/>
+            <column name="partner_2_name" value="test"/>
+            <column name="partner_2_surname" value="test"/>
+
+            <column name="partner_1_date_of_birth" value="2016-10-10"/>
+            <column name="partner_2_date_of_birth" value="2016-11-11"/>
+            <column name="organization" value="test_organization"/>
+            <column name="location" value="test_location"/>
+            <column name="trainer_1" value="test_trainer_1"/>
+            <column name="trainer_2" value="test_trainer_2"/>
+            <column name="partner_1_dance_class_st_id" value="-999"/>
+            <column name="partner_1_dance_class_la_id" value="-999"/>
+            <column name="partner_2_dance_class_st_id" value="-999"/>
+            <column name="partner_2_dance_class_la_id" value="-999"/>
+            <column name="competition_category_id" value="-998"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+
+            <column name="deleted" valueBoolean="false"/>
+        </insert>
+
+        <insert tableName="registered_couple">
+            <column name="id" value="-989"/>
+            <column name="partner_1_name" value="test2"/>
+            <column name="partner_1_surname" value="test2"/>
+            <column name="partner_2_name" value="test2"/>
+            <column name="partner_2_surname" value="test2"/>
+
+            <column name="partner_1_date_of_birth" value="2016-10-10"/>
+            <column name="partner_2_date_of_birth" value="2016-11-11"/>
+            <column name="organization" value="test_organization"/>
+            <column name="location" value="test_location"/>
+            <column name="trainer_1" value="test_trainer_1"/>
+            <column name="trainer_2" value="test_trainer_2"/>
+            <column name="partner_1_dance_class_st_id" value="-999"/>
+            <column name="partner_1_dance_class_la_id" value="-999"/>
+            <column name="partner_2_dance_class_st_id" value="-999"/>
+            <column name="partner_2_dance_class_la_id" value="-999"/>
+            <column name="competition_category_id" value="-995"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+
+            <column name="deleted" valueBoolean="false"/>
+        </insert>
+
+        <insert tableName="registered_couple">
+            <column name="id" value="-988"/>
+            <column name="partner_1_name" value="test2"/>
+            <column name="partner_1_surname" value="test2"/>
+            <column name="partner_2_name" value="test2"/>
+            <column name="partner_2_surname" value="test2"/>
+
+            <column name="partner_1_date_of_birth" value="2016-10-10"/>
+            <column name="partner_2_date_of_birth" value="2016-11-11"/>
+            <column name="organization" value="test_organization"/>
+            <column name="location" value="test_location"/>
+            <column name="trainer_1" value="test_trainer_1"/>
+            <column name="trainer_2" value="test_trainer_2"/>
+            <column name="partner_1_dance_class_st_id" value="-999"/>
+            <column name="partner_1_dance_class_la_id" value="-999"/>
+            <column name="partner_2_dance_class_st_id" value="-999"/>
+            <column name="partner_2_dance_class_la_id" value="-999"/>
+            <column name="competition_category_id" value="-997"/>
+
+            <column name="created_by" value="test_created_by"/>
+            <column name="last_modified_by" value="test_last_modified_by"/>
+            <column name="created_date" value="2017-02-15 11:12:13"/>
+            <column name="last_modified_date" value="2017-02-16 12:13:14"/>
+
+            <column name="deleted" valueBoolean="true"/>
+        </insert>
+    </changeSet>
+
     <changeSet id="20161010-10" author="dmitry_shanko" context="dev">
         <insert tableName="registered_couple">
             <column name="id" value="-1"/>
