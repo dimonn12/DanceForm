@@ -32,6 +32,8 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
 
     private boolean allowSolo;
 
+    private boolean allowHobby;
+
     private Long competitionId;
 
     private NamedReferenceDTO danceCategory;
@@ -95,12 +97,20 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
         this.checkMaxAge = checkMaxAge;
     }
 
-    public boolean getAllowSolo() {
+    public boolean isAllowSolo() {
         return allowSolo;
     }
 
     public void setAllowSolo(boolean allowSolo) {
         this.allowSolo = allowSolo;
+    }
+
+    public boolean isAllowHobby() {
+        return allowHobby;
+    }
+
+    public void setAllowHobby(boolean allowHobby) {
+        this.allowHobby = allowHobby;
     }
 
     public Long getCompetitionId() {

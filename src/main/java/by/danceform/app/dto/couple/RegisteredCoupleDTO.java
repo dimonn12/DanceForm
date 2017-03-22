@@ -64,6 +64,8 @@ public class RegisteredCoupleDTO extends AbstractDomainDTO<Long> {
 
     private boolean soloCouple;
 
+    private boolean hobbyCouple;
+
     public String getPartner1Name() {
         return partner1Name;
     }
@@ -200,4 +202,11 @@ public class RegisteredCoupleDTO extends AbstractDomainDTO<Long> {
         this.soloCouple = soloCouple;
     }
 
+    public boolean isHobbyCouple() {
+        return hobbyCouple;
+    }
+
+    public void setHobbyCouple(boolean hobbyCouple) {
+        this.hobbyCouple = hobbyCouple;
+    }
 }

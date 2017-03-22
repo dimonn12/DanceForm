@@ -127,9 +127,8 @@ public class CompetitionCategoryService {
     @Transactional(readOnly = true)
     public List<CompetitionCategoryDTO> findAvailableByCompetitionId(RegisteredCoupleDTO registeredCoupleDTO,
                                                                      Long competitionId,
-                                                                     Boolean isSoloCouple) {
+                                                                     Boolean isSoloCouple, Boolean isHobbyCouple) {
         log.debug("Request to get CompetitionCategory : {}", competitionId);
-        setDefaultValues(registeredCoupleDTO);
         List<CompetitionCategory> allCategories = competitionCategoryRepository.findAvailableByCompetitionId(
             competitionId);
         Set<CompetitionCategory> availableCategories = new HashSet<>();
@@ -185,23 +184,6 @@ public class CompetitionCategoryService {
             }
         }
         return competitionCategoryConverter.convertToDtos(sortAvailableCategories(availableCategories));
-    }
-
-    private void setDefaultValues(RegisteredCoupleDTO dto) {
-        if(null == dto.getPartner1DanceClassLA()) {
-            dto.setPartner1DanceClassLA(danceClassNamedEntityConverter.convertToDto(danceClassRepository.findDefault()));
-        }
-        if(null == dto.getPartner1DanceClassST()) {
-            dto.setPartner1DanceClassST(danceClassNamedEntityConverter.convertToDto(danceClassRepository.findDefault()));
-        }
-        if(!dto.isSoloCouple()) {
-            if(null == dto.getPartner2DanceClassLA()) {
-                dto.setPartner2DanceClassLA(danceClassNamedEntityConverter.convertToDto(danceClassRepository.findDefault()));
-            }
-            if(null == dto.getPartner2DanceClassST()) {
-                dto.setPartner2DanceClassST(danceClassNamedEntityConverter.convertToDto(danceClassRepository.findDefault()));
-            }
-        }
     }
 
     private boolean checkDanceClasses(Boolean isSoloCouple,

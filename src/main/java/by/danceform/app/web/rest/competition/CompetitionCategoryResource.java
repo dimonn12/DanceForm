@@ -126,12 +126,15 @@ public class CompetitionCategoryResource {
                                                                              @RequestParam(name = "soloCouple",
                                                                                            required = false)
                                                                                  Boolean isSoloCouple,
+        @RequestParam(name = "hobbyCouple",
+            required = false)
+            Boolean isHobbyCouple,
                                                                              @RequestBody
                                                                                  RegisteredCoupleDTO registeredCoupleDTO) {
         log.debug("REST request to get all CompetitionCategories");
         return competitionCategoryService.findAvailableByCompetitionId(registeredCoupleDTO,
             competitionId,
-            isSoloCouple);
+            isSoloCouple, isHobbyCouple);
     }
 
     /**

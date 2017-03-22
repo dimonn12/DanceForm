@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface DanceClassRepository extends AbstractEntityRepository<DanceClass, Long> {
 
+    static final Long DEFAULT_DANCE_CLASS_ID = 1L;
+
     @Query("SELECT dc FROM DanceClass dc WHERE dc.id = 1")
     DanceClass findDefault();
 }

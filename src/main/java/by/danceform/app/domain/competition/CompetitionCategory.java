@@ -68,6 +68,9 @@ public class CompetitionCategory extends SoftDeletedEntity<Long> implements INam
     @Column(name = "allow_solo")
     private Boolean allowSolo;
 
+    @Column(name = "allow_hobby")
+    private Boolean allowHobby;
+
     @Column(name = "competition_id", nullable = false)
     private Long competitionId;
 
@@ -149,6 +152,14 @@ public class CompetitionCategory extends SoftDeletedEntity<Long> implements INam
 
     public void setAllowSolo(Boolean allowSolo) {
         this.allowSolo = allowSolo;
+    }
+    
+    public Boolean isllowHobby() {
+        return allowHobby;
+    }
+
+    public void setAllowHobby(Boolean allowHobby) {
+        this.allowHobby = allowHobby;
     }
 
     public Long getCompetitionId() {
