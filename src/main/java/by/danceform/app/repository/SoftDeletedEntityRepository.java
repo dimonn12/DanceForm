@@ -1,8 +1,9 @@
 package by.danceform.app.repository;
 
 import by.danceform.app.domain.SoftDeletedEntity;
-import java.io.Serializable;
 import org.springframework.data.repository.NoRepositoryBean;
+
+import java.io.Serializable;
 
 @NoRepositoryBean
 public interface SoftDeletedEntityRepository<T extends SoftDeletedEntity<ID>, ID extends Serializable>

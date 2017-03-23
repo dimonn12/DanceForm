@@ -9,8 +9,6 @@ import by.danceform.app.service.competition.CompetitionService;
 import by.danceform.app.service.couple.RegisteredCoupleService;
 import by.danceform.app.web.rest.util.DownloadUtil;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;

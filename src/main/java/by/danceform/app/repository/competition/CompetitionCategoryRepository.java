@@ -2,7 +2,6 @@ package by.danceform.app.repository.competition;
 
 import by.danceform.app.domain.competition.CompetitionCategory;
 import by.danceform.app.domain.competition.CompetitionCategoryWithDetails;
-import by.danceform.app.repository.AbstractEntityRepository;
 import by.danceform.app.repository.SoftDeletedEntityRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

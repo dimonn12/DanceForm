@@ -1,9 +1,10 @@
 package by.danceform.app.domain.competition;
 
-import by.danceform.app.domain.AbstractEntity;
 import by.danceform.app.domain.INamedEntity;
-
 import by.danceform.app.domain.SoftDeletedEntity;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +15,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
 
 /**
  * A Competition.

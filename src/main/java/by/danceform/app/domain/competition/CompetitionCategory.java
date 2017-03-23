@@ -1,12 +1,13 @@
 package by.danceform.app.domain.competition;
 
-import by.danceform.app.domain.AbstractEntity;
 import by.danceform.app.domain.INamedEntity;
 import by.danceform.app.domain.SoftDeletedEntity;
 import by.danceform.app.domain.config.AgeCategory;
 import by.danceform.app.domain.config.DanceCategory;
 import by.danceform.app.domain.config.DanceClass;
 import org.apache.commons.lang3.ObjectUtils;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,8 +27,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
 
 /**
  * A CompetitionCategory.

@@ -1,8 +1,9 @@
 package by.danceform.app.repository;
 
 import by.danceform.app.domain.AbstractAuditingEntity;
-import java.io.Serializable;
 import org.springframework.data.repository.NoRepositoryBean;
+
+import java.io.Serializable;
 
 @NoRepositoryBean
 public interface AbstractAuditingEntityRepository<T extends AbstractAuditingEntity<ID>, ID extends Serializable>

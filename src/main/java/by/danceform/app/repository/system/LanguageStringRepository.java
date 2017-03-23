@@ -1,7 +1,6 @@
 package by.danceform.app.repository.system;
 
 import by.danceform.app.domain.system.LanguageString;
-import by.danceform.app.domain.system.Message;
 import by.danceform.app.repository.AbstractEntityRepository;
 import org.springframework.data.jpa.repository.Query;
 

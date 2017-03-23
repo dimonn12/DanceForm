@@ -1,6 +1,8 @@
 package by.danceform.app.domain;
 
 import com.google.common.base.Objects;
+
+import javax.persistence.MappedSuperclass;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -8,7 +10,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
-import javax.persistence.MappedSuperclass;
 
 /**
  * Created by dimonn12 on 07.10.2016.

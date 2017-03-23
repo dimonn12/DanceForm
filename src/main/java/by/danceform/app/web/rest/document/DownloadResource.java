@@ -7,13 +7,10 @@ import by.danceform.app.service.competition.CompetitionService;
 import by.danceform.app.service.document.UploadedDocumentService;
 import by.danceform.app.web.rest.util.DownloadUtil;
 import com.codahale.metrics.annotation.Timed;
-import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by dimonn12 on 24.10.2016.

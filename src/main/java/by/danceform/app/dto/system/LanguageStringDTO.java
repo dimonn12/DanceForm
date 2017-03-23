@@ -2,9 +2,8 @@ package by.danceform.app.dto.system;
 
 import by.danceform.app.dto.AbstractDomainDTO;
 
-import javax.validation.constraints.*;
-import java.io.Serializable;
-import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 /**

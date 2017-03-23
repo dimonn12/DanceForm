@@ -6,11 +6,12 @@ import by.danceform.app.domain.config.DanceClass;
 import by.danceform.app.domain.couple.RegisteredCouple;
 import by.danceform.app.dto.couple.RegisteredCoupleDTO;
 import by.danceform.app.repository.config.DanceClassRepository;
-import java.util.Arrays;
-import java.util.Objects;
-import javax.inject.Inject;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
+
+import javax.inject.Inject;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * Created by dimonn12 on 09.10.2016.

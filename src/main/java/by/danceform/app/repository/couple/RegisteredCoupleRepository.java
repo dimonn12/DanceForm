@@ -2,10 +2,10 @@ package by.danceform.app.repository.couple;
 
 import by.danceform.app.domain.couple.RegisteredCouple;
 import by.danceform.app.repository.SoftDeletedEntityRepository;
-import java.util.List;
-import java.util.Map;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 /**
  * Spring Data JPA repository for the RegisteredCouple entity.

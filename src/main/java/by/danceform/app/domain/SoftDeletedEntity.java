@@ -1,8 +1,8 @@
 package by.danceform.app.domain;
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 
 @MappedSuperclass
 public abstract class SoftDeletedEntity<ID extends Serializable>

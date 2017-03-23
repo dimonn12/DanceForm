@@ -13,8 +13,6 @@ import java.lang.ref.SoftReference;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * Created by dimonn12 on 24.02.2017.
