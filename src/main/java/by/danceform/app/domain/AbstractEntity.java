@@ -34,9 +34,9 @@ public abstract class AbstractEntity<ID extends Serializable> implements IEntity
             out.close();
 
             ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(baos.toByteArray()));
-            obj = (T) in.readObject();
+            obj = (T)in.readObject();
             in.close();
-        } catch (IOException | ClassNotFoundException e) {
+        } catch(IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return obj;
@@ -45,20 +45,20 @@ public abstract class AbstractEntity<ID extends Serializable> implements IEntity
     @SuppressWarnings("rawtypes")
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+        if(this == obj) {
             return true;
         }
-        if (obj == null) {
+        if(obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if(getClass() != obj.getClass()) {
             return false;
         }
-        if (this.getId() == null || ((AbstractEntity) obj).getId() == null) {
+        if(this.getId() == null || ((AbstractEntity)obj).getId() == null) {
             return false;
         }
 
-        return Objects.equal(this.getId(), ((AbstractEntity) obj).getId());
+        return Objects.equal(this.getId(), ((AbstractEntity)obj).getId());
     }
 
     @Override

@@ -47,13 +47,13 @@ public class LocalizationHelper {
 
     public String get(HttpServletRequest request, String name) {
         String lang = LanguageString.DEFAULT_SYSTEM_LANGUAGE;
-        for (Cookie cookie: request.getCookies()) {
-            if (Objects.equals(cookie.getName(), LANGUAGE_COOKIE_NAME)) {
+        for(Cookie cookie : request.getCookies()) {
+            if(Objects.equals(cookie.getName(), LANGUAGE_COOKIE_NAME)) {
                 lang = cookie.getValue();
                 break;
             }
         }
-        if (!StringUtils.isBlank(lang)) {
+        if(!StringUtils.isBlank(lang)) {
             lang = StringUtils.remove(lang, "%22");
             lang = lang.trim();
         }

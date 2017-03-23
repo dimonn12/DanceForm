@@ -1,21 +1,22 @@
 package by.danceform.app.repository.user;
 
+import by.danceform.app.domain.user.User;
+import by.danceform.app.repository.AbstractAuditingEntityRepositoryTest;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.List;
+import java.util.Optional;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-import by.danceform.app.domain.user.User;
-import by.danceform.app.repository.AbstractAuditingEntityRepositoryTest;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.List;
-import java.util.Optional;
-import org.junit.Before;
-import org.junit.Test;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 
 /**
  * Created by Dmitry_Shanko on 1/3/2017.
@@ -115,10 +116,10 @@ public class UserRepositoryTest extends AbstractAuditingEntityRepositoryTest<Use
 
     @Test
     public void testFindByIdWithAuthorities() {
-        final Page<User> entitiesWithAuthorities = getRepository()
-            .findAllWithAuthorities(new PageRequest(0, TOTAL_COUNT));
+        final Page<User> entitiesWithAuthorities = getRepository().findAllWithAuthorities(new PageRequest(0,
+            TOTAL_COUNT));
         assertThat(entitiesWithAuthorities.getContent().size(), is(TOTAL_COUNT));
-        for (User user : entitiesWithAuthorities.getContent()) {
+        for(User user : entitiesWithAuthorities.getContent()) {
             assertThat(user.getAuthorities(), notNullValue());
         }
     }

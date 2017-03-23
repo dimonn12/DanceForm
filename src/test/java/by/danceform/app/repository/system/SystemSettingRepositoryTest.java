@@ -1,13 +1,13 @@
 package by.danceform.app.repository.system;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 import by.danceform.app.domain.system.SystemSetting;
 import by.danceform.app.repository.AbstractRepositoryTest;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by Dmitry_Shanko on 1/3/2017.

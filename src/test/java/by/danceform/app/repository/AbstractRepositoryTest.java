@@ -1,13 +1,18 @@
 package by.danceform.app.repository;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 import by.danceform.app.DanceFormApp;
 import by.danceform.app.domain.AbstractEntity;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ReflectionUtils;
+
+import javax.persistence.Id;
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -17,17 +22,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.List;
-import javax.persistence.Id;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.RandomUtils;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.util.ReflectionTestUtils;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ReflectionUtils;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 
 /**
@@ -99,7 +99,7 @@ public abstract class AbstractRepositoryTest<R extends AbstractEntityRepository<
             final BeanInfo modelInfo = Introspector.getBeanInfo(entity.getClass());
             for(final PropertyDescriptor fieldInfo : modelInfo.getPropertyDescriptors()) {
                 final Method getter = fieldInfo.getReadMethod();
-                if (excludedFieldNames.contains(fieldInfo.getName())) {
+                if(excludedFieldNames.contains(fieldInfo.getName())) {
                     continue;
                 }
                 final Field field = ReflectionUtils.findField(entity.getClass(), fieldInfo.getName());
@@ -119,7 +119,7 @@ public abstract class AbstractRepositoryTest<R extends AbstractEntityRepository<
         if(field.getAnnotation(Id.class) != null) {
             assertThat(databaseFieldValue, not(nullValue()));
         } else {
-            if (null != entityFieldValue && !checkAdditionalFieldAnnotations(databaseFieldValue, field)) {
+            if(null != entityFieldValue && !checkAdditionalFieldAnnotations(databaseFieldValue, field)) {
                 assertThat(databaseFieldValue, equalTo(entityFieldValue));
             }
         }

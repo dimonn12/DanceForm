@@ -232,54 +232,54 @@ public class RegisteredCouple extends SoftDeletedEntity<Long> {
     @Override
     public String toString() {
         return "RegisteredCouple{" +
-            "id=" +
-            id +
-            ", partner1Name='" +
-            partner1Name +
-            "'" +
-            ", partner1Surname='" +
-            partner1Surname +
-            "'" +
-            ", partner2Name='" +
-            partner2Name +
-            "'" +
-            ", partner2Surname='" +
-            partner2Surname +
-            "'" +
-            ", partner1DateOfBirth='" +
-            partner1DateOfBirth +
-            "'" +
-            ", partner2DateOfBirth='" +
-            partner2DateOfBirth +
-            "'" +
-            ", organization='" +
-            organization +
-            "'" +
-            ", location='" +
-            location +
-            "'" +
-            ", trainer1='" +
-            trainer1 +
-            "'" +
-            ", trainer2='" +
-            trainer2 +
-            "'" +
-            ", partner1DanceClassST='" +
-            (null != partner1DanceClassST ? partner1DanceClassST.toString() : "null") +
-            "'" +
-            ", partner1DanceClassLA='" +
-            (null != partner1DanceClassLA ? partner1DanceClassLA.toString() : "null") +
-            "'" +
-            ", partner2DanceClassST='" +
-            (null != partner2DanceClassST ? partner2DanceClassST.toString() : "null") +
-            "'" +
-            ", partner2DanceClassLA='" +
-            (null != partner2DanceClassLA ? partner2DanceClassLA.toString() : "null") +
-            "'" +
-            ", competitionCategory='" +
-            (null != competitionCategory ? competitionCategory.toString() : "null") +
-            "'" +
-            '}';
+               "id=" +
+               id +
+               ", partner1Name='" +
+               partner1Name +
+               "'" +
+               ", partner1Surname='" +
+               partner1Surname +
+               "'" +
+               ", partner2Name='" +
+               partner2Name +
+               "'" +
+               ", partner2Surname='" +
+               partner2Surname +
+               "'" +
+               ", partner1DateOfBirth='" +
+               partner1DateOfBirth +
+               "'" +
+               ", partner2DateOfBirth='" +
+               partner2DateOfBirth +
+               "'" +
+               ", organization='" +
+               organization +
+               "'" +
+               ", location='" +
+               location +
+               "'" +
+               ", trainer1='" +
+               trainer1 +
+               "'" +
+               ", trainer2='" +
+               trainer2 +
+               "'" +
+               ", partner1DanceClassST='" +
+               (null != partner1DanceClassST ? partner1DanceClassST.toString() : "null") +
+               "'" +
+               ", partner1DanceClassLA='" +
+               (null != partner1DanceClassLA ? partner1DanceClassLA.toString() : "null") +
+               "'" +
+               ", partner2DanceClassST='" +
+               (null != partner2DanceClassST ? partner2DanceClassST.toString() : "null") +
+               "'" +
+               ", partner2DanceClassLA='" +
+               (null != partner2DanceClassLA ? partner2DanceClassLA.toString() : "null") +
+               "'" +
+               ", competitionCategory='" +
+               (null != competitionCategory ? competitionCategory.toString() : "null") +
+               "'" +
+               '}';
     }
 
 }

@@ -45,40 +45,40 @@ public class RegisteredCoupleValidator extends AbstractValidator<Long, Registere
         validateRequiredField(dto);
         Long competitionId = dto.getCompetitionId();
         Competition comp = competitionRepository.findOne(competitionId);
-        if (!competitionScheduleService.isCompetitionAvailable(comp) ||
-            competitionScheduleService.isClosedCompetition(comp) ||
-            !competitionScheduleService.isRegistrationAvailable(comp)) {
+        if(!competitionScheduleService.isCompetitionAvailable(comp) ||
+           competitionScheduleService.isClosedCompetition(comp) ||
+           !competitionScheduleService.isRegistrationAvailable(comp)) {
             throw new ApplicationException(ApplicationExceptionCodes.REGISTRATION_CLOSED);
         }
         List<CompetitionCategoryDTO> availableCategories = competitionCategoryService.findAvailableByCompetitionId(dto,
             competitionId,
-            dto.isSoloCouple(), dto.isHobbyCouple());
+            dto.isSoloCouple(),
+            dto.isHobbyCouple());
         List<Long> availableIds = availableCategories.stream()
             .map(availableCategory -> availableCategory.getId())
             .collect(Collectors.toList());
-        for (Long categoryToRegister : dto.getCompetitionCategoryIds()) {
-            if (!availableIds.contains(categoryToRegister)) {
+        for(Long categoryToRegister : dto.getCompetitionCategoryIds()) {
+            if(!availableIds.contains(categoryToRegister)) {
                 throw new ApplicationException(ApplicationExceptionCodes.REGISTRATION_CLOSED);
             }
         }
     }
 
     private void validateRequiredField(RegisteredCoupleDTO dto) {
-        if (!dto.isSoloCouple()) {
-            if (StringUtils.isBlank(dto.getPartner2Name()) ||
-                StringUtils.isBlank(dto.getPartner2Surname())) {
+        if(!dto.isSoloCouple()) {
+            if(StringUtils.isBlank(dto.getPartner2Name()) || StringUtils.isBlank(dto.getPartner2Surname())) {
                 throw new ApplicationException(ApplicationExceptionCodes.FIELD_NOT_VALID);
             }
-            if (!dto.isHobbyCouple()) {
-                if (null == dto.getPartner1DanceClassLA() ||
-                    null == dto.getPartner1DanceClassLA().getId() ||
-                    null == dto.getPartner1DanceClassST() ||
-                    null == dto.getPartner1DanceClassST().getId() ||
-                    null == dto.getPartner2DateOfBirth() ||
-                    null == dto.getPartner2DanceClassLA() ||
-                    null == dto.getPartner2DanceClassLA().getId() ||
-                    null == dto.getPartner2DanceClassST() ||
-                    null == dto.getPartner2DanceClassST().getId()) {
+            if(!dto.isHobbyCouple()) {
+                if(null == dto.getPartner1DanceClassLA() ||
+                   null == dto.getPartner1DanceClassLA().getId() ||
+                   null == dto.getPartner1DanceClassST() ||
+                   null == dto.getPartner1DanceClassST().getId() ||
+                   null == dto.getPartner2DateOfBirth() ||
+                   null == dto.getPartner2DanceClassLA() ||
+                   null == dto.getPartner2DanceClassLA().getId() ||
+                   null == dto.getPartner2DanceClassST() ||
+                   null == dto.getPartner2DanceClassST().getId()) {
                     throw new ApplicationException(ApplicationExceptionCodes.FIELD_NOT_VALID);
                 }
             }

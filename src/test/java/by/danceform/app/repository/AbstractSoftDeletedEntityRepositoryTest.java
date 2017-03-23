@@ -1,17 +1,18 @@
 package by.danceform.app.repository;
 
+import by.danceform.app.domain.SoftDeletedEntity;
+import org.junit.Test;
+
+import java.io.Serializable;
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import by.danceform.app.domain.SoftDeletedEntity;
-import java.io.Serializable;
-import java.util.List;
-import org.junit.Test;
-
-public abstract class AbstractSoftDeletedEntityRepositoryTest<R extends SoftDeletedEntityRepository<E, ID>, E extends
-    SoftDeletedEntity<ID>, ID extends Serializable> extends AbstractAuditingEntityRepositoryTest<R, E, ID> {
+public abstract class AbstractSoftDeletedEntityRepositoryTest<R extends SoftDeletedEntityRepository<E, ID>, E extends SoftDeletedEntity<ID>, ID extends Serializable>
+    extends AbstractAuditingEntityRepositoryTest<R, E, ID> {
 
     protected static final Long EXISTING_DELETED_ID = -998L;
 
@@ -32,7 +33,7 @@ public abstract class AbstractSoftDeletedEntityRepositoryTest<R extends SoftDele
         final E deletedEntity = getRepository().findOne(getIdForDeletedEntity());
         assertThat(deletedEntity, nullValue());
         final List<E> allEntities = getRepository().findAll();
-        for (E entity: allEntities) {
+        for(E entity : allEntities) {
             assertThat(entity.getId(), not(equalTo(getIdForDeletedEntity())));
         }
     }

@@ -1,23 +1,24 @@
 package by.danceform.app.repository.competition;
 
+import by.danceform.app.domain.competition.Competition;
+import by.danceform.app.domain.competition.CompetitionWithDetails;
+import by.danceform.app.repository.AbstractSoftDeletedEntityRepositoryTest;
+import org.junit.Before;
+import org.junit.Test;
+
+import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import by.danceform.app.domain.competition.Competition;
-import by.danceform.app.domain.competition.CompetitionWithDetails;
-import by.danceform.app.repository.AbstractSoftDeletedEntityRepositoryTest;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
-import javax.transaction.Transactional;
-import org.junit.Before;
-import org.junit.Test;
-
-public class CompetitionRepositoryTest extends
-    AbstractSoftDeletedEntityRepositoryTest<CompetitionRepository, Competition, Long> {
+public class CompetitionRepositoryTest
+    extends AbstractSoftDeletedEntityRepositoryTest<CompetitionRepository, Competition, Long> {
 
     protected static final Long EXISTING_DELETED_COMPETITION_ID = -995L;
 
@@ -93,10 +94,10 @@ public class CompetitionRepositoryTest extends
 
     @Test
     public void testFindOneWithDetails() {
-        CompetitionWithDetails competitionWithDetails = getRepository().findOneWithDetails
-            (getExistingId());
+        CompetitionWithDetails competitionWithDetails = getRepository().findOneWithDetails(getExistingId());
         assertThat(competitionWithDetails, notNullValue());
-        compareFieldValues(getExistingEntity(), competitionWithDetails.getCompetition(),
+        compareFieldValues(getExistingEntity(),
+            competitionWithDetails.getCompetition(),
             getExcludedComparingFieldsOnFind());
         assertThat(competitionWithDetails.getUploadedDocument(), notNullValue());
         assertThat(competitionWithDetails.getUploadedDocument().getId(), equalTo(EXISTING_DETAILS_DOCUMENT_ID));

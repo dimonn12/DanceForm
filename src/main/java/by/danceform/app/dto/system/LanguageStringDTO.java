@@ -50,10 +50,10 @@ public class LanguageStringDTO extends AbstractDomainDTO<Long> {
     @Override
     public String toString() {
         return "LanguageStringDTO{" +
-            "id=" + id +
-            ", lang='" + lang + "'" +
-            ", name='" + name + "'" +
-            ", value='" + value + "'" +
-            '}';
+               "id=" + id +
+               ", lang='" + lang + "'" +
+               ", name='" + name + "'" +
+               ", value='" + value + "'" +
+               '}';
     }
 }

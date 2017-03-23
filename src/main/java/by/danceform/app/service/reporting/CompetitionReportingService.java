@@ -55,7 +55,8 @@ public class CompetitionReportingService {
         workBook.write(os);
         return DownloadUtil.download(fileName,
             new String[]{ "application", "vnd.openxmlformats-officedocument.spreadsheetml.sheet" },
-            os.toByteArray(), false);
+            os.toByteArray(),
+            false);
     }
 
     private void generateCategorySheet(Workbook workBook, String competitionName, CompetitionCategoryDTO categoryDTO) {
@@ -78,7 +79,7 @@ public class CompetitionReportingService {
         style.setFont(font);*/
         SheetInfo info = new SheetInfo();
         Row competitionNameRow = sheet.createRow(info.rowPosition++);
-       // competitionNameRow.setRowStyle(style);
+        // competitionNameRow.setRowStyle(style);
         competitionNameRow.createCell(info.cellPosition).setCellValue(competitionName);
         Row headerRow = sheet.createRow(info.rowPosition++);
         headerRow.createCell(info.cellPosition++).setCellValue("Партнер");

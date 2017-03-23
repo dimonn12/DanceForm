@@ -109,7 +109,9 @@ public class TrainerResource {
         } else {
             result = trainerService.findVisible();
         }
-        Collections.sort(result, (o1, o2) -> ObjectUtils.compare(o1.getSurname() + " " + o1.getName(), o2.getSurname() + " " + o2.getName()));
+        Collections.sort(result,
+            (o1, o2) -> ObjectUtils.compare(o1.getSurname() + " " + o1.getName(),
+                o2.getSurname() + " " + o2.getName()));
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

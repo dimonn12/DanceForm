@@ -79,8 +79,8 @@ public class LanguageStringResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @RequestMapping(
-                    method = RequestMethod.PUT,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.PUT,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<LanguageStringDTO> updateLanguageString(
         @Valid @RequestBody LanguageStringDTO languageStringDTO) throws URISyntaxException {
@@ -102,10 +102,11 @@ public class LanguageStringResource {
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @RequestMapping(
-                    method = RequestMethod.GET,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<List<LanguageStringDTO>> getAllLanguageStrings(HttpServletRequest request, Pageable pageable) throws URISyntaxException {
+    public ResponseEntity<List<LanguageStringDTO>> getAllLanguageStrings(HttpServletRequest request, Pageable pageable)
+        throws URISyntaxException {
         log.debug("REST request to get a page of LanguageStrings");
         Page<LanguageStringDTO> page = languageStringService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/system/language-strings");

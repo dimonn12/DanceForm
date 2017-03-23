@@ -35,7 +35,8 @@ import java.util.Set;
 @Table(name = "competition_category")
 @Where(clause = "deleted <> 1")
 @SQLDelete(sql = "UPDATE competition_category e set e.deleted=true where e.id=?")
-public class CompetitionCategory extends SoftDeletedEntity<Long> implements INamedEntity, Comparable<CompetitionCategory> {
+public class CompetitionCategory extends SoftDeletedEntity<Long>
+    implements INamedEntity, Comparable<CompetitionCategory> {
 
     private static final long serialVersionUID = 3728310148232456453L;
 
@@ -152,7 +153,7 @@ public class CompetitionCategory extends SoftDeletedEntity<Long> implements INam
     public void setAllowSolo(Boolean allowSolo) {
         this.allowSolo = allowSolo;
     }
-    
+
     public Boolean isllowHobby() {
         return allowHobby;
     }

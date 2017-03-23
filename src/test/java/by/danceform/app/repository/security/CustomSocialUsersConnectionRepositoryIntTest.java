@@ -2,13 +2,10 @@ package by.danceform.app.repository.security;
 
 import by.danceform.app.DanceFormApp;
 import by.danceform.app.domain.security.SocialUserConnection;
-import by.danceform.app.repository.security.CustomSocialUsersConnectionRepository;
-import by.danceform.app.repository.security.SocialUserConnectionRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.social.connect.ApiAdapter;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionData;

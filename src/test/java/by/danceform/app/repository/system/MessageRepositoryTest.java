@@ -1,17 +1,18 @@
 package by.danceform.app.repository.system;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 import by.danceform.app.domain.system.Message;
 import by.danceform.app.repository.AbstractRepositoryTest;
+import org.junit.Before;
+import org.junit.Test;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
-import org.junit.Before;
-import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by Dmitry_Shanko on 1/3/2017.

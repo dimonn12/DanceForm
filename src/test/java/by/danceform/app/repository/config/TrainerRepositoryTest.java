@@ -1,13 +1,14 @@
 package by.danceform.app.repository.config;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 import by.danceform.app.domain.config.Trainer;
 import by.danceform.app.repository.AbstractRepositoryTest;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by Dmitry_Shanko on 12/27/2016.

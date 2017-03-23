@@ -1,20 +1,21 @@
 package by.danceform.app.repository.couple;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 import by.danceform.app.domain.couple.RegisteredCouple;
 import by.danceform.app.repository.AbstractSoftDeletedEntityRepositoryTest;
 import by.danceform.app.repository.competition.CompetitionCategoryRepository;
 import by.danceform.app.repository.config.DanceClassRepository;
-import java.time.LocalDate;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class RegisteredCoupleRepositoryTest extends
-    AbstractSoftDeletedEntityRepositoryTest<RegisteredCoupleRepository, RegisteredCouple, Long> {
+import java.time.LocalDate;
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+public class RegisteredCoupleRepositoryTest
+    extends AbstractSoftDeletedEntityRepositoryTest<RegisteredCoupleRepository, RegisteredCouple, Long> {
 
     private static final String EXISTING_PARTNER_1_NAME = "test_partner_1_name";
     private static final String EXISTING_PARTNER_2_NAME = "test_partner_2_name";

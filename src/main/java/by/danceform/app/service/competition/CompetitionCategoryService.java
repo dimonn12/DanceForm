@@ -127,7 +127,8 @@ public class CompetitionCategoryService {
     @Transactional(readOnly = true)
     public List<CompetitionCategoryDTO> findAvailableByCompetitionId(RegisteredCoupleDTO registeredCoupleDTO,
                                                                      Long competitionId,
-                                                                     Boolean isSoloCouple, Boolean isHobbyCouple) {
+                                                                     Boolean isSoloCouple,
+                                                                     Boolean isHobbyCouple) {
         log.debug("Request to get CompetitionCategory : {}", competitionId);
         List<CompetitionCategory> allCategories = competitionCategoryRepository.findAvailableByCompetitionId(
             competitionId);

@@ -1,20 +1,7 @@
 package by.danceform.app.repository;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 import by.danceform.app.domain.AbstractAuditingEntity;
 import by.danceform.app.security.AuthoritiesConstants;
-import java.io.Serializable;
-import java.lang.reflect.Field;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 import org.junit.Test;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -29,8 +16,22 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.transaction.annotation.Transactional;
 
-public abstract class AbstractAuditingEntityRepositoryTest<R extends AbstractAuditingEntityRepository<E, ID>, E extends
-    AbstractAuditingEntity<ID>, ID extends Serializable> extends AbstractRepositoryTest<R, E, ID> {
+import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+public abstract class AbstractAuditingEntityRepositoryTest<R extends AbstractAuditingEntityRepository<E, ID>, E extends AbstractAuditingEntity<ID>, ID extends Serializable>
+    extends AbstractRepositoryTest<R, E, ID> {
 
     protected static final String ADMIN_USERNAME = "admin";
     protected static final String SYSTEM_USERNAME = "system";
@@ -103,12 +104,12 @@ public abstract class AbstractAuditingEntityRepositoryTest<R extends AbstractAud
 
     @Override
     protected boolean checkAdditionalFieldAnnotations(final Object databaseFieldValue, final Field field) {
-        if (field.getAnnotation(CreatedBy.class) != null || field.getAnnotation(LastModifiedBy.class) != null) {
+        if(field.getAnnotation(CreatedBy.class) != null || field.getAnnotation(LastModifiedBy.class) != null) {
             assertThat(databaseFieldValue, equalTo(ADMIN_USERNAME));
             return true;
         }
-        if (field.getAnnotation(CreatedDate.class) != null || field.getAnnotation(LastModifiedDate.class) != null) {
-            assertThat(((ZonedDateTime) databaseFieldValue).toLocalDate(), equalTo(LocalDate.now()));
+        if(field.getAnnotation(CreatedDate.class) != null || field.getAnnotation(LastModifiedDate.class) != null) {
+            assertThat(((ZonedDateTime)databaseFieldValue).toLocalDate(), equalTo(LocalDate.now()));
             return true;
         }
         return super.checkAdditionalFieldAnnotations(databaseFieldValue, field);
@@ -126,8 +127,8 @@ public abstract class AbstractAuditingEntityRepositoryTest<R extends AbstractAud
         SecurityContextHolder.setContext(securityContext);
         final Collection<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(role));
-        final Authentication auth = new UsernamePasswordAuthenticationToken(
-            new User(username, username, authorities), username);
+        final Authentication auth = new UsernamePasswordAuthenticationToken(new User(username, username, authorities),
+            username);
         securityContext.setAuthentication(auth);
     }
 }
