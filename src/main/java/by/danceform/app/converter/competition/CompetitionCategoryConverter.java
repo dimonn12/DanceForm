@@ -83,16 +83,18 @@ public class CompetitionCategoryConverter extends AbstractConverter<CompetitionC
             entity.setDanceCategory(null != danceCategoryEnum ? new DanceCategory(danceCategoryEnum) : null);
         }
 
-        if(null != dto.getMaxDanceClass()) {
+        if(null != dto.getMaxDanceClass() && null != dto.getMaxDanceClass().getId()) {
             entity.setMaxDanceClass(danceClassRepository.findOne(dto.getMaxDanceClass().getId()));
         }
 
         if(null != dto.getAgeCategories()) {
             Set<Long> ageCategoriesIds = dto.getAgeCategories()
-                .stream()
+                .stream().filter(ac -> null != ac.getId())
                 .map(ac -> ac.getId())
                 .collect(Collectors.toSet());
-            entity.setAgeCategories(new HashSet<>(ageCategoryRepository.findAll(ageCategoriesIds)));
+            if (!ageCategoriesIds.isEmpty()) {
+                entity.setAgeCategories(new HashSet<>(ageCategoryRepository.findAll(ageCategoriesIds)));
+            }
         } else {
             entity.setAgeCategories(new HashSet<>());
         }

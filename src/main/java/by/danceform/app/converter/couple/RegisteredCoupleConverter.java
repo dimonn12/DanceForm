@@ -77,16 +77,16 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
         entity.setLocation(trimIfNull(dto.getLocation()));
         entity.setOrganization(trimIfNull(dto.getOrganization()));
 
-        if(null != dto.getPartner1DanceClassLA()) {
+        if(null != dto.getPartner1DanceClassLA() && null != dto.getPartner1DanceClassLA().getId()) {
             entity.setPartner1DanceClassLA(danceClassRepository.findOne(dto.getPartner1DanceClassLA().getId()));
         }
-        if(null != dto.getPartner2DanceClassLA()) {
+        if(null != dto.getPartner2DanceClassLA()&& null != dto.getPartner2DanceClassLA().getId()) {
             entity.setPartner2DanceClassLA(danceClassRepository.findOne(dto.getPartner2DanceClassLA().getId()));
         }
-        if(null != dto.getPartner1DanceClassST()) {
+        if(null != dto.getPartner1DanceClassST()&& null != dto.getPartner1DanceClassST().getId()) {
             entity.setPartner1DanceClassST(danceClassRepository.findOne(dto.getPartner1DanceClassST().getId()));
         }
-        if(null != dto.getPartner2DanceClassST()) {
+        if(null != dto.getPartner2DanceClassST()&& null != dto.getPartner2DanceClassST().getId()) {
             entity.setPartner2DanceClassST(danceClassRepository.findOne(dto.getPartner2DanceClassST().getId()));
         }
 

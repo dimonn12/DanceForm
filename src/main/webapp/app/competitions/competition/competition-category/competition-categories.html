@@ -51,6 +51,9 @@
                         <span data-translate="danceFormApp.competitionCategory.allowSolo">Allow Solo</span>
                     </th>
                     <th>
+                        <span data-translate="danceFormApp.competitionCategory.allowHobby">Allow Hobby</span>
+                    </th>
+                    <th>
                         <span data-translate="danceFormApp.competitionCategory.danceCategory">Dance Category</span>
                     </th>
                     <!--<th>
@@ -99,6 +102,14 @@
                             <span data-translate="global.variables.true"></span>
                         </div>
                         <div ng-if="!competitionCategory.allowSolo">
+                            <span data-translate="global.variables.false"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-if="competitionCategory.allowHobby">
+                            <span data-translate="global.variables.true"></span>
+                        </div>
+                        <div ng-if="!competitionCategory.allowHobby">
                             <span data-translate="global.variables.false"></span>
                         </div>
                     </td>
