@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
-    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <property name="now" value="now()" dbms="mysql,h2"/>
     <property name="now" value="current_timestamp" dbms="postgresql"/>
@@ -22,33 +22,33 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="from_email" type="varchar(128)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
-            
+
             <column name="subject" type="varchar(128)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
-            
+
             <column name="content" type="varchar(3000)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
-            
+
             <column name="date_created" type="timestamp">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
-            
+
             <column name="sent" type="bit" defaultValue="0">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
-            
+
             <column name="date_sent" type="timestamp">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
-            
+
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="message" columnName="date_created" columnDataType="datetime"/>
         <dropDefaultValue tableName="message" columnName="date_sent" columnDataType="datetime"/>
-        
+
     </changeSet>
 </databaseChangeLog>
