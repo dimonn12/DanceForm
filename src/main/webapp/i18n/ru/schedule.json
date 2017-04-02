@@ -38,6 +38,8 @@
       },
       "registry": {
         "register": "Зарегистрироваться",
+        "results": "Результаты",
+        "information": "Информация о турнире",
         "registrationClosed": "Регистрация закрыта",
         "partner1Name": "Имя партнера",
         "partner1Surname": "Фамилия партнера",

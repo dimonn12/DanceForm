@@ -74,16 +74,24 @@
                         <div class="div-inline" ng-if="competition.endDate != null"> - {{competition.endDate | date:'d MMMM yyyy'}}</div>
                     </td>
                     <td class="competition-name">
-                        <button type="button" ng-if="competition.resultsAvailable"
-                                ui-sref="schedule-results({id:competition.id})"
-                                class="btn btn-link show-competition-link competition-name">
-                            <span>{{competition.name}}</span>
-                        </button>
-                        <span ng-if="!competition.resultsAvailable">{{competition.name}}</span>
+                        <span>{{competition.name}}</span>
                     </td>
                     <td style="white-space: normal;">{{competition.location}}</td>
                     <td>{{competition.organizer}}</td>
-                    <td/>
+                    <td>
+                        <button type="button"
+                                ng-if="competition.resultsAvailable"
+                                ui-sref="schedule-results({id:competition.id})"
+                                class="btn btn-link show-competition-link">
+                            <span>{{'danceFormApp.schedule.registry.results' | translate}}</span>
+                        </button>
+                        <button type="button"
+                                ng-if="!competition.resultsAvailable"
+                                ui-sref="schedule-details({id:competition.id})"
+                                class="btn btn-link show-competition-link">
+                            <span>{{'danceFormApp.schedule.registry.information' | translate}}</span>
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>

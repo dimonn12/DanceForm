@@ -76,6 +76,7 @@ public class CompetitionScheduleService {
             compDto.setRegistrationOpen(isRegistrationAvailable(compDto.getId()));
             compDto.setRegistrationClosed(isClosedCompetition(compDto.getRegistrationClosesTime(),
                 compDto.getStartDate()));
+            compDto.setResultsAvailable(isResultsAvailable(compDto));
         });
         return competitions;
     }
@@ -140,6 +141,10 @@ public class CompetitionScheduleService {
 
     private boolean isClosedCompetition(LocalDateTime registrationClosesTime) {
         return !LocalDateTime.now(ZoneId.of("UTC")).isBefore(registrationClosesTime);
+    }
+
+    private boolean isResultsAvailable(CompetitionDTO competition) {
+        return false;
     }
 
 }
