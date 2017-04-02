@@ -88,8 +88,14 @@
 				var a = document.createElement('a');
 				a.href = url;
 				a.download = result.filename;
-				a.target = '_blank';
-				a.click();
+				var event = document.createEvent("MouseEvents");
+				event.initMouseEvent(
+					"click", true, false, window, 0, 0, 0, 0, 0
+					, false, false, false, false, 0, null
+				);
+				a.dispatchEvent(event);
+				/*a.target = '_blank';
+				a.click();*/
 			}
 			function onError(error) {
 				var charCodeArray = Array.apply(null, new Uint8Array(error).data);

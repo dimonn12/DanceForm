@@ -87,7 +87,7 @@
         </insert>
     </changeSet>
 
-    <changeSet id="20170317-1" author="dmitry_shanko" context="dev or prod">
+    <changeSet id="20170317-1" author="dmitry_shanko" context="dev">
         <insert tableName="age_category">
             <column name="id" value="10"/>
             <column name="name" value="5-6 лет"/>
