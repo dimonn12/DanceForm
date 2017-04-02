@@ -115,6 +115,36 @@
 					return currentStateData;
 				}]
 			}
+		}).state('schedule-delete-registered-couple', {
+			parent: 'schedule-category-details',
+			url: '/{coupleId}/delete',
+			data: {
+				authorities: ['ROLE_ADMIN'],
+				pageTitle: 'global.title'
+			},
+			onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+				$uibModal.open({
+					templateUrl: 'app/couple/registered-couple/registered-couple-delete-dialog.html',
+					controller: 'RegisteredCoupleDeleteController',
+					controllerAs: 'vm',
+					size: 'md',
+					resolve: {
+						entity: ['RegisteredCouple', function(RegisteredCouple) {
+							return RegisteredCouple.get({id: $stateParams.coupleId}).$promise;
+						}]
+					}
+				}).result.then(function() {
+					$state.go('schedule-category-details', null, {reload: 'schedule-category-details'});
+				}, function() {
+					$state.go('^');
+				});
+			}],
+			resolve: {
+				translatePartialLoader: ['$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
+					$translatePartialLoader.addPart('registeredCouple');
+					return $translate.refresh();
+				}]
+			}
 		});
 	}
 })();

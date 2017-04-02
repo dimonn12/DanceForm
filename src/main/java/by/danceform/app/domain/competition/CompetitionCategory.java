@@ -154,7 +154,7 @@ public class CompetitionCategory extends SoftDeletedEntity<Long>
         this.allowSolo = allowSolo;
     }
 
-    public Boolean isllowHobby() {
+    public Boolean isAllowHobby() {
         return allowHobby;
     }
 

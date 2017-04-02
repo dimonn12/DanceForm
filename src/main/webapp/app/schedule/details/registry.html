@@ -82,14 +82,33 @@
                     <tbody>
                         <tr>
                             <td>
-                                <label class="control-label" data-translate="danceFormApp.schedule.registry.solo" for="field_solo">Solo</label>
-                            </td>
-                            <td>
                                 <input id="field_solo" type="checkbox" class="registry-category-checkbox"
                                        name="soloCouple"
                                        value="{{vm.soloCouple}}"
                                        ng-model="vm.soloCouple"
                                        ng-change="vm.updateSolo();"/>
+                            </td>
+                            <td>
+                                <label class="control-label" data-translate="danceFormApp.schedule.registry.solo" for="field_solo">Solo</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="form-group solo-checkbox">
+                <table class="solo-checkbox-table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input id="field_hobby" type="checkbox" class="registry-category-checkbox"
+                                       name="hobbyCouple"
+                                       value="{{vm.hobbyCouple}}"
+                                       ng-model="vm.hobbyCouple"
+                                       ng-change="vm.updateHobby();"/>
+                            </td>
+                            <td>
+                                <label class="control-label" data-translate="danceFormApp.schedule.registry.hobby" for="field_hobby">Hobby</label>
                             </td>
                         </tr>
                     </tbody>
@@ -137,7 +156,7 @@
                     </div>
                 </div>
 
-                <div class="classes-group form-group">
+                <div class="classes-group form-group" ng-show="!vm.hobbyCouple">
                     <table class="registry-classes">
                         <thead>
                             <tr>
@@ -226,7 +245,7 @@
                     </div>
                 </div>
 
-                <div class="classes-group form-group">
+                <div class="classes-group form-group" ng-show="!vm.hobbyCouple">
                     <table class="registry-classes">
                         <thead>
                             <tr>
@@ -389,55 +408,6 @@
                             </button>
                         </span>
                     </div>
-                </div>
-
-                <div class="classes-group form-group">
-                    <table class="registry-classes">
-                        <thead>
-                            <tr>
-                                <th colspan="2">
-                                    <h4 class="registry-classes-label">
-                                        <span data-translate="danceFormApp.schedule.registry.partner2Classes">Classes</span>
-                                    </h4>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <label class="control-label" data-translate="danceFormApp.schedule.registry.st" for="field_soloDanceClassST">Date</label>
-                                    (
-                                    <span class="asterisk">*</span>
-                                    )
-                                </th>
-                                <th>
-                                    <label class="control-label" data-translate="danceFormApp.schedule.registry.la" for="field_soloDanceClassLA">Date</label>
-                                    (
-                                    <span class="asterisk">*</span>
-                                    )
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="registry-class">
-                                    <select class="form-control" id="field_soloDanceClassST" name="soloDanceClassST" ng-model="vm.registerSolo.danceClassST.id"
-                                            ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'"
-                                            ng-change="vm.update();">
-                                        <option value=""></option>
-                                    </select>
-                                </td>
-
-                                <td class="registry-class">
-                                    <select class="form-control" id="field_soloDanceClassLA" name="soloDanceClassLA" ng-model="vm.registerSolo.danceClassLA.id"
-                                            ng-options="danceClass.id as danceClass.name for danceClass in vm.danceClasses | orderBy:'weight'"
-                                            ng-change="vm.update();">
-                                        <option value=""></option>
-                                    </select>
-                                </td>
-                            </tr>
-
-                        </tbody>
-
-                    </table>
                 </div>
 
                 <div class="form-group">

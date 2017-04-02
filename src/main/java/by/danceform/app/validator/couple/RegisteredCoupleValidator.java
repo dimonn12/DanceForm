@@ -1,14 +1,11 @@
 package by.danceform.app.validator.couple;
 
-import by.danceform.app.converter.NamedEntityConverter;
 import by.danceform.app.domain.competition.Competition;
-import by.danceform.app.domain.config.DanceClass;
 import by.danceform.app.dto.competition.CompetitionCategoryDTO;
 import by.danceform.app.dto.couple.RegisteredCoupleDTO;
 import by.danceform.app.exception.ApplicationException;
 import by.danceform.app.exception.ApplicationExceptionCodes;
 import by.danceform.app.repository.competition.CompetitionRepository;
-import by.danceform.app.repository.config.DanceClassRepository;
 import by.danceform.app.service.competition.CompetitionCategoryService;
 import by.danceform.app.service.competition.CompetitionScheduleService;
 import by.danceform.app.validator.AbstractValidator;
@@ -33,12 +30,6 @@ public class RegisteredCoupleValidator extends AbstractValidator<Long, Registere
 
     @Inject
     private CompetitionScheduleService competitionScheduleService;
-
-    @Inject
-    private DanceClassRepository danceClassRepository;
-
-    @Inject
-    private NamedEntityConverter<DanceClass> namedEntityConverter;
 
     @Override
     public void validate(RegisteredCoupleDTO dto) {

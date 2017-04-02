@@ -56,6 +56,12 @@
                         <span>{{vm.currentCompetition.location}}</span>
                     </dd>
                     <dt>
+                        <span data-translate="danceFormApp.schedule.category.name">Название категории</span>
+                    </dt>
+                    <dd style="white-space: normal">
+                        <span>{{vm.category.name}}</span>
+                    </dd>
+                    <dt>
                         <span data-translate="danceFormApp.schedule.category.amount">Пар в категории</span>
                     </dt>
                     <dd>
@@ -78,6 +84,12 @@
         <table class="jh-table table table-bordered table-schedule table-couples">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th style="width:20px;">
+                        <span data-translate="danceFormApp.schedule.couples.number">Номер</span>
+                    </th>
+                    <th style="width:20px;" has-authority="ROLE_ADMIN">
+                        <span data-translate="danceFormApp.schedule.couples.systemId">Системный ID</span>
+                    </th>
                     <th>
                         <span data-translate="danceFormApp.schedule.couples.names">Название</span>
                     </th>
@@ -94,10 +106,17 @@
                     <th>
                         <span data-translate="danceFormApp.schedule.couples.trainer">Тренер</span>
                     </th>
+                    <th has-authority="ROLE_ADMIN" style="width: 1px;"/>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="couple in vm.couples track by couple.id">
+                    <td>
+                        {{$index + 1}}
+                    </td>
+                    <td has-authority="ROLE_ADMIN">
+                        <a href="#/registered-couple/{{couple.id}}">{{couple.id}}</a>
+                    </td>
                     <td>
                         <div class="div-inline">{{couple.partner1Surname}} {{couple.partner1Name}}</div>
                         <br ng-if="null != couple.partner2Surname && null != couple.partner2Name">
@@ -120,6 +139,13 @@
                         <div class="div-inline">{{couple.trainer1}}</div>
                         <br ng-if="couple.trainer2 != null && couple.trainer2 !== '__________'">
                         <div class="div-inline" ng-if="couple.trainer2 != null && couple.trainer2 !== '__________'">{{couple.trainer2}}</div>
+                    </td>
+                    <td has-authority="ROLE_ADMIN">
+                        <button type="submit"
+                                ui-sref="schedule-delete-registered-couple({coupleId:couple.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"/>
+                        </button>
                     </td>
                 </tr>
             </tbody>

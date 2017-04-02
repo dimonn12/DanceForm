@@ -57,6 +57,9 @@ spring:
     thymeleaf:
         cache: false
 
+logback:
+    loglevel: DEBUG
+
 liquibase:
     contexts: dev
 

@@ -80,13 +80,13 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
         if(null != dto.getPartner1DanceClassLA() && null != dto.getPartner1DanceClassLA().getId()) {
             entity.setPartner1DanceClassLA(danceClassRepository.findOne(dto.getPartner1DanceClassLA().getId()));
         }
-        if(null != dto.getPartner2DanceClassLA()&& null != dto.getPartner2DanceClassLA().getId()) {
+        if(null != dto.getPartner2DanceClassLA() && null != dto.getPartner2DanceClassLA().getId()) {
             entity.setPartner2DanceClassLA(danceClassRepository.findOne(dto.getPartner2DanceClassLA().getId()));
         }
-        if(null != dto.getPartner1DanceClassST()&& null != dto.getPartner1DanceClassST().getId()) {
+        if(null != dto.getPartner1DanceClassST() && null != dto.getPartner1DanceClassST().getId()) {
             entity.setPartner1DanceClassST(danceClassRepository.findOne(dto.getPartner1DanceClassST().getId()));
         }
-        if(null != dto.getPartner2DanceClassST()&& null != dto.getPartner2DanceClassST().getId()) {
+        if(null != dto.getPartner2DanceClassST() && null != dto.getPartner2DanceClassST().getId()) {
             entity.setPartner2DanceClassST(danceClassRepository.findOne(dto.getPartner2DanceClassST().getId()));
         }
 
@@ -117,9 +117,9 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
         if(dto.isHobbyCouple()) {
             DanceClass defaultDanceClass = danceClassRepository.findDefault();
             dto.setPartner1DanceClassLA(danceClassNamedEntityConverter.convertToDto(defaultDanceClass));
-            dto.setPartner2DanceClassLA(danceClassNamedEntityConverter.convertToDto(defaultDanceClass));
+            dto.setPartner1DanceClassST(danceClassNamedEntityConverter.convertToDto(defaultDanceClass));
             if(dto.isSoloCouple()) {
-                dto.setPartner1DanceClassST(danceClassNamedEntityConverter.convertToDto(defaultDanceClass));
+                dto.setPartner2DanceClassLA(danceClassNamedEntityConverter.convertToDto(defaultDanceClass));
                 dto.setPartner2DanceClassST(danceClassNamedEntityConverter.convertToDto(defaultDanceClass));
             }
         }
@@ -136,13 +136,13 @@ public class RegisteredCoupleConverter extends AbstractConverter<RegisteredCoupl
     protected void setHobbyCouple(RegisteredCouple entity, RegisteredCoupleDTO dto) {
         boolean isHobbyCouple = Objects.equals(entity.getPartner1DanceClassLA().getId(),
             DanceClassRepository.DEFAULT_DANCE_CLASS_ID) &&
-                                Objects.equals(entity.getPartner2DanceClassLA().getId(),
+                                Objects.equals(entity.getPartner1DanceClassST().getId(),
                                     DanceClassRepository.DEFAULT_DANCE_CLASS_ID);
         if(isHobbyCouple) {
             if(dto.isSoloCouple()) {
                 dto.setHobbyCouple(true);
             } else {
-                dto.setHobbyCouple(Objects.equals(entity.getPartner1DanceClassST().getId(),
+                dto.setHobbyCouple(Objects.equals(entity.getPartner2DanceClassLA().getId(),
                     DanceClassRepository.DEFAULT_DANCE_CLASS_ID) &&
                                    Objects.equals(entity.getPartner2DanceClassST().getId(),
                                        DanceClassRepository.DEFAULT_DANCE_CLASS_ID));

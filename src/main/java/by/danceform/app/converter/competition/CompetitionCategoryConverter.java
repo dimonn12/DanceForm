@@ -59,7 +59,7 @@ public class CompetitionCategoryConverter extends AbstractConverter<CompetitionC
         dto.setCheckMaxAge(entity.isCheckMaxAge());
         dto.setCheckMinAge(entity.isCheckMinAge());
         dto.setAllowSolo(entity.isAllowSolo());
-        dto.setAllowHobby(entity.isllowHobby());
+        dto.setAllowHobby(entity.isAllowHobby());
         dto.setCompetitionId(entity.getCompetitionId());
         dto.setDanceCategory(danceCategoryNamedEntityConverter.convertToDto(entity.getDanceCategory()));
         dto.setAgeCategories(new HashSet<>(namedEntityAgeCategoryConverter.convertToDtos(entity.getAgeCategories())));

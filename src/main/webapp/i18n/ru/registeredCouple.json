@@ -11,7 +11,7 @@
       "updated": "Registered Couple обновлен с идентификатором {{ param }}",
       "deleted": "Registered Couple удален с идентификатором {{ param }}",
       "delete": {
-        "question": "Вы уверены что хотите удалить Registered Couple {{ id }}?"
+        "question": "Вы уверены что хотите удалить зарегистрированную пару с системным ID {{ id }}?"
       },
       "detail": {
         "title": "Registered Couple"

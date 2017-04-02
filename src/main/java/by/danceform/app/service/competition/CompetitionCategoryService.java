@@ -160,6 +160,10 @@ public class CompetitionCategoryService {
                 availableCategories.add(existingCategory);
                 continue;
             }
+            if(isHobbyCouple && existingCategory.isAllowHobby()) {
+                availableCategories.add(existingCategory);
+                continue;
+            }
             if(null == existingCategory.getDanceCategory()) {
                 if(checkDanceClasses(isSoloCouple,
                     existingCategory.getMaxDanceClass(),
