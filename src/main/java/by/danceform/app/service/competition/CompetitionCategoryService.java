@@ -138,6 +138,9 @@ public class CompetitionCategoryService {
             if(isSoloCouple && !existingCategory.isAllowSolo()) {
                 continue;
             }
+            if (!isSoloCouple && existingCategory.isAllowSoloOnly()) {
+                continue;
+            }
             if(existingCategory.isCheckMinAge()) {
                 if(!checkMinAgeCategory(isSoloCouple,
                     existingCategory,

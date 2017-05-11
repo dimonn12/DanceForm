@@ -60,6 +60,7 @@ public class CompetitionCategoryConverter extends AbstractConverter<CompetitionC
         dto.setCheckMinAge(entity.isCheckMinAge());
         dto.setAllowSolo(entity.isAllowSolo());
         dto.setAllowHobby(entity.isAllowHobby());
+        dto.setAllowSoloOnly(entity.isAllowSoloOnly());
         dto.setCompetitionId(entity.getCompetitionId());
         dto.setDanceCategory(danceCategoryNamedEntityConverter.convertToDto(entity.getDanceCategory()));
         dto.setAgeCategories(new HashSet<>(namedEntityAgeCategoryConverter.convertToDtos(entity.getAgeCategories())));
@@ -78,6 +79,7 @@ public class CompetitionCategoryConverter extends AbstractConverter<CompetitionC
         entity.setCompetitionId(dto.getCompetitionId());
         entity.setAllowSolo(dto.isAllowSolo());
         entity.setAllowHobby(dto.isAllowHobby());
+        entity.setAllowSoloOnly(dto.isAllowSoloOnly());
         if(null != dto.getDanceCategory()) {
             DanceCategoryEnum danceCategoryEnum = DanceCategoryEnum.valueOf(dto.getDanceCategory());
             entity.setDanceCategory(null != danceCategoryEnum ? new DanceCategory(danceCategoryEnum) : null);

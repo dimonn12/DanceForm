@@ -75,6 +75,19 @@
 			vm.registerCouple.competitionId = vm.currentCompetition.id;
 			setReadOnlyForm();
 			preLoadDefaultClasses();
+			preloadHobbyCompetition();
+		}
+
+		function preloadHobbyCompetition() {
+			if(isHobbyCompetition()) {
+				$('#field_hobby').attr('disabled', true);
+				vm.hobbyCouple = true;
+				vm.updateHobby();
+			}
+		}
+
+		function isHobbyCompetition() {
+			return true;
 		}
 
 		function preLoadDefaultClasses() {
@@ -237,8 +250,10 @@
 				vm.registerCouple.trainer2 = vm.registerSolo.trainer2;
 				vm.registerCouple.location = vm.registerSolo.location;
 				vm.registerCouple.organization = vm.registerSolo.organization;
-				vm.registerSolo = {}
-				$('#field_hobby').attr('disabled', false);
+				vm.registerSolo = {};
+				if (!isHobbyCompetition()) {
+					$('#field_hobby').attr('disabled', false);
+				}
 			}
 			update();
 			updateSelectedCategory();

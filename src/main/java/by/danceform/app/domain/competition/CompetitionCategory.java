@@ -71,6 +71,9 @@ public class CompetitionCategory extends SoftDeletedEntity<Long>
     @Column(name = "allow_hobby")
     private Boolean allowHobby;
 
+    @Column(name = "allow_solo_only")
+    private Boolean allowSoloOnly;
+
     @Column(name = "competition_id", nullable = false)
     private Long competitionId;
 
@@ -156,6 +159,14 @@ public class CompetitionCategory extends SoftDeletedEntity<Long>
 
     public Boolean isAllowHobby() {
         return allowHobby;
+    }
+
+    public Boolean isAllowSoloOnly() {
+        return allowSoloOnly;
+    }
+
+    public void setAllowSoloOnly(Boolean allowSoloOnly) {
+        this.allowSoloOnly = allowSoloOnly;
     }
 
     public void setAllowHobby(Boolean allowHobby) {

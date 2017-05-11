@@ -94,4 +94,11 @@
         </addColumn>
 
     </changeSet>
+
+    <changeSet id="2017-05-11-01" author="dmitry-shanko">
+        <addColumn tableName="competition_category">
+            <column name="allow_solo_only" type="boolean" defaultValueBoolean="false"/>
+        </addColumn>
+
+    </changeSet>
 </databaseChangeLog>
