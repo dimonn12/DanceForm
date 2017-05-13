@@ -87,7 +87,7 @@
 		}
 
 		function isHobbyCompetition() {
-			return true;
+			return vm.currentCompetition.festival;
 		}
 
 		function preLoadDefaultClasses() {
