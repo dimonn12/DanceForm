@@ -9,6 +9,8 @@ import by.danceform.app.service.competition.CompetitionService;
 import by.danceform.app.service.couple.RegisteredCoupleService;
 import by.danceform.app.web.rest.util.DownloadUtil;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -21,13 +23,17 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by USER on 22.02.2017.
  */
 @Service
 public class CompetitionReportingService {
+
+    private static final int SHEET_NAME_LIMITATION = 31;
 
     @Inject
     private CompetitionService competitionService;
@@ -48,8 +54,9 @@ public class CompetitionReportingService {
         List<CompetitionCategoryDTO> competitionCategories = competitionCategoryService.findByCompetitionId(
             competitionId);
         Workbook workBook = new XSSFWorkbook();
+        Set<String> sheetNames = new HashSet<>();
         for(CompetitionCategoryDTO categoryDTO : competitionCategories) {
-            generateCategorySheet(workBook, competitionName, categoryDTO);
+            generateCategorySheet(workBook, sheetNames, competitionName, categoryDTO);
         }
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         workBook.write(os);
@@ -59,45 +66,86 @@ public class CompetitionReportingService {
             false);
     }
 
-    private void generateCategorySheet(Workbook workBook, String competitionName, CompetitionCategoryDTO categoryDTO) {
-        Sheet sheet = workBook.createSheet(categoryDTO.getName());
-        SheetInfo sheetInfo = createSheetHeader(workBook, sheet, competitionName);
+    private void generateCategorySheet(Workbook workBook,
+                                       Set<String> sheetNames,
+                                       String competitionName,
+                                       CompetitionCategoryDTO categoryDTO) {
+        Sheet sheet = workBook.createSheet(prepareSheetName(sheetNames, categoryDTO.getName()));
+        SheetInfo sheetInfo = createSheetHeader(workBook, sheet, competitionName, categoryDTO.getName());
         List<RegisteredCoupleDTO> registeredCouples = registeredCoupleService.findByCategoryId(categoryDTO.getId());
         for(RegisteredCoupleDTO couple : registeredCouples) {
-            fillCoupleRow(workBook, sheetInfo, sheet, categoryDTO, couple);
+            fillCoupleRow(sheetInfo, sheet, categoryDTO, couple);
         }
         for(int i = 0; i < sheetInfo.cellPosition; i++) {
             sheet.autoSizeColumn(i);
         }
     }
 
-    private SheetInfo createSheetHeader(Workbook workBook, Sheet sheet, String competitionName) {
-        /*CellStyle style = workBook.createCellStyle();
-        Font font = workBook.createFont();
-        font.setBold(true);
-        font.setFontHeight((short)14);
-        style.setFont(font);*/
+    private String prepareSheetName(Set<String> sheetNames, String categoryName) {
+        String result = categoryName;
+        if(categoryName.length() > SHEET_NAME_LIMITATION) {
+            result = result.replace(" ", "");
+            if(result.length() > SHEET_NAME_LIMITATION) {
+                String limitedSheetName = result.substring(0, SHEET_NAME_LIMITATION);
+                if(sheetNames.contains(limitedSheetName)) {
+                    limitedSheetName = limitedSheetName.substring(0, SHEET_NAME_LIMITATION - 4);
+                    for(int i = 1; i < 100; i++) {
+                        String testString = limitedSheetName.concat("(" + i + ")");
+                        if(!sheetNames.contains(testString)) {
+                            result = testString;
+                            break;
+                        }
+                    }
+                } else {
+                    result = limitedSheetName;
+                }
+            }
+        }
+        sheetNames.add(result);
+        return result;
+    }
+
+    private SheetInfo createSheetHeader(Workbook workBook, Sheet sheet, String competitionName, String categoryName) {
         SheetInfo info = new SheetInfo();
-        Row competitionNameRow = sheet.createRow(info.rowPosition++);
-        // competitionNameRow.setRowStyle(style);
-        competitionNameRow.createCell(info.cellPosition).setCellValue(competitionName);
-        Row headerRow = sheet.createRow(info.rowPosition++);
-        headerRow.createCell(info.cellPosition++).setCellValue("Партнер");
-        headerRow.createCell(info.cellPosition++).setCellValue("Партнерша");
-        headerRow.createCell(info.cellPosition++).setCellValue("Дата рождения партнера");
-        headerRow.createCell(info.cellPosition++).setCellValue("Дата рождения партнерши");
-        headerRow.createCell(info.cellPosition++).setCellValue("Класс");
-        headerRow.createCell(info.cellPosition++).setCellValue("Город");
-        headerRow.createCell(info.cellPosition++).setCellValue("Клуб");
-        headerRow.createCell(info.cellPosition++).setCellValue("Тренер 1");
-        headerRow.createCell(info.cellPosition++).setCellValue("Тренер 2");
-        //headerRow.setRowStyle(style);
+        info.headerStyle = prepareHeaderStyle(workBook);
+        createHeaderCell(createHeaderRow(sheet, info), info.cellPosition, info.headerStyle, competitionName);
+        createHeaderCell(createHeaderRow(sheet, info), info.cellPosition, info.headerStyle, categoryName);
+        Row headerRow = createHeaderRow(sheet, info);
+        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Партнер");
+        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Партнерша");
+        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Дата рождения партнера");
+        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Дата рождения партнерши");
+        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Класс");
+        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Город");
+        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Клуб");
+        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Тренер 1");
+        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Тренер 2");
         sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, info.cellPosition - 1));
+        sheet.addMergedRegion(new CellRangeAddress(1, 1, 0, info.cellPosition - 1));
         return info;
     }
 
-    private void fillCoupleRow(Workbook workBook,
-                               SheetInfo sheetInfo,
+    private CellStyle prepareHeaderStyle(Workbook workBook) {
+        CellStyle style = workBook.createCellStyle();
+        Font font = workBook.createFont();
+        font.setFontHeight((short)300);
+        font.setBold(true);
+        style.setFont(font);
+        return style;
+    }
+
+    private Row createHeaderRow(Sheet sheet, SheetInfo info) {
+        return sheet.createRow(info.rowPosition++);
+    }
+
+    private Cell createHeaderCell(Row headerRow, int cellPosition, CellStyle headerStyle, String value) {
+        Cell cell = headerRow.createCell(cellPosition);
+        cell.setCellValue(value);
+        cell.setCellStyle(headerStyle);
+        return cell;
+    }
+
+    private void fillCoupleRow(SheetInfo sheetInfo,
                                Sheet sheet,
                                CompetitionCategoryDTO categoryDTO,
                                RegisteredCoupleDTO couple) {
@@ -153,6 +201,7 @@ public class CompetitionReportingService {
 
     private class SheetInfo {
 
+        private CellStyle headerStyle;
         private int rowPosition;
         private int cellPosition;
     }
