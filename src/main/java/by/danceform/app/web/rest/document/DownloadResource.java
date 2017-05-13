@@ -79,4 +79,19 @@ public class DownloadResource {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @RequestMapping(value = "/competition/{competitionId}/banner2",
+                    method = RequestMethod.GET)
+    @Timed
+    public HttpEntity<byte[]> downloadCompetitionBanner2(@PathVariable("competitionId") Long competitionId) {
+        log.debug("REST request to download file");
+        CompetitionDTO competition = competitionService.findOne(competitionId);
+        if(null != competition && competition.isVisible() && null != competition.getBannerImageId2()) {
+            UploadedDocument doc = uploadedDocumentService.findById(competition.getBannerImageId2());
+            if(null != doc) {
+                return DownloadUtil.download(doc, true);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
 }

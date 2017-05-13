@@ -20,11 +20,23 @@
     <table>
         <tr>
             <td>
-                <div ng-if="vm.currentCompetition.bannerImageId != null">
-                    <a href="uploads/competition/{{vm.currentCompetition.id}}/banner" target="_new">
-                        <img class="banner" data-ng-src="uploads/competition/{{vm.currentCompetition.id}}/banner"/>
-                    </a>
-                </div>
+                <table>
+                    <tr>
+                        <div ng-if="vm.currentCompetition.bannerImageId != null">
+                            <a href="uploads/competition/{{vm.currentCompetition.id}}/banner" target="_new">
+                                <img class="banner" ng-if="vm.currentCompetition.bannerImageId2 == null" data-ng-src="uploads/competition/{{vm.currentCompetition.id}}/banner"/>
+                                <img class="banner2" ng-if="vm.currentCompetition.bannerImageId2 != null" data-ng-src="uploads/competition/{{vm.currentCompetition.id}}/banner"/>
+                            </a>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div ng-if="vm.currentCompetition.bannerImageId2 != null">
+                            <a href="uploads/competition/{{vm.currentCompetition.id}}/banner2" target="_new">
+                                <img class="banner2" data-ng-src="uploads/competition/{{vm.currentCompetition.id}}/banner2"/>
+                            </a>
+                        </div>
+                    </tr>
+                </table>
             </td>
             <td>
                 <dl class="dl-horizontal jh-entity-details competition-dl">

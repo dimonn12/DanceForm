@@ -100,6 +100,21 @@ public class UploadedDocumentResource {
             .body(result);
     }
 
+    @RequestMapping(value = "/competition/image2",
+                    method = RequestMethod.POST,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<UploadedDocumentDTO> uploadCompetitionImage2(HttpServletRequest request,
+                                                                       @Valid @RequestBody
+                                                                           AttachedDocumentDTO attachedDocumentDTO)
+        throws URISyntaxException {
+        log.debug("REST request to save UploadedDocument : {}", attachedDocumentDTO);
+        UploadedDocumentDTO result = uploadedDocumentService.uploadCompetitionImage2(request, attachedDocumentDTO);
+        return ResponseEntity.created(new URI("/api/config/uploaded-documents/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert("uploadedDocument", result.getId().toString()))
+            .body(result);
+    }
+
     /**
      * PUT  /uploaded-documents : Updates an existing uploadedDocument.
      *

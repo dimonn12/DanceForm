@@ -49,6 +49,9 @@ public class Competition extends SoftDeletedEntity<Long> implements INamedEntity
     @Column(name = "is_visible")
     private boolean visible;
 
+    @Column(name = "is_festival")
+    private boolean festival;
+
     @Column(name = "organizer")
     private String organizer;
 
@@ -59,6 +62,9 @@ public class Competition extends SoftDeletedEntity<Long> implements INamedEntity
 
     @Column(name = "banner_image_id")
     private Long bannerImageId;
+
+    @Column(name = "banner_image_id_2")
+    private Long bannerImageId2;
 
     @Column(name = "details_document_id")
     private Long detailsDocumentId;
@@ -113,6 +119,14 @@ public class Competition extends SoftDeletedEntity<Long> implements INamedEntity
         this.visible = visible;
     }
 
+    public boolean isFestival() {
+        return festival;
+    }
+
+    public void setFestival(boolean festival) {
+        this.festival = festival;
+    }
+
     public String getOrganizer() {
         return organizer;
     }
@@ -143,6 +157,14 @@ public class Competition extends SoftDeletedEntity<Long> implements INamedEntity
 
     public void setBannerImageId(Long bannerImageId) {
         this.bannerImageId = bannerImageId;
+    }
+
+    public Long getBannerImageId2() {
+        return bannerImageId2;
+    }
+
+    public void setBannerImageId2(Long bannerImageId2) {
+        this.bannerImageId2 = bannerImageId2;
     }
 
     @Override

@@ -45,6 +45,10 @@
                         <span data-translate="danceFormApp.competition.location">Location</span>
                         <span class="glyphicon glyphicon-sort"></span>
                     </th>
+                    <th>
+                        <span data-translate="danceFormApp.competition.festival">Is Festival</span>
+                        <span class="glyphicon glyphicon-sort"></span>
+                    </th>
                     <th></th>
                 </tr>
             </thead>
@@ -71,6 +75,14 @@
                     </td>
                     <td>{{competition.organizer}}</td>
                     <td>{{competition.location}}</td>
+                    <td>
+                        <div ng-if="competition.festival">
+                            <span data-translate="global.variables.true"></span>
+                        </div>
+                        <div ng-if="!competition.festival">
+                            <span data-translate="global.variables.false"></span>
+                        </div>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

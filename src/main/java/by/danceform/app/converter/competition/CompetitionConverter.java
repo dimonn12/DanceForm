@@ -26,8 +26,10 @@ public class CompetitionConverter extends AbstractConverter<Competition, Competi
         dto.setLocation(trimIfNull(entity.getLocation()));
         dto.setOrganizer(trimIfNull(entity.getOrganizer()));
         dto.setVisible(entity.isVisible());
+        dto.setFestival(entity.isFestival());
         dto.setDetailsDocumentId(entity.getDetailsDocumentId());
         dto.setBannerImageId(entity.getBannerImageId());
+        dto.setBannerImageId2(entity.getBannerImageId2());
         return dto;
     }
 
@@ -38,6 +40,7 @@ public class CompetitionConverter extends AbstractConverter<Competition, Competi
         entity.setEndDate(dto.getEndDate());
         entity.setRegistrationClosesTime(dto.getRegistrationClosesTime());
         entity.setVisible(dto.isVisible());
+        entity.setFestival(dto.isFestival());
         entity.setOrganizer(trimIfNull(dto.getOrganizer()));
         entity.setLocation(trimIfNull(dto.getLocation()));
         return entity;

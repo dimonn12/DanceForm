@@ -603,6 +603,12 @@ dl > dt > span {
     padding: 5px 5px 20px;
 }
 
+.banner2 {
+    height: 300px;
+    margin-top: -20px;
+    padding: 5px 5px 20px;
+}
+
 .footer {
     display: inline-block;
     height: 1px;

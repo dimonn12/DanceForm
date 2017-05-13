@@ -30,6 +30,10 @@
 			'uploadImageToComeptition': {
 				method: 'POST',
 				url: resourceUrl + '/competition/image'
+			},
+			'uploadImageToComeptition2': {
+				method: 'POST',
+				url: resourceUrl + '/competition/image2'
 			}
 		});
 	}

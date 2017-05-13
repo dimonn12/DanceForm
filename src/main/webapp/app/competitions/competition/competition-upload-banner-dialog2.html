@@ -1,0 +1,47 @@
+<form name="uploadForm" ng-submit="vm.upload()" show-validation>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" data-translate="danceFormApp.competition.upload.uploadBanner2"></h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <p data-translate="danceFormApp.competition.upload.image"></p>
+
+        <div class="form-group" ngf-drop ngf-change="vm.setContent($file, vm.uploadedImage)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="danceFormApp.competition.upload.addDocument" for="field_content">Content</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.uploadedImage.contentContentType + ';base64,' + vm.uploadedImage.content}}" style="max-height: 100px;"
+                     ng-if="vm.uploadedImage.content"/>
+                <div ng-if="vm.uploadedImage.content" class="help-block clearfix">
+                    <span class="pull-left">{{vm.uploadedDocument.contentContentType}}, {{vm.byteSize(vm.uploadedDocument.content)}}</span>
+                    <button ng-click="vm.uploadedImage.content=null;vm.uploadedImage.contentContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="file" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setContent($file, vm.uploadedImage)" accept="image/*" data-translate="danceFormApp.competition.upload.addImage">
+                    Add blob
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="content" id="field_content"
+                   ng-model="vm.uploadedImage.content" required/>
+            <input type="hidden" class="form-control" name="contentContentType" id="field_contentContentType"
+                   ng-model="vm.uploadedImage.contentContentType"/>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>
+            &nbsp;
+            <span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="uploadForm.$invalid" class="btn btn-upload">
+            <span class="glyphicon glyphicon-upload"></span>
+            &nbsp;
+            <span data-translate="danceFormApp.competition.upload.upload">Upload</span>
+        </button>
+    </div>
+</form>

@@ -66,6 +66,18 @@ public class UploadedDocumentService {
         UploadedDocument uploadedDocument = upload(request, attachedDocumentDTO);
         Competition comp = competitionRepository.findOne(attachedDocumentDTO.getEntityId());
         comp.setBannerImageId(uploadedDocument.getId());
+        return uploadBanner(comp, uploadedDocument);
+    }
+
+    public UploadedDocumentDTO uploadCompetitionImage2(HttpServletRequest request,
+                                                      AttachedDocumentDTO attachedDocumentDTO) {
+        UploadedDocument uploadedDocument = upload(request, attachedDocumentDTO);
+        Competition comp = competitionRepository.findOne(attachedDocumentDTO.getEntityId());
+        comp.setBannerImageId2(uploadedDocument.getId());
+        return uploadBanner(comp, uploadedDocument);
+    }
+
+    private UploadedDocumentDTO uploadBanner(Competition comp, UploadedDocument uploadedDocument) {
         competitionRepository.save(comp);
         UploadedDocumentDTO result = uploadedDocumentConverter.convertToDto(uploadedDocument);
         return result;

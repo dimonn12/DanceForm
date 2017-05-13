@@ -26,6 +26,8 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
 
     private boolean visible;
 
+    private boolean festival;
+
     private String organizer;
 
     @NotNull
@@ -39,6 +41,8 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
     private boolean isRegistrationClosed;
 
     private Long bannerImageId;
+
+    private Long bannerImageId2;
 
     private Long detailsDocumentId;
 
@@ -87,6 +91,14 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
 
     public void setVisible(boolean visible) {
         this.visible = visible;
+    }
+
+    public boolean isFestival() {
+        return festival;
+    }
+
+    public void setFestival(boolean festival) {
+        this.festival = festival;
     }
 
     public String getOrganizer() {
@@ -143,6 +155,14 @@ public class CompetitionDTO extends AbstractDomainDTO<Long> {
 
     public void setBannerImageId(Long bannerImageId) {
         this.bannerImageId = bannerImageId;
+    }
+
+    public Long getBannerImageId2() {
+        return bannerImageId2;
+    }
+
+    public void setBannerImageId2(Long bannerImageId2) {
+        this.bannerImageId2 = bannerImageId2;
     }
 
     @Override

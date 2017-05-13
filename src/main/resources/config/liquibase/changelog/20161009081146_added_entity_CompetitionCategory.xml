@@ -101,4 +101,5 @@
         </addColumn>
 
     </changeSet>
+
 </databaseChangeLog>

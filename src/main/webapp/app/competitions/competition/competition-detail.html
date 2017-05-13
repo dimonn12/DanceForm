@@ -69,6 +69,17 @@
                     <dd>
                         <span>{{vm.competition.location}}</span>
                     </dd>
+                    <dt>
+                        <span data-translate="danceFormApp.competition.festival">Is Festival</span>
+                    </dt>
+                    <dd>
+                        <div ng-if="vm.competition.festival">
+                            <span data-translate="global.variables.true"></span>
+                        </div>
+                        <div ng-if="!vm.competition.visible">
+                            <span data-translate="global.variables.false"></span>
+                        </div>
+                    </dd>
                     <dt ng-show="vm.competition.detailsDocumentId != null">
                         <span data-translate="danceFormApp.competition.detailsDocument">Location</span>
                     </dt>
@@ -96,6 +107,13 @@
             class="btn btn-upload">
         <span class="glyphicon glyphicon-upload"></span>
         <span data-translate="danceFormApp.competition.action.uploadBanner"></span>
+    </button>
+
+    <button type="submit"
+            ui-sref="competition-upload-image2({competitionId:vm.competition.id})"
+            class="btn btn-upload">
+        <span class="glyphicon glyphicon-upload"></span>
+        <span data-translate="danceFormApp.competition.action.uploadBanner2"></span>
     </button>
 
     <button type="submit"

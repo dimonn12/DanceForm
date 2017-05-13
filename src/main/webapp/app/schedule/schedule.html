@@ -26,7 +26,8 @@
                 <tr ng-repeat="competition in vm.futureCompetitions | orderBy:'startDate'">
                     <td>
                         <div class="div-inline">{{competition.startDate | date:'d MMMM yyyy'}}</div>
-                        <div class="div-inline" ng-if="competition.endDate != null && competition.startDate != competition.endDate">&nbsp;- {{competition.endDate | date:'d MMMM yyyy'}}
+                        <div class="div-inline" ng-if="competition.endDate != null && competition.startDate != competition.endDate">&nbsp;- {{competition.endDate | date:'d MMMM
+                            yyyy'}}
                         </div>
                     </td>
                     <td>
@@ -100,14 +101,22 @@
             <table align="center">
                 <tbody>
                     <tr>
-                        <td width="200" align="center" ng-repeat="competition in vm.futureCompetitions | orderBy:'startDate'">
-                            <div ng-if="competition.bannerImageId != null">
+                        <td ng-repeat-start="competition in vm.futureCompetitions | orderBy:'startDate'"></td>
+                        <td width="200" align="center" ng-if="competition.bannerImageId != null">
+                            <div>
                                 <a href="uploads/competition/{{competition.id}}/banner" target="_new">
                                     <img class="banner" data-ng-src="uploads/competition/{{competition.id}}/banner"/>
                                 </a>
                             </div>
                         </td>
-
+                        <td width="200" align="center" ng-if="competition.bannerImageId2 != null">
+                            <div>
+                                <a href="uploads/competition/{{competition.id}}/banner2" target="_new">
+                                    <img class="banner" data-ng-src="uploads/competition/{{competition.id}}/banner2"/>
+                                </a>
+                            </div>
+                        </td>
+                        <td ng-repeat-end/>
                     </tr>
                 </tbody>
             </table>

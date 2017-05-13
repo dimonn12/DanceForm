@@ -72,4 +72,18 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="2017-05-13-01" author="dmitry-shanko">
+        <addColumn tableName="competition">
+            <column name="banner_image_id_2" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="2017-05-13-02" author="dmitry-shanko">
+        <addColumn tableName="competition">
+            <column name="is_festival" type="boolean" defaultValueBoolean="false"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>
