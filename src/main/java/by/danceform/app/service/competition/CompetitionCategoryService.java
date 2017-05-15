@@ -214,6 +214,9 @@ public class CompetitionCategoryService {
         if(null == date) {
             date = competition.getEndDate();
         }
+        if (null == date) {
+            date = competition.getStartDate();
+        }
         for(AgeCategory ageCategory : availableAgeCategories) {
             if(!isDateBigger(date, partner1Date, ageCategory.getMinAge()) &&
                (isSoloCouple || !isDateBigger(date, partner2Date, ageCategory.getMinAge()))) {

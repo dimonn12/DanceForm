@@ -137,11 +137,10 @@
             <tbody>
                 <tr ng-repeat="category in vm.categories track by category.id">
                     <td>
-                        <button type="button"
-                                ui-sref="schedule-category-details({competitionId:vm.currentCompetition.id, categoryId:category.id})"
+                        <a ui-sref="schedule-category-details({competitionId:vm.currentCompetition.id, categoryId:category.id})"
                                 class="btn btn-link show-competition-link">
                             <span>{{category.name}}</span>
-                        </button>
+                        </a>
                     </td>
                     <td>{{category.description}}</td>
                     <td>

@@ -31,21 +31,19 @@
                         </div>
                     </td>
                     <td>
-                        <button type="button"
-                                ui-sref="schedule-details({id:competition.id})"
+                        <a ui-sref="schedule-details({id:competition.id})"
                                 class="btn btn-link show-competition-link">
                             <span>{{competition.name}}</span>
-                        </button>
+                        </a>
                     </td>
                     <td style="white-space: normal;">{{competition.location}}</td>
                     <td>{{competition.organizer}}</td>
                     <td>
-                        <button type="button"
-                                ng-if="competition.registrationOpen && !competition.registrationClosed"
+                        <a ng-if="competition.registrationOpen && !competition.registrationClosed"
                                 ui-sref="schedule-category-register({id:competition.id})"
                                 class="btn btn-link show-competition-link">
                             <span>{{'danceFormApp.schedule.registry.register' | translate}}</span>
-                        </button>
+                        </a>
                     </td>
                 </tr>
 
@@ -80,18 +78,16 @@
                     <td style="white-space: normal;">{{competition.location}}</td>
                     <td>{{competition.organizer}}</td>
                     <td>
-                        <button type="button"
-                                ng-if="competition.resultsAvailable"
+                        <a ng-if="competition.resultsAvailable"
                                 ui-sref="schedule-results({id:competition.id})"
                                 class="btn btn-link show-competition-link">
                             <span>{{'danceFormApp.schedule.registry.results' | translate}}</span>
-                        </button>
-                        <button type="button"
-                                ng-if="!competition.resultsAvailable"
+                        </a>
+                        <a ng-if="!competition.resultsAvailable"
                                 ui-sref="schedule-details({id:competition.id})"
                                 class="btn btn-link show-competition-link">
                             <span>{{'danceFormApp.schedule.registry.information' | translate}}</span>
-                        </button>
+                        </a>
                     </td>
                 </tr>
             </tbody>
