@@ -73,8 +73,8 @@ public class CompetitionReportingService {
         Sheet sheet = workBook.createSheet(prepareSheetName(sheetNames, categoryDTO.getName()));
         SheetInfo sheetInfo = createSheetHeader(workBook, sheet, competitionName, categoryDTO.getName());
         List<RegisteredCoupleDTO> registeredCouples = registeredCoupleService.findByCategoryId(categoryDTO.getId());
-        for(RegisteredCoupleDTO couple : registeredCouples) {
-            fillCoupleRow(sheetInfo, sheet, categoryDTO, couple);
+        for(int i = 0; i < registeredCouples.size(); i++) {
+            fillCoupleRow(sheetInfo, sheet, categoryDTO, registeredCouples.get(i), i + 1);
         }
         for(int i = 0; i < sheetInfo.cellPosition; i++) {
             sheet.autoSizeColumn(i);
@@ -111,6 +111,7 @@ public class CompetitionReportingService {
         createHeaderCell(createHeaderRow(sheet, info), info.cellPosition, info.headerStyle, competitionName);
         createHeaderCell(createHeaderRow(sheet, info), info.cellPosition, info.headerStyle, categoryName);
         Row headerRow = createHeaderRow(sheet, info);
+        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "№");
         createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Партнер");
         createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Партнерша");
         createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Дата рождения партнера");
@@ -148,9 +149,11 @@ public class CompetitionReportingService {
     private void fillCoupleRow(SheetInfo sheetInfo,
                                Sheet sheet,
                                CompetitionCategoryDTO categoryDTO,
-                               RegisteredCoupleDTO couple) {
+                               RegisteredCoupleDTO couple,
+                               int coupleNumber) {
         Row row = sheet.createRow(sheetInfo.rowPosition++);
         sheetInfo.cellPosition = 0;
+        row.createCell(sheetInfo.cellPosition++).setCellValue(coupleNumber);
         Cell cell = row.createCell(sheetInfo.cellPosition++);
         cell.setCellValue(couple.getPartner1Surname() + " " + couple.getPartner1Name());
         if(couple.isSoloCouple()) {
