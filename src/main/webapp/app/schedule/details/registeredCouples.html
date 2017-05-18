@@ -113,9 +113,11 @@
                         </span>
                     </th>
                     <th>
-                        <span data-translate="danceFormApp.schedule.couples.organization">Организация</span>
+                        <span has-authority="ROLE_ADMIN">{{'danceFormApp.schedule.couples.organization' | translate}},</span>
+                        <br>
+                        <span data-translate="danceFormApp.schedule.couples.location">Город</span>
                     </th>
-                    <th>
+                    <th has-authority="ROLE_ADMIN">
                         <span data-translate="danceFormApp.schedule.couples.trainer">Тренер</span>
                     </th>
                     <th has-authority="ROLE_ADMIN" style="width: 1px;"/>
@@ -143,11 +145,11 @@
                         </div>
                     </td>
                     <td>
-                        <div class="div-inline">{{couple.organization}},</div>
-                        <br>
+                        <div has-authority="ROLE_ADMIN" class="div-inline">{{couple.organization}},</div>
+                        <br has-authority="ROLE_ADMIN">
                         <div class="div-inline">{{couple.location}}</div>
                     </td>
-                    <td>
+                    <td has-authority="ROLE_ADMIN">
                         <div class="div-inline">{{couple.trainer1}}</div>
                         <br ng-if="couple.trainer2 != null && couple.trainer2 !== '__________'">
                         <div class="div-inline" ng-if="couple.trainer2 != null && couple.trainer2 !== '__________'">{{couple.trainer2}}</div>

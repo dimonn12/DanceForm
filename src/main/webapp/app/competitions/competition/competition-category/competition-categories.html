@@ -59,12 +59,12 @@
                     <th>
                         <span data-translate="danceFormApp.competitionCategory.danceCategory">Dance Category</span>
                     </th>
-                    <!--<th>
-                        <span data-translate="danceFormApp.competitionCategory.danceClass">Dance Class</span>
+                    <th>
+                        <span data-translate="danceFormApp.competitionCategory.maxDanceClass">Dance Class</span>
                     </th>
                     <th>
                         <span data-translate="danceFormApp.competitionCategory.ageCategory">Age Category</span>
-                    </th>-->
+                    </th>
                     <th></th>
                 </tr>
             </thead>
@@ -125,18 +125,15 @@
                         </div>
                     </td>
                     <td>{{competitionCategory.danceCategory.name}}</td>
-                    <!--<td>
-                        <span ng-repeat="danceClass in competitionCategory.danceClasses">
-                            <a class="form-control-static" ui-sref="dance-class-detail({id: danceClass.id})">{{danceClass.name}}</a>
-                            {{$last ? '' : ', '}}
-                        </span>
+                    <td class="wrap">
+                        <a class="form-control-static" ui-sref="dance-class-detail({id: maxDanceClass.id})">{{danceClass.name}}</a>
                     </td>
-                    <td>
+                    <td class="wrap">
                         <span ng-repeat="ageCategory in competitionCategory.ageCategories">
                             <a class="form-control-static" ui-sref="age-category-detail({id: ageCategory.id})">{{ageCategory.name}}</a>
                             {{$last ? '' : ', '}}
                         </span>
-                    </td>-->
+                    </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

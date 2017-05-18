@@ -17,9 +17,10 @@
 		vm.openCalendar = openCalendar;
 		vm.competitions = Competition.query();
 		vm.danceClasses = DanceClass.query();
-		vm.agecategories = [];
+		//vm.agecategories = AgeCategory.query();
 		vm.dancecategories = DanceCategory.query();
 
+		vm.agecategories = [];
 		AgeCategory.query(onAgeCategoriesLoad);
 
 		$timeout(function() {

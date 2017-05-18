@@ -36,6 +36,7 @@
         "names": "Партнер, партнерша",
         "danceClass": "Класс",
         "organization": "Клуб",
+        "location": "Город",
         "trainer": "Тренер"
       },
       "registry": {

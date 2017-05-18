@@ -652,8 +652,12 @@ dl > dt > span {
     }
 }
 
-td, th {
+td/*, th*/ {
     white-space: nowrap;
+}
+
+.wrap {
+    white-space: normal !important;
 }
 
 .table-head > td {
