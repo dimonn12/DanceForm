@@ -7,7 +7,7 @@ import by.danceform.app.dto.couple.RegisteredCoupleDTO;
 import by.danceform.app.service.competition.CompetitionCategoryService;
 import by.danceform.app.service.competition.CompetitionService;
 import by.danceform.app.service.couple.RegisteredCoupleService;
-import by.danceform.app.web.rest.util.DownloadUtil;
+import by.danceform.app.web.rest.util.DownloadService;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -44,6 +44,9 @@ public class CompetitionReportingService {
     @Inject
     private RegisteredCoupleService registeredCoupleService;
 
+    @Inject
+    private DownloadService downloadService;
+
     public HttpEntity<byte[]> getCompetitionReport(HttpServletRequest request, Long competitionId) throws IOException {
         CompetitionDTO comp = competitionService.findOne(competitionId);
         if(null == comp) {
@@ -60,7 +63,7 @@ public class CompetitionReportingService {
         }
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         workBook.write(os);
-        return DownloadUtil.download(fileName,
+        return downloadService.download(fileName,
             new String[]{ "application", "vnd.openxmlformats-officedocument.spreadsheetml.sheet" },
             os.toByteArray(),
             false);

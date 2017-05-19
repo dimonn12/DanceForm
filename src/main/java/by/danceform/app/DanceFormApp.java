@@ -1,5 +1,6 @@
 package by.danceform.app;
 
+import by.danceform.app.config.ApplicationProperties;
 import by.danceform.app.config.Constants;
 import by.danceform.app.config.DefaultProfileUtil;
 import by.danceform.app.config.JHipsterProperties;
@@ -23,7 +24,7 @@ import java.util.Collection;
 
 @ComponentScan
 @EnableAutoConfiguration(exclude = { MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class })
-@EnableConfigurationProperties({ JHipsterProperties.class, LiquibaseProperties.class })
+@EnableConfigurationProperties({ JHipsterProperties.class, LiquibaseProperties.class, ApplicationProperties.class })
 public class DanceFormApp {
 
     private static final Logger log = LoggerFactory.getLogger(DanceFormApp.class);
