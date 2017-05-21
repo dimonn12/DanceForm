@@ -71,7 +71,7 @@ server:
 application:
     http:
         cache:
-            timeToLiveInDays: 31
+            timeToLiveInDays: 0
 
 
 # ===================================================================

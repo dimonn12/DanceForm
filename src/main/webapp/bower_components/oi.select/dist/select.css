@@ -90,7 +90,7 @@ oi-select .select-dropdown {
   position: absolute;
   width: inherit;
   overflow-y: scroll;
-  max-height: 100px;
+  max-height: 250px;
   min-width: 160px;
   font-size: 14px;
   background-color: #fff;
