@@ -1,0 +1,24 @@
+{
+    "danceFormApp": {
+        "competitionNotification" : {
+            "home": {
+                "title": "Competition Notifications",
+                "createLabel": "Create a new Competition Notification",
+                "createOrEditLabel": "Create or edit a Competition Notification",
+                "search": "Search for Competition Notification"
+            },
+            "created": "A new Competition Notification is created with identifier {{ param }}",
+            "updated": "A Competition Notification is updated with identifier {{ param }}",
+            "deleted": "A Competition Notification is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Competition Notification {{ id }}?"
+            },
+            "detail": {
+                "title": "Competition Notification"
+            },
+            "competitionId": "Competition Id",
+            "message": "Message",
+            "isActive": "Is Active"
+        }
+    }
+}

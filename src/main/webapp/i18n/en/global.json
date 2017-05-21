@@ -21,6 +21,7 @@
         "uploadedImage": "Uploaded Image",
         "message": "Message",
         "languageString": "Language String",
+        "competitionNotification": "Competition Notification",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

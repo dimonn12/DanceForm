@@ -54,7 +54,8 @@
       "competitions": {
         "main": "Настройки турниров",
         "competition": "Турниры",
-        "competitionCategory": "Турнирные категории"
+        "competitionCategory": "Турнирные категории",
+        "competitionNotification": "Турнирные уведомления"
       },
       "language": "Язык"
     },

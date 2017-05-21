@@ -1,0 +1,60 @@
+<div>
+    <h2 data-translate="danceFormApp.competitionNotification.home.title">Competition Notifications</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="competition-notification.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="danceFormApp.competitionNotification.home.createLabel">
+                        Create new Competition Notification
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="danceFormApp.competitionNotification.competitionId">Competition Id</span></th>
+                    <th><span data-translate="danceFormApp.competitionNotification.message">Message</span></th>
+                    <th><span data-translate="danceFormApp.competitionNotification.isActive">Is Active</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="competitionNotification in vm.competitionNotifications track by competitionNotification.id">
+                    <td><a ui-sref="competition-notification-detail({id:competitionNotification.id})">{{competitionNotification.id}}</a></td>
+                    <td>{{competitionNotification.competitionId}}</td>
+                    <td>{{competitionNotification.message}}</td>
+                    <td>{{competitionNotification.isActive}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="competition-notification-detail({id:competitionNotification.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="competition-notification.edit({id:competitionNotification.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="competition-notification.delete({id:competitionNotification.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
