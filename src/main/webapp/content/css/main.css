@@ -51,7 +51,7 @@ Developement Ribbon
 Version number in navbar
 ========================================================================== */
 .navbar-version {
-    font-size: 10px;
+    font-size: 12px;
     color: #ccc
 }
 
@@ -83,7 +83,7 @@ Main page styles
 .hero-unit {
     margin: 50px auto 0 auto;
     width: 300px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 200;
     line-height: 30px;
     background-color: #eee;
@@ -246,7 +246,7 @@ Custom alerts for notification
 }
 
 .alert .popover pre {
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .alerts .toast {
@@ -338,12 +338,12 @@ entity tables helpers
 entity detail page css
 ========================================================================== */
 .dl-horizontal.jh-entity-details > dt {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .dl-horizontal.jh-entity-details > dd {
     margin-bottom: 15px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 @media screen and (min-width: 658px) {
@@ -518,7 +518,7 @@ dl > dt > span {
     text-align: center;
     height: 51px;
     margin-bottom: 0;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: normal;
     line-height: 1.42857143;
     white-space: nowrap;
@@ -535,7 +535,7 @@ dl > dt > span {
     display: inline-block;
     padding: 6px 12px;
     margin-bottom: 0;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     line-height: 1.42857143;
     text-align: center;
@@ -585,7 +585,7 @@ dl > dt > span {
 }
 
 .registry-category-label {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .registry-category-table > tbody > tr > td {
@@ -681,6 +681,14 @@ td/*, th*/ {
 
 .afisha .banner {
     max-height: 300px;
+}
+
+.alert {
+    font-size: 18px;
+}
+
+.alert.notification {
+    font-weight: bold;
 }
 
 /*
