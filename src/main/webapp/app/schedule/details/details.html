@@ -21,6 +21,10 @@
     </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
+    <div class="alert alert-info notification" ng-cloak="" ng-repeat="competitionNotification in vm.currentCompetition.competitionNotificationDTOs">
+        {{competitionNotification.message}}
+    </div>
+
     <table>
         <tr>
             <td>
@@ -138,7 +142,7 @@
                 <tr ng-repeat="category in vm.categories track by category.id">
                     <td>
                         <a ui-sref="schedule-category-details({competitionId:vm.currentCompetition.id, categoryId:category.id})"
-                                class="btn btn-link show-competition-link">
+                           class="btn btn-link show-competition-link">
                             <span>{{category.name}}</span>
                         </a>
                     </td>

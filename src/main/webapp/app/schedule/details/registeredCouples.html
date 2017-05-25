@@ -13,6 +13,10 @@
     </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
+    <div class="alert alert-info notification" ng-cloak="" ng-repeat="competitionNotification in vm.currentCompetition.competitionNotificationDTOs">
+        {{competitionNotification.message}}
+    </div>
+
     <table>
         <tr>
             <td>

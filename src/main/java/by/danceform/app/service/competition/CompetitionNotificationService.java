@@ -65,6 +65,29 @@ public class CompetitionNotificationService {
         return result;
     }
 
+    @Transactional(readOnly = true)
+    public List<CompetitionNotificationDTO> findVisibleForSchedule() {
+        log.debug("Request to get active CompetitionNotifications for visible competitions");
+        List<CompetitionNotificationDTO> result = competitionNotificationRepository.findActiveForVisibleCompetitions()
+            .stream()
+            .map(competitionNotificationConverter::convertToDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+
+        return result;
+    }
+
+    @Transactional(readOnly = true)
+    public List<CompetitionNotificationDTO> findActiveForCompetition(Long competitionId) {
+        log.debug("Request to get active CompetitionNotifications for competition with id={}", competitionId);
+        List<CompetitionNotificationDTO> result = competitionNotificationRepository.findActiveForByCompetitionId(
+            competitionId)
+            .stream()
+            .map(competitionNotificationConverter::convertToDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+
+        return result;
+    }
+
     /**
      * Get one competitionNotification by id.
      *

@@ -12,6 +12,8 @@ public class CompetitionWithDetailsDTO extends CompetitionDTO {
 
     private List<CompetitionCategoryWithDetailsDTO> competitionCategoryDTOs;
 
+    private List<CompetitionNotificationDTO> competitionNotificationDTOs;
+
     private UploadedDocumentDTO uploadedDocumentDTO;
 
     private Integer amountOfUniqueRegisteredPairs;
@@ -29,6 +31,14 @@ public class CompetitionWithDetailsDTO extends CompetitionDTO {
 
     public void setCompetitionCategoryDTOs(List<CompetitionCategoryWithDetailsDTO> competitionCategoryDTOs) {
         this.competitionCategoryDTOs = competitionCategoryDTOs;
+    }
+
+    public List<CompetitionNotificationDTO> getCompetitionNotificationDTOs() {
+        return competitionNotificationDTOs;
+    }
+
+    public void setCompetitionNotificationDTOs(List<CompetitionNotificationDTO> competitionNotificationDTOs) {
+        this.competitionNotificationDTOs = competitionNotificationDTOs;
     }
 
     public UploadedDocumentDTO getUploadedDocumentDTO() {

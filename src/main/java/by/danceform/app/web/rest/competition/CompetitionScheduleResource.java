@@ -25,7 +25,7 @@ import java.util.Optional;
  * Created by dimonn12 on 08.10.2016.
  */
 @RestController
-@RequestMapping("/api/schedule")
+@RequestMapping("/api/schedule/competitions")
 @Secured({ AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS })
 public class CompetitionScheduleResource {
 
@@ -40,8 +40,7 @@ public class CompetitionScheduleResource {
      * @return the ResponseEntity with status 200 (OK) and the list of competitions in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-    @RequestMapping(value = "/competitions",
-                    method = RequestMethod.GET,
+    @RequestMapping(method = RequestMethod.GET,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<List<CompetitionDTO>> getAllCompetitions() throws URISyntaxException {
@@ -50,7 +49,7 @@ public class CompetitionScheduleResource {
         return new ResponseEntity<>(competitions, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/competitions/{id}",
+    @RequestMapping(value = "/{id}",
                     method = RequestMethod.GET,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed

@@ -4,6 +4,7 @@ import by.danceform.app.converter.AbstractConverter;
 import by.danceform.app.converter.document.UploadedDocumentConverter;
 import by.danceform.app.domain.competition.CompetitionWithDetails;
 import by.danceform.app.dto.competition.CompetitionWithDetailsDTO;
+import by.danceform.app.service.competition.CompetitionNotificationService;
 import by.danceform.app.service.competition.CompetitionScheduleService;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +26,9 @@ public class CompetitionWithDetailsConverter
     @Inject
     private CompetitionScheduleService competitionScheduleService;
 
+    @Inject
+    private CompetitionNotificationService competitionNotificationService;
+
     @Override
     protected CompetitionWithDetailsDTO convertEntityToDto(CompetitionWithDetails entity,
                                                            CompetitionWithDetailsDTO dto) {
@@ -32,6 +36,8 @@ public class CompetitionWithDetailsConverter
         dto.setUploadedDocumentDTO(uploadedDocumentConverter.convertToDto(entity.getUploadedDocument()));
         dto.setRegistrationClosesTime(competitionScheduleService.getRegistrationClosesTime(dto.getRegistrationClosesTime(),
             dto.getStartDate()));
+        dto.setCompetitionNotificationDTOs(competitionNotificationService.findActiveForCompetition(entity.getCompetition()
+            .getId()));
         return dto;
     }
 

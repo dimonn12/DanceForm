@@ -5,13 +5,14 @@
 		.module('danceFormApp')
 		.controller('ScheduleController', ScheduleController);
 
-	ScheduleController.$inject = ['$scope', 'Principal', 'CompetitionSchedule', 'LoginService', 'AlertService', '$state'];
+	ScheduleController.$inject = ['$scope', 'Principal', 'CompetitionSchedule', 'CompetitionNotification', 'LoginService', 'AlertService', '$state'];
 
-	function ScheduleController($scope, Principal, CompetitionSchedule, LoginService, AlertService, $state) {
+	function ScheduleController($scope, Principal, CompetitionSchedule, CompetitionNotification, LoginService, AlertService, $state) {
 		var vm = this;
 
 		vm.account = null;
 		vm.isAuthenticated = null;
+		vm.competitionNotifications = CompetitionNotification.getAvailable();
 		vm.login = LoginService.open;
 		$scope.$on('authenticationSuccess', function() {
 			getAccount();

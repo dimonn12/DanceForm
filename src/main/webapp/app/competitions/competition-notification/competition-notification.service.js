@@ -20,7 +20,12 @@
 					return data;
 				}
 			},
-			'update': {method: 'PUT'}
+			'update': {method: 'PUT'},
+			'getAvailable': {
+				method: 'GET',
+				isArray: true,
+				url: 'api/competition-notifications/available'
+			}
 		});
 	}
 })();

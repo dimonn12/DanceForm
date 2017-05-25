@@ -1,8 +1,8 @@
 package by.danceform.app.web.rest.competition;
 
+import by.danceform.app.dto.competition.CompetitionNotificationDTO;
 import by.danceform.app.security.AuthoritiesConstants;
 import by.danceform.app.service.competition.CompetitionNotificationService;
-import by.danceform.app.dto.competition.CompetitionNotificationDTO;
 import by.danceform.app.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
@@ -138,6 +138,18 @@ public class CompetitionNotificationResource {
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityDeletionAlert("competitionNotification", id.toString()))
             .build();
+    }
+
+    @RequestMapping(value = "/available",
+                    method = RequestMethod.GET,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Secured({ AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN, AuthoritiesConstants.ANONYMOUS })
+    public ResponseEntity<List<CompetitionNotificationDTO>> getAvailableCompetitionNotifications()
+        throws URISyntaxException {
+        log.debug("REST request to get a competition notifications for schedule");
+        List<CompetitionNotificationDTO> competitionNotifications = competitionNotificationService.findVisibleForSchedule();
+        return new ResponseEntity<>(competitionNotifications, HttpStatus.OK);
     }
 
 }
