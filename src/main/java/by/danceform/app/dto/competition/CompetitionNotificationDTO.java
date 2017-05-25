@@ -1,6 +1,7 @@
 package by.danceform.app.dto.competition;
 
 import by.danceform.app.dto.AbstractDomainDTO;
+import by.danceform.app.dto.NamedReferenceDTO;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -11,32 +12,21 @@ import javax.validation.constraints.Size;
  */
 public class CompetitionNotificationDTO extends AbstractDomainDTO<Long> {
 
-    private Long id;
-
     @NotNull
-    private Long competitionId;
+    private NamedReferenceDTO competition;
 
     @NotNull
     @Size(min = 1, max = 2048)
     private String message;
 
-    private Boolean isActive;
+    private Boolean active;
 
-
-    public Long getId() {
-        return id;
+    public NamedReferenceDTO getCompetition() {
+        return competition;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getCompetitionId() {
-        return competitionId;
-    }
-
-    public void setCompetitionId(Long competitionId) {
-        this.competitionId = competitionId;
+    public void setCompetition(NamedReferenceDTO competition) {
+        this.competition = competition;
     }
 
     public String getMessage() {
@@ -48,20 +38,20 @@ public class CompetitionNotificationDTO extends AbstractDomainDTO<Long> {
     }
 
     public Boolean isActive() {
-        return isActive;
+        return active;
     }
 
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
+    public void setIsActive(Boolean active) {
+        this.active = active;
     }
 
     @Override
     public String toString() {
         return "CompetitionNotificationDTO{" +
                "id=" + id +
-               ", competitionId='" + competitionId + "'" +
+               ", competition='" + competition + "'" +
                ", message='" + message + "'" +
-               ", isActive='" + isActive + "'" +
+               ", active='" + active + "'" +
                '}';
     }
 }

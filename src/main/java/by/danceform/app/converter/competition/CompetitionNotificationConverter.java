@@ -1,6 +1,8 @@
 package by.danceform.app.converter.competition;
 
 import by.danceform.app.converter.AbstractConverter;
+import by.danceform.app.converter.NamedEntityConverter;
+import by.danceform.app.domain.competition.Competition;
 import by.danceform.app.domain.competition.CompetitionNotification;
 import by.danceform.app.dto.competition.CompetitionNotificationDTO;
 import by.danceform.app.repository.competition.CompetitionRepository;
@@ -18,10 +20,13 @@ public class CompetitionNotificationConverter
     @Inject
     private CompetitionRepository competitionRepository;
 
+    @Inject
+    private NamedEntityConverter<Competition> competitionNamedEntityConverter;
+
     @Override
     protected CompetitionNotificationDTO convertEntityToDto(CompetitionNotification entity,
                                                             CompetitionNotificationDTO dto) {
-        dto.setCompetitionId(entity.getCompetitionId());
+        dto.setCompetition(competitionNamedEntityConverter.convertToDto(entity.getCompetition()));
         dto.setMessage(entity.getMessage());
         dto.setIsActive(entity.isActive());
         return dto;
@@ -30,7 +35,7 @@ public class CompetitionNotificationConverter
     @Override
     protected CompetitionNotification convertDtoToEntity(CompetitionNotificationDTO dto,
                                                          CompetitionNotification entity) {
-        entity.setCompetitionId(dto.getCompetitionId());
+        entity.setCompetition(competitionRepository.findOne(dto.getCompetition().getId()));
         entity.setIsActive(dto.isActive());
         entity.setMessage(trimIfNull(dto.getMessage()));
         return entity;

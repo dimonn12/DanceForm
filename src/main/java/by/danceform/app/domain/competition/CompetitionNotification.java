@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -30,9 +32,9 @@ public class CompetitionNotification extends SoftDeletedEntity<Long> implements 
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
-    @Column(name = "competition_id", nullable = false)
-    private Long competitionId;
+    @ManyToOne
+    @JoinColumn(name = "competition_id", nullable = false)
+    private Competition competition;
 
     @NotNull
     @Size(min = 1, max = 2048)
@@ -50,12 +52,12 @@ public class CompetitionNotification extends SoftDeletedEntity<Long> implements 
         this.id = id;
     }
 
-    public Long getCompetitionId() {
-        return competitionId;
+    public Competition getCompetition() {
+        return competition;
     }
 
-    public void setCompetitionId(Long competitionId) {
-        this.competitionId = competitionId;
+    public void setCompetition(Competition competition) {
+        this.competition = competition;
     }
 
     public String getMessage() {
@@ -78,7 +80,7 @@ public class CompetitionNotification extends SoftDeletedEntity<Long> implements 
     public String toString() {
         return "CompetitionNotification{" +
                "id=" + id +
-               ", competitionId='" + competitionId + "'" +
+               ", competitionId='" + competition.getId() + "'" +
                ", message='" + message + "'" +
                ", isActive='" + isActive + "'" +
                '}';

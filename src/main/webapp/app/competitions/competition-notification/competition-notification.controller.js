@@ -1,23 +1,23 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .controller('CompetitionNotificationController', CompetitionNotificationController);
+	angular
+		.module('danceFormApp')
+		.controller('CompetitionNotificationController', CompetitionNotificationController);
 
-    CompetitionNotificationController.$inject = ['$scope', '$state', 'CompetitionNotification'];
+	CompetitionNotificationController.$inject = ['$scope', '$state', 'CompetitionNotification'];
 
-    function CompetitionNotificationController ($scope, $state, CompetitionNotification) {
-        var vm = this;
-        
-        vm.competitionNotifications = [];
+	function CompetitionNotificationController($scope, $state, CompetitionNotification) {
+		var vm = this;
 
-        loadAll();
+		vm.competitionNotifications = [];
 
-        function loadAll() {
-            CompetitionNotification.query(function(result) {
-                vm.competitionNotifications = result;
-            });
-        }
-    }
+		loadAll();
+
+		function loadAll() {
+			CompetitionNotification.query(function(result) {
+				vm.competitionNotifications = result;
+			});
+		}
+	}
 })();

@@ -5,11 +5,12 @@
         .module('danceFormApp')
         .controller('CompetitionNotificationDialogController', CompetitionNotificationDialogController);
 
-    CompetitionNotificationDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'CompetitionNotification'];
+	CompetitionNotificationDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Competition', 'CompetitionNotification'];
 
-    function CompetitionNotificationDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, CompetitionNotification) {
+	function CompetitionNotificationDialogController($timeout, $scope, $stateParams, $uibModalInstance, entity, Competition, CompetitionNotification) {
         var vm = this;
 
+		vm.competitions = Competition.query();
         vm.competitionNotification = entity;
         vm.clear = clear;
         vm.save = save;

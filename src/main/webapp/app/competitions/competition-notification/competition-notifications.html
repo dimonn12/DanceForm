@@ -19,7 +19,9 @@
             <thead>
                 <tr>
                     <th><span data-translate="global.field.id">ID</span></th>
-                    <th><span data-translate="danceFormApp.competitionNotification.competitionId">Competition Id</span></th>
+                    <th>
+                        <span data-translate="danceFormApp.competitionNotification.competition">Competition</span>
+                    </th>
                     <th><span data-translate="danceFormApp.competitionNotification.message">Message</span></th>
                     <th><span data-translate="danceFormApp.competitionNotification.isActive">Is Active</span></th>
                     <th></th>
@@ -28,9 +30,18 @@
             <tbody>
                 <tr ng-repeat="competitionNotification in vm.competitionNotifications track by competitionNotification.id">
                     <td><a ui-sref="competition-notification-detail({id:competitionNotification.id})">{{competitionNotification.id}}</a></td>
-                    <td>{{competitionNotification.competitionId}}</td>
+                    <td class="wrap">
+                        <a class="form-control-static" ui-sref="competition-detail({id: competitionNotification.competition.id})">{{competitionNotification.competition.name}}</a>
+                    </td>
                     <td>{{competitionNotification.message}}</td>
-                    <td>{{competitionNotification.isActive}}</td>
+                    <td>
+                        <div ng-if="competitionNotification.active">
+                            <span data-translate="global.variables.true"></span>
+                        </div>
+                        <div ng-if="!competitionNotification.active">
+                            <span data-translate="global.variables.false"></span>
+                        </div>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

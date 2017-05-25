@@ -5,16 +5,19 @@ import by.danceform.app.domain.SoftDeletedEntity;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * A Competition.
@@ -68,6 +71,9 @@ public class Competition extends SoftDeletedEntity<Long> implements INamedEntity
 
     @Column(name = "details_document_id")
     private Long detailsDocumentId;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "competition")
+    private List<CompetitionNotification> competitionNotifications;
 
     @Override
     public Long getId() {
@@ -165,6 +171,14 @@ public class Competition extends SoftDeletedEntity<Long> implements INamedEntity
 
     public void setBannerImageId2(Long bannerImageId2) {
         this.bannerImageId2 = bannerImageId2;
+    }
+
+    public List<CompetitionNotification> getCompetitionNotifications() {
+        return competitionNotifications;
+    }
+
+    public void setCompetitionNotifications(List<CompetitionNotification> competitionNotifications) {
+        this.competitionNotifications = competitionNotifications;
     }
 
     @Override

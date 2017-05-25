@@ -1,21 +1,21 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('danceFormApp')
-        .controller('CompetitionNotificationDetailController', CompetitionNotificationDetailController);
+	angular
+		.module('danceFormApp')
+		.controller('CompetitionNotificationDetailController', CompetitionNotificationDetailController);
 
-    CompetitionNotificationDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'CompetitionNotification'];
+	CompetitionNotificationDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'CompetitionNotification'];
 
-    function CompetitionNotificationDetailController($scope, $rootScope, $stateParams, previousState, entity, CompetitionNotification) {
-        var vm = this;
+	function CompetitionNotificationDetailController($scope, $rootScope, $stateParams, previousState, entity, CompetitionNotification) {
+		var vm = this;
 
-        vm.competitionNotification = entity;
-        vm.previousState = previousState.name;
+		vm.competitionNotification = entity;
+		vm.previousState = previousState.name;
 
-        var unsubscribe = $rootScope.$on('danceFormApp:competitionNotificationUpdate', function(event, result) {
-            vm.competitionNotification = result;
-        });
-        $scope.$on('$destroy', unsubscribe);
-    }
+		var unsubscribe = $rootScope.$on('danceFormApp:competitionNotificationUpdate', function(event, result) {
+			vm.competitionNotification = result;
+		});
+		$scope.$on('$destroy', unsubscribe);
+	}
 })();

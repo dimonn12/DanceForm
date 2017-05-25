@@ -4,6 +4,7 @@ import by.danceform.app.converter.competition.CompetitionNotificationConverter;
 import by.danceform.app.domain.competition.CompetitionNotification;
 import by.danceform.app.dto.competition.CompetitionNotificationDTO;
 import by.danceform.app.repository.competition.CompetitionNotificationRepository;
+import by.danceform.app.validator.competition.CompetitionNotificationValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,9 @@ public class CompetitionNotificationService {
     @Inject
     private CompetitionNotificationConverter competitionNotificationConverter;
 
+    @Inject
+    private CompetitionNotificationValidator competitionNotificationValidator;
+
     /**
      * Save a competitionNotification.
      *
@@ -37,6 +41,7 @@ public class CompetitionNotificationService {
      */
     public CompetitionNotificationDTO save(CompetitionNotificationDTO competitionNotificationDTO) {
         log.debug("Request to save CompetitionNotification : {}", competitionNotificationDTO);
+        competitionNotificationValidator.validate(competitionNotificationDTO);
         CompetitionNotification competitionNotification = competitionNotificationConverter.convertToEntity(
             competitionNotificationDTO);
         competitionNotification = competitionNotificationRepository.save(competitionNotification);
