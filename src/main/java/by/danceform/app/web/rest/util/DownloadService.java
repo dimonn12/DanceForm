@@ -2,7 +2,7 @@ package by.danceform.app.web.rest.util;
 
 import by.danceform.app.config.ApplicationProperties;
 import by.danceform.app.domain.document.UploadedDocument;
-import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
