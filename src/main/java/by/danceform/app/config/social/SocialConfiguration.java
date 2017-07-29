@@ -17,10 +17,7 @@ import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInController;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.connect.web.SignInAdapter;
-import org.springframework.social.facebook.connect.FacebookConnectionFactory;
-import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.security.AuthenticationNameUserIdSource;
-import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 
 import javax.inject.Inject;
 
@@ -43,7 +40,7 @@ public class SocialConfiguration implements SocialConfigurer {
     @Override
     public void addConnectionFactories(ConnectionFactoryConfigurer connectionFactoryConfigurer,
                                        Environment environment) {
-        // Google configuration
+        /*// Google configuration
         String googleClientId = environment.getProperty("spring.social.google.clientId");
         String googleClientSecret = environment.getProperty("spring.social.google.clientSecret");
         if(googleClientId != null && googleClientSecret != null) {
@@ -52,9 +49,9 @@ public class SocialConfiguration implements SocialConfigurer {
                 googleClientSecret));
         } else {
             log.error("Cannot configure GoogleConnectionFactory id or secret null");
-        }
+        }*/
 
-        // Facebook configuration
+        /*// Facebook configuration
         String facebookClientId = environment.getProperty("spring.social.facebook.clientId");
         String facebookClientSecret = environment.getProperty("spring.social.facebook.clientSecret");
         if(facebookClientId != null && facebookClientSecret != null) {
@@ -63,9 +60,9 @@ public class SocialConfiguration implements SocialConfigurer {
                 facebookClientSecret));
         } else {
             log.error("Cannot configure FacebookConnectionFactory id or secret null");
-        }
+        }*/
 
-        // Twitter configuration
+/*        // Twitter configuration
         String twitterClientId = environment.getProperty("spring.social.twitter.clientId");
         String twitterClientSecret = environment.getProperty("spring.social.twitter.clientSecret");
         if(twitterClientId != null && twitterClientSecret != null) {
@@ -74,7 +71,7 @@ public class SocialConfiguration implements SocialConfigurer {
                 twitterClientSecret));
         } else {
             log.error("Cannot configure TwitterConnectionFactory id or secret null");
-        }
+        }*/
 
         // jhipster-needle-add-social-connection-factory
     }
