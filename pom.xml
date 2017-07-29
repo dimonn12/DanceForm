@@ -37,7 +37,6 @@
         <liquibase-slf4j.version>2.0.0</liquibase-slf4j.version>
         <liquibase.version>3.4.2</liquibase.version>
         <logstash-logback-encoder.version>4.7</logstash-logback-encoder.version>
-        <mapstruct.version>1.0.0.Final</mapstruct.version>
         <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
         <maven-resources-plugin.version>3.0.1</maven-resources-plugin.version>
         <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
@@ -213,12 +212,6 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>${springfox.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>mapstruct</artifactId>
-                    <groupId>org.mapstruct</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>javax.inject</groupId>
@@ -230,7 +223,7 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <!-- Spring Cloud -->
-        <dependency>
+        <!--<dependency>
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
             <version>${logstash-logback-encoder.version}</version>
@@ -248,17 +241,17 @@
                     <groupId>ch.qos.logback</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang.version}</version>
         </dependency>
         <!-- social -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
@@ -282,11 +275,6 @@
                     <groupId>org.eclipse.jetty</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-jdk8</artifactId>
-            <version>${mapstruct.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -353,7 +341,7 @@
             <artifactId>spring-boot-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-cloudfoundry-connector</artifactId>
         </dependency>
@@ -364,7 +352,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-spring-service-connector</artifactId>
-        </dependency>
+        </dependency>-->
         <!-- security -->
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -377,21 +365,21 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-facebook</artifactId>
+            <artifactId>spring-social-security</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-facebook</artifactId>
+        </dependency>
+        <!--<dependency>
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-google</artifactId>
             <version>${spring-social-google.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-twitter</artifactId>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
@@ -567,7 +555,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <argLine>-Djava.security.egd=file:/dev/./urandom -Xmx256m ${surefireArgLine}</argLine>
+                    <argLine>-Djava.security.egd=file:/dev/./urandom -Xmx90m ${surefireArgLine}</argLine>
                     <!-- Force alphabetical order to have a reproducible build -->
                     <runOrder>alphabetical</runOrder>
                 </configuration>
@@ -585,22 +573,8 @@
                         </goals>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.mapstruct</groupId>
-                        <artifactId>mapstruct-processor</artifactId>
-                        <version>${mapstruct.version}</version>
-                    </dependency>
-                </dependencies>
                 <configuration>
                     <defaultOutputDirectory>${project.build.directory}/generated-sources</defaultOutputDirectory>
-                    <processors>
-                        <processor>org.mapstruct.ap.MappingProcessor</processor>
-                    </processors>
-                    <options>
-                        <mapstruct.suppressGeneratorTimestamp>true</mapstruct.suppressGeneratorTimestamp>
-                        <mapstruct.defaultComponentModel>spring</mapstruct.defaultComponentModel>
-                    </options>
                 </configuration>
             </plugin>
             <plugin>
@@ -837,13 +811,14 @@
                         </executions>
                         <configuration>
                             <executable>true</executable>
+                            <jvmArguments>-Xms70m -Xmx95m</jvmArguments>
                         </configuration>
                     </plugin>
                 </plugins>
             </build>
             <properties>
                 <!-- log configuration -->
-                <logback.loglevel>INFO</logback.loglevel>
+                <logback.loglevel>DEBUG</logback.loglevel>
                 <!-- default Spring profiles -->
                 <spring.profiles.active>prod${profile.swagger}${profile.no-liquibase}</spring.profiles.active>
             </properties>
