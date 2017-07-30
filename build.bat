@@ -1,3 +1,3 @@
-mvn package -Pprod -DskipTests
+mvn clean install -Pprod -DskipTests
 
 
