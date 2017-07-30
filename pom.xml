@@ -21,6 +21,7 @@
     </prerequisites>
 
     <properties>
+        <apache-poi-ooxml.version>3.15</apache-poi-ooxml.version>
         <assertj-core.version>3.5.2</assertj-core.version>
         <awaitility.version>1.7.0</awaitility.version>
         <commons-io.version>2.5</commons-io.version>
@@ -28,11 +29,19 @@
         <frontend-maven-plugin.version>1.0</frontend-maven-plugin.version>
         <hibernate.version>4.3.11.Final</hibernate.version>
         <hikaricp.version>2.4.6</hikaricp.version>
-        <!-- Spring social -->
         <httpclient.version>4.5.1</httpclient.version>
         <jacoco-maven-plugin.version>0.7.7.201606060606</jacoco-maven-plugin.version>
         <java.version>1.8</java.version>
         <javax.inject.version>1</javax.inject.version>
+
+        <!--jelastic properties-->
+        <jelastic-maven-plugin.context>ROOT</jelastic-maven-plugin.context>
+        <jelastic-maven-plugin.environment-name>env-6369893</jelastic-maven-plugin.environment-name>
+        <jelastic-maven-plugin.hoster-api>app.mycloud.by</jelastic-maven-plugin.hoster-api>
+        <jelastic-maven-plugin.login>dimonn12@hotmail.com</jelastic-maven-plugin.login>
+        <jelastic-maven-plugin.password>2605947k</jelastic-maven-plugin.password>
+        <jelastic-maven-plugin.version>1.8.1</jelastic-maven-plugin.version>
+
         <liquibase-hibernate4.version>3.5</liquibase-hibernate4.version>
         <liquibase-slf4j.version>2.0.0</liquibase-slf4j.version>
         <liquibase.version>3.4.2</liquibase.version>
@@ -73,7 +82,6 @@
         <spring-social-security.version>1.1.2.RELEASE</spring-social-security.version>
         <spring-social-twitter.version>1.1.2.RELEASE</spring-social-twitter.version>
         <springfox.version>2.5.0</springfox.version>
-        <apache-poi-ooxml.version>3.15</apache-poi-ooxml.version>
     </properties>
 
     <dependencies>
@@ -247,6 +255,11 @@
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${apache-poi-ooxml.version}</version>
+        </dependency>
         <!-- social -->
         <!--<dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -365,11 +378,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-security</artifactId>
+            <artifactId>spring-social-facebook</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-facebook</artifactId>
+            <artifactId>spring-social-security</artifactId>
         </dependency>
         <!--<dependency>
             <groupId>org.springframework.social</groupId>
@@ -380,13 +393,22 @@
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-twitter</artifactId>
         </dependency>-->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>${apache-poi-ooxml.version}</version>
-        </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
     </dependencies>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>sonatype-oss-public</id>
+            <url>https://oss.sonatype.org/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>
         <pluginManagement>
@@ -782,6 +804,27 @@
                         </executions>
                     </plugin>
                     <plugin>
+                        <groupId>com.jelastic</groupId>
+                        <artifactId>jelastic-maven-plugin</artifactId>
+                        <version>${jelastic-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>deploy</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <email>${jelastic-maven-plugin.login}</email>
+                            <password>${jelastic-maven-plugin.password}</password>
+                            <context>${jelastic-maven-plugin.context}</context>
+                            <environment>${jelastic-maven-plugin.environment-name}</environment>
+                            <comment/>
+                            <api_hoster>${jelastic-maven-plugin.hoster-api}</api_hoster>
+                        </configuration>
+                    </plugin>
+                    <plugin>
                         <artifactId>maven-clean-plugin</artifactId>
                         <version>2.5</version>
                         <configuration>
@@ -811,7 +854,6 @@
                         </executions>
                         <configuration>
                             <executable>true</executable>
-                            <jvmArguments>-Xms70m -Xmx95m</jvmArguments>
                         </configuration>
                     </plugin>
                 </plugins>
