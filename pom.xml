@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -40,7 +40,7 @@
         <jelastic-maven-plugin.hoster-api>app.mycloud.by</jelastic-maven-plugin.hoster-api>
         <jelastic-maven-plugin.login>dimonn12@hotmail.com</jelastic-maven-plugin.login>
         <jelastic-maven-plugin.password>2605947k</jelastic-maven-plugin.password>
-        <jelastic-maven-plugin.version>1.8.1</jelastic-maven-plugin.version>
+        <jelastic-maven-plugin.version>1.8.2</jelastic-maven-plugin.version>
 
         <liquibase-hibernate4.version>3.5</liquibase-hibernate4.version>
         <liquibase-slf4j.version>2.0.0</liquibase-slf4j.version>
