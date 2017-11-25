@@ -13,6 +13,10 @@
 		vm.competitionCategory = entity;
 		vm.clear = clear;
 		vm.save = save;
+
+		vm.agecategories = [];
+		AgeCategory.query(onAgeCategoriesLoad);
+
 		vm.datePickerOpenStatus = {};
 		vm.openCalendar = openCalendar;
 		vm.competitions = Competition.query();
@@ -20,8 +24,6 @@
 		//vm.agecategories = AgeCategory.query();
 		vm.dancecategories = DanceCategory.query();
 
-		vm.agecategories = [];
-		AgeCategory.query(onAgeCategoriesLoad);
 
 		$timeout(function() {
 			angular.element('.form-group:eq(1)>input').focus();

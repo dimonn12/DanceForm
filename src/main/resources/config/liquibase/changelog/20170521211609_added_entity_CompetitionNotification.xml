@@ -56,4 +56,15 @@
             <column name="deleted" type="boolean" defaultValueBoolean="false"/>
         </addColumn>
     </changeSet>
+
+    <changeSet id="2017-26-11-04" author="dimonn12">
+        <addColumn tableName="competition_notification">
+            <column name="show_on_main_page" type="bit" defaultValueBoolean="false">
+                <constraints nullable="true"/>
+            </column>
+            <column name="is_bold" type="bit" defaultValueBoolean="false">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

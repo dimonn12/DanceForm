@@ -9,6 +9,7 @@ import by.danceform.app.domain.config.AgeCategory;
 import by.danceform.app.domain.config.DanceCategory;
 import by.danceform.app.domain.config.DanceClass;
 import by.danceform.app.domain.config.enums.DanceCategoryEnum;
+import by.danceform.app.dto.AbstractDomainDTO;
 import by.danceform.app.dto.competition.CompetitionCategoryDTO;
 import by.danceform.app.repository.config.AgeCategoryRepository;
 import by.danceform.app.repository.config.DanceCategoryRepository;
@@ -65,16 +66,12 @@ public class CompetitionCategoryConverter extends AbstractConverter<CompetitionC
         dto.setDanceCategory(danceCategoryNamedEntityConverter.convertToDto(entity.getDanceCategory()));
         dto.setAgeCategories(new HashSet<>(namedEntityAgeCategoryConverter.convertToDtos(entity.getAgeCategories())));
         dto.setMaxDanceClass(namedEntityDanceClassConverter.convertToDto(entity.getMaxDanceClass()));
-        dto.setMinAge(entity.getAgeCategories()
-            .stream()
-            .map(AgeCategory::getMinAge)
-            .min(Integer::compareTo)
-            .orElse(null));
-        dto.setMaxAge(entity.getAgeCategories()
-            .stream()
-            .map(AgeCategory::getMaxAge)
-            .max(Integer::compareTo)
-            .orElse(null));
+        dto.setMinAge(entity.isCheckMinAge() ?
+            entity.getAgeCategories().stream().map(AgeCategory::getMinAge).min(Integer::compareTo).orElse(null) :
+            1);
+        dto.setMaxAge(entity.isCheckMaxAge() ?
+            entity.getAgeCategories().stream().map(AgeCategory::getMaxAge).max(Integer::compareTo).orElse(null) :
+            99);
         return dto;
     }
 
@@ -100,8 +97,10 @@ public class CompetitionCategoryConverter extends AbstractConverter<CompetitionC
         }
 
         if(null != dto.getAgeCategories()) {
-            Set<Long> ageCategoriesIds = dto.getAgeCategories().stream().filter(ac -> null != ac.getId())
-                .map(ac -> ac.getId())
+            Set<Long> ageCategoriesIds = dto.getAgeCategories()
+                .stream()
+                .filter(ac -> null != ac.getId())
+                .map(AbstractDomainDTO::getId)
                 .collect(Collectors.toSet());
             if(!ageCategoriesIds.isEmpty()) {
                 entity.setAgeCategories(new HashSet<>(ageCategoryRepository.findAll(ageCategoriesIds)));

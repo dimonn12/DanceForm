@@ -21,6 +21,10 @@ public class CompetitionNotificationDTO extends AbstractDomainDTO<Long> {
 
     private Boolean active;
 
+    private Boolean showOnMainPage;
+
+    private Boolean bold;
+
     public NamedReferenceDTO getCompetition() {
         return competition;
     }
@@ -45,13 +49,29 @@ public class CompetitionNotificationDTO extends AbstractDomainDTO<Long> {
         this.active = active;
     }
 
+    public Boolean isShowOnMainPage() {
+        return showOnMainPage;
+    }
+
+    public void setIsShowOnMainPage(Boolean showOnMainPage) {
+        this.showOnMainPage = showOnMainPage;
+    }
+
+    public Boolean isBold() {
+        return bold;
+    }
+
+    public void setIsBold(Boolean bold) {
+        this.bold = bold;
+    }
+
     @Override
     public String toString() {
         return "CompetitionNotificationDTO{" +
                "id=" + id +
                ", competition='" + competition + "'" +
                ", message='" + message + "'" +
-               ", active='" + active + "'" +
+               ", active='" + active + "'" + ", showOnMainPage='" + showOnMainPage + "'" + ", bold='" + bold + "'" +
                '}';
     }
 }

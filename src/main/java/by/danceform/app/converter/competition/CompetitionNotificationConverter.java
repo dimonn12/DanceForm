@@ -29,6 +29,8 @@ public class CompetitionNotificationConverter
         dto.setCompetition(competitionNamedEntityConverter.convertToDto(entity.getCompetition()));
         dto.setMessage(entity.getMessage());
         dto.setIsActive(entity.isActive());
+        dto.setIsShowOnMainPage(entity.isShowOnMainPage());
+        dto.setIsBold(entity.isBold());
         return dto;
     }
 
@@ -38,6 +40,8 @@ public class CompetitionNotificationConverter
         entity.setCompetition(competitionRepository.findOne(dto.getCompetition().getId()));
         entity.setIsActive(dto.isActive());
         entity.setMessage(trimIfNull(dto.getMessage()));
+        entity.setIsShowOnMainPage(entity.isShowOnMainPage());
+        entity.setIsBold(dto.isBold());
         return entity;
     }
 

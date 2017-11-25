@@ -44,6 +44,13 @@ public class CompetitionNotification extends SoftDeletedEntity<Long> implements 
     @Column(name = "is_active")
     private Boolean isActive;
 
+    @Column(name = "show_on_main_page")
+    private Boolean showOnMainPage;
+
+    @Column(name = "is_bold")
+    private Boolean isBold;
+
+
     public Long getId() {
         return id;
     }
@@ -76,6 +83,22 @@ public class CompetitionNotification extends SoftDeletedEntity<Long> implements 
         this.isActive = isActive;
     }
 
+    public Boolean isShowOnMainPage() {
+        return showOnMainPage;
+    }
+
+    public void setIsShowOnMainPage(Boolean showOnMainPage) {
+        this.showOnMainPage = showOnMainPage;
+    }
+
+    public Boolean isBold() {
+        return isBold;
+    }
+
+    public void setIsBold(Boolean isBold) {
+        isBold = isBold;
+    }
+
     @Override
     public String toString() {
         return "CompetitionNotification{" +
@@ -83,6 +106,12 @@ public class CompetitionNotification extends SoftDeletedEntity<Long> implements 
                ", competitionId='" + competition.getId() + "'" +
                ", message='" + message + "'" +
                ", isActive='" + isActive + "'" +
+               ", showOnMainPage='" +
+               showOnMainPage +
+               "'" +
+               ", isBold='" +
+               isBold +
+               "'" +
                '}';
     }
 }
