@@ -717,6 +717,13 @@ body {
     margin-top: 10px;
 }
 
+.registry-dance-class-div-block {
+    display: inline-block;
+    font-weight: bold;
+    padding-left: 3px;
+    font-size: 18px;
+}
+
 /*@media (min-width: 1560px) {
     .container {
         width: 1510px;

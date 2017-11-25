@@ -514,6 +514,9 @@
                                     </td>
                                     <td>
                                         <span class="registry-category-label">{{availableCategory.name}}, {{availableCategory.description}}</span>
+                                        <div ng-if="availableCategory.maxDanceClass !== null && availableCategory.maxDanceClass.name !== null" class="registry-dance-class-div-block">
+                                            <span> - ({{availableCategory.maxDanceClass.name}})</span>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
