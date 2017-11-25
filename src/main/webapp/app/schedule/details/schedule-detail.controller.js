@@ -26,6 +26,7 @@
 
 		function load() {
 			CompetitionSchedule.get({id: $stateParams.id}, onSuccess, onError);
+
 			function onSuccess(data) {
 				vm.currentCompetition = data;
 				vm.categories = vm.currentCompetition.competitionCategoryDTOs;
@@ -71,6 +72,15 @@
 								}
 							}
 						}
+						if(newCategoriesDanceClasses.length < 1 && vm.categories[i].danceClasses.length > 0) {
+							var maxDanceClass = vm.categories[i].danceClasses[0];
+							for(var j = 0; j < vm.categories[i].danceClasses.length; j++) {
+								if(vm.categories[i].danceClasses[j].weight > maxDanceClass.weight) {
+									maxDanceClass = vm.categories[i].danceClasses[j];
+								}
+							}
+							newCategoriesDanceClasses.push(maxDanceClass);
+						}
 						vm.categories[i].danceClasses = newCategoriesDanceClasses;
 					}
 				}
@@ -80,9 +90,10 @@
 				AlertService.error(error.data.message);
 			}
 		}
-		
+
 		function donwload() {
 			CompetitionReport.get({id: $stateParams.id}, onSuccess, onError);
+
 			function onSuccess(result) {
 				var url = URL.createObjectURL(new Blob([result.data]));
 				var a = document.createElement('a');
@@ -97,10 +108,11 @@
 				/*a.target = '_blank';
 				a.click();*/
 			}
+
 			function onError(error) {
 				var charCodeArray = Array.apply(null, new Uint8Array(error).data);
 				var result = '';
-				for (var i = 0, len = charCodeArray.length; i < len; i++) {
+				for(var i = 0, len = charCodeArray.length; i < len; i++) {
 					var code = charCodeArray[i];
 					result += String.fromCharCode(code);
 				}
