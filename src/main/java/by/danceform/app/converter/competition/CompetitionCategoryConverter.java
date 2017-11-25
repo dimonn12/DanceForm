@@ -65,6 +65,16 @@ public class CompetitionCategoryConverter extends AbstractConverter<CompetitionC
         dto.setDanceCategory(danceCategoryNamedEntityConverter.convertToDto(entity.getDanceCategory()));
         dto.setAgeCategories(new HashSet<>(namedEntityAgeCategoryConverter.convertToDtos(entity.getAgeCategories())));
         dto.setMaxDanceClass(namedEntityDanceClassConverter.convertToDto(entity.getMaxDanceClass()));
+        dto.setMinAge(entity.getAgeCategories()
+            .stream()
+            .map(AgeCategory::getMinAge)
+            .min(Integer::compareTo)
+            .orElse(null));
+        dto.setMaxAge(entity.getAgeCategories()
+            .stream()
+            .map(AgeCategory::getMaxAge)
+            .max(Integer::compareTo)
+            .orElse(null));
         return dto;
     }
 
@@ -90,11 +100,10 @@ public class CompetitionCategoryConverter extends AbstractConverter<CompetitionC
         }
 
         if(null != dto.getAgeCategories()) {
-            Set<Long> ageCategoriesIds = dto.getAgeCategories()
-                .stream().filter(ac -> null != ac.getId())
+            Set<Long> ageCategoriesIds = dto.getAgeCategories().stream().filter(ac -> null != ac.getId())
                 .map(ac -> ac.getId())
                 .collect(Collectors.toSet());
-            if (!ageCategoriesIds.isEmpty()) {
+            if(!ageCategoriesIds.isEmpty()) {
                 entity.setAgeCategories(new HashSet<>(ageCategoryRepository.findAll(ageCategoriesIds)));
             }
         } else {

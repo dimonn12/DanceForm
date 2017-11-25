@@ -38,6 +38,10 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
 
     private Long competitionId;
 
+    private Integer minAge;
+
+    private Integer maxAge;
+
     private NamedReferenceDTO danceCategory;
 
     private NamedReferenceDTO maxDanceClass;
@@ -131,6 +135,22 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
         this.competitionId = competitionId;
     }
 
+    public Integer getMinAge() {
+        return minAge;
+    }
+
+    public void setMinAge(Integer minAge) {
+        this.minAge = minAge;
+    }
+
+    public Integer getMaxAge() {
+        return maxAge;
+    }
+
+    public void setMaxAge(Integer maxAge) {
+        this.maxAge = maxAge;
+    }
+
     public NamedReferenceDTO getDanceCategory() {
         return danceCategory;
     }
@@ -165,7 +185,7 @@ public class CompetitionCategoryDTO extends AbstractDomainDTO<Long> {
                ", active='" + active + "'" +
                ", checkMinAge='" + checkMinAge + "'" +
                ", checkMaxAge='" + checkMaxAge + "'" +
-               ", competitionId='" + competitionId + "'" +
+               ", competitionId='" + competitionId + "'" + ", minAge='" + minAge + "'" + ", maxAge='" + maxAge + "'" +
                '}';
     }
 }

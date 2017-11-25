@@ -63,6 +63,9 @@
                         <span data-translate="danceFormApp.competitionCategory.maxDanceClass">Dance Class</span>
                     </th>
                     <th>
+                        <span data-translate="danceFormApp.competitionCategory.age">Age</span>
+                    </th>
+                    <th>
                         <span data-translate="danceFormApp.competitionCategory.ageCategory">Age Category</span>
                     </th>
                     <th></th>
@@ -71,7 +74,8 @@
             <tbody>
                 <tr ng-repeat="competitionCategory in vm.competitionCategories track by competitionCategory.id">
                     <td>
-                        <a ui-sref="competition-category-detail({id:competitionCategory.id})">{{competitionCategory.id}}</a>
+                        <a ui-sref="competition-category-detail({competitionId:competitionCategory.competitionId,id:competitionCategory.id})">{{competitionCategory.id}}
+                        </a>
                     </td>
                     <td>{{competitionCategory.name}}</td>
                     <td>{{competitionCategory.description}}</td>
@@ -126,8 +130,9 @@
                     </td>
                     <td>{{competitionCategory.danceCategory.name}}</td>
                     <td class="wrap">
-                        <a class="form-control-static" ui-sref="dance-class-detail({id: maxDanceClass.id})">{{danceClass.name}}</a>
+                        <a class="form-control-static" ui-sref="dance-class-detail({id: competitionCategory.maxDanceClass.id})">{{competitionCategory.maxDanceClass.name}}</a>
                     </td>
+                    <td>{{competitionCategory.minAge}}-{{competitionCategory.maxAge}}</td>
                     <td class="wrap">
                         <span ng-repeat="ageCategory in competitionCategory.ageCategories">
                             <a class="form-control-static" ui-sref="age-category-detail({id: ageCategory.id})">{{ageCategory.name}}</a>
