@@ -29,6 +29,45 @@
                 <span data-translate="global.variables.false"></span>
             </div>
         </dd>
+        <dt>
+            <span data-translate="danceFormApp.competitionNotification.isActive">Is Active</span>
+        </dt>
+        <dd>
+            <div ng-if="vm.competitionNotification.active">
+                <span data-translate="global.variables.true"></span>
+            </div>
+            <div ng-if="!vm.competitionNotification.active">
+                <span data-translate="global.variables.false"></span>
+            </div>
+        </dd>
+        <dt>
+            <span data-translate="danceFormApp.competitionNotification.priority">Priority</span>
+        </dt>
+        <dd>
+            <span>{{vm.competitionNotification.priority}}</span>
+        </dd>
+        <dt>
+            <span data-translate="danceFormApp.competitionNotification.isShowOnMainPage">Is Show On Main Page</span>
+        </dt>
+        <dd>
+            <div ng-if="vm.competitionNotification.showOnMainPage">
+                <span data-translate="global.variables.true"></span>
+            </div>
+            <div ng-if="!vm.competitionNotification.showOnMainPage">
+                <span data-translate="global.variables.false"></span>
+            </div>
+        </dd>
+        <dt>
+            <span data-translate="danceFormApp.competitionNotification.isBold">Is Bold</span>
+        </dt>
+        <dd>
+            <div ng-if="vm.competitionNotification.bold">
+                <span data-translate="global.variables.true"></span>
+            </div>
+            <div ng-if="!vm.competitionNotification.bold">
+                <span data-translate="global.variables.false"></span>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

@@ -6,9 +6,8 @@ import by.danceform.app.domain.competition.Competition;
 import by.danceform.app.domain.competition.CompetitionNotification;
 import by.danceform.app.dto.competition.CompetitionNotificationDTO;
 import by.danceform.app.repository.competition.CompetitionRepository;
-import org.springframework.stereotype.Component;
-
 import javax.inject.Inject;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by dimonn12 on 22.05.2017.
@@ -25,23 +24,25 @@ public class CompetitionNotificationConverter
 
     @Override
     protected CompetitionNotificationDTO convertEntityToDto(CompetitionNotification entity,
-                                                            CompetitionNotificationDTO dto) {
+        CompetitionNotificationDTO dto) {
         dto.setCompetition(competitionNamedEntityConverter.convertToDto(entity.getCompetition()));
         dto.setMessage(entity.getMessage());
         dto.setIsActive(entity.isActive());
         dto.setIsShowOnMainPage(entity.isShowOnMainPage());
         dto.setIsBold(entity.isBold());
+        dto.setPriority(entity.getPriority());
         return dto;
     }
 
     @Override
     protected CompetitionNotification convertDtoToEntity(CompetitionNotificationDTO dto,
-                                                         CompetitionNotification entity) {
+        CompetitionNotification entity) {
         entity.setCompetition(competitionRepository.findOne(dto.getCompetition().getId()));
         entity.setIsActive(dto.isActive());
         entity.setMessage(trimIfNull(dto.getMessage()));
-        entity.setIsShowOnMainPage(entity.isShowOnMainPage());
+        entity.setIsShowOnMainPage(dto.isShowOnMainPage());
         entity.setIsBold(dto.isBold());
+        entity.setPriority(dto.getPriority());
         return entity;
     }
 

@@ -24,6 +24,11 @@
                     </th>
                     <th><span data-translate="danceFormApp.competitionNotification.message">Message</span></th>
                     <th><span data-translate="danceFormApp.competitionNotification.isActive">Is Active</span></th>
+                    <th><span data-translate="danceFormApp.competitionNotification.priority">Priority</span></th>
+                    <th><span
+                        data-translate="danceFormApp.competitionNotification.isShowOnMainPage">Is ShowOn Main Page</span>
+                    </th>
+                    <th><span data-translate="danceFormApp.competitionNotification.isBold">Is Bold</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -39,6 +44,23 @@
                             <span data-translate="global.variables.true"></span>
                         </div>
                         <div ng-if="!competitionNotification.active">
+                            <span data-translate="global.variables.false"></span>
+                        </div>
+                    </td>
+                    <td>{{competitionNotification.priority}}</td>
+                    <td>
+                        <div ng-if="competitionNotification.showOnMainPage">
+                            <span data-translate="global.variables.true"></span>
+                        </div>
+                        <div ng-if="!competitionNotification.showOnMainPage">
+                            <span data-translate="global.variables.false"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-if="competitionNotification.bold">
+                            <span data-translate="global.variables.true"></span>
+                        </div>
+                        <div ng-if="!competitionNotification.bold">
                             <span data-translate="global.variables.false"></span>
                         </div>
                     </td>

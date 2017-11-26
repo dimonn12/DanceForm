@@ -2,7 +2,6 @@ package by.danceform.app.dto.competition;
 
 import by.danceform.app.dto.AbstractDomainDTO;
 import by.danceform.app.dto.NamedReferenceDTO;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -24,6 +23,8 @@ public class CompetitionNotificationDTO extends AbstractDomainDTO<Long> {
     private Boolean showOnMainPage;
 
     private Boolean bold;
+
+    private Integer priority;
 
     public NamedReferenceDTO getCompetition() {
         return competition;
@@ -65,13 +66,24 @@ public class CompetitionNotificationDTO extends AbstractDomainDTO<Long> {
         this.bold = bold;
     }
 
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
+
     @Override
     public String toString() {
         return "CompetitionNotificationDTO{" +
-               "id=" + id +
-               ", competition='" + competition + "'" +
-               ", message='" + message + "'" +
-               ", active='" + active + "'" + ", showOnMainPage='" + showOnMainPage + "'" + ", bold='" + bold + "'" +
-               '}';
+            "id=" + id +
+            ", competition='" + competition + "'" +
+            ", message='" + message + "'" +
+            ", active='" + active + "'" +
+            ", showOnMainPage='" + showOnMainPage + "'" +
+            ", bold='" + bold + "'" +
+            ", priority='" + priority + "'" +
+            '}';
     }
 }

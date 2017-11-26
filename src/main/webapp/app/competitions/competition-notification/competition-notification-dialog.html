@@ -52,6 +52,38 @@
                    ng-model="vm.competitionNotification.active"
             />
         </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="danceFormApp.competitionNotification.priority"
+                   for="field_priority">Priority
+            </label>
+            <input type="number" class="form-control" name="priority" id="field_priority"
+                   ng-model="vm.competitionNotification.priority"
+                   required/>
+            <div ng-show="editForm.priority.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.priority.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.priority.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="danceFormApp.competitionNotification.isShowOnMainPage"
+                   for="field_isShowOnMainPage">Is Show On Main Page</label>
+            <input type="checkbox" class="form-control" name="isShowOnMainPage" id="field_isShowOnMainPage"
+                   ng-model="vm.competitionNotification.showOnMainPage"
+            />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="danceFormApp.competitionNotification.isBold"
+                   for="field_isBold">Is Bold</label>
+            <input type="checkbox" class="form-control" name="isBold" id="field_isBold"
+                   ng-model="vm.competitionNotification.bold"
+            />
+        </div>
 
     </div>
     <div class="modal-footer">

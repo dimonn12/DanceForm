@@ -687,7 +687,7 @@ td/*, th*/ {
     font-size: 18px;
 }
 
-.alert.notification {
+.alert.notification.bold {
     font-weight: bold;
 }
 

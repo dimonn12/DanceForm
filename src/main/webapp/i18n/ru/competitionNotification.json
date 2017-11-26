@@ -18,7 +18,10 @@
       },
       "competition": "Турнир",
       "message": "Сообщение",
-      "isActive": "Активно"
+        "isActive": "Активно",
+        "isShowOnMainPage": "Показывать на главной странице",
+        "isBold": "Жирный шрифт",
+        "priority": "Приоритет"
     }
   }
 }

@@ -67,4 +67,12 @@
             </column>
         </addColumn>
     </changeSet>
+
+    <changeSet id="2017-26-11-05" author="dimonn12">
+        <addColumn tableName="competition_notification">
+            <column name="priority" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

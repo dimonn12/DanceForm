@@ -3,9 +3,6 @@ package by.danceform.app.domain.competition;
 
 import by.danceform.app.domain.IEntity;
 import by.danceform.app.domain.SoftDeletedEntity;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 /**
  * A CompetitionNotification.
@@ -50,6 +49,8 @@ public class CompetitionNotification extends SoftDeletedEntity<Long> implements 
     @Column(name = "is_bold")
     private Boolean isBold;
 
+    @Column(name = "priority")
+    private Integer priority;
 
     public Long getId() {
         return id;
@@ -96,22 +97,27 @@ public class CompetitionNotification extends SoftDeletedEntity<Long> implements 
     }
 
     public void setIsBold(Boolean isBold) {
-        isBold = isBold;
+        this.isBold = isBold;
+    }
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
     }
 
     @Override
     public String toString() {
         return "CompetitionNotification{" +
-               "id=" + id +
-               ", competitionId='" + competition.getId() + "'" +
-               ", message='" + message + "'" +
-               ", isActive='" + isActive + "'" +
-               ", showOnMainPage='" +
-               showOnMainPage +
-               "'" +
-               ", isBold='" +
-               isBold +
-               "'" +
-               '}';
+            "id=" + id +
+            ", competitionId='" + competition.getId() + "'" +
+            ", message='" + message + "'" +
+            ", isActive='" + isActive + "'" +
+            ", showOnMainPage='" + showOnMainPage + "'" +
+            ", isBold='" + isBold + "'" +
+            ", priority='" + priority + "'" +
+            '}';
     }
 }
