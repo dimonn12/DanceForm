@@ -10,7 +10,7 @@
 		var resourceUrl = 'api/config/dance-categories/:id';
 
 		return $resource(resourceUrl, {}, {
-			'query': {method: 'GET', isArray: true},
+            'query': {method: 'GET', isArray: true, cache: true},
 			'get': {
 				method: 'GET',
 				transformResponse: function(data) {
