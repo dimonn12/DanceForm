@@ -23,6 +23,8 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -52,8 +54,8 @@ public class CompetitionReportingService {
         if(null == comp) {
             return null;
         }
-        String fileName = System.currentTimeMillis() + ".xlsx";
         String competitionName = comp.getName();
+        String fileName = prepareFileName(competitionName);
         List<CompetitionCategoryDTO> competitionCategories = competitionCategoryService.findByCompetitionId(
             competitionId);
         Workbook workBook = new XSSFWorkbook();
@@ -69,12 +71,25 @@ public class CompetitionReportingService {
             false);
     }
 
+    private String prepareFileName(String competitionName) {
+        return TranslitUtils.toTranslit(competitionName).replace(" ", "") +
+               "_" +
+               LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")) +
+               "_" +
+               System.currentTimeMillis() +
+               ".xlsx";
+    }
+
     private void generateCategorySheet(Workbook workBook,
                                        Set<String> sheetNames,
                                        String competitionName,
                                        CompetitionCategoryDTO categoryDTO) {
-        Sheet sheet = workBook.createSheet(prepareSheetName(sheetNames, categoryDTO.getName()));
-        SheetInfo sheetInfo = createSheetHeader(workBook, sheet, competitionName, categoryDTO.getName());
+        Sheet sheet = workBook.createSheet(prepareSheetName(sheetNames,
+            categoryDTO.getName() + " " + categoryDTO.getMaxDanceClass().getName()));
+        SheetInfo sheetInfo = createSheetHeader(workBook,
+            sheet,
+            competitionName,
+            categoryDTO.getName() + " - " + categoryDTO.getMaxDanceClass());
         List<RegisteredCoupleDTO> registeredCouples = registeredCoupleService.findByCategoryId(categoryDTO.getId());
         for(int i = 0; i < registeredCouples.size(); i++) {
             fillCoupleRow(sheetInfo, sheet, categoryDTO, registeredCouples.get(i), i + 1);

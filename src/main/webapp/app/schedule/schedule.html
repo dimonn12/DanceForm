@@ -102,16 +102,22 @@
                         <td ng-repeat-start="competition in vm.futureCompetitions | orderBy:'startDate'"></td>
                         <td width="200" align="center" ng-if="competition.bannerImageId != null">
                             <div>
-                                <a href="uploads/competition/{{competition.id}}/banner" target="_new">
+                                <a href="#/schedule/{{competition.id}}/registry">
                                     <img class="banner" data-ng-src="uploads/competition/{{competition.id}}/banner"/>
                                 </a>
+                               <!-- <a href="uploads/competition/{{competition.id}}/banner" target="_new">
+                                    <img class="banner" data-ng-src="uploads/competition/{{competition.id}}/banner"/>
+                                </a>-->
                             </div>
                         </td>
                         <td width="200" align="center" ng-if="competition.bannerImageId2 != null">
                             <div>
-                                <a href="uploads/competition/{{competition.id}}/banner2" target="_new">
+                                <a href="#/schedule/{{competition.id}}/registry">
                                     <img class="banner" data-ng-src="uploads/competition/{{competition.id}}/banner2"/>
                                 </a>
+                                <!--<a href="uploads/competition/{{competition.id}}/banner2" target="_new">
+                                    <img class="banner" data-ng-src="uploads/competition/{{competition.id}}/banner2"/>
+                                </a>-->
                             </div>
                         </td>
                         <td ng-repeat-end/>
