@@ -1,6 +1,7 @@
 package by.danceform.app.service.reporting;
 
 import by.danceform.app.domain.config.enums.DanceCategoryEnum;
+import by.danceform.app.dto.NamedReferenceDTO;
 import by.danceform.app.dto.competition.CompetitionCategoryDTO;
 import by.danceform.app.dto.competition.CompetitionDTO;
 import by.danceform.app.dto.couple.RegisteredCoupleDTO;
@@ -8,6 +9,8 @@ import by.danceform.app.service.competition.CompetitionCategoryService;
 import by.danceform.app.service.competition.CompetitionService;
 import by.danceform.app.service.couple.RegisteredCoupleService;
 import by.danceform.app.web.rest.util.DownloadService;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -36,6 +39,13 @@ import java.util.Set;
 public class CompetitionReportingService {
 
     private static final int SHEET_NAME_LIMITATION = 31;
+
+    private static final int COMPETITION_CATEGORY_NAME_LABEL_START_POSITION = 1;
+    private static final int HEADER_LABEL_LENGTH = 1;
+    private static final int COMPETITION_CATEGORY_NAME_LENGTH = 7;
+    private static final int COMPETITION_NAME_LENGTH = 3;
+
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     @Inject
     private CompetitionService competitionService;
@@ -89,7 +99,7 @@ public class CompetitionReportingService {
         SheetInfo sheetInfo = createSheetHeader(workBook,
             sheet,
             competitionName,
-            categoryDTO.getName() + " - " + categoryDTO.getMaxDanceClass());
+            categoryDTO.getName() + " - " + categoryDTO.getMaxDanceClass().getName());
         List<RegisteredCoupleDTO> registeredCouples = registeredCoupleService.findByCategoryId(categoryDTO.getId());
         for(int i = 0; i < registeredCouples.size(); i++) {
             fillCoupleRow(sheetInfo, sheet, categoryDTO, registeredCouples.get(i), i + 1);
@@ -126,34 +136,82 @@ public class CompetitionReportingService {
     private SheetInfo createSheetHeader(Workbook workBook, Sheet sheet, String competitionName, String categoryName) {
         SheetInfo info = new SheetInfo();
         info.headerStyle = prepareHeaderStyle(workBook);
-        createHeaderCell(createHeaderRow(sheet, info), info.cellPosition, info.headerStyle, competitionName);
-        createHeaderCell(createHeaderRow(sheet, info), info.cellPosition, info.headerStyle, categoryName);
         Row headerRow = createHeaderRow(sheet, info);
-        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "№");
-        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Партнер");
-        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Партнерша");
-        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Дата рождения партнера");
-        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Дата рождения партнерши");
-        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Класс");
-        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Город");
-        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Клуб");
-        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Тренер 1");
-        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Тренер 2");
-        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, info.cellPosition - 1));
-        sheet.addMergedRegion(new CellRangeAddress(1, 1, 0, info.cellPosition - 1));
+        info.cellPosition += COMPETITION_CATEGORY_NAME_LABEL_START_POSITION;
+        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Группа:");
+        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, categoryName);
+        info.cellPosition += COMPETITION_CATEGORY_NAME_LENGTH;
+        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, "Турнир:");
+        createHeaderCell(headerRow, info.cellPosition++, info.headerStyle, competitionName);
+        info.headerStyle = prepareHeaderInfoStyle(workBook);
+        Row infoHeaderRow = createHeaderRow(sheet, info);
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "№");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "Фамилия партнера");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "Имя партнера");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "Класс");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "Г.р. (дд/мм/гггг)");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "№ книжки");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "Фамилия партнерши");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "Имя партнерши");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "Класс");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "Г.р. (дд/мм/гггг)");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "№ книжки");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "Клуб");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "Город");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "Страна");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "Ф. рук1");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "И. рук1");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "Ф. рук2");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "И. рук2");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "Ф. тренер1");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "И. тренер1");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "Ф. тренер2");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "И. тренер2");
+        createHeaderCell(infoHeaderRow, info.cellPosition++, info.headerStyle, "Отметка");
+        sheet.addMergedRegion(new CellRangeAddress(0,
+            0,
+            COMPETITION_CATEGORY_NAME_LABEL_START_POSITION + HEADER_LABEL_LENGTH,
+            COMPETITION_CATEGORY_NAME_LABEL_START_POSITION + HEADER_LABEL_LENGTH + COMPETITION_CATEGORY_NAME_LENGTH -
+            HEADER_LABEL_LENGTH));
+        sheet.addMergedRegion(new CellRangeAddress(0,
+            0,
+            COMPETITION_CATEGORY_NAME_LABEL_START_POSITION +
+            HEADER_LABEL_LENGTH +
+            COMPETITION_CATEGORY_NAME_LENGTH +
+            HEADER_LABEL_LENGTH +
+            HEADER_LABEL_LENGTH,
+            COMPETITION_CATEGORY_NAME_LABEL_START_POSITION +
+            HEADER_LABEL_LENGTH +
+            COMPETITION_CATEGORY_NAME_LENGTH +
+            HEADER_LABEL_LENGTH +
+            COMPETITION_NAME_LENGTH));
         return info;
     }
 
     private CellStyle prepareHeaderStyle(Workbook workBook) {
         CellStyle style = workBook.createCellStyle();
         Font font = workBook.createFont();
-        font.setFontHeight((short)300);
+        font.setFontHeight((short)260);
         font.setBold(true);
         style.setFont(font);
         return style;
     }
 
+    private CellStyle prepareHeaderInfoStyle(Workbook workBook) {
+        CellStyle style = workBook.createCellStyle();
+        Font font = workBook.createFont();
+        font.setFontHeight((short)200);
+        font.setBold(true);
+        style.setFont(font);
+        style.setBorderBottom(BorderStyle.MEDIUM);
+        style.setBorderLeft(BorderStyle.MEDIUM);
+        style.setBorderRight(BorderStyle.MEDIUM);
+        style.setBorderTop(BorderStyle.MEDIUM);
+        return style;
+    }
+
     private Row createHeaderRow(Sheet sheet, SheetInfo info) {
+        info.cellPosition = 0;
         return sheet.createRow(info.rowPosition++);
     }
 
@@ -172,52 +230,81 @@ public class CompetitionReportingService {
         Row row = sheet.createRow(sheetInfo.rowPosition++);
         sheetInfo.cellPosition = 0;
         row.createCell(sheetInfo.cellPosition++).setCellValue(coupleNumber);
-        Cell cell = row.createCell(sheetInfo.cellPosition++);
-        cell.setCellValue(couple.getPartner1Surname() + " " + couple.getPartner1Name());
+        row.createCell(sheetInfo.cellPosition++).setCellValue(couple.getPartner1Surname());
+        row.createCell(sheetInfo.cellPosition++).setCellValue(couple.getPartner1Name());
+        row.createCell(sheetInfo.cellPosition++)
+            .setCellValue(prepareDanceClass(categoryDTO,
+                couple.getPartner1DanceClassLA(),
+                couple.getPartner1DanceClassST(),
+                couple.isHobbyCouple()));
+        row.createCell(sheetInfo.cellPosition++)
+            .setCellValue(couple.getPartner1DateOfBirth().format(DATE_TIME_FORMATTER));
+        row.createCell(sheetInfo.cellPosition++).setCellValue("");
         if(couple.isSoloCouple()) {
             row.createCell(sheetInfo.cellPosition++).setCellValue("-");
+            row.createCell(sheetInfo.cellPosition++).setCellValue("-");
+            row.createCell(sheetInfo.cellPosition++).setCellValue("-");
+            row.createCell(sheetInfo.cellPosition++).setCellValue("-");
         } else {
+            row.createCell(sheetInfo.cellPosition++).setCellValue(couple.getPartner2Surname());
+            row.createCell(sheetInfo.cellPosition++).setCellValue(couple.getPartner2Name());
             row.createCell(sheetInfo.cellPosition++)
-                .setCellValue(couple.getPartner2Surname() + " " + couple.getPartner2Name());
+                .setCellValue(prepareDanceClass(categoryDTO,
+                    couple.getPartner2DanceClassLA(),
+                    couple.getPartner2DanceClassST(),
+                    couple.isHobbyCouple()));
+            row.createCell(sheetInfo.cellPosition++)
+                .setCellValue(couple.getPartner2DateOfBirth().format(DATE_TIME_FORMATTER));
         }
-        row.createCell(sheetInfo.cellPosition++).setCellValue(couple.getPartner1DateOfBirth().toString());
-        if(couple.isSoloCouple()) {
-            row.createCell(sheetInfo.cellPosition++).setCellValue("-");
-        } else {
-            row.createCell(sheetInfo.cellPosition++).setCellValue(couple.getPartner2DateOfBirth().toString());
-        }
-        row.createCell(sheetInfo.cellPosition++).setCellValue(fillDanceCategoryString(categoryDTO, couple));
-        row.createCell(sheetInfo.cellPosition++).setCellValue(couple.getLocation());
+        row.createCell(sheetInfo.cellPosition++).setCellValue("");
         row.createCell(sheetInfo.cellPosition++).setCellValue(couple.getOrganization());
-        row.createCell(sheetInfo.cellPosition++).setCellValue(couple.getTrainer1());
-        row.createCell(sheetInfo.cellPosition++).setCellValue(couple.getTrainer2());
+        row.createCell(sheetInfo.cellPosition++).setCellValue(couple.getLocation());
+        row.createCell(sheetInfo.cellPosition++).setCellValue("");
+        row.createCell(sheetInfo.cellPosition++).setCellValue("");
+        row.createCell(sheetInfo.cellPosition++).setCellValue("");
+        row.createCell(sheetInfo.cellPosition++).setCellValue("");
+        row.createCell(sheetInfo.cellPosition++).setCellValue("");
+        fillTrainerName(row, sheetInfo, couple.getTrainer1());
+        fillTrainerName(row, sheetInfo, couple.getTrainer2());
+        row.createCell(sheetInfo.cellPosition++).setCellValue("");
     }
 
-    private String fillDanceCategoryString(CompetitionCategoryDTO categoryDTO, RegisteredCoupleDTO couple) {
-        DanceCategoryEnum danceCategory = null;
-        if(null != categoryDTO.getDanceCategory()) {
-            danceCategory = DanceCategoryEnum.valueOf(categoryDTO.getDanceCategory());
-        }
-        String value = "";
-        if(null == danceCategory) {
-            value = couple.getPartner1DanceClassST().getName() +
-                    (!couple.isSoloCouple() ? "/" + couple.getPartner2DanceClassST().getName() : "");
-            value = value.concat(" ");
-            value = value.concat(couple.getPartner1DanceClassLA().getName() +
-                                 (!couple.isSoloCouple() ? "/" + couple.getPartner2DanceClassLA().getName() : ""));
-        } else {
-            switch(danceCategory) {
-                case LA:
-                    value = couple.getPartner1DanceClassLA().getName() +
-                            (!couple.isSoloCouple() ? "/" + couple.getPartner2DanceClassLA().getName() : "");
-                    break;
-                case ST:
-                    value = couple.getPartner1DanceClassST().getName() +
-                            (!couple.isSoloCouple() ? "/" + couple.getPartner2DanceClassST().getName() : "");
-                    break;
+    private String prepareDanceClass(CompetitionCategoryDTO categoryDTO,
+                                     NamedReferenceDTO danceClassLA,
+                                     NamedReferenceDTO danceClassST,
+                                     boolean isHobbyCouple) {
+        String danceClass = "-";
+        if(!isHobbyCouple) {
+            DanceCategoryEnum danceCategory = null;
+            if(null != categoryDTO.getDanceCategory()) {
+                danceCategory = DanceCategoryEnum.valueOf(categoryDTO.getDanceCategory());
+            }
+            if(danceCategory == DanceCategoryEnum.LA) {
+                danceClass = danceClassLA.getName();
+            } else {
+                if(danceCategory == DanceCategoryEnum.ST) {
+                    danceClass = danceClassST.getName();
+                } else {
+                    danceClass = danceClassLA.getName() + "/" + danceClassST.getName();
+                }
             }
         }
-        return value.trim();
+        return danceClass.trim();
+    }
+
+    private void fillTrainerName(Row row, SheetInfo sheetInfo, String trainerName) {
+        if(!StringUtils.isBlank(trainerName)) {
+            String[] trainer = trainerName.split(" ");
+            row.createCell(sheetInfo.cellPosition++).setCellValue(trainer[0]);
+            if(trainer.length > 1) {
+                row.createCell(sheetInfo.cellPosition++).setCellValue(trainer[1]);
+            } else {
+                row.createCell(sheetInfo.cellPosition++).setCellValue("");
+            }
+        } else {
+            row.createCell(sheetInfo.cellPosition++).setCellValue("");
+            row.createCell(sheetInfo.cellPosition++).setCellValue("");
+        }
     }
 
     private class SheetInfo {
@@ -226,5 +313,4 @@ public class CompetitionReportingService {
         private int rowPosition;
         private int cellPosition;
     }
-
 }

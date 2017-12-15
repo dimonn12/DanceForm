@@ -31,8 +31,7 @@ public class CompetitionReportingResource {
     @Inject
     private CompetitionReportingService competitionReportingService;
 
-    @RequestMapping(value = "/{id}/registered-couples",
-                    method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/registered-couples", method = RequestMethod.GET)
     @Timed
     public HttpEntity<byte[]> download(@PathVariable("id") Long competitionId, HttpServletRequest request) {
         log.debug("REST request to download registered couples report for competition with id=" + competitionId);
