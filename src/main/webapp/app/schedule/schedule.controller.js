@@ -39,7 +39,7 @@
 				var today = new Date();
 				today.setDate(today.getDate() - 1);
 				for(var i = 0; i < competitions.length; i++) {
-					if(new Date(competitions[i].startDate) >= today) {
+					if(competitions[i].startDate === null || new Date(competitions[i].startDate) >= today) {
 						vm.futureCompetitions.push(competitions[i]);
 					} else {
 						vm.pastCompetitions.push(competitions[i]);
